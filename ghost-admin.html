@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEVELOPER ROOT | GOD MODE</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@400;600;800&display=swap');
+        
+        body { margin: 0; padding: 20px; font-family: 'Poppins', sans-serif; background: #02000a; color: white; display: flex; flex-direction: column; align-items: center; }
+        .container { background: rgba(15, 5, 30, 0.9); padding: 20px; border-radius: 12px; width: 100%; max-width: 700px; border: 1px solid rgba(170, 0, 255, 0.3); margin-bottom: 20px; box-shadow: 0 0 30px rgba(170, 0, 255, 0.15); box-sizing: border-box; }
+        
+        h2 { text-align: center; font-weight: 900; margin-top: 0; border-bottom: 1px solid #333; padding-bottom: 10px; font-family: 'Orbitron', sans-serif; color: #fff;}
+        h2 span { color: #aa00ff; text-shadow: 0 0 15px #aa00ff; }
+        h3 { color: #d480ff; font-size: 13px; font-family: 'Orbitron', sans-serif; margin-bottom: 10px; border-left: 3px solid #aa00ff; padding-left: 8px;}
+        
+        input { width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #333; background: #0a0514; color: #aa00ff; font-family: 'Orbitron', sans-serif; box-sizing: border-box; margin-bottom: 10px; text-align: center;}
+        input:focus { border-color: #aa00ff; outline: none; box-shadow: 0 0 10px rgba(170, 0, 255, 0.3); }
+        
+        button { padding: 10px; font-size: 11px; font-family: 'Orbitron', sans-serif; font-weight: bold; cursor: pointer; border-radius: 6px; border: none; text-transform: uppercase; transition: 0.2s; width: 100%;}
+        .btn-dev { background: #aa00ff; color: #fff; }
+        .btn-dev:hover { box-shadow: 0 0 15px #aa00ff; }
+        .btn-danger { background: #ff2a2a; color: white; }
+        .btn-success { background: #00ffcc; color: black; }
+        
+        .table-wrap { max-height: 250px; overflow-y: auto; background: #05020a; border-radius: 8px; border: 1px solid #222;}
+        table { width: 100%; border-collapse: collapse; font-size: 11px; font-family: 'Orbitron', sans-serif;}
+        th, td { border-bottom: 1px solid #222; padding: 10px; text-align: center;}
+        th { background: #0a0514; color: #888; position: sticky; top: 0;}
+        
+        .flex-row { display: flex; gap: 10px; margin-bottom: 10px; align-items: center;}
+        
+        #toast { position: fixed; bottom: -50px; left: 50%; transform: translateX(-50%); background: #fff; color: #000; padding: 10px 20px; border-radius: 4px; font-size: 12px; font-weight: bold; transition: 0.4s; z-index: 1000; font-family: 'Orbitron', sans-serif;}
+        #toast.show { bottom: 30px; box-shadow: 0 0 20px #aa00ff; }
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+
+    <div id="toast">SYSTEM MSG</div>
+
+    <div class="container" id="loginScreen" style="margin-top: 100px; max-width: 400px;">
+        <h2>DEVELOPER <span>ROOT</span></h2>
+        <input type="password" id="devPass" placeholder="ENTER ROOT KEY (ROOT123)">
+        <button class="btn-dev" onclick="loginDev()">INITIALIZE GOD MODE</button>
+    </div>
+
+    <div id="dashboard" class="hidden" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+        
+        <div class="container">
+            <h3>⚙️ SYSTEM CORE SETTINGS</h3>
+            <label style="font-size:10px; color:#888;">Update Live Game Link</label>
+            <div class="flex-row">
+                <input type="text" id="linkInput" placeholder="https://..." style="margin:0;">
+                <button class="btn-dev" style="width: 30%;" onclick="updateLink()">DEPLOY</button>
+            </div>
+            <label style="font-size:10px; color:#888; margin-top:10px;">Change Admin Panel Password</label>
+            <div class="flex-row">
+                <input type="text" id="adminPassInput" placeholder="New Password" style="margin:0;">
+                <button class="btn-dev" style="width: 30%;" onclick="updateAdminPass()">CHANGE</button>
+            </div>
+            <label style="font-size:10px; color:#888; margin-top:10px;">Master Kill Switch (Shutdown Tool)</label>
+            <button id="shutdownBtn" class="btn-danger" style="padding: 15px; font-size: 14px;" onclick="toggleShutdown()">🛑 SHUTDOWN TOOL</button>
+        </div>
+
+        <div class="container" style="border-color: #ffd700;">
+            <h3 style="color:#ffd700;">📥 MASTER QUEUE (INSTANT VISIBILITY)</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead><tr><th>UID</th><th>TIME</th><th>ACTION</th></tr></thead>
+                    <tbody id="masterQueueBody"><tr><td colspan="3">Loading...</td></tr></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="container">
+            <h3>👥 DATABASE CONTROL</h3>
+            <div class="flex-row">
+                <input type="number" id="manualUid" placeholder="Add UID Manually" style="margin:0;">
+                <button class="btn-success" style="width: 30%;" onclick="forceAddUser()">INJECT</button>
+            </div>
+            <div class="table-wrap" style="margin-top: 10px;">
+                <table>
+                    <thead><tr><th>APPROVED UID</th><th>EXPIRY</th><th>ACTION</th></tr></thead>
+                    <tbody id="approvedUsersBody"><tr><td colspan="3">Loading...</td></tr></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getDatabase, ref, set, onValue, remove } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAGQ8iW7GaYtDINwkfismc_7uBw2zF7V70",
+            authDomain: "l-rocky.firebaseapp.com",
+            databaseURL: "https://l-rocky-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "l-rocky",
+            storageBucket: "l-rocky.firebasestorage.app",
+            messagingSenderId: "524361045191",
+            appId: "1:524361045191:web:1576f60a76f89c01c2dae2"
+        };
+        const db = getDatabase(initializeApp(firebaseConfig));
+
+        function showToast(msg) { let t = document.getElementById("toast"); t.innerText = msg; t.className = "show"; setTimeout(() => t.className = "", 3000); }
+        function formatTime(ts) { let d = new Date(ts); return d.getHours().toString().padStart(2, '0') + ":" + d.getMinutes().toString().padStart(2, '0'); }
+
+        let isShutdown = false;
+
+        window.loginDev = () => {
+            if(document.getElementById('devPass').value === "ROOT123") {
+                document.getElementById('loginScreen').classList.add('hidden');
+                document.getElementById('dashboard').classList.remove('hidden');
+                loadDevData(); showToast("ROOT ACCESS GRANTED");
+            } else { showToast("ACCESS DENIED"); }
+        };
+
+        window.updateLink = async () => { await set(ref(db, 'settings/active_link'), document.getElementById('linkInput').value); showToast("LINK DEPLOYED"); };
+        window.updateAdminPass = async () => { await set(ref(db, 'settings/admin_password'), document.getElementById('adminPassInput').value); showToast("ADMIN PASSWORD CHANGED"); };
+        window.toggleShutdown = async () => { isShutdown = !isShutdown; await set(ref(db, 'settings/maintenance'), isShutdown); showToast(isShutdown ? "SHUTDOWN INITIATED" : "SYSTEM RESTORED"); };
+
+        window.forceAddUser = async () => {
+            let uid = document.getElementById('manualUid').value.trim(); if(!uid) return;
+            let d = new Date(); d.setDate(d.getDate() + 30);
+            await set(ref(db, 'approved_uids/' + uid), d.toISOString().split('T')[0]);
+            await remove(ref(db, 'pending_requests/' + uid)); showToast("UID INJECTED"); document.getElementById('manualUid').value = "";
+        };
+
+        window.deleteUser = async (uid) => { if(confirm(`Erase ${uid}?`)) { await remove(ref(db, 'approved_uids/' + uid)); showToast("UID ERASED"); } };
+        window.approveReq = async (uid) => { let d = new Date(); d.setDate(d.getDate() + 30); await set(ref(db, 'approved_uids/' + uid), d.toISOString().split('T')[0]); await remove(ref(db, 'pending_requests/' + uid)); showToast("APPROVED"); };
+        window.rejectReq = async (uid) => { await remove(ref(db, 'pending_requests/' + uid)); showToast("REJECTED"); };
+
+        function loadDevData() {
+            onValue(ref(db, 'settings/admin_password'), snap => { if(snap.exists()) document.getElementById('adminPassInput').value = snap.val(); });
+            onValue(ref(db, 'settings/active_link'), snap => { if(snap.exists()) document.getElementById('linkInput').value = snap.val(); });
+            onValue(ref(db, 'settings/maintenance'), snap => { 
+                isShutdown = snap.val() || false; let btn = document.getElementById('shutdownBtn');
+                if(isShutdown) { btn.className = "btn-success"; btn.innerText = "✅ RESTORE SYSTEM"; } else { btn.className = "btn-danger"; btn.innerText = "🛑 SHUTDOWN SYSTEM"; }
+            });
+
+            onValue(ref(db, 'pending_requests'), snap => {
+                let tbody = document.getElementById('masterQueueBody'); tbody.innerHTML = "";
+                if(snap.exists()) {
+                    snap.forEach(c => {
+                        let data = c.val(); let badge = data.is_urgent ? `<span style="color:red; font-size:9px;">(URGENT)</span>` : "";
+                        tbody.innerHTML += `<tr><td style="color:#d480ff;">${data.uid} ${badge}</td><td>${formatTime(data.timestamp)}</td>
+                        <td><button class="btn-success" style="padding:4px; font-size:9px; width:auto;" onclick="approveReq('${data.uid}')">✔️</button>
+                        <button class="btn-danger" style="padding:4px; font-size:9px; width:auto;" onclick="rejectReq('${data.uid}')">✖️</button></td></tr>`;
+                    });
+                } else { tbody.innerHTML = "<tr><td colspan='3'>Queue Empty</td></tr>"; }
+            });
+
+            onValue(ref(db, 'approved_uids'), snap => {
+                let tbody = document.getElementById('approvedUsersBody'); tbody.innerHTML = "";
+                if(snap.exists()) {
+                    snap.forEach(c => { tbody.innerHTML += `<tr><td style="color:#00ffcc;">${c.key}</td><td>${c.val()}</td><td><button class="btn-danger" style="padding:4px; font-size:9px; width:auto;" onclick="deleteUser('${c.key}')">DEL</button></td></tr>`; });
+                } else { tbody.innerHTML = "<tr><td colspan='3'>No Users Found</td></tr>"; }
+            });
+        }
+    </script>
+</body>
+</html>
