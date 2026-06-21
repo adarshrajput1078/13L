@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>VIP GATEWAY | AUTO-API ENGINE</title>
+    <title>VIP UID ENGINE | 80/20 LAYOUT</title>
     
     <style>
         /* ==========================================================================
@@ -17,161 +17,138 @@
             --neon-red: #ff2a40; --neon-red-glow: rgba(255, 42, 64, 0.5);
             --neon-gold: #ffd700; --neon-gold-glow: rgba(255, 215, 0, 0.6);
             --text-main: #e8f5ec; --text-muted: #6e8a79;
-            --glass-bg: rgba(4, 8, 6, 0.85); --glass-border: rgba(0, 240, 96, 0.2);
+            --glass-bg: rgba(4, 8, 6, 0.9); --glass-border: rgba(0, 240, 96, 0.3);
         }
         
         * { box-sizing: border-box; user-select: none; }
         body, html { margin: 0; padding: 0; height: 100%; font-family: 'Rajdhani', sans-serif; background: var(--bg-base); color: var(--text-main); overflow: hidden; display: flex; flex-direction: column; }
 
-        /* LIVE BACKGROUNDS & CRT EFFECT */
         #matrixCanvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; opacity: 0.25; pointer-events: none; }
-        .scanlines { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.05), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.05)); background-size: 100% 2px, 3px 100%; z-index: 1; pointer-events: none; opacity: 0.5; }
-        .glass-panel { background: var(--glass-bg); backdrop-filter: blur(12px); border: 1px solid var(--glass-border); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.9), inset 0 0 20px rgba(0, 240, 96, 0.05); }
+        .glass-panel { background: var(--glass-bg); backdrop-filter: blur(12px); border: 1px solid var(--glass-border); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9), inset 0 0 15px rgba(0, 240, 96, 0.05); }
 
         /* ==========================================================================
-           2. MAIN GATEWAY / LOGIN SCREEN (View 1)
+           2. UID GATEWAY SCREEN
            ========================================================================== */
-        #gatewayZone { display: flex; flex-direction: column; height: 100%; width: 100%; padding: 40px 20px; align-items: center; justify-content: center; z-index: 10; }
-        .hub-header { text-align: center; margin-bottom: 30px; width: 100%; max-width: 420px;}
-        .hub-header h1 { font-size: 36px; font-weight: 900; color: var(--neon-green); margin: 0; letter-spacing: 5px; text-shadow: 0 0 25px var(--neon-green-glow); text-transform: uppercase; }
-        .hub-header p { font-size: 13px; color: var(--text-muted); margin-top: 6px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; }
-        .red-line { width: 60px; height: 2px; background: var(--neon-red); margin: 12px auto 0 auto; box-shadow: 0 0 15px var(--neon-red-glow); }
+        #gatewayZone { display: flex; flex-direction: column; height: 100%; width: 100%; padding: 30px 20px; align-items: center; justify-content: center; z-index: 10; }
+        .hub-header { text-align: center; margin-bottom: 25px; width: 100%; max-width: 400px;}
+        .hub-header h1 { font-size: 34px; font-weight: 900; color: var(--neon-green); margin: 0; letter-spacing: 4px; text-shadow: 0 0 20px var(--neon-green-glow); text-transform: uppercase; }
+        .hub-header p { font-size: 12px; color: var(--text-muted); margin-top: 5px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; }
+        .red-line { width: 50px; height: 2px; background: var(--neon-red); margin: 10px auto 0 auto; box-shadow: 0 0 15px var(--neon-red-glow); }
 
-        .auth-card { width: 100%; max-width: 420px; padding: 30px 25px; border-radius: 8px; display: flex; flex-direction: column; justify-content: center; }
-        input { width: 100%; padding: 15px; background: rgba(0,0,0,0.6); border: 1px solid rgba(0,240,96,0.4); border-radius: 6px; color: var(--neon-green); font-family: 'Share Tech Mono', monospace; font-size: 15px; outline: none; margin-bottom: 18px; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; text-align: center;}
-        input:focus { border-color: var(--neon-green); box-shadow: 0 0 15px rgba(0,240,96,0.2), inset 0 0 10px rgba(0,240,96,0.1); }
-        input::placeholder { color: #2e3d34; }
+        .auth-card { width: 100%; max-width: 400px; padding: 30px 20px; border-radius: 8px; display: flex; flex-direction: column; align-items: center; }
+        input { width: 100%; padding: 14px; background: rgba(0,0,0,0.8); border: 1px solid rgba(0,240,96,0.5); border-radius: 6px; color: var(--neon-green); font-family: 'Share Tech Mono', monospace; font-size: 16px; outline: none; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; text-align: center; transition: 0.3s; }
+        input:focus { border-color: var(--neon-green); box-shadow: 0 0 15px rgba(0,240,96,0.3); }
 
-        .btn-action { width: 100%; padding: 15px; background: var(--neon-green); color: #000; border: none; border-radius: 6px; font-family: 'Rajdhani'; font-weight: 900; font-size: 18px; letter-spacing: 2px; cursor: pointer; text-transform: uppercase; box-shadow: 0 0 20px var(--neon-green-glow); transition: 0.2s; }
-        .btn-action:active { transform: scale(0.97); }
+        .btn-action { width: 100%; padding: 14px; background: var(--neon-green); color: #000; border: none; border-radius: 6px; font-family: 'Rajdhani'; font-weight: 900; font-size: 18px; letter-spacing: 2px; cursor: pointer; text-transform: uppercase; box-shadow: 0 0 20px var(--neon-green-glow); transition: 0.2s; }
+        .btn-action:active { transform: scale(0.95); }
 
         /* ==========================================================================
-           3. TERMINAL LOADING OVERLAY (View 2)
+           3. TERMINAL LOADER
            ========================================================================== */
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.95); z-index: 1000; display: none; justify-content: center; align-items: center; }
-        .modal-box { width: 90%; max-width: 440px; padding: 35px 30px; border-radius: 10px; border: 1px solid var(--neon-green); box-shadow: 0 0 40px rgba(0,240,96,0.25); }
-        .terminal-text { font-family: 'Share Tech Mono', monospace; font-size: 15px; color: var(--neon-green); margin-bottom: 12px; }
+        .modal-box { width: 85%; max-width: 400px; padding: 30px 25px; border-radius: 8px; border: 1px solid var(--neon-green); box-shadow: 0 0 30px rgba(0,240,96,0.2); }
+        .terminal-text { font-family: 'Share Tech Mono'; font-size: 14px; color: var(--neon-green); margin-bottom: 10px; }
         .terminal-text span { color: #fff; }
-        
-        .progress-container { margin: 30px 0 20px 0; text-align: center; background: rgba(0,0,0,0.5); padding: 20px 10px; border-radius: 6px; border: 1px dashed rgba(0, 240, 96, 0.3); }
-        .progress-bar-text { font-family: 'Share Tech Mono'; font-size: 18px; color: var(--neon-green); letter-spacing: 3px; }
-        .progress-status { font-size: 13px; color: var(--text-muted); margin-top: 8px; text-transform: uppercase; }
+        .progress-container { margin: 25px 0 15px 0; text-align: center; background: rgba(0,0,0,0.6); padding: 15px 10px; border-radius: 6px; border: 1px dashed rgba(0, 240, 96, 0.4); }
+        .progress-bar-text { font-family: 'Share Tech Mono'; font-size: 16px; color: var(--neon-green); letter-spacing: 2px; }
 
         /* ==========================================================================
-           4. HACK OVERLAY & GAME SCREEN (View 3)
+           4. 80/20 LAYOUT TOOL VIEW
            ========================================================================== */
         #toolView { display: none; flex-direction: column; height: 100%; width: 100%; z-index: 20; }
-        #top-panel { height: 28%; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 15px; border-bottom: 2px solid rgba(0, 240, 96, 0.4); box-shadow: 0 5px 25px rgba(0,0,0,0.9); }
-        #bottom-panel { height: 72%; width: 100%; background-color: #000; }
+        
+        /* 20% EXACT HEIGHT COMPACT PANEL */
+        #top-panel { 
+            height: 20%; width: 100%; display: flex; flex-direction: column; 
+            align-items: center; justify-content: center; padding: 5px 10px; 
+            border-bottom: 2px solid rgba(0, 240, 96, 0.5); box-shadow: 0 5px 15px rgba(0,0,0,0.9); 
+        }
+        
+        /* 80% EXACT HEIGHT GAME IFRAME */
+        #bottom-panel { height: 80%; width: 100%; background-color: #000; }
         iframe { width: 100%; height: 100%; border: none; }
         
-        .tool-header { width: 100%; max-width: 480px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
-        .tool-logo { font-size: 20px; font-weight: 900; color: var(--neon-green); letter-spacing: 2px; text-shadow: 0 0 15px var(--neon-green-glow); }
-        .btn-exit { background: transparent; border: 1px solid var(--neon-red); color: var(--neon-red); padding: 5px 12px; border-radius: 4px; font-family: 'Rajdhani'; cursor: pointer; font-weight: bold; transition: 0.3s;}
-        .btn-exit:hover { background: var(--neon-red); color: #000; box-shadow: 0 0 12px var(--neon-red-glow); }
+        /* COMPACT TOOL UI ELEMENTS */
+        .tool-header { width: 100%; max-width: 480px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+        .tool-logo { font-size: 16px; font-weight: 900; color: var(--neon-green); letter-spacing: 1px; text-shadow: 0 0 10px var(--neon-green-glow); }
+        .timer-box { font-family: 'Share Tech Mono'; font-size: 13px; color: var(--neon-red); font-weight: bold; border: 1px solid var(--neon-red); padding: 2px 8px; border-radius: 4px; background: rgba(255,0,0,0.1); }
         
-        .tool-container { width: 100%; max-width: 480px; display: flex; flex-direction: column; gap: 8px; }
-        .info-row { display: flex; justify-content: space-between; font-size: 13px; background: rgba(0,0,0,0.7); padding: 10px 15px; border-radius: 4px; border: 1px solid rgba(0,240,96,0.2); color: var(--text-muted); }
-        .info-row span { color: #fff; font-family: 'Share Tech Mono'; }
+        .compact-row { width: 100%; max-width: 480px; display: flex; gap: 6px; margin-bottom: 4px; }
+        .compact-row input { flex: 1; padding: 6px; font-size: 14px; margin-bottom: 0; background: rgba(0,0,0,0.8); }
+        .btn-compact-hack { padding: 6px 15px; background: var(--neon-green); color: #000; border: none; font-family: 'Rajdhani'; font-weight: 900; font-size: 15px; border-radius: 4px; cursor: pointer; letter-spacing: 1px; box-shadow: 0 0 10px var(--neon-green-glow); }
         
-        .input-row { display: flex; gap: 10px; }
-        .input-row input { flex: 1; margin-bottom: 0; }
-        .btn-hack { background: var(--neon-green); color: #000; border: none; font-family: 'Rajdhani'; font-weight: 900; font-size: 18px; border-radius: 4px; cursor: pointer; letter-spacing: 2px; width: 35%; box-shadow: 0 0 15px rgba(0,240,96,0.4); }
-        
-        .result-box { text-align: center; font-size: 22px; font-weight: 700; color: var(--neon-green); background: rgba(0,0,0,0.8); padding: 12px; border-radius: 4px; border: 1px solid var(--neon-green); font-family: 'Share Tech Mono'; letter-spacing: 3px; text-shadow: 0 0 10px rgba(0,240,96,0.5); }
-        .audit-log { width: 100%; height: 36px; background: #000; border: 1px dashed rgba(255, 42, 64, 0.3); border-radius: 4px; padding: 6px 10px; font-family: 'Share Tech Mono'; font-size: 11px; color: var(--text-muted); overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; }
-        .log-entry { margin: 1px 0; }
-        .log-sys { color: var(--neon-green); }
+        .result-box-compact { width: 100%; max-width: 480px; text-align: center; font-size: 18px; font-weight: 900; color: var(--neon-green); background: rgba(0,0,0,0.9); padding: 4px; border-radius: 4px; border: 1px solid var(--neon-green); font-family: 'Share Tech Mono'; letter-spacing: 2px; text-shadow: 0 0 10px rgba(0,240,96,0.5); }
 
         /* ==========================================================================
-           5. DYNAMIC API RESULT ANIMATIONS (WIN / LOSS / JACKPOT)
+           5. DYNAMIC API RESULT ANIMATIONS
            ========================================================================== */
-        .result-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.95); z-index: 99999; display: none; flex-direction: column; justify-content: center; align-items: center; backdrop-filter: blur(8px); }
-        .result-card { padding: 35px 30px; border-radius: 12px; text-align: center; width: 85%; max-width: 420px; background: #050a07; opacity: 0; transform: scale(0.5); }
+        .result-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.95); z-index: 99999; display: none; flex-direction: column; justify-content: center; align-items: center; backdrop-filter: blur(5px); }
+        .result-card { padding: 25px; border-radius: 10px; text-align: center; width: 85%; max-width: 350px; background: #050a07; opacity: 0; transform: scale(0.5); }
         
-        .card-win { border: 2px solid var(--neon-green); box-shadow: 0 0 50px var(--neon-green-glow); animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
-        .card-loss { border: 2px solid var(--neon-red); box-shadow: 0 0 50px var(--neon-red-glow); animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
-        .card-jackpot { border: 3px solid var(--neon-gold); background: #1a1500; animation: popIn 0.5s forwards, pulseGold 1.5s infinite; }
+        .card-win { border: 2px solid var(--neon-green); box-shadow: 0 0 40px var(--neon-green-glow); animation: popIn 0.4s forwards; }
+        .card-loss { border: 2px solid var(--neon-red); box-shadow: 0 0 40px var(--neon-red-glow); animation: popIn 0.4s forwards; }
+        .card-jackpot { border: 3px solid var(--neon-gold); background: #1a1500; animation: popIn 0.4s forwards, pulseGold 1.5s infinite; }
 
-        .anim-title { font-size: 48px; font-weight: 900; margin: 0 0 15px 0; letter-spacing: 5px; font-family: 'Rajdhani', sans-serif;}
-        .title-win { color: var(--neon-green); text-shadow: 0 0 25px var(--neon-green-glow); }
-        .title-loss { color: var(--neon-red); text-shadow: 0 0 25px var(--neon-red-glow); }
-        .title-jackpot { color: var(--neon-gold); text-shadow: 0 0 35px var(--neon-gold-glow); }
+        .anim-title { font-size: 40px; font-weight: 900; margin: 0 0 10px 0; letter-spacing: 3px; font-family: 'Rajdhani', sans-serif;}
+        .title-win { color: var(--neon-green); text-shadow: 0 0 20px var(--neon-green-glow); }
+        .title-loss { color: var(--neon-red); text-shadow: 0 0 20px var(--neon-red-glow); }
+        .title-jackpot { color: var(--neon-gold); text-shadow: 0 0 25px var(--neon-gold-glow); }
 
-        .anim-details { font-family: 'Share Tech Mono', monospace; font-size: 16px; color: #ccc; line-height: 2; text-align: left; background: rgba(0,0,0,0.6); padding: 15px; border-radius: 6px; border: 1px dashed #444;}
-        .anim-details div { display: flex; justify-content: space-between; border-bottom: 1px solid #222; padding-bottom: 5px; margin-bottom: 5px;}
-        .anim-details span { font-weight: bold; font-size: 18px; color: #fff;}
+        .anim-details { font-family: 'Share Tech Mono'; font-size: 14px; color: #ccc; text-align: left; background: rgba(0,0,0,0.6); padding: 12px; border-radius: 4px; border: 1px dashed #444;}
+        .anim-details div { display: flex; justify-content: space-between; border-bottom: 1px solid #222; padding-bottom: 4px; margin-bottom: 4px;}
+        .anim-details span { font-weight: bold; font-size: 15px; color: #fff;}
 
-        .btn-close-anim { margin-top: 25px; padding: 12px 30px; font-family: 'Rajdhani'; font-weight: 900; font-size: 18px; background: transparent; border: 2px solid #fff; color: #fff; cursor: pointer; border-radius: 6px; letter-spacing: 2px; transition: 0.3s; width: 100%;}
-        .btn-close-anim:hover { background: #fff; color: #000; }
-
+        .btn-close-anim { margin-top: 15px; padding: 10px; font-family: 'Rajdhani'; font-weight: 900; font-size: 16px; background: transparent; border: 2px solid #fff; color: #fff; cursor: pointer; border-radius: 4px; width: 100%;}
+        
         @keyframes popIn { 0% { transform: scale(0.5); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
-        @keyframes pulseGold { 0% { box-shadow: 0 0 30px var(--neon-gold-glow); } 50% { box-shadow: 0 0 80px rgba(255, 215, 0, 0.9); } 100% { box-shadow: 0 0 30px var(--neon-gold-glow); } }
-
-        /* FOOTER */
-        .footer { width: 100%; text-align: center; padding: 15px 0; background: #010302; border-top: 1px solid rgba(0, 240, 96, 0.15); margin-top: auto; z-index: 50; }
-        .footer-text { font-size: 12px; font-weight: 700; color: #444; letter-spacing: 6px; }
-        .footer-text span { color: var(--neon-red); text-shadow: 0 0 6px var(--neon-red-glow); }
+        @keyframes pulseGold { 0% { box-shadow: 0 0 30px var(--neon-gold-glow); } 50% { box-shadow: 0 0 60px rgba(255, 215, 0, 0.9); } 100% { box-shadow: 0 0 30px var(--neon-gold-glow); } }
     </style>
 </head>
 <body>
 
     <canvas id="matrixCanvas"></canvas>
-    <div class="scanlines"></div>
 
-    <!-- VIEW 1: GATEWAY CONTROLLER -->
     <div id="gatewayZone">
         <div class="hub-header">
-            <h1 id="hubMainTitle">SECURE GATEWAY</h1>
+            <h1 id="hubMainTitle">UID ENGINE</h1>
             <div class="red-line"></div>
-            <p id="hubSubDesc">API Integration Module</p>
+            <p id="hubSubDesc">Enter Game UID to Access Tool</p>
         </div>
 
         <div class="auth-card glass-panel">
-            <input type="text" id="masterKeyInput" placeholder="ENTER VIP LICENSE KEY">
-            <button class="btn-action" onclick="verifyPlayer()">LAUNCH BYPASS</button>
+            <input type="text" id="uidInput" placeholder="ENTER YOUR UID">
+            <button class="btn-action" id="verifyBtn" onclick="verifyUID()">VERIFY & ENTER</button>
         </div>
     </div>
 
-    <!-- VIEW 2: TERMINAL SYSTEM INJECTOR OVERLAY -->
     <div id="detailsModal" class="modal-overlay">
         <div class="modal-box glass-panel">
-            <div class="terminal-text">> SECURE KEY: <span style="color:var(--neon-green);">VERIFIED</span></div>
-            <div class="terminal-text">> ENGINE TARGET: <span style="color:#ffd700;">WIN-GO 1M API</span></div>
-            
+            <div class="terminal-text">> UID CHECK: <span style="color:var(--neon-green);">VERIFIED</span></div>
+            <div class="terminal-text">> ENGINE TARGET: <span style="color:#ffd700;">WIN-GO API</span></div>
             <div class="progress-container">
                 <div class="progress-bar-text" id="progBar">[░░░░░░░░░░░░░░░░░░░░] 0%</div>
-                <div class="progress-status" id="progStatus">Establishing API Tunnel...</div>
             </div>
         </div>
     </div>
 
-    <!-- VIEW 3: THE TERMINAL BATTLEFIELD (TOOL + IFRAME) -->
     <div id="toolView">
-        <div id="top-panel" class="glass-panel" style="border-radius: 0 0 20px 20px; border-top: none;">
+        
+        <div id="top-panel" class="glass-panel" style="border-radius: 0 0 10px 10px; border-top: none;">
             <div class="tool-header">
-                <div class="tool-logo" id="toolLogoText">SYSTEM OVERLAY</div>
-                <button class="btn-exit" onclick="location.reload()">[X] TERMINATE</button>
+                <div class="tool-logo">BDG [SECURE]</div>
+                <div style="display:flex; gap:8px; align-items:center;">
+                    <div id="displayPeriod" style="font-family:'Share Tech Mono'; font-size:11px; color:#aaa;">SYNCING</div>
+                    <div class="timer-box" id="displayTimer">00:00</div>
+                </div>
             </div>
             
-            <div class="tool-container">
-                <div class="info-row">
-                    <div>ALGORITHM NODE: <span id="displayPeriod">SYNCING...</span></div>
-                    <div>API TRIGGER IN: <span id="displayTimer" style="color:var(--neon-red);">00:00</span></div>
-                </div>
-                
-                <div class="input-row">
-                    <input type="number" id="num1" placeholder="N-1" min="0" max="9">
-                    <input type="number" id="num2" placeholder="N-2" min="0" max="9">
-                    <button class="btn-hack" onclick="runHackEngine()">EXECUTE</button>
-                </div>
-                
-                <div id="predictionDisplay" class="result-box" style="color:#444; border-color:#222; text-shadow:none;">SYSTEM IDLE</div>
-                
-                <div class="audit-log" id="auditLogBox">
-                    <div class="log-entry log-sys">[SYS] Secured API connection established.</div>
-                </div>
+            <div class="compact-row">
+                <input type="number" id="num1" placeholder="N-1" min="0" max="9">
+                <input type="number" id="num2" placeholder="N-2" min="0" max="9">
+                <button class="btn-compact-hack" onclick="runHackEngine()">EXECUTE</button>
             </div>
+            
+            <div id="predictionDisplay" class="result-box-compact" style="color:#444; border-color:#222; text-shadow:none;">WAITING</div>
         </div>
         
         <div id="bottom-panel">
@@ -179,12 +156,11 @@
         </div>
     </div>
 
-    <!-- DYNAMIC RESULT ANIMATION SCREEN -->
     <div id="resultScreen" class="result-overlay">
         <div id="resultCardBox" class="result-card">
             <h1 id="animTitle" class="anim-title">RESULT</h1>
             <div class="anim-details">
-                <div>PERIOD <span>#<span id="animPeriod" style="font-size:16px;">---</span></span></div>
+                <div>PERIOD <span>#<span id="animPeriod">---</span></span></div>
                 <div>PREDICTION <span id="animPred">---</span></div>
                 <div>ACTUAL RESULT <span id="animActual">---</span></div>
             </div>
@@ -192,11 +168,6 @@
         </div>
     </div>
 
-    <div class="footer" id="mainFooter"><div class="footer-text">TEAM <span>DEVELOPER</span></div></div>
-
-    <!-- ==================================================
-         BACKEND CONTROLLERS, FIREBASE & API ENGINE
-         ================================================== -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js";
         import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-database.js";
@@ -209,19 +180,19 @@
         };
         const db = getDatabase(initializeApp(firebaseConfig));
 
-        // GLOBALS FOR API TRACKING
+        // GLOBALS
         let currentActivePeriod = "";
         let currentActivePrediction = "";
         let isWaitingForAPI = false;
 
-        // MATRIX SCREEN MATRIX
+        // MATRIX RAIN BACKGROUND
         const canvas = document.getElementById('matrixCanvas'); const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth; canvas.height = window.innerHeight;
         const charPool = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ$%&#@'.split('');
-        const fSize = 15; const cols = canvas.width / fSize; const streams = [];
+        const fSize = 14; const cols = canvas.width / fSize; const streams = [];
         for(let i=0; i<cols; i++) streams[i] = Math.random() * -50;
         function dropRain() {
-            ctx.fillStyle = 'rgba(2, 5, 3, 0.06)'; ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = 'rgba(2, 5, 3, 0.08)'; ctx.fillRect(0, 0, canvas.width, canvas.height);
             ctx.fillStyle = '#00f060'; ctx.font = fSize + 'px Share Tech Mono';
             for(let i=0; i<streams.length; i++) {
                 let txt = charPool[Math.floor(Math.random() * charPool.length)];
@@ -232,19 +203,43 @@
         }
         setInterval(dropRain, 35);
 
-        // LOGIN SYSTEM
-        window.verifyPlayer = async () => {
-            let userKey = document.getElementById('masterKeyInput').value.trim();
-            if(!userKey) return alert("VIP LICENSE KEY REQUIRED.");
-            document.getElementById('detailsModal').style.display = 'flex';
-            runTerminalProgressBar();
+        // ==========================================
+        // 🔑 DIRECT UID VERIFICATION LOGIC
+        // ==========================================
+        window.verifyUID = async () => {
+            let uid = document.getElementById('uidInput').value.trim();
+            let btn = document.getElementById('verifyBtn');
+            
+            if(!uid) return alert("PLEASE ENTER YOUR UID.");
+            
+            btn.innerText = "VERIFYING...";
+            btn.disabled = true;
+
+            try {
+                // Check if UID exists in Firebase
+                let snap = await get(ref(db, 'approved_uids/' + uid));
+                
+                if(snap.exists()) {
+                    // Success -> Start Loader
+                    document.getElementById('detailsModal').style.display = 'flex';
+                    runTerminalProgressBar();
+                } else {
+                    alert("ERROR: UID NOT REGISTERED. Please contact Admin.");
+                    btn.innerText = "VERIFY & ENTER";
+                    btn.disabled = false;
+                }
+            } catch(e) {
+                alert("Server Connection Error.");
+                btn.innerText = "VERIFY & ENTER";
+                btn.disabled = false;
+            }
         };
 
         function runTerminalProgressBar() {
-            let left = 5; // Reduced to 5 sec for faster access
+            let left = 4; // 4 seconds loading
             let bootInterval = setInterval(() => {
                 left--;
-                let percent = Math.floor(((5 - left) / 5) * 100);
+                let percent = Math.floor(((4 - left) / 4) * 100);
                 let blocks = Math.floor((percent/100)*20);
                 document.getElementById('progBar').innerText = `[${'█'.repeat(blocks) + '░'.repeat(20 - blocks)}] ${percent}%`;
                 if(left <= 0) { clearInterval(bootInterval); openTool(); }
@@ -254,13 +249,12 @@
         window.openTool = () => {
             document.getElementById('detailsModal').style.display = 'none';
             document.getElementById('gatewayZone').style.display = 'none';
-            document.getElementById('mainFooter').style.display = 'none';
             document.getElementById('toolView').style.display = 'flex';
             startLoopTimers();
         };
 
         // ==========================================
-        // 🕰️ CORE TIMER & API TRIGGER ENGINE
+        // 🕰️ TIMER & API TRIGGER
         // ==========================================
         function startLoopTimers() {
             setInterval(() => {
@@ -273,27 +267,15 @@
                 document.getElementById('displayPeriod').innerText = periodStr; 
                 document.getElementById('displayTimer').innerText = `00:${String(remSec).padStart(2,'0')}`;
 
-                // 🔥 THE MAGIC: TRIGGER API WHEN TIMER HITS 0 AND WE HAVE A PREDICTION
                 if(remSec === 0 && currentActivePrediction !== "" && !isWaitingForAPI) {
                     isWaitingForAPI = true;
-                    appendLog(`Triggering Live API Check for Period: ${currentActivePeriod}...`);
-                    
-                    // Small delay to ensure API has updated the JSON
-                    setTimeout(() => {
-                        verifyWithGameAPI(currentActivePeriod, currentActivePrediction);
-                    }, 2000); 
+                    setTimeout(() => { verifyWithGameAPI(currentActivePeriod, currentActivePrediction); }, 2000); 
                 }
             }, 1000);
         }
 
-        function appendLog(text) {
-            let box = document.getElementById('auditLogBox'); let entry = document.createElement('div');
-            entry.className = 'log-entry log-sys'; entry.innerText = `[SYS] ${text}`;
-            box.appendChild(entry); if(box.children.length > 2) box.removeChild(box.firstChild);
-        }
-
         // ==========================================
-        // 🧠 EXECUTE TOOL PREDICTION
+        // 🧠 EXECUTE TOOL
         // ==========================================
         window.runHackEngine = async () => {
             let n1 = document.getElementById('num1').value; let n2 = document.getElementById('num2').value;
@@ -304,113 +286,68 @@
             display.innerText = "BYPASSING...";
 
             try {
-                // Fetch from Firebase (Using 'patterns' - change to 'vip_patterns' if needed)
                 let snap = await get(ref(db, `patterns/${n1}-${n2}`));
-                
                 setTimeout(() => {
                     if(snap.exists()) {
                         let predictionResult = snap.val();
                         display.innerText = predictionResult; 
                         
-                        // Set tracking variables for the API engine
                         currentActivePeriod = document.getElementById('displayPeriod').innerText;
                         currentActivePrediction = predictionResult;
                         isWaitingForAPI = false;
-
-                        appendLog(`Prediction locked. Waiting for API trigger...`);
                     } else {
-                        display.innerText = "UNSET FIELD"; display.style.color = "var(--neon-red)"; display.style.borderColor = "var(--neon-red)";
+                        display.innerText = "UNSET"; display.style.color = "var(--neon-red)"; display.style.borderColor = "var(--neon-red)";
                     }
                 }, 800);
             } catch(e) { display.innerText = "ERROR"; }
         };
 
         // ==========================================
-        // 🎯 LIVE API ENGINE & ANIMATION OVERLAY
+        // 🎯 LIVE API ENGINE & ANIMATION
         // ==========================================
-        window.closeAnimation = () => {
-            document.getElementById('resultScreen').style.display = 'none';
-        }
+        window.closeAnimation = () => { document.getElementById('resultScreen').style.display = 'none'; }
 
         function triggerAnimation(type, period, prediction, actualResult, number) {
-            const screen = document.getElementById('resultScreen');
-            const card = document.getElementById('resultCardBox');
-            const title = document.getElementById('animTitle');
-            
-            // Format Display
-            document.getElementById('animPeriod').innerText = period.slice(-4); // Show last 4 digits
+            const screen = document.getElementById('resultScreen'); const card = document.getElementById('resultCardBox'); const title = document.getElementById('animTitle');
+            document.getElementById('animPeriod').innerText = period.slice(-4);
             document.getElementById('animPred').innerText = prediction;
             document.getElementById('animActual').innerText = `${actualResult} [${number}]`;
 
-            // Reset Classes
-            card.className = "result-card"; 
-            title.className = "anim-title";
-
-            if(type === 'JACKPOT') {
-                card.classList.add('card-jackpot'); title.classList.add('title-jackpot'); title.innerText = "JACKPOT!";
-            } else if(type === 'WIN') {
-                card.classList.add('card-win'); title.classList.add('title-win'); title.innerText = "VICTORY!";
-            } else if(type === 'LOSS') {
-                card.classList.add('card-loss'); title.classList.add('title-loss'); title.innerText = "SYSTEM FAIL";
-            }
-
+            card.className = "result-card"; title.className = "anim-title";
+            if(type === 'JACKPOT') { card.classList.add('card-jackpot'); title.classList.add('title-jackpot'); title.innerText = "JACKPOT!"; } 
+            else if(type === 'WIN') { card.classList.add('card-win'); title.classList.add('title-win'); title.innerText = "VICTORY!"; } 
+            else if(type === 'LOSS') { card.classList.add('card-loss'); title.classList.add('title-loss'); title.innerText = "SYSTEM FAIL"; }
             screen.style.display = 'flex';
         }
 
         async function verifyWithGameAPI(periodToVerify, predictedValue) {
             try {
-                // The Original URL Provided
                 const apiUrl = `https://draw.ar-lottery01.com/WinGo/WinGo_1M/GetHistoryIssuePage.json`; 
-                
                 let response = await fetch(apiUrl);
                 let data = await response.json();
-
                 let historyList = data.data || data.list || data.items || data; 
 
-                // Find the period in API
                 let periodData = historyList.find(item => item.issueNumber == periodToVerify || item.period == periodToVerify || item.IssueNumber == periodToVerify);
+                if (!periodData) { setTimeout(() => verifyWithGameAPI(periodToVerify, predictedValue), 3000); return; }
 
-                if (!periodData) {
-                    appendLog(`API Data pending. Retrying...`);
-                    setTimeout(() => verifyWithGameAPI(periodToVerify, predictedValue), 3000);
-                    return;
-                }
-
-                // Analyze API Result
                 let actualResult = "";
                 let winningNumber = periodData.number !== undefined ? periodData.number : (periodData.Number !== undefined ? periodData.Number : 0);
                 
-                if (periodData.size || periodData.Size) {
-                    actualResult = (periodData.size || periodData.Size).toUpperCase();
-                } else {
-                    actualResult = (winningNumber >= 5) ? "BIG" : "SMALL";
-                }
+                if (periodData.size || periodData.Size) { actualResult = (periodData.size || periodData.Size).toUpperCase(); } 
+                else { actualResult = (winningNumber >= 5) ? "BIG" : "SMALL"; }
                 
                 let cleanPrediction = predictedValue.toUpperCase().includes("BIG") ? "BIG" : "SMALL";
 
-                appendLog(`API Return: ${actualResult} [${winningNumber}]. Comparing...`);
-
-                // ANIMATION LOGIC
                 if (cleanPrediction === actualResult) {
-                    let isJackpot = (winningNumber == 0 || winningNumber == 5); // 0 or 5 is Violet (Jackpot)
-                    if(isJackpot) {
-                        triggerAnimation('JACKPOT', periodToVerify, predictedValue, actualResult, winningNumber);
-                    } else {
-                        triggerAnimation('WIN', periodToVerify, predictedValue, actualResult, winningNumber);
-                    }
+                    let isJackpot = (winningNumber == 0 || winningNumber == 5);
+                    if(isJackpot) triggerAnimation('JACKPOT', periodToVerify, predictedValue, actualResult, winningNumber);
+                    else triggerAnimation('WIN', periodToVerify, predictedValue, actualResult, winningNumber);
                 } else {
                     triggerAnimation('LOSS', periodToVerify, predictedValue, actualResult, winningNumber);
                 }
 
-                // Reset variables so it doesn't trigger again until a new execution
-                currentActivePrediction = "";
-                isWaitingForAPI = false;
-
-            } catch (error) {
-                appendLog(`API Error: Fetch Failed.`);
-                console.error(error);
-                isWaitingForAPI = false;
-            }
+                currentActivePrediction = ""; isWaitingForAPI = false;
+            } catch (error) { console.error(error); isWaitingForAPI = false; }
         }
     </script>
 </body>
