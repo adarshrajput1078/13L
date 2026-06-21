@@ -2,89 +2,78 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DEVELOPER ROOT | GOD MODE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>13L X ROCKY | DEV CORE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Rajdhani:wght@700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@400;600;800&display=swap');
+        :root { --plasma: #ff1a1a; --gold: #d9a036; --bg: #050505; --panel-bg: rgba(15, 5, 5, 0.95); --green: #00f060;}
+        body { margin: 0; padding: 15px; font-family: 'Poppins', sans-serif; background: var(--bg); color: #fff; display: flex; flex-direction: column; align-items: center; min-height: 100vh;}
+        * { box-sizing: border-box; }
+
+        .glass-panel { background: var(--panel-bg); border: 2px solid var(--plasma); border-radius: 12px; width: 100%; max-width: 600px; padding: 25px; margin-bottom: 20px;}
+        h1 { text-align: center; font-family: 'Rajdhani', sans-serif; color: var(--plasma); font-size: 26px; letter-spacing: 2px; margin: 0 0 20px 0; border-bottom: 1px dashed #333; padding-bottom: 10px;}
         
-        body { margin: 0; padding: 20px; font-family: 'Poppins', sans-serif; background: #02000a; color: white; display: flex; flex-direction: column; align-items: center; }
-        .container { background: rgba(15, 5, 30, 0.9); padding: 20px; border-radius: 12px; width: 100%; max-width: 700px; border: 1px solid rgba(170, 0, 255, 0.3); margin-bottom: 20px; box-shadow: 0 0 30px rgba(170, 0, 255, 0.15); box-sizing: border-box; }
+        .dev-section { background: #0a0a0a; border: 1px solid #222; padding: 15px; border-radius: 8px; margin-bottom: 15px; }
+        .dev-section h3 { font-family: 'Rajdhani', sans-serif; color: var(--gold); margin: 0 0 10px 0; font-size: 18px; display: flex; justify-content: space-between; align-items: center;}
         
-        h2 { text-align: center; font-weight: 900; margin-top: 0; border-bottom: 1px solid #333; padding-bottom: 10px; font-family: 'Orbitron', sans-serif; color: #fff;}
-        h2 span { color: #aa00ff; text-shadow: 0 0 15px #aa00ff; }
-        h3 { color: #d480ff; font-size: 13px; font-family: 'Orbitron', sans-serif; margin-bottom: 10px; border-left: 3px solid #aa00ff; padding-left: 8px;}
+        label { font-size: 11px; color: #888; font-weight: 700; display: block; margin-bottom: 5px;}
+        input[type="text"], input[type="password"] { width: 100%; padding: 12px; background: #000; border: 1px solid #333; color: #fff; font-family: 'Share Tech Mono'; font-size: 14px; border-radius: 6px; outline: none; margin-bottom: 10px;}
+        button { width: 100%; padding: 12px; font-family: 'Rajdhani', sans-serif; font-size: 16px; font-weight: 900; background: linear-gradient(90deg, #b30000, #ff1a1a); color: #fff; border: none; border-radius: 6px; cursor: pointer; letter-spacing: 1px;}
         
-        input { width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #333; background: #0a0514; color: #aa00ff; font-family: 'Orbitron', sans-serif; box-sizing: border-box; margin-bottom: 10px; text-align: center;}
-        input:focus { border-color: #aa00ff; outline: none; box-shadow: 0 0 10px rgba(170, 0, 255, 0.3); }
+        .switch-container { display: flex; align-items: center; justify-content: space-between; background: #000; padding: 12px; border-radius: 6px; border: 1px dashed #333;}
+        .switch { position: relative; display: inline-block; width: 50px; height: 28px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #333; border-radius: 34px; transition: .4s;}
+        .slider:before { position: absolute; content: ""; height: 20px; width: 20px; left: 4px; bottom: 4px; background-color: white; border-radius: 50%; transition: .4s;}
+        input:checked + .slider { background-color: var(--plasma); }
+        input:checked + .slider:before { transform: translateX(22px); }
+
+        .status-badge { padding: 4px 8px; border-radius: 4px; font-family: 'Share Tech Mono'; font-size: 11px; font-weight: bold;}
+        .status-online { background: rgba(0, 240, 96, 0.2); color: #00f060; border: 1px solid #00f060;}
+        .status-offline { background: rgba(255, 26, 26, 0.2); color: #ff1a1a; border: 1px solid #ff1a1a;}
+
+        .req-card { background: #111; border: 1px solid #333; padding: 10px; margin-bottom: 8px; border-radius: 6px; display: flex; flex-direction: column; gap: 6px;}
+        .urgent-tag { background: var(--plasma); color: #fff; font-size: 10px; padding: 2px 6px; border-radius: 4px; align-self: flex-start; }
+        .req-actions { display: flex; gap: 8px; margin-top: 5px; }
+        .req-actions button { padding: 8px; font-size: 12px; border-radius: 4px; flex: 1; border: 1px solid;}
         
-        button { padding: 10px; font-size: 11px; font-family: 'Orbitron', sans-serif; font-weight: bold; cursor: pointer; border-radius: 6px; border: none; text-transform: uppercase; transition: 0.2s; width: 100%;}
-        .btn-dev { background: #aa00ff; color: #fff; }
-        .btn-dev:hover { box-shadow: 0 0 15px #aa00ff; }
-        .btn-danger { background: #ff2a2a; color: white; }
-        .btn-success { background: #00ffcc; color: black; }
-        
-        .table-wrap { max-height: 250px; overflow-y: auto; background: #05020a; border-radius: 8px; border: 1px solid #222;}
-        table { width: 100%; border-collapse: collapse; font-size: 11px; font-family: 'Orbitron', sans-serif;}
-        th, td { border-bottom: 1px solid #222; padding: 10px; text-align: center;}
-        th { background: #0a0514; color: #888; position: sticky; top: 0;}
-        
-        .flex-row { display: flex; gap: 10px; margin-bottom: 10px; align-items: center;}
-        
-        #toast { position: fixed; bottom: -50px; left: 50%; transform: translateX(-50%); background: #fff; color: #000; padding: 10px 20px; border-radius: 4px; font-size: 12px; font-weight: bold; transition: 0.4s; z-index: 1000; font-family: 'Orbitron', sans-serif;}
-        #toast.show { bottom: 30px; box-shadow: 0 0 20px #aa00ff; }
+        @media screen and (max-width: 768px) {
+            .glass-panel { padding: 15px; }
+            h1 { font-size: 22px; }
+            .dev-section h3 { font-size: 16px; flex-direction: column; align-items: flex-start; gap: 5px; }
+            .switch-container { flex-direction: column; gap: 10px; align-items: flex-start;}
+        }
         .hidden { display: none !important; }
     </style>
 </head>
 <body>
 
-    <div id="toast">SYSTEM MSG</div>
-
-    <div class="container" id="loginScreen" style="margin-top: 100px; max-width: 400px;">
-        <h2>DEVELOPER <span>ROOT</span></h2>
-        <input type="password" id="devPass" placeholder="ENTER ROOT KEY (ROOT123)">
-        <button class="btn-dev" onclick="loginDev()">INITIALIZE GOD MODE</button>
+    <div class="glass-panel" id="loginBox" style="margin-top: 10vh;">
+        <h1>DEVELOPER CORE</h1>
+        <input type="password" id="devPass" placeholder="ENTER MASTER KEY">
+        <button onclick="devLogin()">AUTHENTICATE</button>
     </div>
 
-    <div id="dashboard" class="hidden" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
-        
-        <div class="container">
-            <h3>⚙️ SYSTEM CORE SETTINGS</h3>
-            <label style="font-size:10px; color:#888;">Update Live Game Link</label>
-            <div class="flex-row">
-                <input type="text" id="linkInput" placeholder="https://..." style="margin:0;">
-                <button class="btn-dev" style="width: 30%;" onclick="updateLink()">DEPLOY</button>
-            </div>
-            <label style="font-size:10px; color:#888; margin-top:10px;">Change Admin Panel Password</label>
-            <div class="flex-row">
-                <input type="text" id="adminPassInput" placeholder="New Password" style="margin:0;">
-                <button class="btn-dev" style="width: 30%;" onclick="updateAdminPass()">CHANGE</button>
-            </div>
-            <label style="font-size:10px; color:#888; margin-top:10px;">Master Kill Switch (Shutdown Tool)</label>
-            <button id="shutdownBtn" class="btn-danger" style="padding: 15px; font-size: 14px;" onclick="toggleShutdown()">🛑 SHUTDOWN TOOL</button>
+    <div class="glass-panel hidden" id="devDash">
+        <h1>SYSTEM ARCHITECTURE</h1>
+
+        <div class="dev-section" style="border-color: var(--plasma);">
+            <h3><span>⚡ LIVE UID REQUESTS</span> <span id="devReqCount" class="status-badge status-offline" style="background:var(--plasma); color:#fff;">0</span></h3>
+            <div id="devRequestsContainer" style="max-height: 250px; overflow-y: auto;"></div>
         </div>
 
-        <div class="container" style="border-color: #ffd700;">
-            <h3 style="color:#ffd700;">📥 MASTER QUEUE (INSTANT VISIBILITY)</h3>
-            <div class="table-wrap">
-                <table>
-                    <thead><tr><th>UID</th><th>TIME</th><th>ACTION</th></tr></thead>
-                    <tbody id="masterQueueBody"><tr><td colspan="3">Loading...</td></tr></tbody>
-                </table>
+        <div class="dev-section">
+            <h3><span>⚙️ PLATFORM STATUS</span> <span id="statusBadge" class="status-badge status-online">ONLINE</span></h3>
+            <div class="switch-container">
+                <span style="font-weight: 700; color: #fff; font-size: 13px;">MAINTENANCE MODE</span>
+                <label class="switch"><input type="checkbox" id="maintToggle" onchange="updateMaintenance()"><span class="slider"></span></label>
             </div>
         </div>
 
-        <div class="container">
-            <h3>👥 DATABASE CONTROL</h3>
-            <div class="flex-row">
-                <input type="number" id="manualUid" placeholder="Add UID Manually" style="margin:0;">
-                <button class="btn-success" style="width: 30%;" onclick="forceAddUser()">INJECT</button>
-            </div>
-            <div class="table-wrap" style="margin-top: 10px;">
-                <table>
-                    <thead><tr><th>APPROVED UID</th><th>EXPIRY</th><th>ACTION</th></tr></thead>
-                    <tbody id="approvedUsersBody"><tr><td colspan="3">Loading...</td></tr></tbody>
-                </table>
-            </div>
+        <div class="dev-section">
+            <h3>🎮 GAME LINK CONFIG</h3>
+            <input type="text" id="gameLinkInput" placeholder="https://...">
+            <button onclick="saveGameLink()" style="background: var(--gold); color: #000;">UPDATE LINK</button>
         </div>
     </div>
 
@@ -92,72 +81,54 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getDatabase, ref, set, onValue, remove } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
-        const firebaseConfig = {
-            apiKey: "AIzaSyAGQ8iW7GaYtDINwkfismc_7uBw2zF7V70",
-            authDomain: "l-rocky.firebaseapp.com",
-            databaseURL: "https://l-rocky-default-rtdb.asia-southeast1.firebasedatabase.app",
-            projectId: "l-rocky",
-            storageBucket: "l-rocky.firebasestorage.app",
-            messagingSenderId: "524361045191",
-            appId: "1:524361045191:web:1576f60a76f89c01c2dae2"
-        };
-        const db = getDatabase(initializeApp(firebaseConfig));
+        const app = initializeApp({
+            apiKey: "AIzaSyBFdvXN8SAy77EDQp5HNykO5z2Wa0W8sb0", authDomain: "bdgrocky.firebaseapp.com",
+            databaseURL: "https://bdgrocky-default-rtdb.asia-southeast1.firebasedatabase.app", projectId: "bdgrocky"
+        });
+        const db = getDatabase(app);
 
-        function showToast(msg) { let t = document.getElementById("toast"); t.innerText = msg; t.className = "show"; setTimeout(() => t.className = "", 3000); }
-        function formatTime(ts) { let d = new Date(ts); return d.getHours().toString().padStart(2, '0') + ":" + d.getMinutes().toString().padStart(2, '0'); }
-
-        let isShutdown = false;
-
-        window.loginDev = () => {
-            if(document.getElementById('devPass').value === "ROOT123") {
-                document.getElementById('loginScreen').classList.add('hidden');
-                document.getElementById('dashboard').classList.remove('hidden');
-                loadDevData(); showToast("ROOT ACCESS GRANTED");
-            } else { showToast("ACCESS DENIED"); }
+        window.devLogin = () => {
+            if(document.getElementById('devPass').value === "ROCKYDEV") { 
+                document.getElementById('loginBox').classList.add('hidden'); document.getElementById('devDash').classList.remove('hidden');
+                loadCurrentSettings(); listenDevRequests();
+            } else alert("ACCESS DENIED");
         };
 
-        window.updateLink = async () => { await set(ref(db, 'settings/active_link'), document.getElementById('linkInput').value); showToast("LINK DEPLOYED"); };
-        window.updateAdminPass = async () => { await set(ref(db, 'settings/admin_password'), document.getElementById('adminPassInput').value); showToast("ADMIN PASSWORD CHANGED"); };
-        window.toggleShutdown = async () => { isShutdown = !isShutdown; await set(ref(db, 'settings/maintenance'), isShutdown); showToast(isShutdown ? "SHUTDOWN INITIATED" : "SYSTEM RESTORED"); };
-
-        window.forceAddUser = async () => {
-            let uid = document.getElementById('manualUid').value.trim(); if(!uid) return;
-            let d = new Date(); d.setDate(d.getDate() + 30);
-            await set(ref(db, 'approved_uids/' + uid), d.toISOString().split('T')[0]);
-            await remove(ref(db, 'pending_requests/' + uid)); showToast("UID INJECTED"); document.getElementById('manualUid').value = "";
-        };
-
-        window.deleteUser = async (uid) => { if(confirm(`Erase ${uid}?`)) { await remove(ref(db, 'approved_uids/' + uid)); showToast("UID ERASED"); } };
-        window.approveReq = async (uid) => { let d = new Date(); d.setDate(d.getDate() + 30); await set(ref(db, 'approved_uids/' + uid), d.toISOString().split('T')[0]); await remove(ref(db, 'pending_requests/' + uid)); showToast("APPROVED"); };
-        window.rejectReq = async (uid) => { await remove(ref(db, 'pending_requests/' + uid)); showToast("REJECTED"); };
-
-        function loadDevData() {
-            onValue(ref(db, 'settings/admin_password'), snap => { if(snap.exists()) document.getElementById('adminPassInput').value = snap.val(); });
-            onValue(ref(db, 'settings/active_link'), snap => { if(snap.exists()) document.getElementById('linkInput').value = snap.val(); });
-            onValue(ref(db, 'settings/maintenance'), snap => { 
-                isShutdown = snap.val() || false; let btn = document.getElementById('shutdownBtn');
-                if(isShutdown) { btn.className = "btn-success"; btn.innerText = "✅ RESTORE SYSTEM"; } else { btn.className = "btn-danger"; btn.innerText = "🛑 SHUTDOWN SYSTEM"; }
-            });
-
-            onValue(ref(db, 'pending_requests'), snap => {
-                let tbody = document.getElementById('masterQueueBody'); tbody.innerHTML = "";
-                if(snap.exists()) {
-                    snap.forEach(c => {
-                        let data = c.val(); let badge = data.is_urgent ? `<span style="color:red; font-size:9px;">(URGENT)</span>` : "";
-                        tbody.innerHTML += `<tr><td style="color:#d480ff;">${data.uid} ${badge}</td><td>${formatTime(data.timestamp)}</td>
-                        <td><button class="btn-success" style="padding:4px; font-size:9px; width:auto;" onclick="approveReq('${data.uid}')">✔️</button>
-                        <button class="btn-danger" style="padding:4px; font-size:9px; width:auto;" onclick="rejectReq('${data.uid}')">✖️</button></td></tr>`;
-                    });
-                } else { tbody.innerHTML = "<tr><td colspan='3'>Queue Empty</td></tr>"; }
-            });
-
-            onValue(ref(db, 'approved_uids'), snap => {
-                let tbody = document.getElementById('approvedUsersBody'); tbody.innerHTML = "";
-                if(snap.exists()) {
-                    snap.forEach(c => { tbody.innerHTML += `<tr><td style="color:#00ffcc;">${c.key}</td><td>${c.val()}</td><td><button class="btn-danger" style="padding:4px; font-size:9px; width:auto;" onclick="deleteUser('${c.key}')">DEL</button></td></tr>`; });
-                } else { tbody.innerHTML = "<tr><td colspan='3'>No Users Found</td></tr>"; }
+        function listenDevRequests() {
+            onValue(ref(db, 'uid_requests'), snap => {
+                let container = document.getElementById('devRequestsContainer'); let countBadge = document.getElementById('devReqCount'); container.innerHTML = "";
+                if(!snap.exists()) { countBadge.innerText = "0"; return; }
+                let count = 0; let reqHtml = "";
+                snap.forEach(child => {
+                    count++; let data = child.val();
+                    let urgentTag = data.urgent ? `<div class="urgent-tag">🔴 URGENT PING</div>` : '';
+                    reqHtml += `<div class="req-card">${urgentTag}
+                        <div style="font-family:'Share Tech Mono'; font-size:14px; color: #fff;">UID: <span style="color:var(--gold); font-weight:bold;">${data.uid}</span></div>
+                        <div class="req-actions">
+                            <button style="background:rgba(0,240,96,0.1); color:var(--green); border-color:var(--green);" onclick="approveUidDev('${data.uid}')">✅ APP</button>
+                            <button style="background:rgba(255,26,26,0.1); color:var(--plasma); border-color:var(--plasma);" onclick="rejectUidDev('${data.uid}')">❌ REJ</button>
+                        </div></div>`;
+                });
+                countBadge.innerText = count; container.innerHTML = reqHtml;
             });
         }
+
+        window.approveUidDev = async (uid) => { await set(ref(db, 'approved_uids/' + uid), true); await remove(ref(db, 'uid_requests/' + uid)); };
+        window.rejectUidDev = async (uid) => { await remove(ref(db, 'uid_requests/' + uid)); };
+
+        function loadCurrentSettings() {
+            onValue(ref(db, 'settings/active_link'), (snap) => { if(snap.exists()) document.getElementById('gameLinkInput').value = snap.val(); });
+            onValue(ref(db, 'settings/maintenance'), (snap) => {
+                let isMaint = snap.exists() ? snap.val() : false;
+                document.getElementById('maintToggle').checked = isMaint;
+                let badge = document.getElementById('statusBadge');
+                if(isMaint) { badge.innerText = "OFFLINE"; badge.className = "status-badge status-offline"; } 
+                else { badge.innerText = "ONLINE"; badge.className = "status-badge status-online"; }
+            });
+        }
+
+        window.saveGameLink = async () => { await set(ref(db, 'settings/active_link'), document.getElementById('gameLinkInput').value.trim()); alert("LINK UPDATED!"); };
+        window.updateMaintenance = async () => { await set(ref(db, 'settings/maintenance'), document.getElementById('maintToggle').checked); };
     </script>
 </body>
 </html>
