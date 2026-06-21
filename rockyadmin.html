@@ -2,139 +2,153 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>13L X ROCKY | VIP PLASMA</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Rajdhani:wght@700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>13L X ROCKY | ADMIN CORE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Rajdhani:wght@600;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <style>
-        :root { --plasma-light: #ff7b7b; --plasma-main: #ff1a1a; --plasma-dark: #b30000; --gold: #d9a036; --bg-dark: #0a0a0a; --text-white: #f5f5f5; }
-        * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
-        body, html { height: 100%; font-family: 'Poppins', sans-serif; background-color: #000; color: var(--text-white); overflow: hidden; display: flex; flex-direction: column; }
+        :root { --bg: #050505; --green: #00f060; --red: #ff1a1a; --gold: #d9a036; --text: #e8f5ec; --panel: rgba(15, 10, 10, 0.95); }
+        body { margin: 0; padding: 20px; font-family: 'Poppins', sans-serif; background: var(--bg); color: var(--text); display: flex; flex-direction: column; align-items: center; min-height: 100vh;}
+        * { box-sizing: border-box; }
+        
+        .glass-panel { background: var(--panel); border: 1px solid rgba(217, 160, 54, 0.3); border-radius: 12px; width: 100%; max-width: 1000px; padding: 25px; box-shadow: 0 10px 40px rgba(0,0,0,0.9); margin-bottom: 20px;}
+        h2 { text-align: center; color: var(--gold); margin: 0 0 20px 0; letter-spacing: 2px; font-family: 'Rajdhani', sans-serif; font-size: 28px; border-bottom: 1px dashed #333; padding-bottom: 15px; text-shadow: 0 0 10px rgba(217, 160, 54, 0.5);}
+        
+        /* LOGIN SCREEN */
+        .login-box { max-width: 400px; margin: 10vh auto; }
+        input[type="password"] { width: 100%; padding: 15px; background: #000; border: 1px solid #333; color: var(--gold); font-family: 'Share Tech Mono'; font-size: 18px; text-align: center; margin-bottom: 15px; border-radius: 6px; outline: none; transition: 0.3s;}
+        input[type="password"]:focus { border-color: var(--gold); box-shadow: 0 0 10px rgba(217, 160, 54, 0.3);}
+        
+        button { width: 100%; padding: 12px; font-family: 'Rajdhani', sans-serif; font-size: 16px; font-weight: 900; border: none; border-radius: 6px; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; transition: 0.2s;}
+        button:active { transform: scale(0.96); }
+        .btn-gold { background: var(--gold); color: #000; box-shadow: 0 4px 15px rgba(217, 160, 54, 0.4);}
+        .btn-green { background: var(--green); color: #000; }
+        .btn-red { background: var(--red); color: #fff; }
+        .btn-red-outline { background: transparent; border: 1px solid var(--red); color: var(--red); margin-top: 5px;}
+        .btn-red-outline:hover { background: var(--red); color: #fff; }
+        .btn-shuffle { background: linear-gradient(90deg, #ff1a1a, #b30000); color: #fff; margin-bottom: 20px; font-size: 18px; padding: 15px; box-shadow: 0 4px 15px rgba(255,26,26,0.4);}
 
-        #top-panel { height: 15%; min-height: 120px; width: 100%; background: linear-gradient(180deg, #1f0a0a 0%, #0a0000 100%); border-bottom: 2px solid var(--plasma-main); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 10; position: relative; padding: 5px; box-shadow: 0 4px 20px rgba(255, 26, 26, 0.3);}
-        #bottom-panel { height: 85%; width: 100%; background-color: #000; }
-        iframe { width: 100%; height: 100%; border: none; }
+        /* TOP STATS HEADER */
+        .stats-header { display: flex; justify-content: space-around; background: #111; padding: 15px; border-radius: 8px; border: 1px solid #333; margin-bottom: 20px; }
+        .stat-box { text-align: center; }
+        .stat-box span { display: block; font-size: 12px; color: #888; text-transform: uppercase; font-weight: bold;}
+        .stat-box h4 { margin: 5px 0 0 0; font-size: 24px; font-family: 'Share Tech Mono'; color: var(--gold); text-shadow: 0 0 10px rgba(217, 160, 54, 0.4);}
 
-        .top-header { width: 100%; max-width: 500px; display: flex; justify-content: space-between; align-items: center; padding: 0 10px; margin-bottom: 5px; border-bottom: 1px solid rgba(255, 26, 26, 0.2); padding-bottom: 5px;}
-        .logo-text { font-family: 'Rajdhani', sans-serif; font-size: 18px; font-weight: 900; color: var(--plasma-light); text-transform: uppercase; letter-spacing: 2px; text-shadow: 0 0 10px rgba(255, 26, 26, 0.8);}
-        .service-btn { background: linear-gradient(180deg, #ff4d4d 0%, #cc0000 100%); color: #fff; font-size: 10px; font-weight: 800; padding: 4px 12px; border-radius: 12px; border: none; cursor: pointer; transition: 0.2s; box-shadow: 0 2px 5px rgba(0,0,0,0.5);}
-        .service-btn:active { transform: scale(0.95); }
+        /* GRID LAYOUT */
+        .grid-layout { display: grid; grid-template-columns: 1.3fr 1fr; gap: 20px; width: 100%; }
+        .sub-panel { background: rgba(0,0,0,0.6); border: 1px solid #222; padding: 15px; border-radius: 8px; box-shadow: inset 0 0 10px rgba(0,0,0,0.5); display: flex; flex-direction: column;}
+        h3 { margin: 0 0 15px 0; border-bottom: 1px solid #333; padding-bottom: 8px; font-family: 'Rajdhani', sans-serif; font-size: 20px; display: flex; justify-content: space-between; align-items: center;}
+        
+        /* TABLE STYLES */
+        .table-wrap { flex-grow: 1; overflow-y: auto; background: #050505; border: 1px solid #222; border-radius: 6px; }
+        table { width: 100%; border-collapse: collapse; font-family: 'Share Tech Mono'; font-size: 13px; text-align: center;}
+        th { background: #111; padding: 12px 5px; position: sticky; top: 0; color: #aaa; z-index: 2; font-family: 'Rajdhani', sans-serif; font-size: 15px;}
+        td { border-bottom: 1px solid #222; padding: 8px 4px; vertical-align: middle;}
+        td select, td input { padding: 6px; font-size: 12px; margin: 0; border: 1px solid #333; background: #000; color: #fff; width: 100%; outline: none; text-align: center; border-radius: 4px;}
+        td select:focus, td input:focus { border-color: var(--gold); }
 
-        .tool-container { width: 100%; max-width: 500px; display: flex; flex-direction: column; gap: 5px; padding: 0 10px; }
-        .info-row { display: flex; justify-content: space-between; font-size: 11px; background: rgba(0,0,0,0.8); padding: 5px 12px; border-radius: 4px; border: 1px solid rgba(255, 26, 26, 0.3); box-shadow: inset 0 0 10px rgba(0,0,0,0.8);}
-        .info-row span { color: var(--plasma-light); font-weight: 800; font-family: 'Rajdhani', sans-serif; font-size: 14px; letter-spacing: 1px;}
-        
-        .input-row { display: flex; gap: 8px; align-items: center; }
-        input { flex: 1; padding: 8px; border: 1px solid #333; border-radius: 4px; text-align: center; font-size: 14px; font-weight: 800; background: #050505; color: var(--plasma-light); outline: none; transition: 0.3s;}
-        input:focus { border-color: var(--plasma-main); box-shadow: 0 0 10px rgba(255, 26, 26, 0.3); }
-        
-        button.action-btn { padding: 8px 15px; font-size: 14px; font-family: 'Rajdhani', sans-serif; font-weight: 900; cursor: pointer; border-radius: 4px; border: none; background: linear-gradient(180deg, #ff4d4d 0%, #b30000 100%); color: #fff; text-transform: uppercase; box-shadow: 0 4px 10px rgba(0,0,0,0.6); width: 30%; letter-spacing: 1px; transition: 0.2s;}
-        button.action-btn:active { transform: scale(0.95); }
-        button.action-btn:disabled { background: #333; color: #777; cursor: not-allowed; box-shadow: none; }
-        
-        .result-box { text-align: center; font-size: 15px; font-weight: 900; color: #777; background: #000; padding: 6px; border-radius: 4px; border: 1px solid #222; flex-grow: 1; letter-spacing: 1px; box-shadow: inset 0 0 10px rgba(0,0,0,0.8);}
+        /* UID REQUEST & ACTIVE CARDS */
+        .req-card { background: #0a0a0a; border: 1px solid #333; padding: 12px; margin-bottom: 12px; border-radius: 6px; display: flex; flex-direction: column; gap: 8px; transition: 0.3s;}
+        .req-card:hover { border-color: var(--gold); }
+        .urgent-tag { background: var(--red); color: #fff; font-size: 11px; font-weight: 900; padding: 3px 8px; border-radius: 4px; align-self: flex-start; animation: blink 0.8s infinite alternate; letter-spacing: 1px;}
+        .uid-text { font-family: 'Share Tech Mono'; font-size: 16px; color: var(--gold); font-weight: bold;}
+        .req-actions { display: flex; gap: 10px; margin-top: 5px; }
 
-        .auth-container { text-align: center; width: 100%; max-width: 500px; padding: 0 10px; }
-        .auth-container h3 { margin: 2px 0 10px 0; font-size: 14px; color: #aaa; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;}
-        .auth-container h3 span { color: var(--plasma-light); }
+        .active-user-item { display: flex; justify-content: space-between; align-items: center; background: #111; padding: 10px; border-radius: 4px; border: 1px dashed #333; margin-bottom: 8px;}
+        
+        .manual-add-box { display: flex; gap: 10px; margin-bottom: 15px; }
+        .manual-add-box input { flex: 1; padding: 10px; background: #000; border: 1px solid #444; color: var(--gold); border-radius: 4px; outline: none; font-family: 'Share Tech Mono'; font-size: 14px; text-align: center;}
+        .manual-add-box input:focus { border-color: var(--gold); }
 
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.92); z-index: 100; display: none; justify-content: center; align-items: center; backdrop-filter: blur(5px); }
-        .modal-box { background: linear-gradient(180deg, #1a0a0a 0%, #0a0000 100%); border: 2px solid var(--plasma-main); padding: 30px 20px; border-radius: 12px; text-align: center; width: 85%; max-width: 340px; box-shadow: 0 15px 40px rgba(0,0,0,0.9), 0 0 20px rgba(255, 26, 26, 0.2); animation: popIn 0.3s ease-out; }
-        .modal-box h4 { color: var(--plasma-light); margin: 0 0 12px 0; font-size: 20px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px;}
-        .modal-box p { font-size: 13px; color: #ccc; margin-bottom: 20px; line-height: 1.6; }
-        
-        .btn-close { background: transparent; border: 2px solid var(--plasma-main); color: var(--plasma-light); padding: 10px 20px; border-radius: 6px; font-weight: 800; cursor: pointer; transition: 0.2s; width: 100%; font-family: 'Poppins', sans-serif;}
-        .btn-close:active { background: rgba(255, 26, 26, 0.2); }
-        
-        .btn-urgent { background: linear-gradient(90deg, #ff1a1a, #b30000); border: none; color: #fff; padding: 12px 20px; border-radius: 6px; font-weight: 800; cursor: pointer; text-transform: uppercase; margin-top: 12px; display: none; width: 100%; box-shadow: 0 4px 15px rgba(255, 26, 26, 0.4);}
-        .btn-urgent:disabled { background: #333; color: #666; cursor: not-allowed; box-shadow: none; }
-
-        /* 🔥 UPDATED ANIMATION SCREEN (Z-INDEX 999999) 🔥 */
-        #animScreen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.96); z-index: 999999 !important; display: none; flex-direction: column; justify-content: center; align-items: center; overflow: hidden; }
-        
-        .plasma-bg { position: absolute; width: 200%; height: 200%; z-index: -1; animation: fireSpin 5s linear infinite; }
-        .bg-win { background: radial-gradient(circle, rgba(0, 240, 96, 0.25) 0%, rgba(0,0,0,0) 60%); }
-        .bg-loss { background: radial-gradient(circle, rgba(255, 26, 26, 0.25) 0%, rgba(0,0,0,0) 60%); }
-        .bg-jackpot { background: radial-gradient(circle, rgba(255, 215, 0, 0.3) 0%, rgba(0,0,0,0) 60%); }
-        
-        .anim-title { font-family: 'Rajdhani', sans-serif; font-size: 55px; font-weight: 900; margin: 0; text-align: center; letter-spacing: 5px; animation: winZoom 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
-        .text-win { color: #00f060; text-shadow: 0 0 20px #00f060, 0 0 40px rgba(0,240,96,0.5); }
-        .text-loss { color: #ff2a2a; text-shadow: 0 0 20px #ff2a2a, 0 0 40px rgba(255,42,42,0.5); }
-        .text-jackpot { color: #ffd700; text-shadow: 0 0 20px #ffd700, 0 0 50px rgba(255,215,0,0.8); }
-        
-        .anim-details { background: linear-gradient(180deg, #110505 0%, #000 100%); border: 2px solid var(--plasma-main); padding: 25px; border-radius: 12px; margin-top: 30px; width: 85%; max-width: 350px; box-shadow: 0 10px 30px rgba(0,0,0,0.9); animation: slideUp 0.6s ease-out forwards; }
-        .anim-details p { margin: 8px 0; font-weight: 700; font-size: 14px; color: #aaa; display: flex; justify-content: space-between; border-bottom: 1px dashed #333; padding-bottom: 5px;}
-        .anim-details span { font-size: 18px; font-weight: 900; color: #fff; font-family: 'Rajdhani', sans-serif; letter-spacing: 1px;}
-        .anim-details .highlight { color: var(--plasma-light); text-shadow: 0 0 10px rgba(255, 26, 26, 0.5);}
-
-        @keyframes popIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-        @keyframes fireSpin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        @keyframes winZoom { 0% { transform: scale(0); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
-        @keyframes slideUp { 0% { transform: translateY(40px); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
+        #toast { position: fixed; bottom: -50px; background: var(--green); color: #000; padding: 12px 25px; border-radius: 6px; font-family: 'Share Tech Mono'; font-weight: 900; transition: 0.4s; z-index: 1000; box-shadow: 0 5px 15px rgba(0,240,96,0.4);}
+        #toast.show { bottom: 20px; }
         .hidden { display: none !important; }
+
+        @keyframes blink { 0% { opacity: 0.5; box-shadow: 0 0 0 rgba(255,26,26,0); } 100% { opacity: 1; box-shadow: 0 0 10px rgba(255,26,26,0.8); } }
+        
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
     </style>
 </head>
 <body>
 
-    <!-- SYSTEM ALERTS & PENDING MODAL -->
-    <div id="uidModal" class="modal-overlay">
-        <div class="modal-box">
-            <h4 id="modalTitle">ALERT</h4>
-            <p id="modalMsg">Processing...</p>
-            <button id="modalActionBtn" class="btn-close" onclick="closeModal()">OKAY</button>
-            <button id="urgentBtn" class="btn-urgent" onclick="sendUrgentRequest()">⚡ URGENTLY PING</button>
-        </div>
+    <div id="toast">SYSTEM MESSAGE</div>
+
+    <div class="glass-panel login-box" id="loginBox">
+        <h2 style="color: var(--gold);">ADMINISTRATION PIN</h2>
+        <input type="password" id="pass" placeholder="Enter Access PIN">
+        <button class="btn-gold" onclick="login()">AUTHORIZE ACCESS</button>
     </div>
 
-    <!-- API MATCHING RESULT ANIMATION SCREEN -->
-    <div id="animScreen">
-        <div id="animBg" class="plasma-bg bg-win"></div>
-        <h1 id="animTitleText" class="anim-title text-win">VICTORY</h1>
-        <div class="anim-details">
-            <p>PERIOD <span>#<span id="animPeriod" style="color:#fff;">---</span></span></p>
-            <p>PREDICTION <span id="animPred">---</span></p>
-            <p>GAME RESULT <span id="animResult" class="highlight">---</span></p>
-        </div>
-        <p style="font-size: 13px; color: #666; margin-top: 30px; cursor: pointer; font-weight: 800; letter-spacing: 2px;" onclick="closeAnimScreen()">[ TAP TO CONTINUE ]</p>
-    </div>
-
-    <!-- 15% TOP PANEL -->
-    <div id="top-panel">
-        <div class="top-header">
-            <div class="logo-text">13L X ROCKY</div>
-            <button class="service-btn" onclick="openSupport()">🎧 SUPPORT</button>
-        </div>
-
-        <div id="authScreen" class="auth-container">
-            <h3>VIP Account <span>Verification</span></h3>
-            <div class="input-row">
-                <input type="number" id="uidInput" placeholder="Enter 5 to 12 Digit UID">
-                <button id="authBtn" class="action-btn" onclick="checkUID()">VERIFY</button>
+    <div class="glass-panel hidden" id="dashBox">
+        <h2>13L X ROCKY | COMMAND CENTER</h2>
+        
+        <div class="stats-header">
+            <div class="stat-box">
+                <span>Total Active Users</span>
+                <h4 id="statTotalUsers">0</h4>
+            </div>
+            <div class="stat-box">
+                <span>Pending Requests</span>
+                <h4 id="statPendingReq" style="color: var(--red);">0</h4>
+            </div>
+            <div class="stat-box">
+                <span>Live Patterns</span>
+                <h4 id="statPatterns" style="color: var(--green);">0/100</h4>
             </div>
         </div>
 
-        <div id="toolScreen" class="tool-container hidden">
-            <div class="info-row">
-                <div>NODE: <span id="displayPeriod">SYNCING...</span></div>
-                <div>TIME: <span id="displayTimer" style="color:var(--plasma-main);">00:00</span></div>
+        <button class="btn-shuffle" onclick="autoShuffle()">⚡ 1-CLICK AUTO SHUFFLE 100 PATTERNS</button>
+        
+        <div class="grid-layout">
+            <div class="sub-panel" style="height: 600px;">
+                <h3 style="color: var(--gold);">📊 PREDICTION MATRIX</h3>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th style="width: 15%;">COMB</th>
+                                <th style="width: 25%;">SIZE</th>
+                                <th style="width: 20%;">NUM</th>
+                                <th style="width: 20%;">LIVE</th>
+                                <th style="width: 20%;">ACTION</th>
+                            </tr>
+                        </thead>
+                        <tbody id="patternTbody">
+                            </tbody>
+                    </table>
+                </div>
             </div>
-            <div class="input-row" style="margin-top: 4px;">
-                <input type="number" id="num1" placeholder="N-1" min="0" max="9">
-                <input type="number" id="num2" placeholder="N-2" min="0" max="9">
-                <button id="analyzeBtn" class="action-btn" onclick="runExploit()">EXECUTE</button>
-                <div id="predictionDisplay" class="result-box">WAITING...</div>
+
+            <div style="display: flex; flex-direction: column; gap: 20px; height: 600px;">
+                
+                <div class="sub-panel" style="flex: 1; overflow: hidden;">
+                    <h3 style="color: #ff1a1a;">⚡ PENDING UID</h3>
+                    <div id="requestsContainer" style="overflow-y: auto; flex-grow: 1; padding-right: 5px;">
+                        <p style="color:#555; text-align:center; margin-top:20px; font-family:'Share Tech Mono';">No pending requests...</p>
+                    </div>
+                </div>
+
+                <div class="sub-panel" style="flex: 1; overflow: hidden; border-color: var(--gold);">
+                    <h3 style="color: var(--gold);">🛡️ ACTIVE USERS MGR</h3>
+                    
+                    <div class="manual-add-box">
+                        <input type="text" id="manualUidInput" placeholder="Force Add UID (Admin)">
+                        <button class="btn-gold" style="width: 30%; font-size:12px; padding: 10px;" onclick="addManualUID()">ADD UID</button>
+                    </div>
+
+                    <div id="activeUsersContainer" style="overflow-y: auto; flex-grow: 1; padding-right: 5px;">
+                        </div>
+                </div>
+
             </div>
         </div>
     </div>
 
-    <!-- 85% BOTTOM PANEL -->
-    <div id="bottom-panel">
-        <iframe id="gameIframe" src="https://bdg5.cc"></iframe>
-    </div>
-
-    <!-- 🔥 FIREBASE & MAIN ENGINE 🔥 -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getDatabase, ref, get, set, onValue, update } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+        import { getDatabase, ref, set, update, onValue, remove } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyBFdvXN8SAy77EDQp5HNykO5z2Wa0W8sb0",
@@ -145,202 +159,188 @@
         const app = initializeApp(firebaseConfig);
         const db = getDatabase(app);
 
-        let currentActivePrediction = ""; 
-        let currentActivePeriod = ""; 
-        let isWaitingForAPI = false; 
-        let currentFailedUid = "";
-        let dynamicSupportLink = "https://t.me/";
-
-        onValue(ref(db, 'settings/support_link'), snap => { if(snap.exists()) dynamicSupportLink = snap.val(); });
-        onValue(ref(db, 'settings/active_link'), snap => { if(snap.exists() && snap.val() !== "") document.getElementById('gameIframe').src = snap.val().trim(); });
-        window.openSupport = () => window.open(dynamicSupportLink, '_blank');
-
-        onValue(ref(db, 'settings/maintenance'), (snap) => {
-            if (snap.exists() && snap.val() === true) {
-                document.body.innerHTML = `
-                    <div style="height: 100vh; width: 100vw; background: #050505; display: flex; flex-direction: column; justify-content: center; align-items: center; color: var(--plasma-main);">
-                        <h1 style="font-size: 35px; text-shadow: 0 0 20px var(--plasma-main); font-family: 'Rajdhani', sans-serif;">🛑 SYSTEM OFFLINE</h1>
-                        <p style="color: #aaa; font-size: 14px; margin-top:10px;">Developer maintenance in progress. Please wait.</p>
-                    </div>`;
-            }
-        });
-
-        function showModal(title, msg, isPendingState = false) {
-            document.getElementById('modalTitle').innerText = title; 
-            document.getElementById('modalMsg').innerHTML = msg;
-            let closeBtn = document.getElementById('modalActionBtn'); 
-            let urgentBtn = document.getElementById('urgentBtn');
-            
-            if(isPendingState) { 
-                closeBtn.innerText = "WAITING APPROVAL..."; 
-                urgentBtn.style.display = "block"; 
-                checkUrgentCooldown(); 
-            } else { 
-                closeBtn.innerText = "OKAY"; 
-                closeBtn.onclick = closeModal; 
-                urgentBtn.style.display = "none"; 
-            }
-            document.getElementById('uidModal').style.display = 'flex';
-        }
-        window.closeModal = () => document.getElementById('uidModal').style.display = 'none';
-
-        function checkUrgentCooldown() {
-            let urgentBtn = document.getElementById('urgentBtn'); 
-            let lastTime = localStorage.getItem('last_urgent_' + currentFailedUid);
-            if(lastTime) {
-                let passed = Date.now() - parseInt(lastTime);
-                if(passed < 30 * 60 * 1000) {
-                    let rem = Math.ceil((30 * 60 * 1000 - passed) / 60 / 1000);
-                    urgentBtn.disabled = true; urgentBtn.innerText = `COOLDOWN: ${rem} MINS`; return;
-                }
-            }
-            urgentBtn.disabled = false; urgentBtn.innerText = "⚡ URGENTLY PING ADMIN";
+        function showToast(msg, isError = false) { 
+            let t = document.getElementById('toast'); 
+            t.innerText = msg; 
+            t.style.background = isError ? "var(--red)" : "var(--green)";
+            t.style.color = isError ? "#fff" : "#000";
+            t.classList.add("show"); 
+            setTimeout(() => t.classList.remove("show"), 3000); 
         }
 
-        window.sendUrgentRequest = async () => {
-            if(!currentFailedUid) return;
-            document.getElementById('urgentBtn').innerText = "SENDING...";
-            await update(ref(db, 'uid_requests/' + currentFailedUid), { urgent: true, urgent_timestamp: Date.now() });
-            localStorage.setItem('last_urgent_' + currentFailedUid, Date.now());
-            alert("Urgent Ping dispatched to Admin Panel successfully!"); 
-            checkUrgentCooldown();
+        // --- LOGIN ---
+        window.login = () => {
+            if(document.getElementById('pass').value === "13LADMIN") { 
+                document.getElementById('loginBox').classList.add('hidden');
+                document.getElementById('dashBox').classList.remove('hidden');
+                buildTable(); syncData(); listenRequests(); listenActiveUsers();
+                showToast("ACCESS GRANTED!");
+            } else {
+                showToast("INVALID PIN!", true);
+            }
         };
 
-        function getDeviceID() {
-            let did = localStorage.getItem('vip_device_id');
-            if(!did) { did = 'DEV-' + Math.random().toString(36).substr(2, 9); localStorage.setItem('vip_device_id', did); }
-            return did;
-        }
-
-        // --- AUTH: 5 TO 12 DIGITS STRICT ---
-        window.checkUID = async () => {
-            let uid = document.getElementById('uidInput').value.trim(); 
-            const uidRegex = /^\d{5,12}$/;
-            if(!uidRegex.test(uid)) {
-                return showModal("❌ INVALID UID", "UID must be strictly between <b>5 and 12 numbers</b> only.", false);
+        // --- MATRIX ENGINE ---
+        function buildTable() {
+            let body = document.getElementById('patternTbody'); body.innerHTML = "";
+            for(let i=0; i<=9; i++) {
+                for(let j=0; j<=9; j++) {
+                    let k = `${i}-${j}`;
+                    body.innerHTML += `
+                        <tr>
+                            <td style="color:var(--gold); font-weight:bold;">${k}</td>
+                            <td><select id="sz-${k}"><option value="BIG">BIG</option><option value="SMALL">SMALL</option></select></td>
+                            <td><input type="number" id="nm-${k}" min="0" max="9" placeholder="#"></td>
+                            <td id="live-${k}" style="color:#555; font-weight:bold;">-</td>
+                            <td><button class="btn-green" style="padding:6px; font-size:11px;" onclick="saveSingle('${k}')">SAVE</button></td>
+                        </tr>
+                    `;
+                }
             }
+        }
 
-            let btn = document.getElementById('authBtn'); btn.innerText = "..."; btn.disabled = true;
-
+        window.saveSingle = async (k) => {
+            let sz = document.getElementById(`sz-${k}`).value; 
+            let nm = document.getElementById(`nm-${k}`).value.trim();
+            if(nm === "" || nm < 0 || nm > 9) return showToast("Enter a valid number (0-9)!", true);
+            let btn = event.target; btn.innerText = "...";
             try {
-                let approvedSnap = await get(ref(db, 'approved_uids/' + uid));
-                if(approvedSnap.exists()) {
-                    let devID = getDeviceID();
-                    let bindSnap = await get(ref(db, 'device_bindings/' + uid));
-                    if(!bindSnap.exists()) await set(ref(db, 'device_bindings/' + uid), devID);
-                    else if (bindSnap.val() !== devID) {
-                        btn.innerText = "VERIFY"; btn.disabled = false;
-                        return showModal("🚨 DEVICE LOCKED", "UID is permanently bound to another device.<br><i>Multiple devices prohibited!</i>", false);
-                    }
-
-                    document.getElementById('authScreen').classList.add('hidden');
-                    document.getElementById('toolScreen').classList.remove('hidden');
-                    startTimerEngine(); return;
-                }
-                
-                currentFailedUid = uid;
-                await set(ref(db, 'uid_requests/' + uid), { uid: uid, deviceId: getDeviceID(), status: "pending", timestamp: Date.now(), urgent: false });
-                btn.innerText = "VERIFY"; btn.disabled = false;
-                showModal("⏳ REQUEST DEPLOYED", `UID <b>${uid}</b> sent to Admin Panel.<br>Please wait for authorization.`, true);
-
-            } catch (error) { btn.innerText = "VERIFY"; btn.disabled = false; showModal("NETWORK ERROR", "Connection failed.", false); }
+                await set(ref(db, `patterns/${k}`), `${sz} [${nm}]`);
+                document.getElementById(`nm-${k}`).value = "";
+                showToast(`Saved: ${k} ➔ ${sz} [${nm}]`);
+            } catch(e) { showToast("Network Error!", true); }
+            btn.innerText = "SAVE";
         };
 
-        // --- PRECISION TIMER ENGINE (0 DELAY) ---
-        function startTimerEngine() {
-            setInterval(() => {
-                let now = new Date();
-                let hrs = now.getHours(); let mins = now.getMinutes();
-                currentActivePeriod = `${now.getFullYear()}${String(now.getMonth()+1).padStart(2,'0')}${String(now.getDate()).padStart(2,'0')}1000${10001 + (hrs * 60) + mins}`;
-                
-                let remSec = 60 - now.getSeconds(); if(remSec === 60) remSec = 0;
-                
-                document.getElementById('displayPeriod').innerText = currentActivePeriod;
-                document.getElementById('displayTimer').innerText = `00:${String(remSec).padStart(2,'0')}`;
-
-                // INSTANT TRIGGER AT EXACTLY 00:00
-                if(remSec === 0 && currentActivePrediction !== "" && !isWaitingForAPI) {
-                    isWaitingForAPI = true; 
-                    checkResultInstant(currentActivePeriod, currentActivePrediction); 
-                }
-            }, 1000);
-        }
-
-        window.runExploit = async () => {
-            let n1 = document.getElementById('num1').value; let n2 = document.getElementById('num2').value;
-            let resBox = document.getElementById('predictionDisplay'); let btn = document.getElementById('analyzeBtn');
-            if(n1 === "" || n2 === "") return showModal("WARNING", "Input N-1 and N-2 variables.", false);
-
-            btn.disabled = true; resBox.innerText = "HACKING..."; resBox.style.color = "#888"; resBox.style.textShadow = "none";
-            
-            try {
-                let snap = await get(ref(db, `patterns/${n1}-${n2}`));
-                setTimeout(() => {
-                    btn.disabled = false;
-                    if(snap.exists() && !snap.val().includes("UNSET")) {
-                        currentActivePrediction = snap.val(); 
-                        resBox.innerText = currentActivePrediction;
-                        resBox.style.color = "var(--plasma-light)"; resBox.style.textShadow = "0 0 10px rgba(255,26,26,0.5)";
-                        isWaitingForAPI = false;
-                    } else { resBox.innerText = "NOT FOUND"; resBox.style.color = "var(--plasma-main)"; }
-                }, 800);
-            } catch(e) { btn.disabled = false; resBox.innerText = "ERROR"; }
+        window.autoShuffle = async () => {
+            if(!confirm("⚠️ WARNING: This will overwrite ALL 100 live predictions. Continue?")) return;
+            let b = {}; const s = ["BIG", "SMALL"];
+            for(let i=0; i<=9; i++) {
+                for(let j=0; j<=9; j++) b[`${i}-${j}`] = `${s[Math.floor(Math.random()*2)]} [${Math.floor(Math.random()*10)}]`;
+            }
+            try { await update(ref(db, 'patterns'), b); showToast("MATRIX COMPLETELY SHUFFLED!"); } 
+            catch(e) { showToast("Shuffle Failed!", true); }
         };
 
-        // --- INSTANT API MATCHER & ANIMATION (LAST 4 DIGIT ENGINE) ---
-        window.closeAnimScreen = () => {
-            document.getElementById('animScreen').style.display = 'none';
+        function syncData() {
+            onValue(ref(db, 'patterns'), snap => {
+                let count = 0;
+                if(snap.exists()) { 
+                    snap.forEach(c => { 
+                        count++;
+                        let el = document.getElementById(`live-${c.key}`); 
+                        if(el) { 
+                            let val = c.val();
+                            el.innerText = val.split(' ')[0]; 
+                            el.style.color = val.includes("BIG") ? "var(--green)" : "var(--red)"; 
+                        } 
+                    }); 
+                }
+                document.getElementById('statPatterns').innerText = `${count}/100`;
+            });
         }
 
-        function triggerAnimation(type, period, prediction, actualResult, number) {
-            const screen = document.getElementById('animScreen'); 
-            const bg = document.getElementById('animBg'); 
-            const title = document.getElementById('animTitleText');
-
-            document.getElementById('animPeriod').innerText = String(period).slice(-4); 
-            document.getElementById('animPred').innerText = prediction;
-            document.getElementById('animResult').innerText = `${actualResult} [${number}]`;
-
-            bg.className = "plasma-bg"; title.className = "anim-title";
-            if(type === 'JACKPOT') { bg.classList.add('bg-jackpot'); title.classList.add('text-jackpot'); title.innerText = "JACKPOT WIN!"; }
-            else if(type === 'WIN') { bg.classList.add('bg-win'); title.classList.add('text-win'); title.innerText = "VICTORY!"; }
-            else { bg.classList.add('bg-loss'); title.classList.add('text-loss'); title.innerText = "SYSTEM LOSS"; }
-            
-            // FORCE DISPLAY
-            screen.style.display = 'flex';
-            screen.style.opacity = '1';
-        }
-
-        async function checkResultInstant(pVerify, pValue) {
-            try {
-                let res = await fetch(`https://draw.ar-lottery01.com/WinGo/WinGo_1M/GetHistoryIssuePage.json`); 
-                let data = await res.json(); 
-                let list = data.data || data.list || data.items || data;
+        // --- PENDING REQUESTS ENGINE ---
+        function listenRequests() {
+            onValue(ref(db, 'uid_requests'), snap => {
+                let container = document.getElementById('requestsContainer'); 
+                let reqCountObj = document.getElementById('statPendingReq');
+                container.innerHTML = "";
                 
-                let latestItem = list[0];
-                let apiPeriodLast4 = String(latestItem.issueNumber || latestItem.period).slice(-4);
-                let myPeriodLast4 = String(pVerify).slice(-4);
+                if(!snap.exists()) { 
+                    reqCountObj.innerText = "0";
+                    container.innerHTML = `<p style="color:#555; text-align:center; margin-top:20px; font-family:'Share Tech Mono';">No pending requests...</p>`; 
+                    return; 
+                }
+                
+                let count = 0; let reqHtml = "";
+                snap.forEach(child => {
+                    count++; let data = child.val();
+                    let urgentTag = data.urgent ? `<div class="urgent-tag">🔴 CRITICAL URGENT</div>` : '';
+                    let timeStr = new Date(data.timestamp).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+                    
+                    reqHtml = `
+                        <div class="req-card" style="border-left: 3px solid ${data.urgent ? 'var(--red)' : '#333'}">
+                            ${urgentTag}
+                            <div>UID: <span class="uid-text">${data.uid}</span></div>
+                            <div style="font-size:11px; color:#888;">Requested at: ${timeStr}</div>
+                            <div class="req-actions">
+                                <button class="btn-green" style="flex:1; padding:8px; font-size:12px;" onclick="approveUid('${data.uid}')">✅ APPROVE</button>
+                                <button class="btn-red-outline" style="flex:0.5; padding:8px; font-size:12px; margin-top:0;" onclick="rejectUid('${data.uid}')">❌ DEL</button>
+                            </div>
+                        </div>
+                    ` + reqHtml; 
+                });
+                
+                reqCountObj.innerText = count;
+                container.innerHTML = reqHtml;
+            });
+        }
 
-                // FAST RETRY: Agar game server ne naya result update nahi kiya, toh 500ms baad wapas check karega
-                if(apiPeriodLast4 !== myPeriodLast4) {
-                    setTimeout(() => checkResultInstant(pVerify, pValue), 500);
+        window.approveUid = async (uid) => {
+            try {
+                await set(ref(db, 'approved_uids/' + uid), true);
+                await remove(ref(db, 'uid_requests/' + uid));
+                showToast(`UID ${uid} Approved!`);
+            } catch(e) { showToast("Error approving UID", true); }
+        };
+
+        window.rejectUid = async (uid) => {
+            if(!confirm(`Delete request for UID: ${uid}?`)) return;
+            try { await remove(ref(db, 'uid_requests/' + uid)); showToast(`UID ${uid} Removed.`, true); } 
+            catch(e) { showToast("Error removing UID", true); }
+        };
+
+        // --- MANUAL UID ADD & ACTIVE USER ENGINE (ADMIN HAS NO LIMITS) ---
+        window.addManualUID = async () => {
+            let uid = document.getElementById('manualUidInput').value.trim();
+            if(!uid) return showToast("ERROR: Enter a UID to add!", true);
+            
+            try {
+                await set(ref(db, 'approved_uids/' + uid), true);
+                document.getElementById('manualUidInput').value = "";
+                showToast(`UID ${uid} Successfully Added!`);
+            } catch(e) { showToast("Failed to add UID", true); }
+        };
+
+        function listenActiveUsers() {
+            onValue(ref(db, 'approved_uids'), snap => {
+                let container = document.getElementById('activeUsersContainer');
+                let countObj = document.getElementById('statTotalUsers');
+                container.innerHTML = "";
+                
+                if(!snap.exists()) {
+                    countObj.innerText = "0";
+                    container.innerHTML = `<p style="color:#555; text-align:center; margin-top:20px; font-family:'Share Tech Mono';">No active users...</p>`;
                     return;
                 }
+
+                let count = 0; let userHtml = "";
+                snap.forEach(child => {
+                    count++;
+                    let uid = child.key;
+                    userHtml += `
+                        <div class="active-user-item">
+                            <span style="font-family:'Share Tech Mono'; color:var(--green); font-weight:bold; font-size: 15px;"># ${uid}</span>
+                            <button class="btn-red" style="padding: 4px 10px; width:auto; font-size:11px;" onclick="banUser('${uid}')">BAN/DEL</button>
+                        </div>
+                    `;
+                });
                 
-                let actual = latestItem.size ? latestItem.size.toUpperCase() : (parseInt(latestItem.number) >= 5 ? "BIG" : "SMALL");
-                let num = latestItem.number !== undefined ? latestItem.number : 0;
-                let cleanPred = pValue.toUpperCase().includes("BIG") ? "BIG" : "SMALL";
-                
-                if(cleanPred === actual) {
-                    if(num == 0 || num == 5) triggerAnimation('JACKPOT', pVerify, pValue, actual, num);
-                    else triggerAnimation('WIN', pVerify, pValue, actual, num);
-                } else triggerAnimation('LOSS', pVerify, pValue, actual, num);
-                
-                currentActivePrediction = ""; isWaitingForAPI = false;
-            } catch(e) { 
-                setTimeout(() => checkResultInstant(pVerify, pValue), 1000); 
-            }
+                countObj.innerText = count;
+                container.innerHTML = userHtml;
+            });
         }
+
+        window.banUser = async (uid) => {
+            if(!confirm(`⚠️ ARE YOU SURE? This will permanently BAN UID: ${uid} from accessing the platform.`)) return;
+            try {
+                await remove(ref(db, 'approved_uids/' + uid));
+                await remove(ref(db, 'device_bindings/' + uid)); 
+                showToast(`UID ${uid} has been BANNED!`, true);
+            } catch(e) { showToast("Error banning UID", true); }
+        };
+
     </script>
 </body>
 </html>
