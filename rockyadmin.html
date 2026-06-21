@@ -2,146 +2,106 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>13L X ROCKY | ADMIN CORE</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Rajdhani:wght@600;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <style>
         :root { --bg: #050505; --green: #00f060; --red: #ff1a1a; --gold: #d9a036; --text: #e8f5ec; --panel: rgba(15, 10, 10, 0.95); }
-        body { margin: 0; padding: 20px; font-family: 'Poppins', sans-serif; background: var(--bg); color: var(--text); display: flex; flex-direction: column; align-items: center; min-height: 100vh;}
+        body { margin: 0; padding: 15px; font-family: 'Poppins', sans-serif; background: var(--bg); color: var(--text); display: flex; flex-direction: column; align-items: center; min-height: 100vh;}
         * { box-sizing: border-box; }
         
         .glass-panel { background: var(--panel); border: 1px solid rgba(217, 160, 54, 0.3); border-radius: 12px; width: 100%; max-width: 1000px; padding: 25px; box-shadow: 0 10px 40px rgba(0,0,0,0.9); margin-bottom: 20px;}
-        h2 { text-align: center; color: var(--gold); margin: 0 0 20px 0; letter-spacing: 2px; font-family: 'Rajdhani', sans-serif; font-size: 28px; border-bottom: 1px dashed #333; padding-bottom: 15px; text-shadow: 0 0 10px rgba(217, 160, 54, 0.5);}
+        h2 { text-align: center; color: var(--gold); margin: 0 0 20px 0; letter-spacing: 2px; font-family: 'Rajdhani', sans-serif; font-size: 28px; border-bottom: 1px dashed #333; padding-bottom: 15px; }
         
-        /* LOGIN SCREEN */
         .login-box { max-width: 400px; margin: 10vh auto; }
-        input[type="password"] { width: 100%; padding: 15px; background: #000; border: 1px solid #333; color: var(--gold); font-family: 'Share Tech Mono'; font-size: 18px; text-align: center; margin-bottom: 15px; border-radius: 6px; outline: none; transition: 0.3s;}
-        input[type="password"]:focus { border-color: var(--gold); box-shadow: 0 0 10px rgba(217, 160, 54, 0.3);}
+        input[type="password"], input[type="text"] { width: 100%; padding: 12px; background: #000; border: 1px solid #333; color: var(--gold); font-family: 'Share Tech Mono'; font-size: 16px; text-align: center; margin-bottom: 15px; border-radius: 6px; outline: none;}
+        input:focus { border-color: var(--gold); }
         
-        button { width: 100%; padding: 12px; font-family: 'Rajdhani', sans-serif; font-size: 16px; font-weight: 900; border: none; border-radius: 6px; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; transition: 0.2s;}
-        button:active { transform: scale(0.96); }
-        .btn-gold { background: var(--gold); color: #000; box-shadow: 0 4px 15px rgba(217, 160, 54, 0.4);}
+        button { width: 100%; padding: 12px; font-family: 'Rajdhani', sans-serif; font-size: 16px; font-weight: 900; border: none; border-radius: 6px; cursor: pointer; text-transform: uppercase; letter-spacing: 1px;}
+        .btn-gold { background: var(--gold); color: #000; }
         .btn-green { background: var(--green); color: #000; }
         .btn-red { background: var(--red); color: #fff; }
         .btn-red-outline { background: transparent; border: 1px solid var(--red); color: var(--red); margin-top: 5px;}
-        .btn-red-outline:hover { background: var(--red); color: #fff; }
-        .btn-shuffle { background: linear-gradient(90deg, #ff1a1a, #b30000); color: #fff; margin-bottom: 20px; font-size: 18px; padding: 15px; box-shadow: 0 4px 15px rgba(255,26,26,0.4);}
+        .btn-shuffle { background: linear-gradient(90deg, #ff1a1a, #b30000); color: #fff; margin-bottom: 20px; font-size: 16px; padding: 15px;}
 
-        /* TOP STATS HEADER */
         .stats-header { display: flex; justify-content: space-around; background: #111; padding: 15px; border-radius: 8px; border: 1px solid #333; margin-bottom: 20px; }
         .stat-box { text-align: center; }
-        .stat-box span { display: block; font-size: 12px; color: #888; text-transform: uppercase; font-weight: bold;}
-        .stat-box h4 { margin: 5px 0 0 0; font-size: 24px; font-family: 'Share Tech Mono'; color: var(--gold); text-shadow: 0 0 10px rgba(217, 160, 54, 0.4);}
+        .stat-box span { display: block; font-size: 11px; color: #888; text-transform: uppercase; font-weight: bold;}
+        .stat-box h4 { margin: 5px 0 0 0; font-size: 20px; font-family: 'Share Tech Mono'; color: var(--gold);}
 
-        /* GRID LAYOUT */
         .grid-layout { display: grid; grid-template-columns: 1.3fr 1fr; gap: 20px; width: 100%; }
-        .sub-panel { background: rgba(0,0,0,0.6); border: 1px solid #222; padding: 15px; border-radius: 8px; box-shadow: inset 0 0 10px rgba(0,0,0,0.5); display: flex; flex-direction: column;}
-        h3 { margin: 0 0 15px 0; border-bottom: 1px solid #333; padding-bottom: 8px; font-family: 'Rajdhani', sans-serif; font-size: 20px; display: flex; justify-content: space-between; align-items: center;}
+        .sub-panel { background: rgba(0,0,0,0.6); border: 1px solid #222; padding: 15px; border-radius: 8px; display: flex; flex-direction: column; height: 600px;}
+        h3 { margin: 0 0 15px 0; border-bottom: 1px solid #333; padding-bottom: 8px; font-family: 'Rajdhani', sans-serif; font-size: 18px; display: flex; justify-content: space-between; }
         
-        /* TABLE STYLES */
-        .table-wrap { flex-grow: 1; overflow-y: auto; background: #050505; border: 1px solid #222; border-radius: 6px; }
-        table { width: 100%; border-collapse: collapse; font-family: 'Share Tech Mono'; font-size: 13px; text-align: center;}
-        th { background: #111; padding: 12px 5px; position: sticky; top: 0; color: #aaa; z-index: 2; font-family: 'Rajdhani', sans-serif; font-size: 15px;}
-        td { border-bottom: 1px solid #222; padding: 8px 4px; vertical-align: middle;}
-        td select, td input { padding: 6px; font-size: 12px; margin: 0; border: 1px solid #333; background: #000; color: #fff; width: 100%; outline: none; text-align: center; border-radius: 4px;}
-        td select:focus, td input:focus { border-color: var(--gold); }
-
-        /* UID REQUEST & ACTIVE CARDS */
-        .req-card { background: #0a0a0a; border: 1px solid #333; padding: 12px; margin-bottom: 12px; border-radius: 6px; display: flex; flex-direction: column; gap: 8px; transition: 0.3s;}
-        .req-card:hover { border-color: var(--gold); }
-        .urgent-tag { background: var(--red); color: #fff; font-size: 11px; font-weight: 900; padding: 3px 8px; border-radius: 4px; align-self: flex-start; animation: blink 0.8s infinite alternate; letter-spacing: 1px;}
-        .uid-text { font-family: 'Share Tech Mono'; font-size: 16px; color: var(--gold); font-weight: bold;}
+        .table-wrap { flex-grow: 1; overflow-y: auto; overflow-x: auto; background: #050505; border: 1px solid #222; border-radius: 6px; }
+        table { width: 100%; min-width: 350px; border-collapse: collapse; font-family: 'Share Tech Mono'; font-size: 12px; text-align: center;}
+        th { background: #111; padding: 10px 5px; position: sticky; top: 0; color: #aaa; z-index: 2;}
+        td { border-bottom: 1px solid #222; padding: 6px 4px; }
+        td select, td input { padding: 5px; font-size: 11px; margin: 0; border: 1px solid #333; background: #000; color: #fff; width: 100%; text-align: center; border-radius: 4px;}
+        
+        .req-card { background: #0a0a0a; border: 1px solid #333; padding: 10px; margin-bottom: 10px; border-radius: 6px; display: flex; flex-direction: column; gap: 5px;}
+        .urgent-tag { background: var(--red); color: #fff; font-size: 10px; font-weight: bold; padding: 2px 6px; border-radius: 4px; align-self: flex-start; }
         .req-actions { display: flex; gap: 10px; margin-top: 5px; }
-
         .active-user-item { display: flex; justify-content: space-between; align-items: center; background: #111; padding: 10px; border-radius: 4px; border: 1px dashed #333; margin-bottom: 8px;}
-        
-        .manual-add-box { display: flex; gap: 10px; margin-bottom: 15px; }
-        .manual-add-box input { flex: 1; padding: 10px; background: #000; border: 1px solid #444; color: var(--gold); border-radius: 4px; outline: none; font-family: 'Share Tech Mono'; font-size: 14px; text-align: center;}
-        .manual-add-box input:focus { border-color: var(--gold); }
+        .manual-add-box { display: flex; gap: 5px; margin-bottom: 15px; }
 
-        #toast { position: fixed; bottom: -50px; background: var(--green); color: #000; padding: 12px 25px; border-radius: 6px; font-family: 'Share Tech Mono'; font-weight: 900; transition: 0.4s; z-index: 1000; box-shadow: 0 5px 15px rgba(0,240,96,0.4);}
-        #toast.show { bottom: 20px; }
+        @media screen and (max-width: 768px) {
+            .grid-layout { grid-template-columns: 1fr; }
+            .stats-header { flex-direction: column; gap: 15px; }
+            .sub-panel { height: auto !important; max-height: 450px; }
+            .glass-panel { padding: 15px; }
+            h2 { font-size: 22px; }
+            .btn-shuffle { font-size: 14px; padding: 12px;}
+        }
+
         .hidden { display: none !important; }
-
-        @keyframes blink { 0% { opacity: 0.5; box-shadow: 0 0 0 rgba(255,26,26,0); } 100% { opacity: 1; box-shadow: 0 0 10px rgba(255,26,26,0.8); } }
-        
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #000; }
-        ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
     </style>
 </head>
 <body>
 
-    <div id="toast">SYSTEM MESSAGE</div>
-
     <div class="glass-panel login-box" id="loginBox">
-        <h2 style="color: var(--gold);">ADMINISTRATION PIN</h2>
+        <h2 style="color: var(--gold);">ADMIN PIN</h2>
         <input type="password" id="pass" placeholder="Enter Access PIN">
         <button class="btn-gold" onclick="login()">AUTHORIZE ACCESS</button>
     </div>
 
     <div class="glass-panel hidden" id="dashBox">
-        <h2>13L X ROCKY | COMMAND CENTER</h2>
+        <h2>13L X ROCKY | ADMIN CENTER</h2>
         
         <div class="stats-header">
-            <div class="stat-box">
-                <span>Total Active Users</span>
-                <h4 id="statTotalUsers">0</h4>
-            </div>
-            <div class="stat-box">
-                <span>Pending Requests</span>
-                <h4 id="statPendingReq" style="color: var(--red);">0</h4>
-            </div>
-            <div class="stat-box">
-                <span>Live Patterns</span>
-                <h4 id="statPatterns" style="color: var(--green);">0/100</h4>
-            </div>
+            <div class="stat-box"><span>Active Users</span><h4 id="statTotalUsers">0</h4></div>
+            <div class="stat-box"><span>Pending Req</span><h4 id="statPendingReq" style="color: var(--red);">0</h4></div>
+            <div class="stat-box"><span>Live Patterns</span><h4 id="statPatterns" style="color: var(--green);">0/100</h4></div>
         </div>
 
-        <button class="btn-shuffle" onclick="autoShuffle()">⚡ 1-CLICK AUTO SHUFFLE 100 PATTERNS</button>
+        <button class="btn-shuffle" onclick="autoShuffle()">⚡ 1-CLICK AUTO SHUFFLE</button>
         
         <div class="grid-layout">
-            <div class="sub-panel" style="height: 600px;">
-                <h3 style="color: var(--gold);">📊 PREDICTION MATRIX</h3>
+            <div class="sub-panel">
+                <h3 style="color: var(--gold);">📊 MATRIX</h3>
                 <div class="table-wrap">
                     <table>
                         <thead>
-                            <tr>
-                                <th style="width: 15%;">COMB</th>
-                                <th style="width: 25%;">SIZE</th>
-                                <th style="width: 20%;">NUM</th>
-                                <th style="width: 20%;">LIVE</th>
-                                <th style="width: 20%;">ACTION</th>
-                            </tr>
+                            <tr><th>COMB</th><th>SIZE</th><th>NUM</th><th>LIVE</th><th>ACTION</th></tr>
                         </thead>
-                        <tbody id="patternTbody">
-                            </tbody>
+                        <tbody id="patternTbody"></tbody>
                     </table>
                 </div>
             </div>
 
-            <div style="display: flex; flex-direction: column; gap: 20px; height: 600px;">
-                
-                <div class="sub-panel" style="flex: 1; overflow: hidden;">
-                    <h3 style="color: #ff1a1a;">⚡ PENDING UID</h3>
-                    <div id="requestsContainer" style="overflow-y: auto; flex-grow: 1; padding-right: 5px;">
-                        <p style="color:#555; text-align:center; margin-top:20px; font-family:'Share Tech Mono';">No pending requests...</p>
-                    </div>
+            <div style="display: flex; flex-direction: column; gap: 20px; height: 100%;">
+                <div class="sub-panel" style="flex: 1; overflow: hidden; height: 290px !important;">
+                    <h3 style="color: #ff1a1a;">⚡ PENDING</h3>
+                    <div id="requestsContainer" style="overflow-y: auto; flex-grow: 1;"></div>
                 </div>
-
-                <div class="sub-panel" style="flex: 1; overflow: hidden; border-color: var(--gold);">
-                    <h3 style="color: var(--gold);">🛡️ ACTIVE USERS MGR</h3>
-                    
+                <div class="sub-panel" style="flex: 1; overflow: hidden; border-color: var(--gold); height: 290px !important;">
+                    <h3 style="color: var(--gold);">🛡️ USERS</h3>
                     <div class="manual-add-box">
-                        <input type="text" id="manualUidInput" placeholder="Force Add UID (Admin)">
-                        <button class="btn-gold" style="width: 30%; font-size:12px; padding: 10px;" onclick="addManualUID()">ADD UID</button>
+                        <input type="text" id="manualUidInput" placeholder="Force Add UID">
+                        <button class="btn-gold" style="width: 40%; font-size:12px;" onclick="addManualUID()">ADD</button>
                     </div>
-
-                    <div id="activeUsersContainer" style="overflow-y: auto; flex-grow: 1; padding-right: 5px;">
-                        </div>
+                    <div id="activeUsersContainer" style="overflow-y: auto; flex-grow: 1;"></div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -150,76 +110,47 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getDatabase, ref, set, update, onValue, remove } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
-        const firebaseConfig = {
-            apiKey: "AIzaSyBFdvXN8SAy77EDQp5HNykO5z2Wa0W8sb0",
-            authDomain: "bdgrocky.firebaseapp.com",
-            databaseURL: "https://bdgrocky-default-rtdb.asia-southeast1.firebasedatabase.app", 
-            projectId: "bdgrocky"
-        };
-        const app = initializeApp(firebaseConfig);
+        const app = initializeApp({
+            apiKey: "AIzaSyBFdvXN8SAy77EDQp5HNykO5z2Wa0W8sb0", authDomain: "bdgrocky.firebaseapp.com",
+            databaseURL: "https://bdgrocky-default-rtdb.asia-southeast1.firebasedatabase.app", projectId: "bdgrocky"
+        });
         const db = getDatabase(app);
 
-        function showToast(msg, isError = false) { 
-            let t = document.getElementById('toast'); 
-            t.innerText = msg; 
-            t.style.background = isError ? "var(--red)" : "var(--green)";
-            t.style.color = isError ? "#fff" : "#000";
-            t.classList.add("show"); 
-            setTimeout(() => t.classList.remove("show"), 3000); 
-        }
-
-        // --- LOGIN ---
         window.login = () => {
             if(document.getElementById('pass').value === "13LADMIN") { 
-                document.getElementById('loginBox').classList.add('hidden');
-                document.getElementById('dashBox').classList.remove('hidden');
+                document.getElementById('loginBox').classList.add('hidden'); document.getElementById('dashBox').classList.remove('hidden');
                 buildTable(); syncData(); listenRequests(); listenActiveUsers();
-                showToast("ACCESS GRANTED!");
-            } else {
-                showToast("INVALID PIN!", true);
-            }
+            } else alert("INVALID PIN!");
         };
 
-        // --- MATRIX ENGINE ---
         function buildTable() {
             let body = document.getElementById('patternTbody'); body.innerHTML = "";
             for(let i=0; i<=9; i++) {
                 for(let j=0; j<=9; j++) {
                     let k = `${i}-${j}`;
-                    body.innerHTML += `
-                        <tr>
-                            <td style="color:var(--gold); font-weight:bold;">${k}</td>
-                            <td><select id="sz-${k}"><option value="BIG">BIG</option><option value="SMALL">SMALL</option></select></td>
-                            <td><input type="number" id="nm-${k}" min="0" max="9" placeholder="#"></td>
-                            <td id="live-${k}" style="color:#555; font-weight:bold;">-</td>
-                            <td><button class="btn-green" style="padding:6px; font-size:11px;" onclick="saveSingle('${k}')">SAVE</button></td>
-                        </tr>
-                    `;
+                    body.innerHTML += `<tr>
+                        <td style="color:var(--gold); font-weight:bold;">${k}</td>
+                        <td><select id="sz-${k}"><option value="BIG">BIG</option><option value="SMALL">SMALL</option></select></td>
+                        <td><input type="number" id="nm-${k}" min="0" max="9" placeholder="#"></td>
+                        <td id="live-${k}" style="color:#555; font-weight:bold;">-</td>
+                        <td><button class="btn-green" style="padding:4px; font-size:10px;" onclick="saveSingle('${k}')">SAVE</button></td>
+                    </tr>`;
                 }
             }
         }
 
         window.saveSingle = async (k) => {
-            let sz = document.getElementById(`sz-${k}`).value; 
-            let nm = document.getElementById(`nm-${k}`).value.trim();
-            if(nm === "" || nm < 0 || nm > 9) return showToast("Enter a valid number (0-9)!", true);
-            let btn = event.target; btn.innerText = "...";
-            try {
-                await set(ref(db, `patterns/${k}`), `${sz} [${nm}]`);
-                document.getElementById(`nm-${k}`).value = "";
-                showToast(`Saved: ${k} ➔ ${sz} [${nm}]`);
-            } catch(e) { showToast("Network Error!", true); }
-            btn.innerText = "SAVE";
+            let sz = document.getElementById(`sz-${k}`).value; let nm = document.getElementById(`nm-${k}`).value.trim();
+            if(nm === "" || nm < 0 || nm > 9) return alert("Enter a valid number (0-9)!");
+            await set(ref(db, `patterns/${k}`), `${sz} [${nm}]`);
+            document.getElementById(`nm-${k}`).value = "";
         };
 
         window.autoShuffle = async () => {
-            if(!confirm("⚠️ WARNING: This will overwrite ALL 100 live predictions. Continue?")) return;
+            if(!confirm("Overwrite ALL 100 predictions?")) return;
             let b = {}; const s = ["BIG", "SMALL"];
-            for(let i=0; i<=9; i++) {
-                for(let j=0; j<=9; j++) b[`${i}-${j}`] = `${s[Math.floor(Math.random()*2)]} [${Math.floor(Math.random()*10)}]`;
-            }
-            try { await update(ref(db, 'patterns'), b); showToast("MATRIX COMPLETELY SHUFFLED!"); } 
-            catch(e) { showToast("Shuffle Failed!", true); }
+            for(let i=0; i<=9; i++) for(let j=0; j<=9; j++) b[`${i}-${j}`] = `${s[Math.floor(Math.random()*2)]} [${Math.floor(Math.random()*10)}]`;
+            await update(ref(db, 'patterns'), b); alert("SHUFFLED!");
         };
 
         function syncData() {
@@ -227,120 +158,53 @@
                 let count = 0;
                 if(snap.exists()) { 
                     snap.forEach(c => { 
-                        count++;
-                        let el = document.getElementById(`live-${c.key}`); 
-                        if(el) { 
-                            let val = c.val();
-                            el.innerText = val.split(' ')[0]; 
-                            el.style.color = val.includes("BIG") ? "var(--green)" : "var(--red)"; 
-                        } 
+                        count++; let el = document.getElementById(`live-${c.key}`); 
+                        if(el) { el.innerText = c.val().split(' ')[0]; el.style.color = c.val().includes("BIG") ? "var(--green)" : "var(--red)"; } 
                     }); 
                 }
                 document.getElementById('statPatterns').innerText = `${count}/100`;
             });
         }
 
-        // --- PENDING REQUESTS ENGINE ---
         function listenRequests() {
             onValue(ref(db, 'uid_requests'), snap => {
-                let container = document.getElementById('requestsContainer'); 
-                let reqCountObj = document.getElementById('statPendingReq');
-                container.innerHTML = "";
-                
-                if(!snap.exists()) { 
-                    reqCountObj.innerText = "0";
-                    container.innerHTML = `<p style="color:#555; text-align:center; margin-top:20px; font-family:'Share Tech Mono';">No pending requests...</p>`; 
-                    return; 
-                }
-                
+                let container = document.getElementById('requestsContainer'); let reqCountObj = document.getElementById('statPendingReq'); container.innerHTML = "";
+                if(!snap.exists()) { reqCountObj.innerText = "0"; return; }
                 let count = 0; let reqHtml = "";
                 snap.forEach(child => {
                     count++; let data = child.val();
-                    let urgentTag = data.urgent ? `<div class="urgent-tag">🔴 CRITICAL URGENT</div>` : '';
-                    let timeStr = new Date(data.timestamp).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-                    
-                    reqHtml = `
-                        <div class="req-card" style="border-left: 3px solid ${data.urgent ? 'var(--red)' : '#333'}">
-                            ${urgentTag}
-                            <div>UID: <span class="uid-text">${data.uid}</span></div>
-                            <div style="font-size:11px; color:#888;">Requested at: ${timeStr}</div>
-                            <div class="req-actions">
-                                <button class="btn-green" style="flex:1; padding:8px; font-size:12px;" onclick="approveUid('${data.uid}')">✅ APPROVE</button>
-                                <button class="btn-red-outline" style="flex:0.5; padding:8px; font-size:12px; margin-top:0;" onclick="rejectUid('${data.uid}')">❌ DEL</button>
-                            </div>
-                        </div>
-                    ` + reqHtml; 
+                    let urgentTag = data.urgent ? `<div class="urgent-tag">🔴 URGENT</div>` : '';
+                    reqHtml += `<div class="req-card">${urgentTag}
+                        <div style="font-family:'Share Tech Mono'; color:var(--gold); font-weight:bold;">UID: ${data.uid}</div>
+                        <div class="req-actions">
+                            <button class="btn-green" style="flex:1; padding:6px; font-size:11px;" onclick="approveUid('${data.uid}')">✅ APP</button>
+                            <button class="btn-red-outline" style="flex:1; padding:6px; font-size:11px;" onclick="rejectUid('${data.uid}')">❌ DEL</button>
+                        </div></div>`; 
                 });
-                
-                reqCountObj.innerText = count;
-                container.innerHTML = reqHtml;
+                reqCountObj.innerText = count; container.innerHTML = reqHtml;
             });
         }
 
-        window.approveUid = async (uid) => {
-            try {
-                await set(ref(db, 'approved_uids/' + uid), true);
-                await remove(ref(db, 'uid_requests/' + uid));
-                showToast(`UID ${uid} Approved!`);
-            } catch(e) { showToast("Error approving UID", true); }
-        };
-
-        window.rejectUid = async (uid) => {
-            if(!confirm(`Delete request for UID: ${uid}?`)) return;
-            try { await remove(ref(db, 'uid_requests/' + uid)); showToast(`UID ${uid} Removed.`, true); } 
-            catch(e) { showToast("Error removing UID", true); }
-        };
-
-        // --- MANUAL UID ADD & ACTIVE USER ENGINE (ADMIN HAS NO LIMITS) ---
+        window.approveUid = async (uid) => { await set(ref(db, 'approved_uids/' + uid), true); await remove(ref(db, 'uid_requests/' + uid)); };
+        window.rejectUid = async (uid) => { await remove(ref(db, 'uid_requests/' + uid)); };
         window.addManualUID = async () => {
-            let uid = document.getElementById('manualUidInput').value.trim();
-            if(!uid) return showToast("ERROR: Enter a UID to add!", true);
-            
-            try {
-                await set(ref(db, 'approved_uids/' + uid), true);
-                document.getElementById('manualUidInput').value = "";
-                showToast(`UID ${uid} Successfully Added!`);
-            } catch(e) { showToast("Failed to add UID", true); }
+            let uid = document.getElementById('manualUidInput').value.trim(); if(!uid) return;
+            await set(ref(db, 'approved_uids/' + uid), true); document.getElementById('manualUidInput').value = "";
         };
 
         function listenActiveUsers() {
             onValue(ref(db, 'approved_uids'), snap => {
-                let container = document.getElementById('activeUsersContainer');
-                let countObj = document.getElementById('statTotalUsers');
-                container.innerHTML = "";
-                
-                if(!snap.exists()) {
-                    countObj.innerText = "0";
-                    container.innerHTML = `<p style="color:#555; text-align:center; margin-top:20px; font-family:'Share Tech Mono';">No active users...</p>`;
-                    return;
-                }
-
+                let container = document.getElementById('activeUsersContainer'); let countObj = document.getElementById('statTotalUsers'); container.innerHTML = "";
+                if(!snap.exists()) { countObj.innerText = "0"; return; }
                 let count = 0; let userHtml = "";
                 snap.forEach(child => {
-                    count++;
-                    let uid = child.key;
-                    userHtml += `
-                        <div class="active-user-item">
-                            <span style="font-family:'Share Tech Mono'; color:var(--green); font-weight:bold; font-size: 15px;"># ${uid}</span>
-                            <button class="btn-red" style="padding: 4px 10px; width:auto; font-size:11px;" onclick="banUser('${uid}')">BAN/DEL</button>
-                        </div>
-                    `;
+                    count++; let uid = child.key;
+                    userHtml += `<div class="active-user-item"><span style="color:var(--green); font-family:'Share Tech Mono'; font-weight:bold;"># ${uid}</span><button class="btn-red" style="padding: 4px 8px; font-size:10px;" onclick="banUser('${uid}')">BAN</button></div>`;
                 });
-                
-                countObj.innerText = count;
-                container.innerHTML = userHtml;
+                countObj.innerText = count; container.innerHTML = userHtml;
             });
         }
-
-        window.banUser = async (uid) => {
-            if(!confirm(`⚠️ ARE YOU SURE? This will permanently BAN UID: ${uid} from accessing the platform.`)) return;
-            try {
-                await remove(ref(db, 'approved_uids/' + uid));
-                await remove(ref(db, 'device_bindings/' + uid)); 
-                showToast(`UID ${uid} has been BANNED!`, true);
-            } catch(e) { showToast("Error banning UID", true); }
-        };
-
+        window.banUser = async (uid) => { await remove(ref(db, 'approved_uids/' + uid)); await remove(ref(db, 'device_bindings/' + uid)); };
     </script>
 </body>
 </html>
