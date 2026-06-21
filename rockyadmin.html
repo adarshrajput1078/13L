@@ -2,151 +2,345 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>13L X ROCKY | ADMIN CORE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>13L X ROCKY | VIP PLASMA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Rajdhani:wght@700&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700;900&family=Share+Tech+Mono&display=swap');
-        :root { --bg: #060806; --green: #00f060; --red: #ff1a1a; --text: #e8f5ec; }
-        body { margin: 0; padding: 15px; font-family: 'Rajdhani', sans-serif; background: var(--bg); color: var(--text); display: flex; flex-direction: column; align-items: center; }
-        * { box-sizing: border-box; }
-        .glass-panel { background: rgba(10, 15, 12, 0.95); border: 1px solid rgba(0, 240, 96, 0.3); border-radius: 10px; width: 100%; max-width: 900px; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); margin-bottom: 20px;}
-        h2 { text-align: center; color: var(--green); margin: 0 0 15px 0; letter-spacing: 2px; border-bottom: 1px dashed #333; padding-bottom: 10px;}
-        .grid-layout { display: grid; grid-template-columns: 1.2fr 1fr; gap: 20px; width: 100%; max-width: 900px; }
-        .sub-panel { background: rgba(0,0,0,0.4); border: 1px solid #222; padding: 15px; border-radius: 8px; }
-        h3 { margin-top: 0; border-bottom: 1px solid #333; padding-bottom: 5px; font-size: 18px;}
+        :root { --plasma-light: #ff7b7b; --plasma-main: #ff1a1a; --plasma-dark: #b30000; --gold: #d9a036; --bg-dark: #0a0a0a; --text-white: #f5f5f5; }
+        * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
+        body, html { height: 100%; font-family: 'Poppins', sans-serif; background-color: #000; color: var(--text-white); overflow: hidden; display: flex; flex-direction: column; }
+
+        #top-panel { height: 15%; min-height: 120px; width: 100%; background: linear-gradient(180deg, #1f0a0a 0%, #0a0000 100%); border-bottom: 2px solid var(--plasma-main); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 10; position: relative; padding: 5px; box-shadow: 0 4px 20px rgba(255, 26, 26, 0.3);}
+        #bottom-panel { height: 85%; width: 100%; background-color: #000; }
+        iframe { width: 100%; height: 100%; border: none; }
+
+        .top-header { width: 100%; max-width: 500px; display: flex; justify-content: space-between; align-items: center; padding: 0 10px; margin-bottom: 5px; border-bottom: 1px solid rgba(255, 26, 26, 0.2); padding-bottom: 5px;}
+        .logo-text { font-family: 'Rajdhani', sans-serif; font-size: 18px; font-weight: 900; color: var(--plasma-light); text-transform: uppercase; letter-spacing: 2px; text-shadow: 0 0 10px rgba(255, 26, 26, 0.8);}
+        .service-btn { background: linear-gradient(180deg, #ff4d4d 0%, #cc0000 100%); color: #fff; font-size: 10px; font-weight: 800; padding: 4px 12px; border-radius: 12px; border: none; cursor: pointer; transition: 0.2s; box-shadow: 0 2px 5px rgba(0,0,0,0.5);}
+        .service-btn:active { transform: scale(0.95); }
+
+        .tool-container { width: 100%; max-width: 500px; display: flex; flex-direction: column; gap: 5px; padding: 0 10px; }
+        .info-row { display: flex; justify-content: space-between; font-size: 11px; background: rgba(0,0,0,0.8); padding: 5px 12px; border-radius: 4px; border: 1px solid rgba(255, 26, 26, 0.3); box-shadow: inset 0 0 10px rgba(0,0,0,0.8);}
+        .info-row span { color: var(--plasma-light); font-weight: 800; font-family: 'Rajdhani', sans-serif; font-size: 14px; letter-spacing: 1px;}
         
-        input[type="password"], input[type="number"], select { width: 100%; padding: 10px; background: #000; border: 1px solid #333; color: var(--green); font-family: 'Share Tech Mono'; text-align: center; margin-bottom: 10px; border-radius: 4px;}
-        button { width: 100%; padding: 12px; font-family: 'Rajdhani'; font-size: 16px; font-weight: 900; border: none; border-radius: 4px; cursor: pointer; text-transform: uppercase;}
-        .btn-green { background: var(--green); color: #000; }
-        .btn-red { background: linear-gradient(90deg, #ff5500, #ff1a1a); color: #fff; margin-bottom: 15px;}
+        .input-row { display: flex; gap: 8px; align-items: center; }
+        input { flex: 1; padding: 8px; border: 1px solid #333; border-radius: 4px; text-align: center; font-size: 14px; font-weight: 800; background: #050505; color: var(--plasma-light); outline: none; transition: 0.3s;}
+        input:focus { border-color: var(--plasma-main); box-shadow: 0 0 10px rgba(255, 26, 26, 0.3); }
+        
+        button.action-btn { padding: 8px 15px; font-size: 14px; font-family: 'Rajdhani', sans-serif; font-weight: 900; cursor: pointer; border-radius: 4px; border: none; background: linear-gradient(180deg, #ff4d4d 0%, #b30000 100%); color: #fff; text-transform: uppercase; box-shadow: 0 4px 10px rgba(0,0,0,0.6); width: 30%; letter-spacing: 1px; transition: 0.2s;}
+        button.action-btn:active { transform: scale(0.95); }
+        button.action-btn:disabled { background: #333; color: #777; cursor: not-allowed; box-shadow: none; }
+        
+        .result-box { text-align: center; font-size: 15px; font-weight: 900; color: #777; background: #000; padding: 6px; border-radius: 4px; border: 1px solid #222; flex-grow: 1; letter-spacing: 1px; box-shadow: inset 0 0 10px rgba(0,0,0,0.8);}
+
+        .auth-container { text-align: center; width: 100%; max-width: 500px; padding: 0 10px; }
+        .auth-container h3 { margin: 2px 0 10px 0; font-size: 14px; color: #aaa; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;}
+        .auth-container h3 span { color: var(--plasma-light); }
+
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.92); z-index: 100; display: none; justify-content: center; align-items: center; backdrop-filter: blur(5px); }
+        .modal-box { background: linear-gradient(180deg, #1a0a0a 0%, #0a0000 100%); border: 2px solid var(--plasma-main); padding: 30px 20px; border-radius: 12px; text-align: center; width: 85%; max-width: 340px; box-shadow: 0 15px 40px rgba(0,0,0,0.9), 0 0 20px rgba(255, 26, 26, 0.2); animation: popIn 0.3s ease-out; }
+        .modal-box h4 { color: var(--plasma-light); margin: 0 0 12px 0; font-size: 20px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px;}
+        .modal-box p { font-size: 13px; color: #ccc; margin-bottom: 20px; line-height: 1.6; }
+        
+        .btn-close { background: transparent; border: 2px solid var(--plasma-main); color: var(--plasma-light); padding: 10px 20px; border-radius: 6px; font-weight: 800; cursor: pointer; transition: 0.2s; width: 100%; font-family: 'Poppins', sans-serif;}
+        .btn-close:active { background: rgba(255, 26, 26, 0.2); }
+        
+        .btn-urgent { background: linear-gradient(90deg, #ff1a1a, #b30000); border: none; color: #fff; padding: 12px 20px; border-radius: 6px; font-weight: 800; cursor: pointer; text-transform: uppercase; margin-top: 12px; display: none; width: 100%; box-shadow: 0 4px 15px rgba(255, 26, 26, 0.4);}
+        .btn-urgent:disabled { background: #333; color: #666; cursor: not-allowed; box-shadow: none; }
+
+        /* 🔥 UPDATED ANIMATION SCREEN (Z-INDEX 999999) 🔥 */
+        #animScreen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.96); z-index: 999999 !important; display: none; flex-direction: column; justify-content: center; align-items: center; overflow: hidden; }
+        
+        .plasma-bg { position: absolute; width: 200%; height: 200%; z-index: -1; animation: fireSpin 5s linear infinite; }
+        .bg-win { background: radial-gradient(circle, rgba(0, 240, 96, 0.25) 0%, rgba(0,0,0,0) 60%); }
+        .bg-loss { background: radial-gradient(circle, rgba(255, 26, 26, 0.25) 0%, rgba(0,0,0,0) 60%); }
+        .bg-jackpot { background: radial-gradient(circle, rgba(255, 215, 0, 0.3) 0%, rgba(0,0,0,0) 60%); }
+        
+        .anim-title { font-family: 'Rajdhani', sans-serif; font-size: 55px; font-weight: 900; margin: 0; text-align: center; letter-spacing: 5px; animation: winZoom 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+        .text-win { color: #00f060; text-shadow: 0 0 20px #00f060, 0 0 40px rgba(0,240,96,0.5); }
+        .text-loss { color: #ff2a2a; text-shadow: 0 0 20px #ff2a2a, 0 0 40px rgba(255,42,42,0.5); }
+        .text-jackpot { color: #ffd700; text-shadow: 0 0 20px #ffd700, 0 0 50px rgba(255,215,0,0.8); }
+        
+        .anim-details { background: linear-gradient(180deg, #110505 0%, #000 100%); border: 2px solid var(--plasma-main); padding: 25px; border-radius: 12px; margin-top: 30px; width: 85%; max-width: 350px; box-shadow: 0 10px 30px rgba(0,0,0,0.9); animation: slideUp 0.6s ease-out forwards; }
+        .anim-details p { margin: 8px 0; font-weight: 700; font-size: 14px; color: #aaa; display: flex; justify-content: space-between; border-bottom: 1px dashed #333; padding-bottom: 5px;}
+        .anim-details span { font-size: 18px; font-weight: 900; color: #fff; font-family: 'Rajdhani', sans-serif; letter-spacing: 1px;}
+        .anim-details .highlight { color: var(--plasma-light); text-shadow: 0 0 10px rgba(255, 26, 26, 0.5);}
+
+        @keyframes popIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        @keyframes fireSpin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        @keyframes winZoom { 0% { transform: scale(0); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+        @keyframes slideUp { 0% { transform: translateY(40px); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
         .hidden { display: none !important; }
-
-        .table-wrap { max-height: 400px; overflow-y: auto; background: #000; border: 1px solid #222; border-radius: 4px; }
-        table { width: 100%; border-collapse: collapse; font-family: 'Share Tech Mono'; font-size: 12px; text-align: center;}
-        th { background: #0a140d; padding: 10px 5px; position: sticky; top: 0; color: #888;}
-        td { border-bottom: 1px solid #222; padding: 8px 4px; }
-
-        /* REQ CARDS */
-        .req-card { background: #111; border: 1px solid #333; padding: 10px; margin-bottom: 10px; border-radius: 4px; display: flex; flex-direction: column; gap: 5px;}
-        .urgent-tag { background: var(--red); color: #fff; font-size: 11px; font-weight: 900; padding: 2px 6px; border-radius: 3px; align-self: flex-start; animation: blink 1s infinite alternate; }
-        
-        @keyframes blink { 0% { opacity: 0.4; } 100% { opacity: 1; } }
     </style>
 </head>
 <body>
 
-    <!-- 🔐 LOGIN -->
-    <div class="glass-panel" id="loginBox" style="max-width: 400px; margin-top: 100px;">
-        <h2>13L X ROCKY ADMIN</h2>
-        <input type="password" id="pass" placeholder="ENTER ACCESS PIN">
-        <button class="btn-green" onclick="login()">LOGIN</button>
+    <!-- SYSTEM ALERTS & PENDING MODAL -->
+    <div id="uidModal" class="modal-overlay">
+        <div class="modal-box">
+            <h4 id="modalTitle">ALERT</h4>
+            <p id="modalMsg">Processing...</p>
+            <button id="modalActionBtn" class="btn-close" onclick="closeModal()">OKAY</button>
+            <button id="urgentBtn" class="btn-urgent" onclick="sendUrgentRequest()">⚡ URGENTLY PING</button>
+        </div>
     </div>
 
-    <!-- 🎛️ MAIN PANEL -->
-    <div class="glass-panel hidden" id="dashBox">
-        <h2>MASTER MANAGEMENT HUB</h2>
-        <button class="btn-red" onclick="autoShuffle()">⚡ 1-CLICK SHUFFLE ALL 100 PATTERNS</button>
-        
-        <div class="grid-layout">
-            <!-- LEFT: 100 COMBINATIONS TERMINAL -->
-            <div class="sub-panel">
-                <h3 style="color: var(--green);">📊 PATTERN DATA MATRIX</h3>
-                <div class="table-wrap">
-                    <table>
-                        <thead><tr><th>COMB</th><th>SIZE</th><th>NUM</th><th>LIVE</th><th>SAVE</th></tr></thead>
-                        <tbody id="patternTbody"></tbody>
-                    </table>
-                </div>
-            </div>
+    <!-- API MATCHING RESULT ANIMATION SCREEN -->
+    <div id="animScreen">
+        <div id="animBg" class="plasma-bg bg-win"></div>
+        <h1 id="animTitleText" class="anim-title text-win">VICTORY</h1>
+        <div class="anim-details">
+            <p>PERIOD <span>#<span id="animPeriod" style="color:#fff;">---</span></span></p>
+            <p>PREDICTION <span id="animPred">---</span></p>
+            <p>GAME RESULT <span id="animResult" class="highlight">---</span></p>
+        </div>
+        <p style="font-size: 13px; color: #666; margin-top: 30px; cursor: pointer; font-weight: 800; letter-spacing: 2px;" onclick="closeAnimScreen()">[ TAP TO CONTINUE ]</p>
+    </div>
 
-            <!-- RIGHT: LIVE UID APPROVAL DESK -->
-            <div class="sub-panel" style="border-color: var(--red);">
-                <h3 style="color: var(--red);">⚡ LIVE UID REQUESTS</h3>
-                <div id="requestsContainer" style="max-height: 400px; overflow-y: auto; padding-right: 5px;">
-                    <p style="color:#666; text-align:center;">No pending requests found...</p>
-                </div>
+    <!-- 15% TOP PANEL -->
+    <div id="top-panel">
+        <div class="top-header">
+            <div class="logo-text">13L X ROCKY</div>
+            <button class="service-btn" onclick="openSupport()">🎧 SUPPORT</button>
+        </div>
+
+        <div id="authScreen" class="auth-container">
+            <h3>VIP Account <span>Verification</span></h3>
+            <div class="input-row">
+                <input type="number" id="uidInput" placeholder="Enter 5 to 12 Digit UID">
+                <button id="authBtn" class="action-btn" onclick="checkUID()">VERIFY</button>
+            </div>
+        </div>
+
+        <div id="toolScreen" class="tool-container hidden">
+            <div class="info-row">
+                <div>NODE: <span id="displayPeriod">SYNCING...</span></div>
+                <div>TIME: <span id="displayTimer" style="color:var(--plasma-main);">00:00</span></div>
+            </div>
+            <div class="input-row" style="margin-top: 4px;">
+                <input type="number" id="num1" placeholder="N-1" min="0" max="9">
+                <input type="number" id="num2" placeholder="N-2" min="0" max="9">
+                <button id="analyzeBtn" class="action-btn" onclick="runExploit()">EXECUTE</button>
+                <div id="predictionDisplay" class="result-box">WAITING...</div>
             </div>
         </div>
     </div>
 
+    <!-- 85% BOTTOM PANEL -->
+    <div id="bottom-panel">
+        <iframe id="gameIframe" src="https://bdg5.cc"></iframe>
+    </div>
+
+    <!-- 🔥 FIREBASE & MAIN ENGINE 🔥 -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getDatabase, ref, set, update, onValue, remove } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+        import { getDatabase, ref, get, set, onValue, update } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
         const firebaseConfig = {
-            apiKey: "AIzaSyBFdvXN8SAy77EDQp5HNykO5z2Wa0W8sb0", authDomain: "bdgrocky.firebaseapp.com",
-            databaseURL: "https://bdgrocky-default-rtdb.asia-southeast1.firebasedatabase.app", projectId: "bdgrocky"
+            apiKey: "AIzaSyBFdvXN8SAy77EDQp5HNykO5z2Wa0W8sb0",
+            authDomain: "bdgrocky.firebaseapp.com",
+            databaseURL: "https://bdgrocky-default-rtdb.asia-southeast1.firebasedatabase.app", 
+            projectId: "bdgrocky"
         };
-        const db = getDatabase(initializeApp(firebaseConfig));
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
 
-        window.login = () => {
-            if(document.getElementById('pass').value === "13LADMIN") {
-                document.getElementById('loginBox').classList.add('hidden');
-                document.getElementById('dashBox').classList.remove('hidden');
-                buildTable(); syncData(); listenRequests();
-            } else alert("WRONG PIN");
-        };
+        let currentActivePrediction = ""; 
+        let currentActivePeriod = ""; 
+        let isWaitingForAPI = false; 
+        let currentFailedUid = "";
+        let dynamicSupportLink = "https://t.me/";
 
-        function buildTable() {
-            let body = document.getElementById('patternTbody'); body.innerHTML = "";
-            for(let i=0; i<=9; i++) {
-                for(let j=0; j<=9; j++) {
-                    let k = `${i}-${j}`;
-                    body.innerHTML += `<tr><td><b>${k}</b></td><td><select id="sz-${k}"><option value="BIG">B</option><option value="SMALL">S</option></select></td><td><input type="number" id="nm-${k}" min="0" max="9" placeholder="#"></td><td id="live-${k}" style="color:#555;">-</td><td><button class="btn-green" style="padding:4px; font-size:11px;" onclick="saveSingle('${k}')">SET</button></td></tr>`;
+        onValue(ref(db, 'settings/support_link'), snap => { if(snap.exists()) dynamicSupportLink = snap.val(); });
+        onValue(ref(db, 'settings/active_link'), snap => { if(snap.exists() && snap.val() !== "") document.getElementById('gameIframe').src = snap.val().trim(); });
+        window.openSupport = () => window.open(dynamicSupportLink, '_blank');
+
+        onValue(ref(db, 'settings/maintenance'), (snap) => {
+            if (snap.exists() && snap.val() === true) {
+                document.body.innerHTML = `
+                    <div style="height: 100vh; width: 100vw; background: #050505; display: flex; flex-direction: column; justify-content: center; align-items: center; color: var(--plasma-main);">
+                        <h1 style="font-size: 35px; text-shadow: 0 0 20px var(--plasma-main); font-family: 'Rajdhani', sans-serif;">🛑 SYSTEM OFFLINE</h1>
+                        <p style="color: #aaa; font-size: 14px; margin-top:10px;">Developer maintenance in progress. Please wait.</p>
+                    </div>`;
+            }
+        });
+
+        function showModal(title, msg, isPendingState = false) {
+            document.getElementById('modalTitle').innerText = title; 
+            document.getElementById('modalMsg').innerHTML = msg;
+            let closeBtn = document.getElementById('modalActionBtn'); 
+            let urgentBtn = document.getElementById('urgentBtn');
+            
+            if(isPendingState) { 
+                closeBtn.innerText = "WAITING APPROVAL..."; 
+                urgentBtn.style.display = "block"; 
+                checkUrgentCooldown(); 
+            } else { 
+                closeBtn.innerText = "OKAY"; 
+                closeBtn.onclick = closeModal; 
+                urgentBtn.style.display = "none"; 
+            }
+            document.getElementById('uidModal').style.display = 'flex';
+        }
+        window.closeModal = () => document.getElementById('uidModal').style.display = 'none';
+
+        function checkUrgentCooldown() {
+            let urgentBtn = document.getElementById('urgentBtn'); 
+            let lastTime = localStorage.getItem('last_urgent_' + currentFailedUid);
+            if(lastTime) {
+                let passed = Date.now() - parseInt(lastTime);
+                if(passed < 30 * 60 * 1000) {
+                    let rem = Math.ceil((30 * 60 * 1000 - passed) / 60 / 1000);
+                    urgentBtn.disabled = true; urgentBtn.innerText = `COOLDOWN: ${rem} MINS`; return;
                 }
             }
+            urgentBtn.disabled = false; urgentBtn.innerText = "⚡ URGENTLY PING ADMIN";
         }
 
-        window.saveSingle = async (k) => {
-            let sz = document.getElementById(`sz-${k}`).value; let nm = document.getElementById(`nm-${k}`).value.trim();
-            if(nm==="" || nm<0 || nm>9) return alert("Enter 0-9");
-            await set(ref(db, `patterns/${k}`), `${sz} [${nm}]`);
-            document.getElementById(`nm-${k}`).value = "";
+        window.sendUrgentRequest = async () => {
+            if(!currentFailedUid) return;
+            document.getElementById('urgentBtn').innerText = "SENDING...";
+            await update(ref(db, 'uid_requests/' + currentFailedUid), { urgent: true, urgent_timestamp: Date.now() });
+            localStorage.setItem('last_urgent_' + currentFailedUid, Date.now());
+            alert("Urgent Ping dispatched to Admin Panel successfully!"); 
+            checkUrgentCooldown();
         };
 
-        window.autoShuffle = async () => {
-            if(!confirm("Shuffle 100 patterns?")) return;
-            let b = {}; const s = ["BIG", "SMALL"];
-            for(let i=0; i<=9; i++) {
-                for(let j=0; j<=9; j++) b[`${i}-${j}`] = `${s[Math.floor(Math.random()*2)]} [${Math.floor(Math.random()*10)}]`;
+        function getDeviceID() {
+            let did = localStorage.getItem('vip_device_id');
+            if(!did) { did = 'DEV-' + Math.random().toString(36).substr(2, 9); localStorage.setItem('vip_device_id', did); }
+            return did;
+        }
+
+        // --- AUTH: 5 TO 12 DIGITS STRICT ---
+        window.checkUID = async () => {
+            let uid = document.getElementById('uidInput').value.trim(); 
+            const uidRegex = /^\d{5,12}$/;
+            if(!uidRegex.test(uid)) {
+                return showModal("❌ INVALID UID", "UID must be strictly between <b>5 and 12 numbers</b> only.", false);
             }
-            await update(ref(db, 'patterns'), b); alert("Shuffled!");
-        };
 
-        function syncData() {
-            onValue(ref(db, 'patterns'), snap => {
-                if(snap.exists()) { snap.forEach(c => { let el = document.getElementById(`live-${c.key}`); if(el) { el.innerText = c.val().split(' ')[0]; el.style.color = c.val().includes("BIG") ? var(--green) : var(--red); } }); }
-            });
-        }
+            let btn = document.getElementById('authBtn'); btn.innerText = "..."; btn.disabled = true;
 
-        // ⚡ LIVE REQUESTS MONITORING & APPROVAL ENGINE
-        function listenRequests() {
-            onValue(ref(db, 'uid_requests'), snap => {
-                let container = document.getElementById('requestsContainer'); container.innerHTML = "";
-                if(!snap.exists()) { container.innerHTML = `<p style="color:#666; text-align:center;">No pending requests found...</p>`; return; }
+            try {
+                let approvedSnap = await get(ref(db, 'approved_uids/' + uid));
+                if(approvedSnap.exists()) {
+                    let devID = getDeviceID();
+                    let bindSnap = await get(ref(db, 'device_bindings/' + uid));
+                    if(!bindSnap.exists()) await set(ref(db, 'device_bindings/' + uid), devID);
+                    else if (bindSnap.val() !== devID) {
+                        btn.innerText = "VERIFY"; btn.disabled = false;
+                        return showModal("🚨 DEVICE LOCKED", "UID is permanently bound to another device.<br><i>Multiple devices prohibited!</i>", false);
+                    }
+
+                    document.getElementById('authScreen').classList.add('hidden');
+                    document.getElementById('toolScreen').classList.remove('hidden');
+                    startTimerEngine(); return;
+                }
                 
-                snap.forEach(child => {
-                    let data = child.val();
-                    let urgentTag = data.urgent ? `<div class="urgent-tag">🔴 CRITICAL URGENT</div>` : '';
-                    let time = new Date(data.timestamp).toLocaleTimeString();
-                    
-                    container.innerHTML += `
-                        <div class="req-card" style="border-color: ${data.urgent ? 'var(--red)' : '#333'}">
-                            ${urgentTag}
-                            <div style="font-family:'Share Tech Mono'; font-size:14px;"><b>UID:</b> <span style="color:var(--green);">${data.uid}</span></div>
-                            <div style="font-size:11px; color:#aaa;">Time: ${time}</div>
-                            <button class="btn-green" style="padding:6px; font-size:12px; margin-top:5px;" onclick="approveUid('${data.uid}')">✅ APPROVE USER</button>
-                        </div>
-                    `;
-                });
-            });
+                currentFailedUid = uid;
+                await set(ref(db, 'uid_requests/' + uid), { uid: uid, deviceId: getDeviceID(), status: "pending", timestamp: Date.now(), urgent: false });
+                btn.innerText = "VERIFY"; btn.disabled = false;
+                showModal("⏳ REQUEST DEPLOYED", `UID <b>${uid}</b> sent to Admin Panel.<br>Please wait for authorization.`, true);
+
+            } catch (error) { btn.innerText = "VERIFY"; btn.disabled = false; showModal("NETWORK ERROR", "Connection failed.", false); }
+        };
+
+        // --- PRECISION TIMER ENGINE (0 DELAY) ---
+        function startTimerEngine() {
+            setInterval(() => {
+                let now = new Date();
+                let hrs = now.getHours(); let mins = now.getMinutes();
+                currentActivePeriod = `${now.getFullYear()}${String(now.getMonth()+1).padStart(2,'0')}${String(now.getDate()).padStart(2,'0')}1000${10001 + (hrs * 60) + mins}`;
+                
+                let remSec = 60 - now.getSeconds(); if(remSec === 60) remSec = 0;
+                
+                document.getElementById('displayPeriod').innerText = currentActivePeriod;
+                document.getElementById('displayTimer').innerText = `00:${String(remSec).padStart(2,'0')}`;
+
+                // INSTANT TRIGGER AT EXACTLY 00:00
+                if(remSec === 0 && currentActivePrediction !== "" && !isWaitingForAPI) {
+                    isWaitingForAPI = true; 
+                    checkResultInstant(currentActivePeriod, currentActivePrediction); 
+                }
+            }, 1000);
         }
 
-        window.approveUid = async (uid) => {
-            await set(ref(db, 'approved_uids/' + uid), true);
-            await remove(ref(db, 'uid_requests/' + uid));
-            alert(`UID [ ${uid} ] successfully approved!`);
+        window.runExploit = async () => {
+            let n1 = document.getElementById('num1').value; let n2 = document.getElementById('num2').value;
+            let resBox = document.getElementById('predictionDisplay'); let btn = document.getElementById('analyzeBtn');
+            if(n1 === "" || n2 === "") return showModal("WARNING", "Input N-1 and N-2 variables.", false);
+
+            btn.disabled = true; resBox.innerText = "HACKING..."; resBox.style.color = "#888"; resBox.style.textShadow = "none";
+            
+            try {
+                let snap = await get(ref(db, `patterns/${n1}-${n2}`));
+                setTimeout(() => {
+                    btn.disabled = false;
+                    if(snap.exists() && !snap.val().includes("UNSET")) {
+                        currentActivePrediction = snap.val(); 
+                        resBox.innerText = currentActivePrediction;
+                        resBox.style.color = "var(--plasma-light)"; resBox.style.textShadow = "0 0 10px rgba(255,26,26,0.5)";
+                        isWaitingForAPI = false;
+                    } else { resBox.innerText = "NOT FOUND"; resBox.style.color = "var(--plasma-main)"; }
+                }, 800);
+            } catch(e) { btn.disabled = false; resBox.innerText = "ERROR"; }
         };
+
+        // --- INSTANT API MATCHER & ANIMATION (LAST 4 DIGIT ENGINE) ---
+        window.closeAnimScreen = () => {
+            document.getElementById('animScreen').style.display = 'none';
+        }
+
+        function triggerAnimation(type, period, prediction, actualResult, number) {
+            const screen = document.getElementById('animScreen'); 
+            const bg = document.getElementById('animBg'); 
+            const title = document.getElementById('animTitleText');
+
+            document.getElementById('animPeriod').innerText = String(period).slice(-4); 
+            document.getElementById('animPred').innerText = prediction;
+            document.getElementById('animResult').innerText = `${actualResult} [${number}]`;
+
+            bg.className = "plasma-bg"; title.className = "anim-title";
+            if(type === 'JACKPOT') { bg.classList.add('bg-jackpot'); title.classList.add('text-jackpot'); title.innerText = "JACKPOT WIN!"; }
+            else if(type === 'WIN') { bg.classList.add('bg-win'); title.classList.add('text-win'); title.innerText = "VICTORY!"; }
+            else { bg.classList.add('bg-loss'); title.classList.add('text-loss'); title.innerText = "SYSTEM LOSS"; }
+            
+            // FORCE DISPLAY
+            screen.style.display = 'flex';
+            screen.style.opacity = '1';
+        }
+
+        async function checkResultInstant(pVerify, pValue) {
+            try {
+                let res = await fetch(`https://draw.ar-lottery01.com/WinGo/WinGo_1M/GetHistoryIssuePage.json`); 
+                let data = await res.json(); 
+                let list = data.data || data.list || data.items || data;
+                
+                let latestItem = list[0];
+                let apiPeriodLast4 = String(latestItem.issueNumber || latestItem.period).slice(-4);
+                let myPeriodLast4 = String(pVerify).slice(-4);
+
+                // FAST RETRY: Agar game server ne naya result update nahi kiya, toh 500ms baad wapas check karega
+                if(apiPeriodLast4 !== myPeriodLast4) {
+                    setTimeout(() => checkResultInstant(pVerify, pValue), 500);
+                    return;
+                }
+                
+                let actual = latestItem.size ? latestItem.size.toUpperCase() : (parseInt(latestItem.number) >= 5 ? "BIG" : "SMALL");
+                let num = latestItem.number !== undefined ? latestItem.number : 0;
+                let cleanPred = pValue.toUpperCase().includes("BIG") ? "BIG" : "SMALL";
+                
+                if(cleanPred === actual) {
+                    if(num == 0 || num == 5) triggerAnimation('JACKPOT', pVerify, pValue, actual, num);
+                    else triggerAnimation('WIN', pVerify, pValue, actual, num);
+                } else triggerAnimation('LOSS', pVerify, pValue, actual, num);
+                
+                currentActivePrediction = ""; isWaitingForAPI = false;
+            } catch(e) { 
+                setTimeout(() => checkResultInstant(pVerify, pValue), 1000); 
+            }
+        }
     </script>
 </body>
 </html>
