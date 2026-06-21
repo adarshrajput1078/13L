@@ -3,351 +3,249 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>VIP UID ENGINE | 80/20 LAYOUT</title>
-    
+    <title>13L X ROCKY | PLASMA 15/85</title>
     <style>
-        /* ==========================================================================
-           1. FONTS & GLOBAL VARIABLES
-           ========================================================================== */
-        @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700;900&family=Share+Tech+Mono&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap');
         
         :root { 
-            --bg-base: #020503; --bg-glow: #0a140d;
-            --neon-green: #00f060; --neon-green-glow: rgba(0, 240, 96, 0.5);
-            --neon-red: #ff2a40; --neon-red-glow: rgba(255, 42, 64, 0.5);
-            --neon-gold: #ffd700; --neon-gold-glow: rgba(255, 215, 0, 0.6);
-            --text-main: #e8f5ec; --text-muted: #6e8a79;
-            --glass-bg: rgba(4, 8, 6, 0.9); --glass-border: rgba(0, 240, 96, 0.3);
+            --plasma-light: #ff7b7b; 
+            --plasma-main: #ff1a1a; 
+            --plasma-dark: #b30000;
+            --text-white: #f5f5f5; 
         }
         
-        * { box-sizing: border-box; user-select: none; }
-        body, html { margin: 0; padding: 0; height: 100%; font-family: 'Rajdhani', sans-serif; background: var(--bg-base); color: var(--text-main); overflow: hidden; display: flex; flex-direction: column; }
-
-        #matrixCanvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; opacity: 0.25; pointer-events: none; }
-        .glass-panel { background: var(--glass-bg); backdrop-filter: blur(12px); border: 1px solid var(--glass-border); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9), inset 0 0 15px rgba(0, 240, 96, 0.05); }
-
-        /* ==========================================================================
-           2. UID GATEWAY SCREEN
-           ========================================================================== */
-        #gatewayZone { display: flex; flex-direction: column; height: 100%; width: 100%; padding: 30px 20px; align-items: center; justify-content: center; z-index: 10; }
-        .hub-header { text-align: center; margin-bottom: 25px; width: 100%; max-width: 400px;}
-        .hub-header h1 { font-size: 34px; font-weight: 900; color: var(--neon-green); margin: 0; letter-spacing: 4px; text-shadow: 0 0 20px var(--neon-green-glow); text-transform: uppercase; }
-        .hub-header p { font-size: 12px; color: var(--text-muted); margin-top: 5px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; }
-        .red-line { width: 50px; height: 2px; background: var(--neon-red); margin: 10px auto 0 auto; box-shadow: 0 0 15px var(--neon-red-glow); }
-
-        .auth-card { width: 100%; max-width: 400px; padding: 30px 20px; border-radius: 8px; display: flex; flex-direction: column; align-items: center; }
-        input { width: 100%; padding: 14px; background: rgba(0,0,0,0.8); border: 1px solid rgba(0,240,96,0.5); border-radius: 6px; color: var(--neon-green); font-family: 'Share Tech Mono', monospace; font-size: 16px; outline: none; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; text-align: center; transition: 0.3s; }
-        input:focus { border-color: var(--neon-green); box-shadow: 0 0 15px rgba(0,240,96,0.3); }
-
-        .btn-action { width: 100%; padding: 14px; background: var(--neon-green); color: #000; border: none; border-radius: 6px; font-family: 'Rajdhani'; font-weight: 900; font-size: 18px; letter-spacing: 2px; cursor: pointer; text-transform: uppercase; box-shadow: 0 0 20px var(--neon-green-glow); transition: 0.2s; }
-        .btn-action:active { transform: scale(0.95); }
-
-        /* ==========================================================================
-           3. TERMINAL LOADER
-           ========================================================================== */
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.95); z-index: 1000; display: none; justify-content: center; align-items: center; }
-        .modal-box { width: 85%; max-width: 400px; padding: 30px 25px; border-radius: 8px; border: 1px solid var(--neon-green); box-shadow: 0 0 30px rgba(0,240,96,0.2); }
-        .terminal-text { font-family: 'Share Tech Mono'; font-size: 14px; color: var(--neon-green); margin-bottom: 10px; }
-        .terminal-text span { color: #fff; }
-        .progress-container { margin: 25px 0 15px 0; text-align: center; background: rgba(0,0,0,0.6); padding: 15px 10px; border-radius: 6px; border: 1px dashed rgba(0, 240, 96, 0.4); }
-        .progress-bar-text { font-family: 'Share Tech Mono'; font-size: 16px; color: var(--neon-green); letter-spacing: 2px; }
-
-        /* ==========================================================================
-           4. 80/20 LAYOUT TOOL VIEW
-           ========================================================================== */
-        #toolView { display: none; flex-direction: column; height: 100%; width: 100%; z-index: 20; }
+        body, html { margin: 0; padding: 0; height: 100%; font-family: 'Poppins', sans-serif; background-color: #121212; color: var(--text-white); overflow: hidden; display: flex; flex-direction: column; }
         
-        /* 20% EXACT HEIGHT COMPACT PANEL */
+        /* 📐 EXACT 15% HEIGHT COMPACT PANEL */
         #top-panel { 
-            height: 20%; width: 100%; display: flex; flex-direction: column; 
-            align-items: center; justify-content: center; padding: 5px 10px; 
-            border-bottom: 2px solid rgba(0, 240, 96, 0.5); box-shadow: 0 5px 15px rgba(0,0,0,0.9); 
+            height: 15%; min-height: 115px; width: 100%; 
+            background: linear-gradient(180deg, #2a1515 0%, #1a0a0a 100%); 
+            border-bottom: 2px solid var(--plasma-main); display: flex; flex-direction: column; 
+            align-items: center; justify-content: center; z-index: 10; position: relative; 
+            padding: 2px 5px; box-shadow: 0 4px 15px rgba(255, 26, 26, 0.25);
         }
         
-        /* 80% EXACT HEIGHT GAME IFRAME */
-        #bottom-panel { height: 80%; width: 100%; background-color: #000; }
+        /* 📐 EXACT 85% HEIGHT GAME PANEL */
+        #bottom-panel { height: 85%; width: 100%; background-color: #000; }
         iframe { width: 100%; height: 100%; border: none; }
         
-        /* COMPACT TOOL UI ELEMENTS */
-        .tool-header { width: 100%; max-width: 480px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
-        .tool-logo { font-size: 16px; font-weight: 900; color: var(--neon-green); letter-spacing: 1px; text-shadow: 0 0 10px var(--neon-green-glow); }
-        .timer-box { font-family: 'Share Tech Mono'; font-size: 13px; color: var(--neon-red); font-weight: bold; border: 1px solid var(--neon-red); padding: 2px 8px; border-radius: 4px; background: rgba(255,0,0,0.1); }
-        
-        .compact-row { width: 100%; max-width: 480px; display: flex; gap: 6px; margin-bottom: 4px; }
-        .compact-row input { flex: 1; padding: 6px; font-size: 14px; margin-bottom: 0; background: rgba(0,0,0,0.8); }
-        .btn-compact-hack { padding: 6px 15px; background: var(--neon-green); color: #000; border: none; font-family: 'Rajdhani'; font-weight: 900; font-size: 15px; border-radius: 4px; cursor: pointer; letter-spacing: 1px; box-shadow: 0 0 10px var(--neon-green-glow); }
-        
-        .result-box-compact { width: 100%; max-width: 480px; text-align: center; font-size: 18px; font-weight: 900; color: var(--neon-green); background: rgba(0,0,0,0.9); padding: 4px; border-radius: 4px; border: 1px solid var(--neon-green); font-family: 'Share Tech Mono'; letter-spacing: 2px; text-shadow: 0 0 10px rgba(0,240,96,0.5); }
+        .top-header { width: 100%; max-width: 450px; display: flex; justify-content: space-between; align-items: center; padding: 0 10px; box-sizing: border-box; border-bottom: 1px solid rgba(255, 26, 26, 0.15); margin-bottom: 4px; }
+        .logo-text { font-size: 14px; font-weight: 800; color: var(--plasma-light); text-transform: uppercase; letter-spacing: 1px; text-shadow: 0 0 8px rgba(255, 26, 26, 0.6);}
+        .service-btn { background: linear-gradient(180deg, #ff4d4d 0%, #cc0000 100%); color: #fff; font-size: 9px; font-weight: 800; padding: 2px 8px; border-radius: 10px; border: none; cursor: pointer; transition: 0.2s;}
 
-        /* ==========================================================================
-           5. DYNAMIC API RESULT ANIMATIONS
-           ========================================================================== */
-        .result-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.95); z-index: 99999; display: none; flex-direction: column; justify-content: center; align-items: center; backdrop-filter: blur(5px); }
-        .result-card { padding: 25px; border-radius: 10px; text-align: center; width: 85%; max-width: 350px; background: #050a07; opacity: 0; transform: scale(0.5); }
+        .tool-container { width: 100%; max-width: 450px; display: flex; flex-direction: column; gap: 4px; padding: 0 10px; box-sizing: border-box;}
+        .info-row { display: flex; justify-content: space-between; font-size: 10px; background: rgba(0,0,0,0.6); padding: 4px 10px; border-radius: 4px; border: 1px solid rgba(255, 26, 26, 0.2);}
+        .info-row span { color: var(--plasma-light); font-weight: 800; }
         
-        .card-win { border: 2px solid var(--neon-green); box-shadow: 0 0 40px var(--neon-green-glow); animation: popIn 0.4s forwards; }
-        .card-loss { border: 2px solid var(--neon-red); box-shadow: 0 0 40px var(--neon-red-glow); animation: popIn 0.4s forwards; }
-        .card-jackpot { border: 3px solid var(--neon-gold); background: #1a1500; animation: popIn 0.4s forwards, pulseGold 1.5s infinite; }
-
-        .anim-title { font-size: 40px; font-weight: 900; margin: 0 0 10px 0; letter-spacing: 3px; font-family: 'Rajdhani', sans-serif;}
-        .title-win { color: var(--neon-green); text-shadow: 0 0 20px var(--neon-green-glow); }
-        .title-loss { color: var(--neon-red); text-shadow: 0 0 20px var(--neon-red-glow); }
-        .title-jackpot { color: var(--neon-gold); text-shadow: 0 0 25px var(--neon-gold-glow); }
-
-        .anim-details { font-family: 'Share Tech Mono'; font-size: 14px; color: #ccc; text-align: left; background: rgba(0,0,0,0.6); padding: 12px; border-radius: 4px; border: 1px dashed #444;}
-        .anim-details div { display: flex; justify-content: space-between; border-bottom: 1px solid #222; padding-bottom: 4px; margin-bottom: 4px;}
-        .anim-details span { font-weight: bold; font-size: 15px; color: #fff;}
-
-        .btn-close-anim { margin-top: 15px; padding: 10px; font-family: 'Rajdhani'; font-weight: 900; font-size: 16px; background: transparent; border: 2px solid #fff; color: #fff; cursor: pointer; border-radius: 4px; width: 100%;}
+        .input-row { display: flex; gap: 6px; align-items: center; }
+        input { flex: 1; padding: 6px; border: 1px solid #444; border-radius: 4px; text-align: center; font-size: 12px; font-weight: 700; background: #0a0a0a; color: var(--plasma-light); outline: none;}
+        input:focus { border-color: var(--plasma-main); box-shadow: 0 0 8px rgba(255, 26, 26, 0.4); }
         
-        @keyframes popIn { 0% { transform: scale(0.5); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
-        @keyframes pulseGold { 0% { box-shadow: 0 0 30px var(--neon-gold-glow); } 50% { box-shadow: 0 0 60px rgba(255, 215, 0, 0.9); } 100% { box-shadow: 0 0 30px var(--neon-gold-glow); } }
+        button.action-btn { padding: 6px 15px; font-size: 12px; font-family: 'Poppins', sans-serif; font-weight: 800; cursor: pointer; border-radius: 4px; border: none; background: linear-gradient(180deg, #ff4d4d 0%, #b30000 100%); color: #fff; text-transform: uppercase; box-shadow: 0 3px 6px rgba(0,0,0,0.5); width: 25%; }
+        button.action-btn:active { transform: scale(0.95); }
+        
+        .result-box { text-align: center; font-size: 14px; font-weight: 900; color: #666; background: #050505; padding: 5px; border-radius: 4px; border: 1px solid #222; flex-grow: 1;}
+
+        .auth-container { text-align: center; width: 100%; max-width: 450px; padding: 0 15px; box-sizing: border-box;}
+        .auth-container h3 { margin: 2px 0 8px 0; font-size: 13px; color: #ddd; font-weight: 700; text-transform: uppercase;}
+        .auth-container h3 span { color: var(--plasma-light); }
+
+        /* MODALS & OVERLAYS */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 100; display: none; justify-content: center; align-items: center; backdrop-filter: blur(8px); }
+        .modal-box { background: linear-gradient(180deg, #2a1a1a 0%, #1a0f0f 100%); border: 2px solid var(--plasma-main); padding: 25px; border-radius: 12px; text-align: center; width: 85%; max-width: 320px; box-shadow: 0 15px 40px rgba(0,0,0,0.9); }
+        .modal-box h4 { color: var(--plasma-light); margin: 0 0 10px 0; font-size: 18px; font-weight: 900; text-transform: uppercase;}
+        .modal-box p { font-size: 12px; color: #ddd; margin-bottom: 15px; line-height: 1.5; }
+        .btn-close { background: transparent; border: 2px solid var(--plasma-main); color: var(--plasma-light); padding: 8px 20px; border-radius: 6px; font-weight: 800; cursor: pointer; }
+        
+        .btn-urgent { background: linear-gradient(90deg, #ff1a1a, #990000); border: none; color: #fff; padding: 10px 20px; border-radius: 6px; font-weight: 800; cursor: pointer; text-transform: uppercase; margin-top: 10px; display: none; width: 100%; }
+        .btn-urgent:disabled { background: #333; color: #666; cursor: not-allowed; }
+
+        #animScreen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(10, 5, 5, 0.95); z-index: 9999; display: none; flex-direction: column; justify-content: center; align-items: center; overflow: hidden; backdrop-filter: blur(5px);}
+        .plasma-bg { position: absolute; width: 200%; height: 200%; z-index: -1; animation: fireSpin 4s linear infinite; }
+        .bg-win { background: radial-gradient(circle, rgba(0, 240, 96, 0.3) 0%, rgba(0,0,0,0) 60%); }
+        .bg-loss { background: radial-gradient(circle, rgba(255, 26, 26, 0.3) 0%, rgba(0,0,0,0) 60%); }
+        .bg-jackpot { background: radial-gradient(circle, rgba(255, 215, 0, 0.3) 0%, rgba(0,0,0,0) 60%); }
+        .anim-title { font-size: 45px; font-weight: 900; margin: 0; text-align: center; animation: winZoom 0.6s forwards; }
+        .text-win { color: #00f060; text-shadow: 0 0 20px #00f060; }
+        .text-loss { color: #ff2a2a; text-shadow: 0 0 20px #ff2a2a; }
+        .text-jackpot { color: #ffd700; text-shadow: 0 0 20px #ffd700; }
+        .anim-details { background: linear-gradient(180deg, #1a0a0a 0%, #0d0505 100%); border: 2px solid var(--plasma-main); padding: 20px; border-radius: 12px; margin-top: 25px; text-align: center; width: 80%; max-width: 320px;}
+        .anim-details p { margin: 5px 0; font-weight: 700; font-size: 13px; color: #ccc; display: flex; justify-content: space-between; border-bottom: 1px dashed #333; padding-bottom: 5px;}
+        .anim-details span { font-size: 16px; font-weight: 900; color: #fff;}
+        .anim-details .highlight { color: var(--plasma-light); }
+
+        @keyframes fireSpin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        @keyframes winZoom { 0% { transform: scale(0); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+        .hidden { display: none !important; }
     </style>
 </head>
 <body>
 
-    <canvas id="matrixCanvas"></canvas>
-
-    <div id="gatewayZone">
-        <div class="hub-header">
-            <h1 id="hubMainTitle">UID ENGINE</h1>
-            <div class="red-line"></div>
-            <p id="hubSubDesc">Enter Game UID to Access Tool</p>
-        </div>
-
-        <div class="auth-card glass-panel">
-            <input type="text" id="uidInput" placeholder="ENTER YOUR UID">
-            <button class="btn-action" id="verifyBtn" onclick="verifyUID()">VERIFY & ENTER</button>
+    <div id="uidModal" class="modal-overlay">
+        <div class="modal-box">
+            <h4 id="modalTitle">SYSTEM ALERT</h4>
+            <p id="modalMsg">Initializing...</p>
+            <button id="modalActionBtn" class="btn-close" onclick="closeModal()">OKAY</button>
+            <button id="urgentBtn" class="btn-urgent" onclick="sendUrgentRequest()">⚡ URGENTLY</button>
         </div>
     </div>
 
-    <div id="detailsModal" class="modal-overlay">
-        <div class="modal-box glass-panel">
-            <div class="terminal-text">> UID CHECK: <span style="color:var(--neon-green);">VERIFIED</span></div>
-            <div class="terminal-text">> ENGINE TARGET: <span style="color:#ffd700;">WIN-GO API</span></div>
-            <div class="progress-container">
-                <div class="progress-bar-text" id="progBar">[░░░░░░░░░░░░░░░░░░░░] 0%</div>
-            </div>
+    <!-- DYNAMIC API RESULT SCREEN -->
+    <div id="animScreen">
+        <div id="animBg" class="plasma-bg bg-win"></div>
+        <h1 id="animTitleText" class="anim-title text-win">VICTORY</h1>
+        <div class="anim-details">
+            <p>PERIOD: <span id="animPeriod">---</span></p>
+            <p>PREDICTION: <span id="animPred">---</span></p>
+            <p>RESULT: <span id="animResult" class="highlight">---</span></p>
         </div>
+        <p style="font-size: 12px; color: #888; margin-top: 25px; cursor: pointer; font-weight: 800;" onclick="document.getElementById('animScreen').style.display='none'">[ TAP TO CONTINUE ]</p>
     </div>
 
-    <div id="toolView">
-        
-        <div id="top-panel" class="glass-panel" style="border-radius: 0 0 10px 10px; border-top: none;">
-            <div class="tool-header">
-                <div class="tool-logo">BDG [SECURE]</div>
-                <div style="display:flex; gap:8px; align-items:center;">
-                    <div id="displayPeriod" style="font-family:'Share Tech Mono'; font-size:11px; color:#aaa;">SYNCING</div>
-                    <div class="timer-box" id="displayTimer">00:00</div>
-                </div>
+    <!-- 15% HEIGHT TOOLBAR -->
+    <div id="top-panel">
+        <div class="top-header">
+            <div class="logo-text">13L X ROCKY</div>
+            <button class="service-btn" onclick="openSupport()">🎧 Support</button>
+        </div>
+
+        <div id="authScreen" class="auth-container">
+            <h3>Account <span>Verification</span></h3>
+            <div class="input-row">
+                <input type="text" id="uidInput" placeholder="Enter VIP UID">
+                <button id="authBtn" class="action-btn" onclick="checkUID()">Verify</button>
             </div>
-            
-            <div class="compact-row">
+        </div>
+
+        <div id="toolScreen" class="tool-container hidden">
+            <div class="info-row">
+                <div>PERIOD: <span id="displayPeriod">SYNCING...</span></div>
+                <div>TIME: <span id="displayTimer" style="color:var(--plasma-main);">00:00</span></div>
+            </div>
+            <div class="input-row" style="margin-top: 2px;">
                 <input type="number" id="num1" placeholder="N-1" min="0" max="9">
                 <input type="number" id="num2" placeholder="N-2" min="0" max="9">
-                <button class="btn-compact-hack" onclick="runHackEngine()">EXECUTE</button>
+                <button id="analyzeBtn" class="action-btn" onclick="runExploit()">HACK</button>
+                <div id="predictionDisplay" class="result-box">AWAITING...</div>
             </div>
-            
-            <div id="predictionDisplay" class="result-box-compact" style="color:#444; border-color:#222; text-shadow:none;">WAITING</div>
-        </div>
-        
-        <div id="bottom-panel">
-            <iframe id="gameIframe" src="https://draw.ar-lottery01.com/"></iframe>
         </div>
     </div>
 
-    <div id="resultScreen" class="result-overlay">
-        <div id="resultCardBox" class="result-card">
-            <h1 id="animTitle" class="anim-title">RESULT</h1>
-            <div class="anim-details">
-                <div>PERIOD <span>#<span id="animPeriod">---</span></span></div>
-                <div>PREDICTION <span id="animPred">---</span></div>
-                <div>ACTUAL RESULT <span id="animActual">---</span></div>
-            </div>
-            <button class="btn-close-anim" onclick="closeAnimation()">[ CLOSE ]</button>
-        </div>
+    <!-- 85% HEIGHT GAME AREA -->
+    <div id="bottom-panel">
+        <iframe id="gameIframe" src="https://bdg5.cc//#/register?invitationCode=167672592385"></iframe>
     </div>
 
     <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js";
-        import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-database.js";
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getDatabase, ref, get, set, onValue, update } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyBFdvXN8SAy77EDQp5HNykO5z2Wa0W8sb0", authDomain: "bdgrocky.firebaseapp.com",
-            databaseURL: "https://bdgrocky-default-rtdb.asia-southeast1.firebasedatabase.app", 
-            projectId: "bdgrocky", storageBucket: "bdgrocky.firebasestorage.app",
-            messagingSenderId: "527135073335", appId: "1:527135073335:web:d293fc9570df64a5a54bb2"
+            databaseURL: "https://bdgrocky-default-rtdb.asia-southeast1.firebasedatabase.app", projectId: "bdgrocky"
         };
         const db = getDatabase(initializeApp(firebaseConfig));
 
-        // GLOBALS
-        let currentActivePeriod = "";
-        let currentActivePrediction = "";
-        let isWaitingForAPI = false;
+        let currentActivePrediction = ""; let currentActivePeriod = ""; let isWaitingForAPI = false; let currentFailedUid = "";
+        let dynamicSupportLink = "https://t.me/";
 
-        // MATRIX RAIN BACKGROUND
-        const canvas = document.getElementById('matrixCanvas'); const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth; canvas.height = window.innerHeight;
-        const charPool = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ$%&#@'.split('');
-        const fSize = 14; const cols = canvas.width / fSize; const streams = [];
-        for(let i=0; i<cols; i++) streams[i] = Math.random() * -50;
-        function dropRain() {
-            ctx.fillStyle = 'rgba(2, 5, 3, 0.08)'; ctx.fillRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = '#00f060'; ctx.font = fSize + 'px Share Tech Mono';
-            for(let i=0; i<streams.length; i++) {
-                let txt = charPool[Math.floor(Math.random() * charPool.length)];
-                ctx.fillText(txt, i * fSize, streams[i] * fSize);
-                if(streams[i] * fSize > canvas.height && Math.random() > 0.98) streams[i] = 0;
-                streams[i]++;
-            }
+        onValue(ref(db, 'settings/support_link'), snap => { if(snap.exists()) dynamicSupportLink = snap.val(); });
+        onValue(ref(db, 'settings/active_link'), snap => { if(snap.exists() && snap.val() !== "") document.getElementById('gameIframe').src = snap.val().trim(); });
+        window.openSupport = () => window.open(dynamicSupportLink, '_blank');
+
+        function showModal(title, msg, isPendingState = false) {
+            document.getElementById('modalTitle').innerText = title; document.getElementById('modalMsg').innerHTML = msg;
+            let closeBtn = document.getElementById('modalActionBtn'); let urgentBtn = document.getElementById('urgentBtn');
+            if(isPendingState) { closeBtn.innerText = "WAITING..."; urgentBtn.style.display = "block"; checkUrgentCooldown(); } 
+            else { closeBtn.innerText = "OKAY"; closeBtn.onclick = closeModal; urgentBtn.style.display = "none"; }
+            document.getElementById('uidModal').style.display = 'flex';
         }
-        setInterval(dropRain, 35);
+        window.closeModal = () => document.getElementById('uidModal').style.display = 'none';
 
-        // ==========================================
-        // 🔑 DIRECT UID VERIFICATION LOGIC
-        // ==========================================
-        window.verifyUID = async () => {
-            let uid = document.getElementById('uidInput').value.trim();
-            let btn = document.getElementById('verifyBtn');
-            
-            if(!uid) return alert("PLEASE ENTER YOUR UID.");
-            
-            btn.innerText = "VERIFYING...";
-            btn.disabled = true;
-
-            try {
-                // Check if UID exists in Firebase
-                let snap = await get(ref(db, 'approved_uids/' + uid));
-                
-                if(snap.exists()) {
-                    // Success -> Start Loader
-                    document.getElementById('detailsModal').style.display = 'flex';
-                    runTerminalProgressBar();
-                } else {
-                    alert("ERROR: UID NOT REGISTERED. Please contact Admin.");
-                    btn.innerText = "VERIFY & ENTER";
-                    btn.disabled = false;
+        function checkUrgentCooldown() {
+            let urgentBtn = document.getElementById('urgentBtn'); let lastTime = localStorage.getItem('last_urgent_' + currentFailedUid);
+            if(lastTime) {
+                let passed = Date.now() - parseInt(lastTime);
+                if(passed < 30 * 60 * 1000) {
+                    let rem = Math.ceil((30 * 60 * 1000 - passed) / 60 / 1000);
+                    urgentBtn.disabled = true; urgentBtn.innerText = `Retry in ${rem}m`; return;
                 }
-            } catch(e) {
-                alert("Server Connection Error.");
-                btn.innerText = "VERIFY & ENTER";
-                btn.disabled = false;
             }
+            urgentBtn.disabled = false; urgentBtn.innerText = "⚡ URGENTLY";
+        }
+
+        window.sendUrgentRequest = async () => {
+            if(!currentFailedUid) return;
+            document.getElementById('urgentBtn').innerText = "SENDING...";
+            await update(ref(db, 'uid_requests/' + currentFailedUid), { urgent: true, urgent_timestamp: Date.now() });
+            localStorage.setItem('last_urgent_' + currentFailedUid, Date.now());
+            alert("Urgent notification sent to Admin Panel!"); checkUrgentCooldown();
         };
 
-        function runTerminalProgressBar() {
-            let left = 4; // 4 seconds loading
-            let bootInterval = setInterval(() => {
-                left--;
-                let percent = Math.floor(((4 - left) / 4) * 100);
-                let blocks = Math.floor((percent/100)*20);
-                document.getElementById('progBar').innerText = `[${'█'.repeat(blocks) + '░'.repeat(20 - blocks)}] ${percent}%`;
-                if(left <= 0) { clearInterval(bootInterval); openTool(); }
-            }, 1000);
-        }
+        window.checkUID = async () => {
+            let uid = document.getElementById('uidInput').value.trim(); if(!uid) return alert("Enter UID");
+            let btn = document.getElementById('authBtn'); btn.innerText = "...";
 
-        window.openTool = () => {
-            document.getElementById('detailsModal').style.display = 'none';
-            document.getElementById('gatewayZone').style.display = 'none';
-            document.getElementById('toolView').style.display = 'flex';
-            startLoopTimers();
-        };
-
-        // ==========================================
-        // 🕰️ TIMER & API TRIGGER
-        // ==========================================
-        function startLoopTimers() {
-            setInterval(() => {
-                let now = new Date(); let mins = now.getUTCMinutes(); let hrs = now.getUTCHours();
-                let periodStr = `${now.getUTCFullYear()}${String(now.getUTCMonth()+1).padStart(2,'0')}${String(now.getUTCDate()).padStart(2,'0')}1000${10001 + (hrs * 60) + mins}`;
-                
-                let remSec = 60 - now.getUTCSeconds(); 
-                if(remSec === 60) remSec = 0;
-                
-                document.getElementById('displayPeriod').innerText = periodStr; 
-                document.getElementById('displayTimer').innerText = `00:${String(remSec).padStart(2,'0')}`;
-
-                if(remSec === 0 && currentActivePrediction !== "" && !isWaitingForAPI) {
-                    isWaitingForAPI = true;
-                    setTimeout(() => { verifyWithGameAPI(currentActivePeriod, currentActivePrediction); }, 2000); 
-                }
-            }, 1000);
-        }
-
-        // ==========================================
-        // 🧠 EXECUTE TOOL
-        // ==========================================
-        window.runHackEngine = async () => {
-            let n1 = document.getElementById('num1').value; let n2 = document.getElementById('num2').value;
-            let display = document.getElementById('predictionDisplay');
-            if(n1 === "" || n2 === "") return alert("INPUT REQUIRED");
-
-            display.style.color = "var(--neon-green)"; display.style.borderColor = "var(--neon-green)";
-            display.innerText = "BYPASSING...";
-
-            try {
-                let snap = await get(ref(db, `patterns/${n1}-${n2}`));
-                setTimeout(() => {
-                    if(snap.exists()) {
-                        let predictionResult = snap.val();
-                        display.innerText = predictionResult; 
-                        
-                        currentActivePeriod = document.getElementById('displayPeriod').innerText;
-                        currentActivePrediction = predictionResult;
-                        isWaitingForAPI = false;
-                    } else {
-                        display.innerText = "UNSET"; display.style.color = "var(--neon-red)"; display.style.borderColor = "var(--neon-red)";
+            let approved = await get(ref(db, 'approved_uids/' + uid));
+            if(approved.exists()) {
+                document.getElementById('authScreen').classList.add('hidden');
+                document.getElementById('toolScreen').classList.remove('hidden');
+                setInterval(() => {
+                    let now = new Date(); let mins = now.getUTCMinutes(); let hrs = now.getUTCHours();
+                    currentActivePeriod = `${now.getUTCFullYear()}${String(now.getUTCMonth()+1).padStart(2,'0')}${String(now.getUTCDate()).padStart(2,'0')}1000${10001 + (hrs * 60) + mins}`;
+                    let remSec = 60 - now.getUTCSeconds(); if(remSec === 60) remSec = 0;
+                    document.getElementById('displayPeriod').innerText = currentActivePeriod;
+                    document.getElementById('displayTimer').innerText = `00:${String(remSec).padStart(2,'0')}`;
+                    if(remSec === 0 && currentActivePrediction !== "" && !isWaitingForAPI) {
+                        isWaitingForAPI = true; setTimeout(() => { verifyWithGameAPI(currentActivePeriod, currentActivePrediction); }, 2000);
                     }
-                }, 800);
-            } catch(e) { display.innerText = "ERROR"; }
+                }, 1000);
+                return;
+            }
+            currentFailedUid = uid;
+            await set(ref(db, 'uid_requests/' + uid), { uid: uid, status: "pending", timestamp: Date.now(), urgent: false });
+            btn.innerText = "Verify"; showModal("⏳ SUBMITTED", "UID deployed to Admin Panel. Wait for approval.", true);
         };
 
-        // ==========================================
-        // 🎯 LIVE API ENGINE & ANIMATION
-        // ==========================================
-        window.closeAnimation = () => { document.getElementById('resultScreen').style.display = 'none'; }
+        window.runExploit = async () => {
+            let n1 = document.getElementById('num1').value; let n2 = document.getElementById('num2').value;
+            let resBox = document.getElementById('predictionDisplay'); if(n1==="" || n2==="") return alert("Enter inputs");
+            resBox.innerText = "HACKING...";
+            let snap = await get(ref(db, `patterns/${n1}-${n2}`));
+            setTimeout(() => {
+                if(snap.exists() && !snap.val().includes("UNSET")) {
+                    currentActivePrediction = snap.val(); resBox.innerText = currentActivePrediction;
+                    resBox.style.color = "var(--plasma-light)"; isWaitingForAPI = false;
+                } else { resBox.innerText = "NOT FOUND"; resBox.style.color = "#ff2a2a"; }
+            }, 600);
+        };
 
         function triggerAnimation(type, period, prediction, actualResult, number) {
-            const screen = document.getElementById('resultScreen'); const card = document.getElementById('resultCardBox'); const title = document.getElementById('animTitle');
-            document.getElementById('animPeriod').innerText = period.slice(-4);
-            document.getElementById('animPred').innerText = prediction;
-            document.getElementById('animActual').innerText = `${actualResult} [${number}]`;
-
-            card.className = "result-card"; title.className = "anim-title";
-            if(type === 'JACKPOT') { card.classList.add('card-jackpot'); title.classList.add('title-jackpot'); title.innerText = "JACKPOT!"; } 
-            else if(type === 'WIN') { card.classList.add('card-win'); title.classList.add('title-win'); title.innerText = "VICTORY!"; } 
-            else if(type === 'LOSS') { card.classList.add('card-loss'); title.classList.add('title-loss'); title.innerText = "SYSTEM FAIL"; }
+            const screen = document.getElementById('animScreen'); const bg = document.getElementById('animBg'); const title = document.getElementById('animTitleText');
+            document.getElementById('animPeriod').innerText = period.slice(-4); document.getElementById('animPred').innerText = prediction;
+            document.getElementById('animResult').innerText = `${actualResult} [${number}]`;
+            bg.className = "plasma-bg"; title.className = "anim-title";
+            if(type === 'JACKPOT') { bg.classList.add('bg-jackpot'); title.classList.add('text-jackpot'); title.innerText = "JACKPOT WIN!"; }
+            else if(type === 'WIN') { bg.classList.add('bg-win'); title.classList.add('text-win'); title.innerText = "VICTORY!"; }
+            else { bg.classList.add('bg-loss'); title.classList.add('text-loss'); title.innerText = "SYSTEM LOSS"; }
             screen.style.display = 'flex';
         }
 
-        async function verifyWithGameAPI(periodToVerify, predictedValue) {
+        async function verifyWithGameAPI(pVerify, pValue) {
             try {
-                const apiUrl = `https://draw.ar-lottery01.com/WinGo/WinGo_1M/GetHistoryIssuePage.json`; 
-                let response = await fetch(apiUrl);
-                let data = await response.json();
-                let historyList = data.data || data.list || data.items || data; 
-
-                let periodData = historyList.find(item => item.issueNumber == periodToVerify || item.period == periodToVerify || item.IssueNumber == periodToVerify);
-                if (!periodData) { setTimeout(() => verifyWithGameAPI(periodToVerify, predictedValue), 3000); return; }
-
-                let actualResult = "";
-                let winningNumber = periodData.number !== undefined ? periodData.number : (periodData.Number !== undefined ? periodData.Number : 0);
-                
-                if (periodData.size || periodData.Size) { actualResult = (periodData.size || periodData.Size).toUpperCase(); } 
-                else { actualResult = (winningNumber >= 5) ? "BIG" : "SMALL"; }
-                
-                let cleanPrediction = predictedValue.toUpperCase().includes("BIG") ? "BIG" : "SMALL";
-
-                if (cleanPrediction === actualResult) {
-                    let isJackpot = (winningNumber == 0 || winningNumber == 5);
-                    if(isJackpot) triggerAnimation('JACKPOT', periodToVerify, predictedValue, actualResult, winningNumber);
-                    else triggerAnimation('WIN', periodToVerify, predictedValue, actualResult, winningNumber);
-                } else {
-                    triggerAnimation('LOSS', periodToVerify, predictedValue, actualResult, winningNumber);
-                }
-
+                let res = await fetch(`https://draw.ar-lottery01.com/WinGo/WinGo_1M/GetHistoryIssuePage.json`); let data = await res.json();
+                let list = data.data || data.list || data;
+                let match = list.find(item => item.issueNumber == pVerify || item.period == pVerify);
+                if(!match) { setTimeout(() => verifyWithGameAPI(pVerify, pValue), 3000); return; }
+                let actual = match.size ? match.size.toUpperCase() : (parseInt(match.number) >= 5 ? "BIG" : "SMALL");
+                let num = match.number !== undefined ? match.number : 0;
+                let cleanPred = pValue.toUpperCase().includes("BIG") ? "BIG" : "SMALL";
+                if(cleanPred === actual) {
+                    if(num == 0 || num == 5) triggerAnimation('JACKPOT', pVerify, pValue, actual, num);
+                    else triggerAnimation('WIN', pVerify, pValue, actual, num);
+                } else triggerAnimation('LOSS', pVerify, pValue, actual, num);
                 currentActivePrediction = ""; isWaitingForAPI = false;
-            } catch (error) { console.error(error); isWaitingForAPI = false; }
+            } catch(e) { isWaitingForAPI = false; }
         }
     </script>
 </body>
