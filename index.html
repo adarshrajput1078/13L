@@ -3,291 +3,312 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>13L X ROCKY | VIP PREDICTION</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Rajdhani:wght@700;900&display=swap" rel="stylesheet">
+    <title>SIKKIM X ROCKY | ADMIN CORE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Rajdhani:wght@600;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <style>
-        :root { --13l-bg: #1c1c1e; --13l-red: #ea2b2b; --13l-gold: #fcc333; --text-white: #f5f5f5; }
-        * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
-        body, html { height: 100%; font-family: 'Poppins', sans-serif; background-color: #000; color: var(--text-white); overflow: hidden; display: flex; flex-direction: column; }
-
-        #top-panel { height: 15%; min-height: 140px; width: 100%; background: linear-gradient(180deg, #121212 0%, var(--13l-bg) 100%); border-bottom: 1.5px solid rgba(234, 43, 43, 0.3); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 10; position: relative; padding: 4px 8px; box-shadow: 0 4px 25px rgba(0, 0, 0, 0.8); }
-        #bottom-panel { height: 85%; width: 100%; background-color: #000; position: relative; z-index: 1; }
-        iframe { width: 100%; height: 100%; border: none; }
-
-        .top-header { width: 100%; max-width: 500px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; border-bottom: 1px dashed rgba(252, 195, 51, 0.15); padding-bottom: 3px;}
-        .logo-text { font-family: 'Rajdhani', sans-serif; font-size: 16px; font-weight: 900; color: var(--13l-red); text-transform: uppercase; letter-spacing: 3px; text-shadow: 0 0 8px rgba(234, 43, 43, 0.6);}
-        .service-btn { background: linear-gradient(180deg, #3a3a3c 0%, #2c2c2e 100%); color: var(--13l-gold); font-size: 9px; font-weight: 800; padding: 3px 10px; border-radius: 4px; border: 1px solid rgba(252, 195, 51, 0.3); cursor: pointer;}
+        /* PRO SIKKIM THEME COLORS */
+        :root { 
+            --bg: #020617; 
+            --panel: rgba(15, 23, 42, 0.95); 
+            --primary: #3b82f6; 
+            --primary-dark: #1d4ed8;
+            --gold: #fcc333; 
+            --green: #10b981; 
+            --red: #ef4444; 
+            --violet: #8b5cf6;
+            --text: #f8fafc; 
+            --border: #1e293b;
+            --input-bg: #0f172a;
+        }
+        body { margin: 0; padding: 15px; font-family: 'Poppins', sans-serif; background: var(--bg); color: var(--text); display: flex; flex-direction: column; align-items: center; min-height: 100vh;}
+        * { box-sizing: border-box; }
         
-        .tool-container { width: 100%; max-width: 500px; display: flex; flex-direction: column; gap: 4px; padding: 0 5px; }
-        .info-row { display: flex; justify-content: space-between; font-size: 10px; background: rgba(0,0,0,0.4); padding: 4px 10px; border-radius: 4px; border: 1px solid rgba(234, 43, 43, 0.15); font-family: 'Share Tech Mono', monospace;}
-        .info-row span { color: var(--13l-gold); font-weight: 800; font-family: 'Rajdhani', sans-serif; font-size: 13px; letter-spacing: 0.5px;}
+        /* Glassmorphism Dashboard */
+        .glass-panel { background: var(--panel); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 12px; width: 100%; max-width: 1000px; padding: 25px; box-shadow: 0 10px 40px rgba(0,0,0,0.9), 0 0 20px rgba(59, 130, 246, 0.1); margin-bottom: 20px;}
+        h2 { text-align: center; color: var(--primary); margin: 0 0 20px 0; letter-spacing: 2px; font-family: 'Rajdhani', sans-serif; font-size: 28px; border-bottom: 1px dashed var(--border); padding-bottom: 15px; text-shadow: 0 0 10px rgba(59, 130, 246, 0.4);}
         
-        .input-row { display: flex; gap: 6px; align-items: center; }
-        input { flex: 1; padding: 7px; border: 1px solid #2c2c2e; border-radius: 4px; text-align: center; font-size: 13px; font-weight: 800; background: #111112; color: var(--13l-gold); outline: none;}
-        input:focus { border-color: var(--13l-red); box-shadow: 0 0 8px rgba(234, 43, 43, 0.3); }
-        button.action-btn { padding: 7px 12px; font-size: 13px; font-family: 'Rajdhani', sans-serif; font-weight: 900; cursor: pointer; border-radius: 4px; border: none; background: linear-gradient(180deg, var(--13l-red) 0%, #991212 100%); color: #fff; width: 30%; }
-        button.action-btn:disabled { background: #222; color: #555; }
+        /* Inputs & Buttons */
+        .login-box { max-width: 400px; margin: 10vh auto; }
+        input[type="password"], input[type="text"], input[type="number"] { width: 100%; padding: 12px; background: var(--input-bg); border: 1px solid var(--border); color: var(--primary); font-family: 'Share Tech Mono'; font-size: 16px; text-align: center; margin-bottom: 15px; border-radius: 6px; outline: none; transition: 0.3s;}
+        input:focus { border-color: var(--primary); box-shadow: 0 0 10px rgba(59, 130, 246, 0.3); }
+        select { background: var(--input-bg); color: #fff; border: 1px solid var(--border); padding: 8px; border-radius: 4px; outline: none; font-family: 'Share Tech Mono';}
         
-        .result-box { text-align: center; font-size: 14px; font-weight: 900; color: #555; background: #0d0d0e; padding: 5px; border-radius: 4px; border: 1px solid #1c1c1e; flex-grow: 1;}
+        button { width: 100%; padding: 12px; font-family: 'Rajdhani', sans-serif; font-size: 16px; font-weight: 900; border: none; border-radius: 6px; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; transition: 0.2s;}
+        button:active { transform: scale(0.97); }
+        .btn-primary { background: linear-gradient(180deg, var(--primary) 0%, var(--primary-dark) 100%); color: #fff; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);}
+        .btn-gold { background: var(--gold); color: #000; box-shadow: 0 4px 15px rgba(252, 195, 51, 0.3);}
+        .btn-green { background: rgba(16, 185, 129, 0.15); border: 1px solid var(--green); color: var(--green); }
+        .btn-green:hover { background: var(--green); color: #fff; }
+        .btn-red-outline { background: rgba(239, 68, 68, 0.15); border: 1px solid var(--red); color: var(--red); }
+        .btn-red-outline:hover { background: var(--red); color: #fff; }
+        
+        /* Stats Header */
+        .stats-header { display: flex; justify-content: space-around; background: var(--input-bg); padding: 15px; border-radius: 8px; border: 1px solid var(--border); margin-bottom: 20px; box-shadow: inset 0 0 10px rgba(0,0,0,0.5);}
+        .stat-box { text-align: center; }
+        .stat-box span { display: block; font-size: 11px; color: #94a3b8; text-transform: uppercase; font-weight: bold; font-family: 'Poppins';}
+        .stat-box h4 { margin: 5px 0 0 0; font-size: 22px; font-family: 'Share Tech Mono'; color: var(--primary);}
 
-        /* COPY SIGNAL BUTTON */
-        .copy-btn { width: 100%; padding: 6px; font-size: 12px; font-family: 'Rajdhani', sans-serif; font-weight: 900; cursor: pointer; border-radius: 4px; border: 1px dashed var(--13l-gold); background: #111; color: var(--13l-gold); text-transform: uppercase; letter-spacing: 1px; transition: 0.2s;}
-        .copy-btn:active { background: var(--13l-gold); color: #000; }
+        /* Layout Grid */
+        .grid-layout { display: grid; grid-template-columns: 1.3fr 1fr; gap: 20px; width: 100%; }
+        .sub-panel { background: rgba(2, 6, 23, 0.6); border: 1px solid var(--border); padding: 15px; border-radius: 8px; display: flex; flex-direction: column; height: 600px;}
+        h3 { margin: 0 0 15px 0; border-bottom: 1px solid var(--border); padding-bottom: 8px; font-family: 'Rajdhani', sans-serif; font-size: 18px; display: flex; justify-content: space-between; align-items: center;}
+        
+        /* Table */
+        .table-wrap { flex-grow: 1; overflow-y: auto; overflow-x: auto; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; }
+        table { width: 100%; min-width: 350px; border-collapse: collapse; font-family: 'Share Tech Mono'; font-size: 12px; text-align: center;}
+        th { background: var(--input-bg); padding: 12px 5px; position: sticky; top: 0; color: #cbd5e1; z-index: 2; border-bottom: 1px solid var(--border); font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 11px; letter-spacing: 1px;}
+        td { border-bottom: 1px dashed var(--border); padding: 8px 4px; vertical-align: middle;}
+        
+        /* User Management Cards */
+        .req-card { background: var(--input-bg); border: 1px solid var(--border); padding: 12px; margin-bottom: 10px; border-radius: 8px; display: flex; flex-direction: column; gap: 6px; box-shadow: 0 4px 10px rgba(0,0,0,0.3);}
+        .req-actions { display: flex; gap: 8px; margin-top: 5px; align-items: center;}
+        .active-user-item { display: flex; justify-content: space-between; align-items: center; background: var(--input-bg); padding: 12px; border-radius: 6px; border: 1px dashed var(--border); margin-bottom: 8px;}
+        .manual-add-box { display: flex; gap: 8px; margin-bottom: 15px; }
 
-        .auth-container { text-align: center; width: 100%; max-width: 500px; padding: 0 5px; }
-        .auth-container h3 { margin: 2px 0 8px 0; font-size: 13px; color: #8e8e93; font-weight: 700; }
-        .auth-container h3 span { color: var(--13l-red); }
+        /* 🔥 ADMIN MINI COLOR BALLS & BADGES 🔥 */
+        .live-preview { display: flex; justify-content: center; align-items: center; gap: 8px; min-height: 28px; }
+        .color-ball { width: 20px; height: 20px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: 900; color: #fff; font-size: 10px; font-family: 'Poppins', sans-serif; box-shadow: inset -2px -2px 4px rgba(0,0,0,0.6), 0 2px 4px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.15);}
+        .bg-green { background: radial-gradient(circle at 30% 30%, #34d399, var(--green)); }
+        .bg-red { background: radial-gradient(circle at 30% 30%, #f87171, var(--red)); }
+        .bg-red-violet { background: linear-gradient(135deg, var(--red) 50%, var(--violet) 50%); }
+        .bg-green-violet { background: linear-gradient(135deg, var(--green) 50%, var(--violet) 50%); }
 
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.94); z-index: 99999; display: none; justify-content: center; align-items: center; }
-        .modal-box { background: linear-gradient(180deg, #1c1c1e 0%, #0a0a0b 100%); border: 1px solid var(--13l-red); padding: 25px 20px; border-radius: 8px; text-align: center; width: 85%; max-width: 320px; }
-        .modal-box h4 { color: var(--13l-red); font-size: 18px; font-weight: 900;}
-        .modal-box p { font-size: 12px; color: #c7c7cc; margin-bottom: 20px; }
-        .btn-close { background: transparent; border: 1px solid var(--13l-red); color: var(--13l-red); padding: 8px 15px; border-radius: 4px; font-weight: 800; cursor: pointer; width: 100%; }
-        .btn-urgent { background: linear-gradient(90deg, var(--13l-red), #990000); border: none; color: #fff; padding: 10px 15px; border-radius: 4px; font-weight: 800; cursor: pointer; margin-top: 10px; display: none; width: 100%;}
+        .size-badge { padding: 2px 6px; border-radius: 4px; font-size: 9px; font-weight: 800; font-family: 'Poppins'; display: inline-block; letter-spacing: 0.5px;}
+        .size-big { background: rgba(252, 195, 51, 0.15); color: var(--gold); border: 1px solid rgba(252, 195, 51, 0.5); }
+        .size-small { background: rgba(59, 130, 246, 0.15); color: var(--primary); border: 1px solid rgba(59, 130, 246, 0.5); }
 
-        /* 🔥 MINI SCREEN FOR WIN/LOSS 🔥 */
-        #miniAnimScreen { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(10, 10, 12, 0.98); z-index: 100; display: none; flex-direction: column; justify-content: center; align-items: center; backdrop-filter: blur(4px); animation: fadeIn 0.3s forwards;}
-        .mini-title { font-family: 'Rajdhani', sans-serif; font-size: 26px; font-weight: 900; margin: 0; letter-spacing: 2px; }
-        .mini-details { font-family: 'Share Tech Mono', monospace; font-size: 12px; color: #ccc; margin-top: 4px; text-align: center; line-height: 1.6; font-weight: bold;}
-        .mini-details span { font-size: 13px; font-weight: 900; }
-        .mini-close { font-size: 9px; color: #666; margin-top: 6px; cursor: pointer; font-weight: bold;}
-
-        /* 🔥 MASSIVE CRICKET-STYLE JACKPOT SCREEN 🔥 */
-        #jackpotScreen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); z-index: 99999999; display: none; flex-direction: column; justify-content: center; align-items: center; overflow: hidden; }
-        .jackpot-bg { position: absolute; width: 150vw; height: 150vw; background: radial-gradient(circle, rgba(252, 195, 51, 0.4) 0%, transparent 60%); animation: fireSpin 4s linear infinite; z-index: -1; }
-        .jackpot-title { font-family: 'Rajdhani', sans-serif; font-size: 55px; font-weight: 900; color: var(--13l-gold); text-shadow: 0 0 30px var(--13l-gold), 0 0 60px #fff; text-align: center; line-height: 1.1; animation: smashZoom 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
-        .jackpot-subtitle { font-size: 24px; color: #fff; text-shadow: 0 0 10px #fff; display: block; margin-top: 10px;}
-
-        @keyframes fireSpin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        @keyframes smashZoom { 0% { transform: scale(5); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @media screen and (max-width: 768px) {
+            .grid-layout { grid-template-columns: 1fr; }
+            .sub-panel { height: auto !important; max-height: 500px; }
+            .glass-panel { padding: 15px; }
+        }
         .hidden { display: none !important; }
+        
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
     </style>
 </head>
 <body>
 
-    <div id="uidModal" class="modal-overlay">
-        <div class="modal-box">
-            <h4 id="modalTitle">SYSTEM ALERT</h4>
-            <p id="modalMsg">Processing...</p>
-            <button id="modalActionBtn" class="btn-close" onclick="closeModal()">OKAY</button>
-            <button id="urgentBtn" class="btn-urgent" onclick="sendUrgentRequest()">⚡ URGENTLY PING</button>
-        </div>
+    <!-- LOGIN SCREEN -->
+    <div class="glass-panel login-box" id="loginBox">
+        <h2>ADMINISTRATION PIN</h2>
+        <input type="password" id="pass" placeholder="Enter Secure PIN">
+        <button class="btn-primary" onclick="login()">AUTHORIZE SYSTEM</button>
     </div>
 
-    <!-- ⚡ CRICKET STYLE JACKPOT SCREEN (FULL SCREEN) -->
-    <div id="jackpotScreen">
-        <div class="jackpot-bg"></div>
-        <h1 class="jackpot-title">JACKPOT WIN<br><span class="jackpot-subtitle">BY ROCKY</span></h1>
-    </div>
-
-    <!-- 15% TOP PANEL -->
-    <div id="top-panel">
+    <!-- MAIN DASHBOARD -->
+    <div class="glass-panel hidden" id="dashBox">
+        <h2>SIKKIM X ROCKY | ADMIN CENTER</h2>
         
-        <!-- ⚡ FORMATTED RESULT SCREEN (INSIDE TOP PANEL) -->
-        <div id="miniAnimScreen">
-            <h1 id="miniTitle" class="mini-title">🏆 WIN 🏆</h1>
-            <div id="miniDetails" class="mini-details">
-                <!-- Data injected by JS -->
-            </div>
-            <div class="mini-close" onclick="closeMiniScreen()">[ TAP TO CLOSE ]</div>
+        <div class="stats-header">
+            <div class="stat-box"><span>Active VIP Users</span><h4 id="statTotalUsers">0</h4></div>
+            <div class="stat-box"><span>Pending Approval</span><h4 id="statPendingReq" style="color: var(--gold);">0</h4></div>
+            <div class="stat-box"><span>Live Matrices</span><h4 id="statPatterns" style="color: var(--green);">0/100</h4></div>
         </div>
 
-        <div class="top-header">
-            <div class="logo-text">13L X ROCKY</div>
-            <button class="service-btn" onclick="openSupport()">🎧 SYSTEM SUPPORT</button>
-        </div>
-        <div id="authScreen" class="auth-container">
-            <h3>VIP ACCOUNT <span>VERIFICATION</span></h3>
-            <div class="input-row">
-                <input type="number" id="uidInput" placeholder="Enter Platform UID">
-                <button id="authBtn" class="action-btn" onclick="checkUID()">VERIFY</button>
+        <button class="btn-primary" style="margin-bottom: 20px;" onclick="autoShuffle()">⚡ 1-CLICK AUTO-GENERATE MATRICES</button>
+        
+        <div class="grid-layout">
+            <!-- MATRIX PANEL (AUTOMATED) -->
+            <div class="sub-panel">
+                <h3 style="color: var(--primary);">📊 PREDICTION MATRIX <span style="font-size: 10px; color:#64748b; background:#0f172a; padding: 4px 8px; border-radius: 4px;">AUTO-DETECT MODE ON</span></h3>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr><th>COMB</th><th>NUMBER</th><th>LIVE PREVIEW</th><th>ACTION</th></tr>
+                        </thead>
+                        <tbody id="patternTbody"></tbody>
+                    </table>
+                </div>
             </div>
-        </div>
-        <div id="toolScreen" class="tool-container hidden">
-            <div class="info-row">
-                <div>LIVE PERIOD: <span id="displayPeriod">SYNCING...</span></div>
-                <div>TIME: <span id="displayTimer" style="color:var(--13l-red);">00:00</span></div>
-            </div>
-            <div class="input-row" style="margin-top: 2px;">
-                <input type="number" id="num1" placeholder="N-1" min="0" max="9">
-                <input type="number" id="num2" placeholder="N-2" min="0" max="9">
-                <button id="analyzeBtn" class="action-btn" onclick="runExploit()">GET RESULT</button>
-                <div id="predictionDisplay" class="result-box">WAITING...</div>
-            </div>
-            <!-- COPY SIGNAL BUTTON -->
-            <button class="copy-btn" onclick="copySignal()">📋 COPY SIGNAL</button>
-        </div>
-    </div>
 
-    <!-- 85% GAME SCREEN -->
-    <div id="bottom-panel">
-        <iframe id="gameIframe" src="https://bdg5.cc"></iframe>
+            <!-- USER MANAGEMENT -->
+            <div style="display: flex; flex-direction: column; gap: 20px; height: 100%;">
+                
+                <!-- PENDING REQUESTS -->
+                <div class="sub-panel" style="flex: 1; overflow: hidden; height: 290px !important;">
+                    <h3 style="color: var(--gold);">⚡ PENDING VERIFICATION</h3>
+                    <div id="requestsContainer" style="overflow-y: auto; flex-grow: 1; padding-right: 5px;"></div>
+                </div>
+
+                <!-- ACTIVE USERS -->
+                <div class="sub-panel" style="flex: 1; overflow: hidden; border-color: rgba(59, 130, 246, 0.4); height: 290px !important;">
+                    <h3 style="color: var(--primary);">🛡️ ACTIVE VIP USERS</h3>
+                    <div class="manual-add-box">
+                        <input type="text" id="manualUidInput" placeholder="User UID" style="margin-bottom:0;">
+                        <select id="manualDays" style="width:85px; margin-bottom:0;">
+                            <option value="1">1D</option><option value="7">7D</option><option value="30">30D</option><option value="999">L/T</option>
+                        </select>
+                        <button class="btn-primary" style="width: 35%; font-size:12px; padding: 10px;" onclick="addManualUID()">GRANT</button>
+                    </div>
+                    <div id="activeUsersContainer" style="overflow-y: auto; flex-grow: 1; padding-right: 5px;"></div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getDatabase, ref, get, set, onValue, update } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+        import { getDatabase, ref, set, update, onValue, remove } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
-        const firebaseConfig = {
-            apiKey: "AIzaSyBFdvXN8SAy77EDQp5HNykO5z2Wa0W8sb0",
-            authDomain: "bdgrocky.firebaseapp.com",
-            databaseURL: "https://bdgrocky-default-rtdb.asia-southeast1.firebasedatabase.app", 
-            projectId: "bdgrocky"
-        };
-        const app = initializeApp(firebaseConfig);
+        // Yahan Apna Firebase Config Daal
+        const app = initializeApp({
+            apiKey: "AIzaSyBFdvXN8SAy77EDQp5HNykO5z2Wa0W8sb0", authDomain: "bdgrocky.firebaseapp.com",
+            databaseURL: "https://bdgrocky-default-rtdb.asia-southeast1.firebasedatabase.app", projectId: "bdgrocky"
+        });
         const db = getDatabase(app);
 
-        let currentActivePrediction = ""; let currentActivePeriod = ""; let isWaitingForAPI = false; let currentFailedUid = "";
-        let dynamicSupportLink = "https://t.me/";
-
-        onValue(ref(db, 'settings/support_link'), snap => { if(snap.exists()) dynamicSupportLink = snap.val(); });
-        onValue(ref(db, 'settings/active_link'), snap => { if(snap.exists() && snap.val() !== "") document.getElementById('gameIframe').src = snap.val().trim(); });
-        window.openSupport = () => window.open(dynamicSupportLink, '_blank');
-
-        function showModal(title, msg, isPendingState = false) {
-            document.getElementById('modalTitle').innerText = title; document.getElementById('modalMsg').innerHTML = msg;
-            let closeBtn = document.getElementById('modalActionBtn'); let urgentBtn = document.getElementById('urgentBtn');
-            if(isPendingState) { closeBtn.innerText = "WAITING APPROVAL..."; urgentBtn.style.display = "block"; } 
-            else { closeBtn.innerText = "OKAY"; closeBtn.onclick = () => document.getElementById('uidModal').style.display = 'none'; urgentBtn.style.display = "none"; }
-            document.getElementById('uidModal').style.display = 'flex';
-        }
-
-        function getDeviceID() {
-            let did = localStorage.getItem('vip_device_id');
-            if(!did) { did = 'DEV-' + Math.random().toString(36).substr(2, 9); localStorage.setItem('vip_device_id', did); }
-            return did;
-        }
-
-        window.checkUID = async () => {
-            let uid = document.getElementById('uidInput').value.trim(); 
-            if(!/^\d{5,12}$/.test(uid)) return showModal("❌ INVALID UID", "UID must be between 5 to 12 numbers.", false);
-            let btn = document.getElementById('authBtn'); btn.innerText = "..."; btn.disabled = true;
-
-            try {
-                let approvedSnap = await get(ref(db, 'approved_uids/' + uid));
-                if(approvedSnap.exists()) {
-                    document.getElementById('authScreen').classList.add('hidden');
-                    document.getElementById('toolScreen').classList.remove('hidden');
-                    startTimerEngine(); return;
-                }
-                currentFailedUid = uid;
-                await set(ref(db, 'uid_requests/' + uid), { uid: uid, deviceId: getDeviceID(), status: "pending", timestamp: Date.now(), urgent: false });
-                btn.innerText = "VERIFY"; btn.disabled = false;
-                showModal("⏳ REQUEST SENT", `UID [ ${uid} ] request sent. Please wait for admin approval.`, true);
-            } catch (error) { btn.innerText = "VERIFY"; btn.disabled = false; showModal("ERROR", "Connection failed. Try again.", false); }
+        window.login = () => {
+            if(document.getElementById('pass').value === "13LADMIN") { 
+                document.getElementById('loginBox').classList.add('hidden'); document.getElementById('dashBox').classList.remove('hidden');
+                buildTable(); syncData(); listenRequests(); listenActiveUsers();
+            } else alert("INVALID SYSTEM PIN!");
         };
 
-        function startTimerEngine() {
-            setInterval(() => {
-                let now = new Date();
-                let hrs = now.getHours(); let mins = now.getMinutes();
-                currentActivePeriod = `${now.getFullYear()}${String(now.getMonth()+1).padStart(2,'0')}${String(now.getDate()).padStart(2,'0')}1000${10001 + (hrs * 60) + mins}`;
-                let remSec = 60 - now.getSeconds(); if(remSec === 60) remSec = 0;
-                
-                document.getElementById('displayPeriod').innerText = currentActivePeriod;
-                document.getElementById('displayTimer').innerText = `00:${String(remSec).padStart(2,'0')}`;
-
-                if(remSec === 0 && currentActivePrediction !== "" && !isWaitingForAPI) {
-                    isWaitingForAPI = true; 
-                    triggerAnimationEngine(currentActivePeriod, currentActivePrediction); 
-                }
-            }, 1000);
-        }
-
-        window.runExploit = async () => {
-            let n1 = document.getElementById('num1').value; let n2 = document.getElementById('num2').value;
-            let resBox = document.getElementById('predictionDisplay'); let btn = document.getElementById('analyzeBtn');
-            if(n1 === "" || n2 === "") return showModal("WARNING", "Please enter N-1 and N-2.", false);
-
-            btn.disabled = true; resBox.innerText = "ANALYZING..."; resBox.style.color = "#444";
+        // 🔥 LOGIC: GET HTML FOR BALL & BADGE 🔥
+        window.getPreviewHtml = (numStr) => {
+            let n = parseInt(numStr);
+            let size = n >= 5 ? "BIG" : "SMALL";
             
-            try {
-                let snap = await get(ref(db, `patterns/${n1}-${n2}`));
-                setTimeout(() => {
-                    btn.disabled = false;
-                    if(snap.exists() && !snap.val().includes("UNSET")) {
-                        currentActivePrediction = snap.val(); 
-                        resBox.innerText = currentActivePrediction;
-                        resBox.style.color = "var(--13l-gold)";
-                        isWaitingForAPI = false;
-                    } else { resBox.innerText = "NOT FOUND"; resBox.style.color = "var(--13l-red)"; }
-                }, 700);
-            } catch(e) { btn.disabled = false; resBox.innerText = "ERROR"; }
+            // Generate Ball
+            let ballHtml = "";
+            if(n === 0) ballHtml = `<div class="color-ball bg-red-violet">0</div>`;
+            else if(n === 5) ballHtml = `<div class="color-ball bg-green-violet">5</div>`;
+            else if(n % 2 === 0) ballHtml = `<div class="color-ball bg-red">${n}</div>`;
+            else ballHtml = `<div class="color-ball bg-green">${n}</div>`;
+            
+            // Generate Badge
+            let badgeHtml = size === "BIG" ? `<span class="size-badge size-big">BIG</span>` : `<span class="size-badge size-small">SMALL</span>`;
+            
+            return `<div class="live-preview">${ballHtml} ${badgeHtml}</div>`;
         };
 
-        // 🔥 TELEGRAM STYLE COPY SIGNAL 🔥
-        window.copySignal = () => {
-            let period = document.getElementById('displayPeriod').innerText;
-            let pred = document.getElementById('predictionDisplay').innerText;
-            let time = document.getElementById('displayTimer').innerText;
-            
-            if(pred === "WAITING..." || pred === "NOT FOUND" || pred === "ANALYZING...") {
-                alert("Please GET RESULT first before copying the signal!"); return;
+        // UI: BUILD TABLE WITHOUT 'BIG/SMALL' DROPDOWN
+        function buildTable() {
+            let body = document.getElementById('patternTbody'); body.innerHTML = "";
+            for(let i=0; i<=9; i++) {
+                for(let j=0; j<=9; j++) {
+                    let k = `${i}-${j}`;
+                    body.innerHTML += `<tr>
+                        <td style="color:var(--primary); font-weight:bold; font-size:14px;">${k}</td>
+                        <td><input type="number" id="nm-${k}" min="0" max="9" placeholder="#" style="width:50px; margin-bottom:0; padding:6px; background:#0f172a; border:1px solid #1e293b; color:var(--gold); border-radius:4px; font-weight:bold;"></td>
+                        <td id="live-${k}" style="color:#64748b;">-</td>
+                        <td><button class="btn-primary" style="padding:6px 12px; font-size:11px; width:auto; border-radius:4px;" onclick="saveSingle('${k}')">SAVE</button></td>
+                    </tr>`;
+                }
             }
+        }
 
-            let signalText = `🏆 ANSWER 🏆\n13L Game\nWinGo 1 Minute\nPeriod: ${period}\nPrediction: ${pred}\nTime Remaining: ${time}\n\nPowered by: ROCKY BHAI`;
+        // 🔥 LOGIC: AUTO DETECT 'BIG/SMALL' ON SAVE 🔥
+        window.saveSingle = async (k) => {
+            let nm = document.getElementById(`nm-${k}`).value.trim();
+            if(nm === "" || nm < 0 || nm > 9) return alert("Please enter a valid Number (0-9)!");
             
-            navigator.clipboard.writeText(signalText).then(() => {
-                alert("Signal Copied Successfully!");
+            // Magic happens here: Automatic Size Detection
+            let autoSz = parseInt(nm) >= 5 ? "BIG" : "SMALL";
+            
+            await set(ref(db, `patterns/${k}`), `${autoSz} [${nm}]`);
+            document.getElementById(`nm-${k}`).value = ""; // Clear input after save
+        };
+
+        // 🔥 LOGIC: 1-CLICK AUTO GEN 🔥
+        window.autoShuffle = async () => {
+            if(!confirm("Are you sure? This will OVERWRITE ALL 100 Matrix Predictions with Random Combinations!")) return;
+            let b = {}; 
+            for(let i=0; i<=9; i++) {
+                for(let j=0; j<=9; j++) {
+                    let rNum = Math.floor(Math.random()*10); // Random number 0-9
+                    let rSz = rNum >= 5 ? "BIG" : "SMALL";  // Auto calculate size
+                    b[`${i}-${j}`] = `${rSz} [${rNum}]`;
+                }
+            }
+            await update(ref(db, 'patterns'), b); alert("MATRICES AUTO-GENERATED SUCCESSFULLY!");
+        };
+
+        // UI: SYNC DATA AND SHOW PREVIEW
+        function syncData() {
+            onValue(ref(db, 'patterns'), snap => {
+                let count = 0;
+                if(snap.exists()) { 
+                    snap.forEach(c => { 
+                        count++; 
+                        let el = document.getElementById(`live-${c.key}`); 
+                        if(el) { 
+                            // c.val() is like "BIG [8]"
+                            let valStr = c.val();
+                            let match = valStr.match(/\[(\d+)\]/);
+                            if(match) {
+                                let num = match[1];
+                                el.innerHTML = window.getPreviewHtml(num);
+                            }
+                        } 
+                    }); 
+                }
+                document.getElementById('statPatterns').innerText = `${count}/100`;
             });
+        }
+
+        function listenRequests() {
+            onValue(ref(db, 'uid_requests'), snap => {
+                let container = document.getElementById('requestsContainer'); let reqCountObj = document.getElementById('statPendingReq'); container.innerHTML = "";
+                if(!snap.exists()) { reqCountObj.innerText = "0"; return; }
+                let count = 0; let reqHtml = "";
+                snap.forEach(child => {
+                    count++; let data = child.val();
+                    reqHtml += `<div class="req-card">
+                        <div style="font-family:'Share Tech Mono'; color:var(--primary); font-weight:bold; font-size:15px;">UID: ${data.uid}</div>
+                        <div class="req-actions">
+                            <select id="days-${data.uid}" style="flex:0.6; font-size:12px; padding:8px;"><option value="1">1 DAY</option><option value="7">7 DAYS</option><option value="30">30 DAYS</option></select>
+                            <button class="btn-green" style="flex:1; padding:8px; font-size:12px;" onclick="approveUid('${data.uid}')">✅ APPROVE</button>
+                            <button class="btn-red-outline" style="flex:0.4; padding:8px; font-size:12px;" onclick="rejectUid('${data.uid}')">❌</button>
+                        </div></div>`; 
+                });
+                reqCountObj.innerText = count; container.innerHTML = reqHtml;
+            });
+        }
+
+        window.approveUid = async (uid) => { 
+            let days = parseInt(document.getElementById(`days-${uid}`).value);
+            let expireAt = Date.now() + (days * 24 * 60 * 60 * 1000); 
+            await set(ref(db, 'approved_uids/' + uid), { active: true, expireAt: expireAt }); 
+            await remove(ref(db, 'uid_requests/' + uid)); 
+        };
+        
+        window.rejectUid = async (uid) => { await remove(ref(db, 'uid_requests/' + uid)); };
+        
+        window.addManualUID = async () => {
+            let uid = document.getElementById('manualUidInput').value.trim(); if(!uid) return;
+            let days = parseInt(document.getElementById('manualDays').value);
+            let expireAt = Date.now() + (days * 24 * 60 * 60 * 1000);
+            await set(ref(db, 'approved_uids/' + uid), { active: true, expireAt: expireAt }); 
+            document.getElementById('manualUidInput').value = "";
         };
 
-        window.closeMiniScreen = () => { document.getElementById('miniAnimScreen').style.display = 'none'; }
-
-        // 🔥 DYNAMIC POPUP ENGINE 🔥
-        function showResultPopup(type, period, prediction, actualResult, number) {
-            let shortPeriod = String(period).slice(-4);
-            
-            if(type === 'JACKPOT') {
-                const jpScreen = document.getElementById('jackpotScreen');
-                jpScreen.style.display = 'flex';
-                setTimeout(() => { jpScreen.style.display = 'none'; }, 3000);
-            } 
-            else {
-                const miniScreen = document.getElementById('miniAnimScreen');
-                const mTitle = document.getElementById('miniTitle');
-                const mDetails = document.getElementById('miniDetails');
-                
-                if(type === 'WIN') {
-                    mTitle.innerText = "🏆 WIN 🏆";
-                    mTitle.style.color = "#34c759";
-                    mTitle.style.textShadow = "0 0 10px #34c759";
-                    mDetails.innerHTML = `PERIOD NUMBER: ${shortPeriod}<br>RESULT: <span style="color:#34c759">${actualResult} [${number}]</span><br>PREDICTION: ${prediction}`;
-                } else {
-                    mTitle.innerText = "❌ LOSS ❌";
-                    mTitle.style.color = "var(--13l-red)";
-                    mTitle.style.textShadow = "0 0 10px var(--13l-red)";
-                    mDetails.innerHTML = `PERIOD NUMBER: ${shortPeriod}<br>RESULT: <span style="color:var(--13l-red)">${actualResult} [${number}]</span><br>PREDICTION: ${prediction}`;
-                }
-                
-                miniScreen.style.display = 'flex';
-                setTimeout(() => { miniScreen.style.display = 'none'; }, 4000);
-            }
+        function listenActiveUsers() {
+            onValue(ref(db, 'approved_uids'), snap => {
+                let container = document.getElementById('activeUsersContainer'); let countObj = document.getElementById('statTotalUsers'); container.innerHTML = "";
+                if(!snap.exists()) { countObj.innerText = "0"; return; }
+                let count = 0; let userHtml = "";
+                snap.forEach(child => {
+                    count++; let uid = child.key; let data = child.val();
+                    let daysLeft = "L/T";
+                    if(data.expireAt) {
+                        let msLeft = data.expireAt - Date.now();
+                        daysLeft = msLeft > 0 ? Math.ceil(msLeft / (1000 * 60 * 60 * 24)) + "D" : "EXP";
+                    }
+                    let color = daysLeft === "EXP" ? "var(--red)" : "var(--green)";
+                    
+                    userHtml += `<div class="active-user-item">
+                        <span style="color:${color}; font-family:'Share Tech Mono'; font-weight:bold; font-size:14px;"># ${uid} <span style="color:#64748b; font-size:11px; margin-left:5px;">[${daysLeft}]</span></span>
+                        <button class="btn-red-outline" style="padding: 6px 12px; font-size:11px; width:auto;" onclick="banUser('${uid}')">REVOKE</button>
+                    </div>`;
+                });
+                countObj.innerText = count; container.innerHTML = userHtml;
+            });
         }
-
-        async function triggerAnimationEngine(pVerify, pValue) {
-            try {
-                let res = await fetch(`https://draw.ar-lottery01.com/WinGo/WinGo_1M/GetHistoryIssuePage.json`); 
-                let data = await res.json(); 
-                let latestItem = (data.data || data.list || data.items || data)[0];
-                
-                let actual = latestItem.size ? latestItem.size.toUpperCase() : (parseInt(latestItem.number) >= 5 ? "BIG" : "SMALL");
-                let num = latestItem.number !== undefined ? latestItem.number : 0;
-                let cleanPred = pValue.toUpperCase().includes("BIG") ? "BIG" : "SMALL";
-                
-                if(cleanPred === actual) {
-                    if(num == 0 || num == 5) showResultPopup('JACKPOT', pVerify, pValue, actual, num);
-                    else showResultPopup('WIN', pVerify, pValue, actual, num);
-                } else showResultPopup('LOSS', pVerify, pValue, actual, num);
-                
-            } catch(e) { 
-                let cleanPred = pValue.toUpperCase().includes("BIG") ? "BIG" : "SMALL";
-                let fakeNum = cleanPred === "BIG" ? (Math.random() > 0.5 ? 7 : 8) : (Math.random() > 0.5 ? 2 : 3);
-                showResultPopup('WIN', pVerify, pValue, cleanPred, fakeNum); 
-            }
-            currentActivePrediction = ""; isWaitingForAPI = false;
-        }
+        window.banUser = async (uid) => { await remove(ref(db, 'approved_uids/' + uid)); await remove(ref(db, 'device_bindings/' + uid)); };
     </script>
 </body>
 </html>
