@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SIKKIM X ROCKY | VIP1 PREDICTION</title>
+    <title>SIKKIM X ROCKY | VIP PREDICTION</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Rajdhani:wght@700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <style>
         :root { 
@@ -227,19 +227,24 @@
 
         function startTimerEngine() {
             setInterval(() => {
-                let now = new Date();
+                let d = new Date();
                 
-                let hrs = now.getUTCHours();
-                let mins = now.getUTCMinutes();
-                let secs = now.getUTCSeconds();
+                // UTC Time ko IST (UTC + 5:30) mein convert karna
+                let utc = d.getTime() + (d.getTimezoneOffset() * 60000);
+                let istTime = new Date(utc + (3600000 * 5.5)); 
+
+                let hrs = istTime.getHours();
+                let mins = istTime.getMinutes();
+                let secs = istTime.getSeconds();
                 
-                let totalMins = (hrs * 60) + mins;
+                // Din start hone se lekar abhi tak ke minutes + 1 current period ke liye
+                let totalMins = (hrs * 60) + mins + 1;
                 
-                let year = now.getUTCFullYear();
-                let month = String(now.getUTCMonth() + 1).padStart(2, '0');
-                let day = String(now.getUTCDate()).padStart(2, '0');
+                let year = istTime.getFullYear();
+                let month = String(istTime.getMonth() + 1).padStart(2, '0');
+                let day = String(istTime.getDate()).padStart(2, '0');
                 
-                let sequence = 10001 + totalMins;
+                let sequence = 10000 + totalMins;
                 currentActivePeriod = `${year}${month}${day}1000${sequence}`;
                 
                 let remSec = 60 - secs; 
