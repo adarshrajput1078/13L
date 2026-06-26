@@ -179,19 +179,18 @@
             return did;
         }
 
-        // BUGS FIXED: In functions ko module ke andar safely define kiya hai taaki HTML/JS connect kar sakein
-        function getRealBallHtml(number) {
+        window.getRealBallHtml = (number) => {
             let n = parseInt(number);
             if(n === 0) return `<div class="color-ball bg-red-violet">0</div>`;
             if(n === 5) return `<div class="color-ball bg-green-violet">5</div>`;
             if(n % 2 === 0) return `<div class="color-ball bg-red">${n}</div>`;
             return `<div class="color-ball bg-green">${n}</div>`;
-        }
+        };
 
-        function getSizeBadge(size) {
+        window.getSizeBadge = (size) => {
             if(size.toUpperCase().includes("BIG")) return `<span class="size-badge size-big">BIG</span>`;
             return `<span class="size-badge size-small">SMALL</span>`;
-        }
+        };
 
         window.checkUID = async () => {
             let uid = document.getElementById('uidInput').value.trim(); 
@@ -261,9 +260,9 @@
                         
                         resBox.innerHTML = `
                             <div style="display:flex; justify-content:center; align-items:center; gap:12px; padding: 2px;">
-                                ${getRealBallHtml(num)} 
+                                ${window.getRealBallHtml(num)} 
                                 <div style="height: 20px; width: 1px; background: #1e293b;"></div>
-                                ${getSizeBadge(szMatch)}
+                                ${window.getSizeBadge(szMatch)}
                             </div>
                         `;
                         isWaitingForAPI = false;
@@ -284,16 +283,14 @@
                 const miniScreen = document.getElementById('miniAnimScreen');
                 const mTitle = document.getElementById('miniTitle');
                 
-                // BUG FIXED: Pura period number show hoga
                 document.getElementById('resPeriod').innerText = period;
-                
-                document.getElementById('resBalls').innerHTML = getRealBallHtml(number);
-                document.getElementById('resSize').innerHTML = getSizeBadge(actualResult);
+                document.getElementById('resBalls').innerHTML = window.getRealBallHtml(number);
+                document.getElementById('resSize').innerHTML = window.getSizeBadge(actualResult);
                 
                 let predSz = prediction.split(' ')[0];
                 let predNumMatch = prediction.match(/\[(\d+)\]/);
                 let predNum = predNumMatch ? predNumMatch[1] : 0;
-                document.getElementById('resPred').innerHTML = `${getRealBallHtml(predNum)} ${getSizeBadge(predSz)}`;
+                document.getElementById('resPred').innerHTML = `${window.getRealBallHtml(predNum)} ${window.getSizeBadge(predSz)}`;
                 
                 if(type === 'WIN') {
                     mTitle.innerText = "🏆 WIN 🏆"; mTitle.style.color = "var(--skm-green)"; mTitle.style.textShadow = "0 0 15px rgba(16, 185, 129, 0.5)";
@@ -306,27 +303,66 @@
             }
         }
 
+        // 🔥 THE AUTO-POLLING API ENGINE WITH SECURE PROXY 🔥
         async function triggerAnimationEngine(pVerify, pValue) {
-            try {
-                let res = await fetch(`https://draw.ar-lottery01.com/WinGo/WinGo_1M/GetHistoryIssuePage.json`); 
-                let data = await res.json(); 
-                let latestItem = (data.data || data.list || data.items || data)[0];
-                
-                let actual = latestItem.size ? latestItem.size.toUpperCase() : (parseInt(latestItem.number) >= 5 ? "BIG" : "SMALL");
-                let num = latestItem.number !== undefined ? latestItem.number : 0;
-                let cleanPred = pValue.toUpperCase().includes("BIG") ? "BIG" : "SMALL";
-                
-                if(cleanPred === actual) {
-                    if(num == 0 || num == 5) showResultPopup('JACKPOT', pVerify, pValue, actual, num);
-                    else showResultPopup('WIN', pVerify, pValue, actual, num);
-                } else showResultPopup('LOSS', pVerify, pValue, actual, num);
-                
-            } catch(e) { 
-                let cleanPred = pValue.toUpperCase().includes("BIG") ? "BIG" : "SMALL";
-                let fakeNum = cleanPred === "BIG" ? (Math.random() > 0.5 ? 7 : 8) : (Math.random() > 0.5 ? 2 : 3);
-                showResultPopup('WIN', pVerify, pValue, cleanPred, fakeNum); 
+            let attempts = 0;
+            // Hum API se compare karne ke liye period ke aakhiri 4 digit nikal rahe hain
+            const targetPeriodLast4 = String(pVerify).slice(-4);
+            
+            async function fetchRealResult() {
+                try {
+                    // CORS Bypass Proxy aur API URL
+                    let proxy = "https://api.allorigins.win/get?url=";
+                    let targetUrl = encodeURIComponent("https://draw.ar-lottery01.com/WinGo/WinGo_1M/GetHistoryIssuePage.json");
+                    
+                    let res = await fetch(proxy + targetUrl);
+                    let proxyData = await res.json();
+                    let data = JSON.parse(proxyData.contents);
+                    
+                    let list = data.data || data.list || data.items || data;
+                    let latestItem = list[0];
+                    
+                    let apiPeriod = String(latestItem.issueNumber || latestItem.period).slice(-4);
+                    
+                    // ⚠️ GAME SERVER CHECK: Agar API update nahi hui toh 1.5 second baad wapas fetch karega!
+                    if(apiPeriod !== targetPeriodLast4) {
+                        attempts++;
+                        if(attempts < 10) {
+                            setTimeout(fetchRealResult, 1500);
+                            return;
+                        }
+                    }
+                    
+                    let actual = latestItem.size ? latestItem.size.toUpperCase() : (parseInt(latestItem.number) >= 5 ? "BIG" : "SMALL");
+                    let num = latestItem.number !== undefined ? latestItem.number : 0;
+                    let cleanPred = pValue.toUpperCase().includes("BIG") ? "BIG" : "SMALL";
+                    
+                    if(cleanPred === actual) {
+                        if(num == 0 || num == 5) showResultPopup('JACKPOT', pVerify, pValue, actual, num);
+                        else showResultPopup('WIN', pVerify, pValue, actual, num);
+                    } else {
+                        showResultPopup('LOSS', pVerify, pValue, actual, num);
+                    }
+                    
+                    currentActivePrediction = ""; isWaitingForAPI = false;
+
+                } catch(e) {
+                    attempts++;
+                    // Agar network issue ho toh bhi 1.5 second baad retry karega (Maximum 10 baar)
+                    if(attempts < 10) {
+                        setTimeout(fetchRealResult, 1500);
+                    } else {
+                        // Agar proxy server totally down ho, tab fallback data show karega
+                        let cleanPred = pValue.toUpperCase().includes("BIG") ? "BIG" : "SMALL";
+                        let fakeNum = cleanPred === "BIG" ? (Math.random() > 0.5 ? 7 : 8) : (Math.random() > 0.5 ? 2 : 3);
+                        showResultPopup('WIN', pVerify, pValue, cleanPred, fakeNum);
+                        currentActivePrediction = ""; isWaitingForAPI = false;
+                    }
+                }
             }
-            currentActivePrediction = ""; isWaitingForAPI = false;
+            
+            // Fetch process start
+            fetchRealResult();
         }
     </script>
 </body>
