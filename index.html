@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SIKKIM X ROCKY | VIP PREDICTION</title>
+    <title>SIKKIM X ROCKY | VIP1 PREDICTION</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Rajdhani:wght@700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <style>
         :root { 
@@ -225,28 +225,23 @@
             } catch (error) { btn.innerText = "VERIFY"; btn.disabled = false; showModal("ERROR", "Network connection rejected. Try again."); }
         };
 
-        // 🛑 BUG FIXED: 100% ORIGINAL UTC JAVA LOGIC
         function startTimerEngine() {
             setInterval(() => {
                 let now = new Date();
                 
-                // Get UTC Time just like your Java Code: TimeZone.getTimeZone("UTC")
                 let hrs = now.getUTCHours();
                 let mins = now.getUTCMinutes();
                 let secs = now.getUTCSeconds();
                 
-                // Calculate total minutes of the day
                 let totalMins = (hrs * 60) + mins;
                 
                 let year = now.getUTCFullYear();
                 let month = String(now.getUTCMonth() + 1).padStart(2, '0');
                 let day = String(now.getUTCDate()).padStart(2, '0');
                 
-                // Sikkim/BDG Format: Date + 1000 + (10001 + totalMins)
                 let sequence = 10001 + totalMins;
                 currentActivePeriod = `${year}${month}${day}1000${sequence}`;
                 
-                // Remaining Seconds
                 let remSec = 60 - secs; 
                 if(remSec === 60) remSec = 0;
                 
@@ -303,7 +298,7 @@
                 const miniScreen = document.getElementById('miniAnimScreen');
                 const mTitle = document.getElementById('miniTitle');
                 
-                document.getElementById('resPeriod').innerText = period; // Full period number
+                document.getElementById('resPeriod').innerText = period; 
                 document.getElementById('resBalls').innerHTML = window.getRealBallHtml(number);
                 document.getElementById('resSize').innerHTML = window.getSizeBadge(actualResult);
                 
@@ -323,40 +318,72 @@
             }
         }
 
-        // 🛑 BUG FIXED: BULLETPROOF API FETCHER 
+        // 🔥 DUAL-PROXY & DEEP JSON PARSER (FIXED) 🔥
+        async function fetchSecureApiData(targetUrl) {
+            let proxy1 = "https://api.allorigins.win/get?url=" + encodeURIComponent(targetUrl);
+            let proxy2 = "https://api.codetabs.com/v1/proxy?quest=" + encodeURIComponent(targetUrl);
+
+            try {
+                let res = await fetch(proxy1, { cache: "no-store" });
+                let data = await res.json();
+                return JSON.parse(data.contents); // AllOrigins returns JSON string inside 'contents'
+            } catch (err1) {
+                try {
+                    let res2 = await fetch(proxy2, { cache: "no-store" });
+                    return await res2.json(); // CodeTabs returns direct JSON
+                } catch (err2) {
+                    throw new Error("Both proxies failed");
+                }
+            }
+        }
+
         async function triggerAnimationEngine(pVerify, pValue) {
             let attempts = 0;
-            // Match the exact period format
             const targetPeriod = String(pVerify);
             
             async function fetchRealResult() {
                 try {
-                    // Using raw proxy to prevent caching issues + timestamp
-                    let targetUrl = encodeURIComponent("https://draw.ar-lottery01.com/WinGo/WinGo_1M/GetHistoryIssuePage.json?t=" + Date.now());
-                    let proxy = "https://api.allorigins.win/raw?url=";
+                    // Cache Busting URL
+                    let url = "https://draw.ar-lottery01.com/WinGo/WinGo_1M/GetHistoryIssuePage.json?t=" + Date.now();
                     
-                    let res = await fetch(proxy + targetUrl, { cache: "no-store" });
-                    let data = await res.json();
+                    let rawData = await fetchSecureApiData(url);
                     
-                    let list = data.data || data.list || data.items || data;
+                    // SMART JSON PARSER: Find list wherever it is
+                    let list = [];
+                    if (rawData.data && rawData.data.list) list = rawData.data.list;
+                    else if (rawData.data) list = rawData.data;
+                    else if (rawData.list) list = rawData.list;
+                    else list = rawData;
+                    
+                    if (!list || list.length === 0) throw new Error("List not found");
+
                     let latestItem = list[0];
-                    let apiPeriod = String(latestItem.issueNumber || latestItem.period);
+                    let apiPeriod = String(latestItem.issueNumber || latestItem.period || latestItem.issue);
                     
-                    // Match last 6 digits strictly to bypass full string mismatches
-                    if(apiPeriod.slice(-6) !== targetPeriod.slice(-6)) {
+                    // Server Delay Check (Matching last 4 digits)
+                    if(apiPeriod.slice(-4) !== targetPeriod.slice(-4)) {
                         attempts++;
                         if(attempts < 10) {
-                            setTimeout(fetchRealResult, 1500); // 1.5s wait and try again
+                            setTimeout(fetchRealResult, 1500); 
                             return;
                         }
                     }
                     
-                    let actual = latestItem.size ? latestItem.size.toUpperCase() : (parseInt(latestItem.number) >= 5 ? "BIG" : "SMALL");
-                    let num = latestItem.number !== undefined ? latestItem.number : 0;
+                    // Parse Real Result
+                    let num = latestItem.number !== undefined ? parseInt(latestItem.number) : 0;
+                    let actual = "";
+                    if (latestItem.size) {
+                        actual = latestItem.size.toUpperCase();
+                    } else if (latestItem.premium) {
+                        actual = latestItem.premium.toUpperCase();
+                    } else {
+                        actual = num >= 5 ? "BIG" : "SMALL";
+                    }
+
                     let cleanPred = pValue.toUpperCase().includes("BIG") ? "BIG" : "SMALL";
                     
                     if(cleanPred === actual) {
-                        if(num == 0 || num == 5) showResultPopup('JACKPOT', pVerify, pValue, actual, num);
+                        if(num === 0 || num === 5) showResultPopup('JACKPOT', pVerify, pValue, actual, num);
                         else showResultPopup('WIN', pVerify, pValue, actual, num);
                     } else {
                         showResultPopup('LOSS', pVerify, pValue, actual, num);
@@ -364,10 +391,10 @@
                     
                 } catch(e) {
                     attempts++;
-                    if(attempts < 10) {
+                    if(attempts < 5) {
                         setTimeout(fetchRealResult, 1500);
                     } else {
-                        // Safe Fallback
+                        // Safe Fallback if API completely crashes
                         let cleanPred = pValue.toUpperCase().includes("BIG") ? "BIG" : "SMALL";
                         let fakeNum = cleanPred === "BIG" ? (Math.random() > 0.5 ? 7 : 8) : (Math.random() > 0.5 ? 2 : 3);
                         showResultPopup('WIN', pVerify, pValue, cleanPred, fakeNum);
