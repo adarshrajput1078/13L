@@ -6,7 +6,6 @@
     <title>SIKKIM X ROCKY | VIP PREDICTION</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Rajdhani:wght@700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <style>
-        /* SIKKIM THEME COLORS */
         :root { 
             --skm-bg: #0b132b; 
             --skm-primary: #3b82f6; 
@@ -20,18 +19,15 @@
         * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
         body, html { height: 100%; font-family: 'Poppins', sans-serif; background-color: #000; color: var(--text-white); overflow: hidden; display: flex; flex-direction: column; }
 
-        /* PANELS */
         #top-panel { height: 15%; min-height: 145px; width: 100%; background: linear-gradient(180deg, #050b14 0%, var(--skm-bg) 100%); border-bottom: 2px solid rgba(59, 130, 246, 0.5); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 10; position: relative; padding: 5px 10px; box-shadow: 0 5px 30px rgba(0, 0, 0, 0.95); }
         #bottom-panel { height: 85%; width: 100%; background-color: #000; position: relative; z-index: 1; }
         iframe { width: 100%; height: 100%; border: none; }
 
-        /* HEADER */
         .top-header { width: 100%; max-width: 500px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; border-bottom: 1px dashed rgba(59, 130, 246, 0.25); padding-bottom: 4px;}
         .logo-text { font-family: 'Rajdhani', sans-serif; font-size: 18px; font-weight: 900; color: var(--skm-primary); text-transform: uppercase; letter-spacing: 3px; text-shadow: 0 0 12px rgba(59, 130, 246, 0.6);}
         .service-btn { background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%); color: var(--skm-gold); font-size: 9px; font-weight: 800; padding: 4px 12px; border-radius: 4px; border: 1px solid rgba(252, 195, 51, 0.4); cursor: pointer; transition: 0.2s;}
         .service-btn:active { transform: scale(0.95); }
         
-        /* WIDGET BOXES */
         .tool-container { width: 100%; max-width: 500px; display: flex; flex-direction: column; gap: 5px; padding: 0 5px; }
         .info-row { display: flex; justify-content: space-between; font-size: 10px; background: rgba(0,0,0,0.6); padding: 5px 12px; border-radius: 6px; border: 1px solid rgba(59, 130, 246, 0.3); font-family: 'Share Tech Mono', monospace; box-shadow: inset 0 0 10px rgba(0,0,0,0.5);}
         .info-row span { color: var(--skm-gold); font-weight: 800; font-family: 'Rajdhani', sans-serif; font-size: 14px; letter-spacing: 1px;}
@@ -42,10 +38,8 @@
         button.action-btn { padding: 8px 12px; font-size: 14px; font-family: 'Rajdhani', sans-serif; font-weight: 900; cursor: pointer; border-radius: 6px; border: none; background: linear-gradient(180deg, var(--skm-primary) 0%, var(--skm-primary-dark) 100%); color: #fff; width: 32%; text-shadow: 0 1px 3px rgba(0,0,0,0.6); box-shadow: 0 3px 10px rgba(59, 130, 246, 0.4);}
         button.action-btn:disabled { background: #1e293b; color: #64748b; box-shadow: none;}
         
-        /* MAIN RESULT BOX */
         .result-box { display: flex; justify-content: center; align-items: center; font-size: 14px; font-weight: 900; color: #64748b; background: #020617; padding: 6px; border-radius: 6px; border: 1px solid #1e293b; flex-grow: 1; min-height: 42px; box-shadow: inset 0 0 12px rgba(0,0,0,0.8);}
 
-        /* AUTH MODALS */
         .auth-container { text-align: center; width: 100%; max-width: 500px; padding: 0 5px; }
         .auth-container h3 { margin: 2px 0 10px 0; font-size: 14px; color: #94a3b8; font-weight: 700; letter-spacing: 1px;}
         .auth-container h3 span { color: var(--skm-primary); }
@@ -56,19 +50,16 @@
         .modal-box p { font-size: 13px; color: #cbd5e1; margin-bottom: 22px; line-height: 1.5;}
         .btn-close { background: transparent; border: 1.5px solid var(--skm-primary); color: var(--skm-primary); padding: 10px 15px; border-radius: 6px; font-weight: 800; cursor: pointer; width: 100%; font-family: 'Poppins';}
 
-        /* 🔥 PREMIUM 3D COLOR BALLS 🔥 */
         .color-ball { width: 26px; height: 26px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: 900; color: #fff; font-size: 13px; font-family: 'Poppins', sans-serif; box-shadow: inset -2px -3px 6px rgba(0,0,0,0.6), 0 3px 6px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.15); text-shadow: 0 1px 2px rgba(0,0,0,0.8);}
         .bg-green { background: radial-gradient(circle at 30% 30%, #34d399, var(--skm-green)); }
         .bg-red { background: radial-gradient(circle at 30% 30%, #f87171, var(--skm-red)); }
         .bg-red-violet { background: linear-gradient(135deg, var(--skm-red) 50%, var(--skm-violet) 50%); }
         .bg-green-violet { background: linear-gradient(135deg, var(--skm-green) 50%, var(--skm-violet) 50%); }
 
-        /* 🔥 NEAT SIZE BADGES 🔥 */
         .size-badge { padding: 4px 10px; border-radius: 4px; font-size: 11px; font-weight: 800; font-family: 'Poppins'; display: inline-block; letter-spacing: 1px;}
         .size-big { background: rgba(252, 195, 51, 0.15); color: var(--skm-gold); border: 1px solid rgba(252, 195, 51, 0.5); box-shadow: 0 0 10px rgba(252, 195, 51, 0.2);}
         .size-small { background: rgba(59, 130, 246, 0.15); color: var(--skm-primary); border: 1px solid rgba(59, 130, 246, 0.5); box-shadow: 0 0 10px rgba(59, 130, 246, 0.2);}
 
-        /* 🔥 RESULT SLIP (TRADING CARD) 🔥 */
         #miniAnimScreen { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(2, 6, 23, 0.95); z-index: 100; display: none; flex-direction: column; justify-content: center; align-items: center; backdrop-filter: blur(8px); animation: fadeIn 0.3s forwards;}
         .mini-title { font-family: 'Rajdhani', sans-serif; font-size: 28px; font-weight: 900; margin: 0; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 5px;}
         
@@ -80,7 +71,6 @@
         
         .mini-close { font-size: 10px; color: #64748b; margin-top: 12px; cursor: pointer; font-weight: bold; letter-spacing: 1.5px; border: 1px solid #1e293b; padding: 4px 12px; border-radius: 12px; background: #020617;}
 
-        /* JACKPOT SCREEN */
         #jackpotScreen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.95); z-index: 99999999; display: none; flex-direction: column; justify-content: center; align-items: center; overflow: hidden; }
         .jackpot-bg { position: absolute; width: 150vw; height: 150vw; background: radial-gradient(circle, rgba(252, 195, 51, 0.4) 0%, transparent 60%); animation: fireSpin 4s linear infinite; z-index: -1; }
         .jackpot-title { font-family: 'Rajdhani', sans-serif; font-size: 55px; font-weight: 900; color: var(--skm-gold); text-shadow: 0 0 30px var(--skm-gold), 0 0 60px #fff; text-align: center; line-height: 1.1; }
@@ -101,16 +91,12 @@
         </div>
     </div>
 
-    <!-- JACKPOT FULL SCREEN -->
     <div id="jackpotScreen">
         <div class="jackpot-bg"></div>
         <h1 class="jackpot-title">JACKPOT WIN<br><span class="jackpot-subtitle">BY ROCKY</span></h1>
     </div>
 
-    <!-- TOP PANEL WIDGET -->
     <div id="top-panel">
-        
-        <!-- ⚡ ULTRA PREMIUM RESULT SLIP ⚡ -->
         <div id="miniAnimScreen">
             <h1 id="miniTitle" class="mini-title">🏆 WIN 🏆</h1>
             <div class="real-result-card">
@@ -160,7 +146,6 @@
         </div>
     </div>
 
-    <!-- GAME IFRAME -->
     <div id="bottom-panel">
         <iframe id="gameIframe" src="https://sikkim.com"></iframe>
     </div>
@@ -194,19 +179,19 @@
             return did;
         }
 
-        // 🔥 GENERATORS FOR BALLS AND BADGES 🔥
-        window.getRealBallHtml = (number) => {
+        // BUGS FIXED: In functions ko module ke andar safely define kiya hai taaki HTML/JS connect kar sakein
+        function getRealBallHtml(number) {
             let n = parseInt(number);
             if(n === 0) return `<div class="color-ball bg-red-violet">0</div>`;
             if(n === 5) return `<div class="color-ball bg-green-violet">5</div>`;
             if(n % 2 === 0) return `<div class="color-ball bg-red">${n}</div>`;
             return `<div class="color-ball bg-green">${n}</div>`;
-        };
+        }
 
-        window.getSizeBadge = (size) => {
+        function getSizeBadge(size) {
             if(size.toUpperCase().includes("BIG")) return `<span class="size-badge size-big">BIG</span>`;
             return `<span class="size-badge size-small">SMALL</span>`;
-        };
+        }
 
         window.checkUID = async () => {
             let uid = document.getElementById('uidInput').value.trim(); 
@@ -299,7 +284,9 @@
                 const miniScreen = document.getElementById('miniAnimScreen');
                 const mTitle = document.getElementById('miniTitle');
                 
-                document.getElementById('resPeriod').innerText = String(period).slice(-4);
+                // BUG FIXED: Pura period number show hoga
+                document.getElementById('resPeriod').innerText = period;
+                
                 document.getElementById('resBalls').innerHTML = getRealBallHtml(number);
                 document.getElementById('resSize').innerHTML = getSizeBadge(actualResult);
                 
