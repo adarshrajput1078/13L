@@ -6,78 +6,120 @@
     <title>SIKKIM X ROCKY | VIP PREDICTION</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Rajdhani:wght@700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <style>
+        /* 🔥 LIGHT THEME VARIABLES 🔥 */
         :root { 
-            --skm-bg: #0b132b; 
+            --skm-bg: #e0f2fe; /* Light Blue */
             --skm-primary: #3b82f6; 
             --skm-primary-dark: #1d4ed8;
-            --skm-gold: #fcc333; 
+            --skm-gold: #d97706; /* Darker Gold for visibility on white */
             --skm-green: #10b981; 
             --skm-red: #ef4444; 
             --skm-violet: #8b5cf6;
-            --text-white: #f5f5f5; 
+            --text-dark: #0f172a; /* Slate 900 */
+            --text-muted: #64748b; /* Slate 500 */
+            --card-bg: #ffffff;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
-        body, html { height: 100%; font-family: 'Poppins', sans-serif; background-color: #000; color: var(--text-white); overflow: hidden; display: flex; flex-direction: column; }
+        body, html { height: 100%; font-family: 'Poppins', sans-serif; background-color: #f8fafc; color: var(--text-dark); overflow: hidden; display: flex; flex-direction: column; }
 
-        #top-panel { height: 15%; min-height: 145px; width: 100%; background: linear-gradient(180deg, #050b14 0%, var(--skm-bg) 100%); border-bottom: 2px solid rgba(59, 130, 246, 0.5); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 10; position: relative; padding: 5px 10px; box-shadow: 0 5px 30px rgba(0, 0, 0, 0.95); }
-        #bottom-panel { height: 85%; width: 100%; background-color: #000; position: relative; z-index: 1; }
+        #top-panel { height: 15%; min-height: 145px; width: 100%; background: linear-gradient(180deg, #ffffff 0%, var(--skm-bg) 100%); border-bottom: 2px solid rgba(59, 130, 246, 0.3); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 10; position: relative; padding: 5px 10px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05); }
+        #bottom-panel { height: 85%; width: 100%; background-color: #f8fafc; position: relative; z-index: 1; }
         iframe { width: 100%; height: 100%; border: none; }
 
-        .top-header { width: 100%; max-width: 500px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; border-bottom: 1px dashed rgba(59, 130, 246, 0.25); padding-bottom: 4px;}
-        .logo-text { font-family: 'Rajdhani', sans-serif; font-size: 18px; font-weight: 900; color: var(--skm-primary); text-transform: uppercase; letter-spacing: 3px; text-shadow: 0 0 12px rgba(59, 130, 246, 0.6);}
-        .service-btn { background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%); color: var(--skm-gold); font-size: 9px; font-weight: 800; padding: 4px 12px; border-radius: 4px; border: 1px solid rgba(252, 195, 51, 0.4); cursor: pointer; transition: 0.2s;}
-        .service-btn:active { transform: scale(0.95); }
+        .top-header { width: 100%; max-width: 500px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; border-bottom: 1px dashed rgba(59, 130, 246, 0.3); padding-bottom: 4px;}
+        .logo-text { font-family: 'Rajdhani', sans-serif; font-size: 19px; font-weight: 900; color: var(--skm-primary-dark); text-transform: uppercase; letter-spacing: 3px; }
+        .service-btn { background: #ffffff; color: var(--skm-primary-dark); font-size: 9px; font-weight: 800; padding: 4px 12px; border-radius: 4px; border: 1px solid rgba(59, 130, 246, 0.3); cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 2px 4px rgba(0,0,0,0.02);}
+        .service-btn:active { transform: scale(0.92); }
         
         .tool-container { width: 100%; max-width: 500px; display: flex; flex-direction: column; gap: 5px; padding: 0 5px; }
-        .info-row { display: flex; justify-content: space-between; font-size: 10px; background: rgba(0,0,0,0.6); padding: 5px 12px; border-radius: 6px; border: 1px solid rgba(59, 130, 246, 0.3); font-family: 'Share Tech Mono', monospace; box-shadow: inset 0 0 10px rgba(0,0,0,0.5);}
-        .info-row span { color: var(--skm-gold); font-weight: 800; font-family: 'Rajdhani', sans-serif; font-size: 14px; letter-spacing: 1px;}
+        .info-row { display: flex; justify-content: space-between; font-size: 10px; background: #ffffff; padding: 5px 12px; border-radius: 6px; border: 1px solid rgba(59, 130, 246, 0.2); font-family: 'Share Tech Mono', monospace; box-shadow: inset 0 0 5px rgba(0,0,0,0.02), 0 2px 5px rgba(0,0,0,0.03);}
+        .info-row span { color: var(--skm-primary-dark); font-weight: 800; font-family: 'Rajdhani', sans-serif; font-size: 15px; letter-spacing: 1px;}
         
         .input-row { display: flex; gap: 8px; align-items: center; margin-top: 2px;}
-        input { flex: 1; padding: 8px; border: 1px solid #1e293b; border-radius: 6px; text-align: center; font-size: 14px; font-weight: 800; background: #020617; color: var(--skm-gold); outline: none; transition: 0.3s;}
-        input:focus { border-color: var(--skm-primary); box-shadow: 0 0 10px rgba(59, 130, 246, 0.5); }
-        button.action-btn { padding: 8px 12px; font-size: 14px; font-family: 'Rajdhani', sans-serif; font-weight: 900; cursor: pointer; border-radius: 6px; border: none; background: linear-gradient(180deg, var(--skm-primary) 0%, var(--skm-primary-dark) 100%); color: #fff; width: 32%; text-shadow: 0 1px 3px rgba(0,0,0,0.6); box-shadow: 0 3px 10px rgba(59, 130, 246, 0.4);}
-        button.action-btn:disabled { background: #1e293b; color: #64748b; box-shadow: none;}
+        input { flex: 1; padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; text-align: center; font-size: 14px; font-weight: 800; background: #ffffff; color: var(--text-dark); outline: none; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);}
+        input:focus { border-color: var(--skm-primary); box-shadow: 0 0 10px rgba(59, 130, 246, 0.2); transform: translateY(-1px); }
+        input::placeholder { color: #94a3b8; font-weight: 600; }
+
+        button.action-btn { padding: 8px 12px; font-size: 14px; font-family: 'Rajdhani', sans-serif; font-weight: 900; cursor: pointer; border-radius: 6px; border: none; background: linear-gradient(180deg, var(--skm-primary) 0%, var(--skm-primary-dark) 100%); color: #fff; width: 32%; text-shadow: 0 1px 2px rgba(0,0,0,0.3); box-shadow: 0 3px 10px rgba(59, 130, 246, 0.3); transition: all 0.2s ease;}
+        button.action-btn:active:not(:disabled) { transform: scale(0.95); box-shadow: 0 1px 4px rgba(59, 130, 246, 0.4); }
+        button.action-btn:disabled { background: #e2e8f0; color: #94a3b8; box-shadow: none; cursor: not-allowed; }
         
-        .result-box { display: flex; justify-content: center; align-items: center; font-size: 14px; font-weight: 900; color: #64748b; background: #020617; padding: 6px; border-radius: 6px; border: 1px solid #1e293b; flex-grow: 1; min-height: 42px; box-shadow: inset 0 0 12px rgba(0,0,0,0.8);}
+        .result-box { display: flex; justify-content: center; align-items: center; font-size: 14px; font-weight: 900; color: var(--text-muted); background: #ffffff; padding: 6px; border-radius: 6px; border: 1px solid #cbd5e1; flex-grow: 1; min-height: 42px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.02); transition: all 0.3s ease;}
+        .result-box.processing { animation: borderGlowLight 1s infinite alternate; }
 
         .auth-container { text-align: center; width: 100%; max-width: 500px; padding: 0 5px; }
-        .auth-container h3 { margin: 2px 0 10px 0; font-size: 14px; color: #94a3b8; font-weight: 700; letter-spacing: 1px;}
-        .auth-container h3 span { color: var(--skm-primary); }
+        .auth-container h3 { margin: 2px 0 10px 0; font-size: 14px; color: var(--text-muted); font-weight: 700; letter-spacing: 1px;}
+        .auth-container h3 span { color: var(--skm-primary-dark); }
 
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 99999; display: none; justify-content: center; align-items: center; backdrop-filter: blur(4px);}
-        .modal-box { background: linear-gradient(180deg, #0f172a 0%, #020617 100%); border: 1px solid var(--skm-primary); padding: 25px 20px; border-radius: 12px; text-align: center; width: 85%; max-width: 320px; box-shadow: 0 15px 40px rgba(0,0,0,0.9), 0 0 20px rgba(59, 130, 246, 0.2); }
-        .modal-box h4 { color: var(--skm-primary); font-size: 20px; font-weight: 900; margin-bottom: 10px;}
-        .modal-box p { font-size: 13px; color: #cbd5e1; margin-bottom: 22px; line-height: 1.5;}
-        .btn-close { background: transparent; border: 1.5px solid var(--skm-primary); color: var(--skm-primary); padding: 10px 15px; border-radius: 6px; font-weight: 800; cursor: pointer; width: 100%; font-family: 'Poppins';}
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.6); z-index: 99999; display: none; justify-content: center; align-items: center; backdrop-filter: blur(4px); animation: fadeIn 0.3s ease-out;}
+        .modal-box { background: #ffffff; border: 1px solid var(--skm-primary); padding: 25px 20px; border-radius: 12px; text-align: center; width: 85%; max-width: 320px; box-shadow: 0 15px 40px rgba(0,0,0,0.15), 0 0 20px rgba(59, 130, 246, 0.1); animation: scaleUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .modal-box h4 { color: var(--skm-primary-dark); font-size: 20px; font-weight: 900; margin-bottom: 10px;}
+        .modal-box p { font-size: 13px; color: var(--text-muted); margin-bottom: 22px; line-height: 1.5;}
+        .btn-close { background: transparent; border: 1.5px solid var(--skm-primary); color: var(--skm-primary-dark); padding: 10px 15px; border-radius: 6px; font-weight: 800; cursor: pointer; width: 100%; font-family: 'Poppins'; transition: all 0.2s;}
+        .btn-close:active { transform: scale(0.95); background: rgba(59, 130, 246, 0.05); }
 
-        .color-ball { width: 26px; height: 26px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: 900; color: #fff; font-size: 13px; font-family: 'Poppins', sans-serif; box-shadow: inset -2px -3px 6px rgba(0,0,0,0.6), 0 3px 6px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.15); text-shadow: 0 1px 2px rgba(0,0,0,0.8);}
+        .color-ball { width: 26px; height: 26px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: 900; color: #fff; font-size: 13px; font-family: 'Poppins', sans-serif; box-shadow: inset -2px -3px 6px rgba(0,0,0,0.4), 0 3px 6px rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.3); text-shadow: 0 1px 2px rgba(0,0,0,0.5); animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; transform-origin: center;}
         .bg-green { background: radial-gradient(circle at 30% 30%, #34d399, var(--skm-green)); }
         .bg-red { background: radial-gradient(circle at 30% 30%, #f87171, var(--skm-red)); }
         .bg-red-violet { background: linear-gradient(135deg, var(--skm-red) 50%, var(--skm-violet) 50%); }
         .bg-green-violet { background: linear-gradient(135deg, var(--skm-green) 50%, var(--skm-violet) 50%); }
 
-        .size-badge { padding: 4px 10px; border-radius: 4px; font-size: 11px; font-weight: 800; font-family: 'Poppins'; display: inline-block; letter-spacing: 1px;}
-        .size-big { background: rgba(252, 195, 51, 0.15); color: var(--skm-gold); border: 1px solid rgba(252, 195, 51, 0.5); box-shadow: 0 0 10px rgba(252, 195, 51, 0.2);}
-        .size-small { background: rgba(59, 130, 246, 0.15); color: var(--skm-primary); border: 1px solid rgba(59, 130, 246, 0.5); box-shadow: 0 0 10px rgba(59, 130, 246, 0.2);}
+        .size-badge { padding: 4px 10px; border-radius: 4px; font-size: 11px; font-weight: 800; font-family: 'Poppins'; display: inline-block; letter-spacing: 1px; animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; transform-origin: center;}
+        .size-big { background: rgba(217, 119, 6, 0.1); color: var(--skm-gold); border: 1px solid rgba(217, 119, 6, 0.4);}
+        .size-small { background: rgba(59, 130, 246, 0.1); color: var(--skm-primary-dark); border: 1px solid rgba(59, 130, 246, 0.4);}
 
-        #miniAnimScreen { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(2, 6, 23, 0.95); z-index: 100; display: none; flex-direction: column; justify-content: center; align-items: center; backdrop-filter: blur(8px); animation: fadeIn 0.3s forwards;}
-        .mini-title { font-family: 'Rajdhani', sans-serif; font-size: 28px; font-weight: 900; margin: 0; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 5px;}
+        #miniAnimScreen { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.95); z-index: 100; display: none; flex-direction: column; justify-content: center; align-items: center; backdrop-filter: blur(8px); animation: fadeIn 0.3s forwards;}
+        .mini-title { font-family: 'Rajdhani', sans-serif; font-size: 32px; font-weight: 900; margin: 0; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 5px; animation: scaleDrop 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;}
         
-        .real-result-card { background: linear-gradient(145deg, #0f172a 0%, #020617 100%); border-radius: 12px; padding: 12px 18px; width: 95%; max-width: 350px; border: 1px solid rgba(59, 130, 246, 0.3); box-shadow: 0 10px 25px rgba(0,0,0,0.8), inset 0 0 15px rgba(59, 130, 246, 0.05); }
-        .res-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px dashed rgba(148, 163, 184, 0.2); }
+        .real-result-card { background: #ffffff; border-radius: 12px; padding: 12px 18px; width: 95%; max-width: 350px; border: 1px solid rgba(59, 130, 246, 0.2); box-shadow: 0 10px 25px rgba(0,0,0,0.08), inset 0 0 15px rgba(59, 130, 246, 0.02); animation: slideUpFade 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; opacity: 0; transform: translateY(20px);}
+        .res-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px dashed rgba(148, 163, 184, 0.4); }
         .res-row:last-child { border-bottom: none; }
-        .res-label { font-size: 11px; color: #94a3b8; font-family: 'Poppins', sans-serif; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;}
-        .res-val { font-size: 15px; font-weight: 900; font-family: 'Share Tech Mono', monospace; color: #fff; }
+        .res-label { font-size: 11px; color: var(--text-muted); font-family: 'Poppins', sans-serif; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;}
+        .res-val { font-size: 15px; font-weight: 900; font-family: 'Share Tech Mono', monospace; color: var(--text-dark); }
         
-        .mini-close { font-size: 10px; color: #64748b; margin-top: 12px; cursor: pointer; font-weight: bold; letter-spacing: 1.5px; border: 1px solid #1e293b; padding: 4px 12px; border-radius: 12px; background: #020617;}
+        .mini-close { font-size: 10px; color: var(--text-muted); margin-top: 12px; cursor: pointer; font-weight: bold; letter-spacing: 1.5px; border: 1px solid #cbd5e1; padding: 4px 12px; border-radius: 12px; background: #f8fafc; transition: all 0.2s;}
+        .mini-close:active { transform: scale(0.9); background: #e2e8f0;}
 
-        #jackpotScreen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.95); z-index: 99999999; display: none; flex-direction: column; justify-content: center; align-items: center; overflow: hidden; }
-        .jackpot-bg { position: absolute; width: 150vw; height: 150vw; background: radial-gradient(circle, rgba(252, 195, 51, 0.4) 0%, transparent 60%); animation: fireSpin 4s linear infinite; z-index: -1; }
-        .jackpot-title { font-family: 'Rajdhani', sans-serif; font-size: 55px; font-weight: 900; color: var(--skm-gold); text-shadow: 0 0 30px var(--skm-gold), 0 0 60px #fff; text-align: center; line-height: 1.1; }
-        .jackpot-subtitle { font-size: 24px; color: #fff; text-shadow: 0 0 10px #fff; display: block; margin-top: 10px;}
+        #jackpotScreen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.97); z-index: 99999999; display: none; flex-direction: column; justify-content: center; align-items: center; overflow: hidden; animation: fadeIn 0.3s forwards;}
+        .jackpot-bg { position: absolute; width: 150vw; height: 150vw; background: radial-gradient(circle, rgba(217, 119, 6, 0.15) 0%, transparent 60%); animation: fireSpin 4s linear infinite; z-index: -1; }
+        .jackpot-title { font-family: 'Rajdhani', sans-serif; font-size: 55px; font-weight: 900; color: #d97706; text-shadow: 0 0 20px rgba(217, 119, 6, 0.4); text-align: center; line-height: 1.1; animation: heartbeat 1.5s ease-in-out infinite; }
+        .jackpot-subtitle { font-size: 24px; color: var(--text-dark); display: block; margin-top: 10px;}
 
-        @keyframes fireSpin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .pulse-text { animation: pulseOpacity 1s infinite alternate; }
+
+        /* 🔥 KEYFRAMES 🔥 */
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes scaleUp { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        @keyframes popIn { 
+            0% { transform: scale(0); opacity: 0; } 
+            70% { transform: scale(1.15); opacity: 1; } 
+            100% { transform: scale(1); opacity: 1; } 
+        }
+        @keyframes slideUpFade { 
+            from { transform: translateY(30px); opacity: 0; } 
+            to { transform: translateY(0); opacity: 1; } 
+        }
+        @keyframes scaleDrop {
+            from { transform: scale(1.5); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        @keyframes borderGlowLight {
+            0% { border-color: #cbd5e1; box-shadow: inset 0 2px 4px rgba(0,0,0,0.02); }
+            100% { border-color: var(--skm-primary); box-shadow: inset 0 0 10px rgba(59, 130, 246, 0.1), 0 0 8px rgba(59, 130, 246, 0.2); }
+        }
+        @keyframes pulseOpacity { 
+            0% { opacity: 0.5; } 
+            100% { opacity: 1; } 
+        }
+        @keyframes fireSpin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            15% { transform: scale(1.05); }
+            30% { transform: scale(1); }
+            45% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
         .hidden { display: none !important; }
     </style>
 </head>
@@ -105,10 +147,10 @@
                     <span class="res-val" id="resPeriod">----</span>
                 </div>
                 <div class="res-row" style="background: rgba(59, 130, 246, 0.05); padding: 8px 10px; border-radius: 6px; margin-top: 4px;">
-                    <span class="res-label" style="color:var(--skm-primary);">PREDICTION</span>
+                    <span class="res-label" style="color:var(--skm-primary-dark);">PREDICTION</span>
                     <span class="res-val" id="resPred" style="display:flex; gap:10px; align-items:center;">--</span>
                 </div>
-                <div class="res-row" style="background: rgba(255, 255, 255, 0.02); padding: 8px 10px; border-radius: 6px; margin-top: 4px;">
+                <div class="res-row" style="background: #f8fafc; padding: 8px 10px; border-radius: 6px; margin-top: 4px;">
                     <span class="res-label">ACTUAL RESULT</span>
                     <div style="display:flex; gap:10px; align-items:center;">
                         <span id="resBalls"></span>
@@ -135,7 +177,7 @@
         <div id="toolScreen" class="tool-container hidden">
             <div class="info-row">
                 <div>LIVE PERIOD: <span id="displayPeriod">SYNCING...</span></div>
-                <div>TIMER: <span id="displayTimer" style="color:var(--skm-primary);">00:00</span></div>
+                <div>TIMER: <span id="displayTimer" style="color:var(--skm-primary-dark); transition: color 0.3s;">00:00</span></div>
             </div>
             <div class="input-row">
                 <input type="number" id="num1" placeholder="N-1" min="0" max="9">
@@ -225,33 +267,54 @@
             } catch (error) { btn.innerText = "VERIFY"; btn.disabled = false; showModal("ERROR", "Network connection rejected. Try again."); }
         };
 
+        // 🔥 DIRECT API SYNC FIX (No Local Math) 🔥
+        async function syncRealPeriod() {
+            try {
+                let url = "https://draw.ar-lottery01.com/WinGo/WinGo_1M/GetHistoryIssuePage.json?t=" + Date.now();
+                let rawData = await fetchSecureApiData(url);
+                
+                let list = [];
+                if (rawData.data && rawData.data.list) list = rawData.data.list;
+                else if (rawData.data) list = rawData.data;
+                else if (rawData.list) list = rawData.list;
+                else list = rawData;
+                
+                if (list && list.length > 0) {
+                    let latestItem = list[0];
+                    let latestIssue = String(latestItem.issueNumber || latestItem.period || latestItem.issue);
+                    
+                    let liveIssue = (BigInt(latestIssue) + 1n).toString(); 
+                    
+                    if(currentActivePeriod !== liveIssue) {
+                        currentActivePeriod = liveIssue;
+                        document.getElementById('displayPeriod').innerText = currentActivePeriod;
+                    }
+                }
+            } catch(e) {
+                console.log("API sync delay...");
+            }
+        }
+
         function startTimerEngine() {
+            syncRealPeriod();
+            setInterval(syncRealPeriod, 4000); 
+
             setInterval(() => {
                 let d = new Date();
-                
-                // UTC Time ko IST (UTC + 5:30) mein convert karna
-                let utc = d.getTime() + (d.getTimezoneOffset() * 60000);
-                let istTime = new Date(utc + (3600000 * 5.5)); 
-
-                let hrs = istTime.getHours();
-                let mins = istTime.getMinutes();
-                let secs = istTime.getSeconds();
-                
-                // Din start hone se lekar abhi tak ke minutes + 1 current period ke liye
-                let totalMins = (hrs * 60) + mins + 1;
-                
-                let year = istTime.getFullYear();
-                let month = String(istTime.getMonth() + 1).padStart(2, '0');
-                let day = String(istTime.getDate()).padStart(2, '0');
-                
-                let sequence = 10000 + totalMins;
-                currentActivePeriod = `${year}${month}${day}1000${sequence}`;
-                
+                let secs = d.getSeconds();
                 let remSec = 60 - secs; 
                 if(remSec === 60) remSec = 0;
                 
-                document.getElementById('displayPeriod').innerText = currentActivePeriod;
-                document.getElementById('displayTimer').innerText = `00:${String(remSec).padStart(2,'0')}`;
+                let timerDisplay = document.getElementById('displayTimer');
+                timerDisplay.innerText = `00:${String(remSec).padStart(2,'0')}`;
+                
+                if(remSec <= 5 && remSec > 0) {
+                    timerDisplay.style.color = "var(--skm-red)";
+                    timerDisplay.classList.add("pulse-text");
+                } else {
+                    timerDisplay.style.color = "var(--skm-primary-dark)";
+                    timerDisplay.classList.remove("pulse-text");
+                }
 
                 if(remSec === 0 && currentActivePrediction !== "" && !isWaitingForAPI) {
                     isWaitingForAPI = true; 
@@ -265,12 +328,16 @@
             let resBox = document.getElementById('predictionDisplay'); let btn = document.getElementById('analyzeBtn');
             if(n1 === "" || n2 === "") return showModal("WARNING", "Missing input parameters.");
 
-            btn.disabled = true; resBox.innerHTML = "<span style='letter-spacing:2px; font-size:12px;'>PROCESSING...</span>";
+            btn.disabled = true; 
+            resBox.classList.add('processing');
+            resBox.innerHTML = "<span class='pulse-text' style='letter-spacing:2px; font-size:12px; color:var(--skm-primary-dark);'>PROCESSING DATA...</span>";
             
             try {
                 let snap = await get(ref(db, `patterns/${n1}-${n2}`));
                 setTimeout(() => {
                     btn.disabled = false;
+                    resBox.classList.remove('processing');
+                    
                     if(snap.exists() && !snap.val().includes("UNSET")) {
                         currentActivePrediction = snap.val(); 
                         
@@ -281,14 +348,14 @@
                         resBox.innerHTML = `
                             <div style="display:flex; justify-content:center; align-items:center; gap:12px; padding: 2px;">
                                 ${window.getRealBallHtml(num)} 
-                                <div style="height: 20px; width: 1px; background: #1e293b;"></div>
+                                <div style="height: 20px; width: 1px; background: #cbd5e1;"></div>
                                 ${window.getSizeBadge(szMatch)}
                             </div>
                         `;
                         isWaitingForAPI = false;
                     } else { resBox.innerHTML = "NO PATTERN MATCHED"; resBox.style.color = "var(--skm-red)"; }
-                }, 600);
-            } catch(e) { btn.disabled = false; resBox.innerHTML = "SERVER ERROR"; }
+                }, 800); 
+            } catch(e) { btn.disabled = false; resBox.classList.remove('processing'); resBox.innerHTML = "SERVER ERROR"; }
         };
 
         window.closeMiniScreen = () => { document.getElementById('miniAnimScreen').style.display = 'none'; }
@@ -297,7 +364,7 @@
             if(type === 'JACKPOT') {
                 const jpScreen = document.getElementById('jackpotScreen');
                 jpScreen.style.display = 'flex';
-                setTimeout(() => { jpScreen.style.display = 'none'; }, 3000);
+                setTimeout(() => { jpScreen.style.display = 'none'; }, 4000);
             } 
             else {
                 const miniScreen = document.getElementById('miniAnimScreen');
@@ -313,17 +380,21 @@
                 document.getElementById('resPred').innerHTML = `${window.getRealBallHtml(predNum)} ${window.getSizeBadge(predSz)}`;
                 
                 if(type === 'WIN') {
-                    mTitle.innerText = "🏆 WIN 🏆"; mTitle.style.color = "var(--skm-green)"; mTitle.style.textShadow = "0 0 15px rgba(16, 185, 129, 0.5)";
+                    mTitle.innerText = "🏆 WIN 🏆"; mTitle.style.color = "var(--skm-green)";
                 } else {
-                    mTitle.innerText = "❌ LOSS ❌"; mTitle.style.color = "var(--skm-red)"; mTitle.style.textShadow = "0 0 15px rgba(239, 68, 68, 0.5)";
+                    mTitle.innerText = "❌ LOSS ❌"; mTitle.style.color = "var(--skm-red)";
                 }
                 
                 miniScreen.style.display = 'flex';
+                let card = document.querySelector('.real-result-card');
+                card.style.animation = 'none';
+                card.offsetHeight; 
+                card.style.animation = null; 
+
                 setTimeout(() => { miniScreen.style.display = 'none'; }, 4500);
             }
         }
 
-        // 🔥 DUAL-PROXY & DEEP JSON PARSER (FIXED) 🔥
         async function fetchSecureApiData(targetUrl) {
             let proxy1 = "https://api.allorigins.win/get?url=" + encodeURIComponent(targetUrl);
             let proxy2 = "https://api.codetabs.com/v1/proxy?quest=" + encodeURIComponent(targetUrl);
@@ -331,11 +402,11 @@
             try {
                 let res = await fetch(proxy1, { cache: "no-store" });
                 let data = await res.json();
-                return JSON.parse(data.contents); // AllOrigins returns JSON string inside 'contents'
+                return JSON.parse(data.contents); 
             } catch (err1) {
                 try {
                     let res2 = await fetch(proxy2, { cache: "no-store" });
-                    return await res2.json(); // CodeTabs returns direct JSON
+                    return await res2.json(); 
                 } catch (err2) {
                     throw new Error("Both proxies failed");
                 }
@@ -348,12 +419,9 @@
             
             async function fetchRealResult() {
                 try {
-                    // Cache Busting URL
                     let url = "https://draw.ar-lottery01.com/WinGo/WinGo_1M/GetHistoryIssuePage.json?t=" + Date.now();
-                    
                     let rawData = await fetchSecureApiData(url);
                     
-                    // SMART JSON PARSER: Find list wherever it is
                     let list = [];
                     if (rawData.data && rawData.data.list) list = rawData.data.list;
                     else if (rawData.data) list = rawData.data;
@@ -365,7 +433,6 @@
                     let latestItem = list[0];
                     let apiPeriod = String(latestItem.issueNumber || latestItem.period || latestItem.issue);
                     
-                    // Server Delay Check (Matching last 4 digits)
                     if(apiPeriod.slice(-4) !== targetPeriod.slice(-4)) {
                         attempts++;
                         if(attempts < 10) {
@@ -374,7 +441,6 @@
                         }
                     }
                     
-                    // Parse Real Result
                     let num = latestItem.number !== undefined ? parseInt(latestItem.number) : 0;
                     let actual = "";
                     if (latestItem.size) {
@@ -399,7 +465,6 @@
                     if(attempts < 5) {
                         setTimeout(fetchRealResult, 1500);
                     } else {
-                        // Safe Fallback if API completely crashes
                         let cleanPred = pValue.toUpperCase().includes("BIG") ? "BIG" : "SMALL";
                         let fakeNum = cleanPred === "BIG" ? (Math.random() > 0.5 ? 7 : 8) : (Math.random() > 0.5 ? 2 : 3);
                         showResultPopup('WIN', pVerify, pValue, cleanPred, fakeNum);
