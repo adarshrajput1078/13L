@@ -3,156 +3,164 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SIKKIM X ROCKY | VIP PREDICTION</title>
+    <title>SIKKIM X ROCKY | PREMIUM VIP</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Rajdhani:wght@700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* 🔥 LIGHT THEME VARIABLES 🔥 */
+        /* 🔥 PREMIUM DARK NEON THEME 🔥 */
         :root { 
-            --skm-bg: #e0f2fe; /* Light Blue */
+            --skm-bg: #020617; 
+            --skm-surface: rgba(15, 23, 42, 0.65);
             --skm-primary: #3b82f6; 
-            --skm-primary-dark: #1d4ed8;
-            --skm-gold: #d97706; /* Darker Gold for visibility on white */
+            --skm-primary-glow: rgba(59, 130, 246, 0.6);
+            --skm-gold: #f59e0b; 
+            --skm-gold-glow: rgba(245, 158, 11, 0.6);
             --skm-green: #10b981; 
             --skm-red: #ef4444; 
             --skm-violet: #8b5cf6;
-            --text-dark: #0f172a; /* Slate 900 */
-            --text-muted: #64748b; /* Slate 500 */
-            --card-bg: #ffffff;
+            --text-white: #f8fafc; 
+            --text-muted: #94a3b8;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
-        body, html { height: 100%; font-family: 'Poppins', sans-serif; background-color: #f8fafc; color: var(--text-dark); overflow: hidden; display: flex; flex-direction: column; }
+        body, html { height: 100%; font-family: 'Poppins', sans-serif; background-color: var(--skm-bg); color: var(--text-white); overflow: hidden; display: flex; flex-direction: column; }
 
-        #top-panel { height: 15%; min-height: 145px; width: 100%; background: linear-gradient(180deg, #ffffff 0%, var(--skm-bg) 100%); border-bottom: 2px solid rgba(59, 130, 246, 0.3); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 10; position: relative; padding: 5px 10px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05); }
-        #bottom-panel { height: 85%; width: 100%; background-color: #f8fafc; position: relative; z-index: 1; }
+        /* Background Animated Glow */
+        body::before {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(59,130,246,0.05) 0%, transparent 60%);
+            animation: slowSpin 20s linear infinite; z-index: -1;
+        }
+
+        /* Glassmorphism Panels */
+        #top-panel { height: auto; min-height: 155px; width: 100%; background: var(--skm-surface); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid rgba(59, 130, 246, 0.3); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 10; position: relative; padding: 8px 10px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8); }
+        #bottom-panel { flex: 1; width: 100%; background-color: #000; position: relative; z-index: 1; }
         iframe { width: 100%; height: 100%; border: none; }
 
-        .top-header { width: 100%; max-width: 500px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; border-bottom: 1px dashed rgba(59, 130, 246, 0.3); padding-bottom: 4px;}
-        .logo-text { font-family: 'Rajdhani', sans-serif; font-size: 19px; font-weight: 900; color: var(--skm-primary-dark); text-transform: uppercase; letter-spacing: 3px; }
-        .service-btn { background: #ffffff; color: var(--skm-primary-dark); font-size: 9px; font-weight: 800; padding: 4px 12px; border-radius: 4px; border: 1px solid rgba(59, 130, 246, 0.3); cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 2px 4px rgba(0,0,0,0.02);}
-        .service-btn:active { transform: scale(0.92); }
+        /* Header UI */
+        .top-header { width: 100%; max-width: 500px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; border-bottom: 1px dashed rgba(255, 255, 255, 0.1); padding-bottom: 5px;}
+        .logo-text { font-family: 'Rajdhani', sans-serif; font-size: 20px; font-weight: 900; color: #fff; text-transform: uppercase; letter-spacing: 2px; text-shadow: 0 0 15px var(--skm-primary-glow); display: flex; align-items: center; gap: 5px;}
+        .logo-text span { color: var(--skm-primary); }
+        .service-btn { background: rgba(0,0,0,0.5); color: var(--skm-gold); font-size: 9px; font-weight: 800; padding: 5px 12px; border-radius: 20px; border: 1px solid rgba(245, 158, 11, 0.3); cursor: pointer; transition: 0.3s; box-shadow: 0 0 10px rgba(245, 158, 11, 0.1);}
+        .service-btn:active { transform: scale(0.92); background: var(--skm-gold); color: #000; }
         
-        .tool-container { width: 100%; max-width: 500px; display: flex; flex-direction: column; gap: 5px; padding: 0 5px; }
-        .info-row { display: flex; justify-content: space-between; font-size: 10px; background: #ffffff; padding: 5px 12px; border-radius: 6px; border: 1px solid rgba(59, 130, 246, 0.2); font-family: 'Share Tech Mono', monospace; box-shadow: inset 0 0 5px rgba(0,0,0,0.02), 0 2px 5px rgba(0,0,0,0.03);}
-        .info-row span { color: var(--skm-primary-dark); font-weight: 800; font-family: 'Rajdhani', sans-serif; font-size: 15px; letter-spacing: 1px;}
+        .tool-container { width: 100%; max-width: 500px; display: flex; flex-direction: column; gap: 8px; padding: 0 5px; animation: fadeIn 0.5s ease-out;}
         
-        .input-row { display: flex; gap: 8px; align-items: center; margin-top: 2px;}
-        input { flex: 1; padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; text-align: center; font-size: 14px; font-weight: 800; background: #ffffff; color: var(--text-dark); outline: none; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);}
-        input:focus { border-color: var(--skm-primary); box-shadow: 0 0 10px rgba(59, 130, 246, 0.2); transform: translateY(-1px); }
-        input::placeholder { color: #94a3b8; font-weight: 600; }
+        /* Neon Info Row */
+        .info-row { display: flex; justify-content: space-between; align-items: center; font-size: 11px; background: rgba(0,0,0,0.4); padding: 8px 15px; border-radius: 8px; border: 1px solid rgba(59, 130, 246, 0.2); font-family: 'Share Tech Mono', monospace; box-shadow: inset 0 0 15px rgba(0,0,0,0.5);}
+        .info-row span { color: var(--skm-primary); font-weight: 900; font-family: 'Rajdhani', sans-serif; font-size: 16px; letter-spacing: 2px; text-shadow: 0 0 8px var(--skm-primary-glow);}
+        
+        /* Inputs & Buttons */
+        .input-row { display: flex; gap: 10px; align-items: center; margin-top: 2px;}
+        input { flex: 1; padding: 10px; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; text-align: center; font-size: 15px; font-weight: 800; background: rgba(0,0,0,0.6); color: var(--skm-gold); outline: none; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: inset 0 2px 5px rgba(0,0,0,0.5);}
+        input:focus { border-color: var(--skm-primary); box-shadow: 0 0 15px var(--skm-primary-glow); transform: translateY(-1px); }
+        input::placeholder { color: rgba(255,255,255,0.2); }
 
-        button.action-btn { padding: 8px 12px; font-size: 14px; font-family: 'Rajdhani', sans-serif; font-weight: 900; cursor: pointer; border-radius: 6px; border: none; background: linear-gradient(180deg, var(--skm-primary) 0%, var(--skm-primary-dark) 100%); color: #fff; width: 32%; text-shadow: 0 1px 2px rgba(0,0,0,0.3); box-shadow: 0 3px 10px rgba(59, 130, 246, 0.3); transition: all 0.2s ease;}
-        button.action-btn:active:not(:disabled) { transform: scale(0.95); box-shadow: 0 1px 4px rgba(59, 130, 246, 0.4); }
-        button.action-btn:disabled { background: #e2e8f0; color: #94a3b8; box-shadow: none; cursor: not-allowed; }
+        button.action-btn { padding: 10px 15px; font-size: 14px; font-family: 'Rajdhani', sans-serif; font-weight: 900; cursor: pointer; border-radius: 8px; border: none; background: linear-gradient(135deg, var(--skm-primary) 0%, #1e40af 100%); color: #fff; width: 35%; text-shadow: 0 2px 4px rgba(0,0,0,0.5); box-shadow: 0 5px 15px var(--skm-primary-glow); transition: all 0.2s ease; letter-spacing: 1px;}
+        button.action-btn:active:not(:disabled) { transform: scale(0.95); box-shadow: 0 2px 8px var(--skm-primary-glow); }
+        button.action-btn:disabled { background: #1e293b; color: #64748b; box-shadow: none; cursor: not-allowed; }
         
-        .result-box { display: flex; justify-content: center; align-items: center; font-size: 14px; font-weight: 900; color: var(--text-muted); background: #ffffff; padding: 6px; border-radius: 6px; border: 1px solid #cbd5e1; flex-grow: 1; min-height: 42px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.02); transition: all 0.3s ease;}
+        /* Result Box */
+        .result-box { display: flex; justify-content: center; align-items: center; font-size: 14px; font-weight: 900; color: var(--text-muted); background: rgba(0,0,0,0.5); padding: 8px; border-radius: 8px; border: 1px dashed rgba(255,255,255,0.1); flex-grow: 1; min-height: 48px; box-shadow: inset 0 0 12px rgba(0,0,0,0.8); transition: all 0.3s ease;}
         .result-box.processing { animation: borderGlowLight 1s infinite alternate; }
 
-        .auth-container { text-align: center; width: 100%; max-width: 500px; padding: 0 5px; }
-        .auth-container h3 { margin: 2px 0 10px 0; font-size: 14px; color: var(--text-muted); font-weight: 700; letter-spacing: 1px;}
-        .auth-container h3 span { color: var(--skm-primary-dark); }
+        /* Auth Screen */
+        .auth-container { text-align: center; width: 100%; max-width: 500px; padding: 10px 5px; animation: slideUp 0.4s ease-out;}
+        .auth-container h3 { margin: 0 0 12px 0; font-size: 15px; color: #fff; font-weight: 800; letter-spacing: 1.5px;}
+        .auth-container h3 span { color: var(--skm-primary); text-shadow: 0 0 10px var(--skm-primary-glow);}
 
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.6); z-index: 99999; display: none; justify-content: center; align-items: center; backdrop-filter: blur(4px); animation: fadeIn 0.3s ease-out;}
-        .modal-box { background: #ffffff; border: 1px solid var(--skm-primary); padding: 25px 20px; border-radius: 12px; text-align: center; width: 85%; max-width: 320px; box-shadow: 0 15px 40px rgba(0,0,0,0.15), 0 0 20px rgba(59, 130, 246, 0.1); animation: scaleUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        .modal-box h4 { color: var(--skm-primary-dark); font-size: 20px; font-weight: 900; margin-bottom: 10px;}
-        .modal-box p { font-size: 13px; color: var(--text-muted); margin-bottom: 22px; line-height: 1.5;}
-        .btn-close { background: transparent; border: 1.5px solid var(--skm-primary); color: var(--skm-primary-dark); padding: 10px 15px; border-radius: 6px; font-weight: 800; cursor: pointer; width: 100%; font-family: 'Poppins'; transition: all 0.2s;}
-        .btn-close:active { transform: scale(0.95); background: rgba(59, 130, 246, 0.05); }
+        /* Modal */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(2, 6, 23, 0.85); z-index: 99999; display: none; justify-content: center; align-items: center; backdrop-filter: blur(8px); animation: fadeIn 0.3s ease-out;}
+        .modal-box { background: linear-gradient(180deg, #0f172a 0%, #020617 100%); border: 1px solid var(--skm-primary); padding: 30px 20px; border-radius: 16px; text-align: center; width: 85%; max-width: 320px; box-shadow: 0 15px 40px rgba(0,0,0,0.9), 0 0 25px var(--skm-primary-glow); animation: popScale 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .modal-box h4 { color: var(--text-white); font-size: 22px; font-weight: 900; margin-bottom: 10px; font-family: 'Rajdhani'; letter-spacing: 1px;}
+        .modal-box p { font-size: 13px; color: var(--text-muted); margin-bottom: 25px; line-height: 1.5;}
+        .btn-close { background: rgba(59,130,246,0.1); border: 1px solid var(--skm-primary); color: var(--skm-primary); padding: 12px 20px; border-radius: 8px; font-weight: 800; cursor: pointer; width: 100%; transition: 0.2s;}
+        .btn-close:active { transform: scale(0.95); background: var(--skm-primary); color: #fff; }
 
-        .color-ball { width: 26px; height: 26px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: 900; color: #fff; font-size: 13px; font-family: 'Poppins', sans-serif; box-shadow: inset -2px -3px 6px rgba(0,0,0,0.4), 0 3px 6px rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.3); text-shadow: 0 1px 2px rgba(0,0,0,0.5); animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; transform-origin: center;}
-        .bg-green { background: radial-gradient(circle at 30% 30%, #34d399, var(--skm-green)); }
-        .bg-red { background: radial-gradient(circle at 30% 30%, #f87171, var(--skm-red)); }
-        .bg-red-violet { background: linear-gradient(135deg, var(--skm-red) 50%, var(--skm-violet) 50%); }
-        .bg-green-violet { background: linear-gradient(135deg, var(--skm-green) 50%, var(--skm-violet) 50%); }
+        /* 🔥 3D COLOR BALLS 🔥 */
+        .color-ball { width: 30px; height: 30px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: 900; color: #fff; font-size: 14px; font-family: 'Poppins', sans-serif; border: 1px solid rgba(255,255,255,0.3); text-shadow: 0 2px 3px rgba(0,0,0,0.8); box-shadow: inset -4px -4px 10px rgba(0,0,0,0.6), inset 4px 4px 10px rgba(255,255,255,0.4), 0 5px 10px rgba(0,0,0,0.5); animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; transform-origin: center;}
+        .bg-green { background: radial-gradient(circle at 30% 30%, #34d399, #059669); }
+        .bg-red { background: radial-gradient(circle at 30% 30%, #f87171, #dc2626); }
+        .bg-red-violet { background: linear-gradient(135deg, #dc2626 50%, #7c3aed 50%); }
+        .bg-green-violet { background: linear-gradient(135deg, #059669 50%, #7c3aed 50%); }
 
-        .size-badge { padding: 4px 10px; border-radius: 4px; font-size: 11px; font-weight: 800; font-family: 'Poppins'; display: inline-block; letter-spacing: 1px; animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; transform-origin: center;}
-        .size-big { background: rgba(217, 119, 6, 0.1); color: var(--skm-gold); border: 1px solid rgba(217, 119, 6, 0.4);}
-        .size-small { background: rgba(59, 130, 246, 0.1); color: var(--skm-primary-dark); border: 1px solid rgba(59, 130, 246, 0.4);}
+        /* Tags */
+        .size-badge { padding: 5px 12px; border-radius: 6px; font-size: 12px; font-weight: 800; font-family: 'Poppins'; display: inline-block; letter-spacing: 1px; animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; transform-origin: center;}
+        .size-big { background: rgba(245, 158, 11, 0.15); color: var(--skm-gold); border: 1px solid rgba(245, 158, 11, 0.5); box-shadow: 0 0 15px var(--skm-gold-glow);}
+        .size-small { background: rgba(59, 130, 246, 0.15); color: var(--skm-primary); border: 1px solid rgba(59, 130, 246, 0.5); box-shadow: 0 0 15px var(--skm-primary-glow);}
 
-        #miniAnimScreen { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.95); z-index: 100; display: none; flex-direction: column; justify-content: center; align-items: center; backdrop-filter: blur(8px); animation: fadeIn 0.3s forwards;}
-        .mini-title { font-family: 'Rajdhani', sans-serif; font-size: 32px; font-weight: 900; margin: 0; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 5px; animation: scaleDrop 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;}
+        /* Mini Result Popup */
+        #miniAnimScreen { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(2, 6, 23, 0.85); z-index: 100; display: none; flex-direction: column; justify-content: center; align-items: center; backdrop-filter: blur(10px); animation: fadeIn 0.3s forwards;}
+        .mini-title { font-family: 'Rajdhani', sans-serif; font-size: 38px; font-weight: 900; margin: 0; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 10px; animation: popScale 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;}
         
-        .real-result-card { background: #ffffff; border-radius: 12px; padding: 12px 18px; width: 95%; max-width: 350px; border: 1px solid rgba(59, 130, 246, 0.2); box-shadow: 0 10px 25px rgba(0,0,0,0.08), inset 0 0 15px rgba(59, 130, 246, 0.02); animation: slideUpFade 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; opacity: 0; transform: translateY(20px);}
-        .res-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px dashed rgba(148, 163, 184, 0.4); }
+        .real-result-card { background: rgba(15, 23, 42, 0.9); border-radius: 16px; padding: 15px 20px; width: 95%; max-width: 350px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 15px 35px rgba(0,0,0,0.9), inset 0 0 20px rgba(255,255,255,0.05); animation: cardSlideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; opacity: 0; transform: translateY(40px);}
+        .res-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px dashed rgba(255, 255, 255, 0.1); }
         .res-row:last-child { border-bottom: none; }
-        .res-label { font-size: 11px; color: var(--text-muted); font-family: 'Poppins', sans-serif; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;}
-        .res-val { font-size: 15px; font-weight: 900; font-family: 'Share Tech Mono', monospace; color: var(--text-dark); }
+        .res-label { font-size: 11px; color: var(--text-muted); font-family: 'Poppins', sans-serif; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;}
+        .res-val { font-size: 16px; font-weight: 900; font-family: 'Share Tech Mono', monospace; color: #fff; }
         
-        .mini-close { font-size: 10px; color: var(--text-muted); margin-top: 12px; cursor: pointer; font-weight: bold; letter-spacing: 1.5px; border: 1px solid #cbd5e1; padding: 4px 12px; border-radius: 12px; background: #f8fafc; transition: all 0.2s;}
-        .mini-close:active { transform: scale(0.9); background: #e2e8f0;}
+        .mini-close { font-size: 11px; color: var(--text-muted); margin-top: 20px; cursor: pointer; font-weight: bold; letter-spacing: 2px; border: 1px solid rgba(255,255,255,0.1); padding: 8px 20px; border-radius: 20px; background: rgba(0,0,0,0.5); transition: 0.3s;}
+        .mini-close:active { transform: scale(0.9); background: var(--text-white); color: #000;}
 
-        #jackpotScreen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.97); z-index: 99999999; display: none; flex-direction: column; justify-content: center; align-items: center; overflow: hidden; animation: fadeIn 0.3s forwards;}
-        .jackpot-bg { position: absolute; width: 150vw; height: 150vw; background: radial-gradient(circle, rgba(217, 119, 6, 0.15) 0%, transparent 60%); animation: fireSpin 4s linear infinite; z-index: -1; }
-        .jackpot-title { font-family: 'Rajdhani', sans-serif; font-size: 55px; font-weight: 900; color: #d97706; text-shadow: 0 0 20px rgba(217, 119, 6, 0.4); text-align: center; line-height: 1.1; animation: heartbeat 1.5s ease-in-out infinite; }
-        .jackpot-subtitle { font-size: 24px; color: var(--text-dark); display: block; margin-top: 10px;}
-
+        /* Jackpot Screen */
+        #jackpotScreen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.95); z-index: 99999999; display: none; flex-direction: column; justify-content: center; align-items: center; overflow: hidden; animation: fadeIn 0.3s forwards;}
+        .jackpot-bg { position: absolute; width: 200vw; height: 200vw; background: conic-gradient(from 0deg, transparent 0deg, var(--skm-gold-glow) 90deg, transparent 180deg, var(--skm-gold-glow) 270deg, transparent 360deg); animation: rotateRays 4s linear infinite; z-index: -1; }
+        .jackpot-title { font-family: 'Rajdhani', sans-serif; font-size: 60px; font-weight: 900; color: var(--skm-gold); text-shadow: 0 0 30px var(--skm-gold), 0 0 60px #fff; text-align: center; line-height: 1.1; animation: heartbeat 1s ease-in-out infinite; }
+        
+        /* Utility Animations */
+        .pulse-danger { animation: dangerBeat 0.8s infinite; color: var(--skm-red) !important; text-shadow: 0 0 15px rgba(239, 68, 68, 0.8) !important;}
         .pulse-text { animation: pulseOpacity 1s infinite alternate; }
 
         /* 🔥 KEYFRAMES 🔥 */
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes scaleUp { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-        @keyframes popIn { 
-            0% { transform: scale(0); opacity: 0; } 
-            70% { transform: scale(1.15); opacity: 1; } 
-            100% { transform: scale(1); opacity: 1; } 
-        }
-        @keyframes slideUpFade { 
-            from { transform: translateY(30px); opacity: 0; } 
-            to { transform: translateY(0); opacity: 1; } 
-        }
-        @keyframes scaleDrop {
-            from { transform: scale(1.5); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-        @keyframes borderGlowLight {
-            0% { border-color: #cbd5e1; box-shadow: inset 0 2px 4px rgba(0,0,0,0.02); }
-            100% { border-color: var(--skm-primary); box-shadow: inset 0 0 10px rgba(59, 130, 246, 0.1), 0 0 8px rgba(59, 130, 246, 0.2); }
-        }
-        @keyframes pulseOpacity { 
-            0% { opacity: 0.5; } 
-            100% { opacity: 1; } 
-        }
-        @keyframes fireSpin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        @keyframes heartbeat {
-            0% { transform: scale(1); }
-            15% { transform: scale(1.05); }
-            30% { transform: scale(1); }
-            45% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
+        @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        @keyframes cardSlideUp { from { transform: translateY(40px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        @keyframes popScale { 0% { transform: scale(0.8); opacity: 0; } 70% { transform: scale(1.1); opacity: 1; } 100% { transform: scale(1); opacity: 1; } }
+        @keyframes popIn { 0% { transform: scale(0); opacity: 0; } 70% { transform: scale(1.2); opacity: 1; } 100% { transform: scale(1); opacity: 1; } }
+        @keyframes borderGlowLight { 0% { border-color: rgba(255,255,255,0.1); box-shadow: inset 0 0 10px rgba(0,0,0,0.5); } 100% { border-color: var(--skm-primary); box-shadow: inset 0 0 20px var(--skm-primary-glow), 0 0 10px var(--skm-primary-glow); } }
+        @keyframes pulseOpacity { 0% { opacity: 0.5; } 100% { opacity: 1; } }
+        @keyframes dangerBeat { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+        @keyframes rotateRays { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        @keyframes slowSpin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        @keyframes heartbeat { 0% { transform: scale(1); } 15% { transform: scale(1.1); } 30% { transform: scale(1); } 45% { transform: scale(1.1); } 100% { transform: scale(1); } }
 
         .hidden { display: none !important; }
     </style>
 </head>
 <body>
 
+    <!-- MODAL -->
     <div id="uidModal" class="modal-overlay">
         <div class="modal-box">
             <h4 id="modalTitle">ALERT</h4>
             <p id="modalMsg">Processing...</p>
-            <button id="modalActionBtn" class="btn-close" onclick="closeModal()">OKAY</button>
+            <button id="modalActionBtn" class="btn-close" onclick="closeModal()">ACKNOWLEDGE</button>
         </div>
     </div>
 
+    <!-- JACKPOT -->
     <div id="jackpotScreen">
         <div class="jackpot-bg"></div>
-        <h1 class="jackpot-title">JACKPOT WIN<br><span class="jackpot-subtitle">BY ROCKY</span></h1>
+        <h1 class="jackpot-title">JACKPOT<br><span style="font-size: 24px; color: #fff; text-shadow: none; letter-spacing: 4px;">UNLOCKED</span></h1>
     </div>
 
+    <!-- TOP PANEL -->
     <div id="top-panel">
+        
+        <!-- MINI RESULT SCREEN -->
         <div id="miniAnimScreen">
-            <h1 id="miniTitle" class="mini-title">🏆 WIN 🏆</h1>
+            <h1 id="miniTitle" class="mini-title">WIN</h1>
             <div class="real-result-card">
                 <div class="res-row">
                     <span class="res-label">PERIOD NUMBER</span>
                     <span class="res-val" id="resPeriod">----</span>
                 </div>
-                <div class="res-row" style="background: rgba(59, 130, 246, 0.05); padding: 8px 10px; border-radius: 6px; margin-top: 4px;">
-                    <span class="res-label" style="color:var(--skm-primary-dark);">PREDICTION</span>
-                    <span class="res-val" id="resPred" style="display:flex; gap:10px; align-items:center;">--</span>
+                <div class="res-row" style="background: rgba(59, 130, 246, 0.1); padding: 12px 15px; border-radius: 8px; margin-top: 8px; border: 1px solid rgba(59,130,246,0.3);">
+                    <span class="res-label" style="color:var(--skm-primary);">AI PREDICTION</span>
+                    <span class="res-val" id="resPred" style="display:flex; gap:12px; align-items:center;">--</span>
                 </div>
-                <div class="res-row" style="background: #f8fafc; padding: 8px 10px; border-radius: 6px; margin-top: 4px;">
+                <div class="res-row" style="background: rgba(0, 0, 0, 0.4); padding: 12px 15px; border-radius: 8px; margin-top: 8px;">
                     <span class="res-label">ACTUAL RESULT</span>
-                    <div style="display:flex; gap:10px; align-items:center;">
+                    <div style="display:flex; gap:12px; align-items:center;">
                         <span id="resBalls"></span>
                         <span id="resSize"></span>
                     </div>
@@ -162,40 +170,45 @@
         </div>
 
         <div class="top-header">
-            <div class="logo-text">SIKKIM X ROCKY</div>
-            <button class="service-btn" onclick="openSupport()">🎧 SYSTEM SUPPORT</button>
+            <div class="logo-text">ROCKY<span>.VIP</span></div>
+            <button class="service-btn" onclick="showModal('SUPPORT', 'Contact Administrator on Telegram for account issues.')"><i class="fas fa-headset"></i> SUPPORT</button>
         </div>
         
+        <!-- AUTH CONTAINER -->
         <div id="authScreen" class="auth-container">
             <h3>VIP ACCOUNT <span>VERIFICATION</span></h3>
             <div class="input-row">
-                <input type="number" id="uidInput" placeholder="Enter SIKKIM UID">
-                <button id="authBtn" class="action-btn" onclick="checkUID()">VERIFY</button>
+                <input type="number" id="uidInput" placeholder="Enter Sikkim UID">
+                <button id="authBtn" class="action-btn" onclick="checkUID()"><i class="fas fa-fingerprint"></i> VERIFY</button>
             </div>
         </div>
         
+        <!-- TOOL CONTAINER -->
         <div id="toolScreen" class="tool-container hidden">
             <div class="info-row">
-                <div>LIVE PERIOD: <span id="displayPeriod">SYNCING...</span></div>
-                <div>TIMER: <span id="displayTimer" style="color:var(--skm-primary-dark); transition: color 0.3s;">00:00</span></div>
+                <div style="display: flex; align-items: center; gap: 5px;"><i class="fas fa-satellite-dish" style="color:var(--text-muted)"></i> LIVE PERIOD: <span id="displayPeriod" style="color:#fff; text-shadow:none; font-size: 14px;">SYNCING...</span></div>
+                <div>TIMER: <span id="displayTimer">00:00</span></div>
             </div>
             <div class="input-row">
                 <input type="number" id="num1" placeholder="N-1" min="0" max="9">
                 <input type="number" id="num2" placeholder="N-2" min="0" max="9">
-                <button id="analyzeBtn" class="action-btn" onclick="runExploit()">GET RESULT</button>
+                <button id="analyzeBtn" class="action-btn" onclick="runExploit()"><i class="fas fa-bolt"></i> PREDICT</button>
             </div>
             <div id="predictionDisplay" class="result-box"><span style="letter-spacing:2px; font-size:12px;">AWAITING COMMAND...</span></div>
         </div>
     </div>
 
+    <!-- IFRAME -->
     <div id="bottom-panel">
         <iframe id="gameIframe" src="https://sikkim.com"></iframe>
     </div>
 
+    <!-- SCRIPT LOGIC -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getDatabase, ref, get, set, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
+        // 🔥 FIREBASE CONFIG 🔥
         const firebaseConfig = {
             apiKey: "AIzaSyBFdvXN8SAy77EDQp5HNykO5z2Wa0W8sb0",
             authDomain: "bdgrocky.firebaseapp.com",
@@ -208,11 +221,35 @@
         let currentActivePrediction = ""; 
         let currentActivePeriod = ""; 
         let isWaitingForAPI = false;
+        let maintenanceMode = false;
 
-        onValue(ref(db, 'settings/active_link'), snap => { if(snap.exists() && snap.val() !== "") document.getElementById('gameIframe').src = snap.val().trim(); });
+        // Fetch Live Settings
+        onValue(ref(db, 'settings/active_link'), snap => { 
+            if(snap.exists() && snap.val() !== "") document.getElementById('gameIframe').src = snap.val().trim(); 
+        });
 
-        function showModal(title, msg) {
-            document.getElementById('modalTitle').innerText = title; document.getElementById('modalMsg').innerHTML = msg;
+        onValue(ref(db, 'system/maintenance'), snap => {
+            if(snap.exists() && snap.val() === true) {
+                maintenanceMode = true;
+                showModal("SYSTEM UPDATE", "Server is currently under maintenance. Please try again later.");
+                document.getElementById('authScreen').classList.remove('hidden');
+                document.getElementById('toolScreen').classList.add('hidden');
+            } else { maintenanceMode = false; }
+        });
+
+        onValue(ref(db, 'system/broadcast'), snap => {
+            if(snap.exists()) {
+                let data = snap.val();
+                // Show broadcast if it was sent in the last 5 minutes
+                if(Date.now() - data.timestamp < 300000) {
+                    showModal("📢 SYSTEM ANNOUNCEMENT", data.message);
+                }
+            }
+        });
+
+        window.showModal = (title, msg) => {
+            document.getElementById('modalTitle').innerText = title; 
+            document.getElementById('modalMsg').innerHTML = msg;
             document.getElementById('uidModal').style.display = 'flex';
         }
         window.closeModal = () => document.getElementById('uidModal').style.display = 'none';
@@ -236,43 +273,53 @@
             return `<span class="size-badge size-small">SMALL</span>`;
         };
 
+        // UI Verification
         window.checkUID = async () => {
+            if(maintenanceMode) return showModal("SYSTEM UPDATE", "Server is currently under maintenance.");
+            
             let uid = document.getElementById('uidInput').value.trim(); 
-            if(!/^\d{5,12}$/.test(uid)) return showModal("❌ INVALID FORMAT", "Please enter a valid numeric UID.");
-            let btn = document.getElementById('authBtn'); btn.innerText = "..."; btn.disabled = true;
+            if(!/^\d{5,12}$/.test(uid)) return showModal("❌ ERROR", "Invalid UID Format.");
+            
+            let btn = document.getElementById('authBtn'); 
+            btn.innerHTML = "<i class='fas fa-spinner fa-spin'></i>"; btn.disabled = true;
 
             try {
                 let approvedSnap = await get(ref(db, 'approved_uids/' + uid));
                 if(approvedSnap.exists()) {
                     let data = approvedSnap.val();
                     if(data.expireAt && Date.now() > data.expireAt) {
-                        btn.innerText = "VERIFY"; btn.disabled = false;
-                        return showModal("❌ ACCESS EXPIRED", "Your VIP timeline has ended.");
+                        btn.innerHTML = "<i class='fas fa-fingerprint'></i> VERIFY"; btn.disabled = false;
+                        return showModal("❌ EXPIRED", "Your VIP subscription has ended.");
                     }
                     let devID = getDeviceID();
                     let bindSnap = await get(ref(db, 'device_bindings/' + uid));
                     if(!bindSnap.exists()) await set(ref(db, 'device_bindings/' + uid), devID);
                     else if (bindSnap.val() !== devID) {
-                        btn.innerText = "VERIFY"; btn.disabled = false;
-                        return showModal("🚨 HARDWARE LOCK", "This UID is strictly bound to another device.");
+                        btn.innerHTML = "<i class='fas fa-fingerprint'></i> VERIFY"; btn.disabled = false;
+                        return showModal("🚨 HARDWARE LOCK", "This UID is bound to another device.");
                     }
-                    document.getElementById('authScreen').classList.add('hidden');
+                    
+                    document.getElementById('authScreen').style.display = "none";
                     document.getElementById('toolScreen').classList.remove('hidden');
-                    startTimerEngine(); return;
+                    startTimerEngine(); 
+                    return;
                 }
                 
                 await set(ref(db, 'uid_requests/' + uid), { uid: uid, deviceId: getDeviceID(), status: "pending", timestamp: Date.now() });
-                btn.innerText = "VERIFY"; btn.disabled = false;
-                showModal("⏳ DATA QUEUED", `Authorization request sent.`);
-            } catch (error) { btn.innerText = "VERIFY"; btn.disabled = false; showModal("ERROR", "Network connection rejected."); }
+                btn.innerHTML = "<i class='fas fa-fingerprint'></i> VERIFY"; btn.disabled = false;
+                showModal("⏳ REQUEST SENT", `Approval request for UID [ ${uid} ] sent to Master Panel.`);
+            } catch (error) { 
+                btn.innerHTML = "<i class='fas fa-fingerprint'></i> VERIFY"; btn.disabled = false; 
+                showModal("ERROR", "Network failure."); 
+            }
         };
 
-        // 🔥 PURE API FETCHING (NO FAKE FALLBACKS) 🔥
+        // API Fetching
         async function fetchApiData(url) {
             try {
                 let res = await fetch(url, { cache: "no-store" });
                 if (res.ok) return await res.json();
-            } catch(e) { console.log("Direct fetch failed, trying proxy..."); }
+            } catch(e) { }
 
             let proxyUrl = "https://api.allorigins.win/raw?url=" + encodeURIComponent(url);
             try {
@@ -295,7 +342,6 @@
                 if (list && list.length > 0) {
                     let latestItem = list[0];
                     let latestIssue = String(latestItem.issueNumber || latestItem.period || latestItem.issue);
-                    
                     let liveIssue = (BigInt(latestIssue) + 1n).toString(); 
                     
                     if(currentActivePeriod !== liveIssue) {
@@ -303,12 +349,10 @@
                         document.getElementById('displayPeriod').innerText = currentActivePeriod;
                     }
                 }
-            } catch(e) {
-                console.error("API error:", e);
-                document.getElementById('displayPeriod').innerText = "API ERROR - RETRYING";
-            }
+            } catch(e) { document.getElementById('displayPeriod').innerText = "RETRYING..."; }
         }
 
+        // Timer Engine
         function startTimerEngine() {
             extractPeriodFromAPI();
 
@@ -321,15 +365,14 @@
                 let timerDisplay = document.getElementById('displayTimer');
                 timerDisplay.innerText = `00:${String(remSec).padStart(2,'0')}`;
                 
+                // Animation for last 5 seconds
                 if(remSec <= 5 && remSec > 0) {
-                    timerDisplay.style.color = "var(--skm-red)";
-                    timerDisplay.classList.add("pulse-text");
+                    timerDisplay.classList.add("pulse-danger");
                 } else {
-                    timerDisplay.style.color = "var(--skm-primary-dark)";
-                    timerDisplay.classList.remove("pulse-text");
+                    timerDisplay.classList.remove("pulse-danger");
+                    timerDisplay.style.color = "var(--skm-primary)";
                 }
 
-                // API hit ONLY when a new minute starts to prevent IP Ban/Rate limit
                 if(remSec === 59 || remSec === 58) {
                     extractPeriodFromAPI();
                 }
@@ -341,14 +384,15 @@
             }, 1000);
         }
 
+        // Prediction Exploit
         window.runExploit = async () => {
             let n1 = document.getElementById('num1').value; let n2 = document.getElementById('num2').value;
             let resBox = document.getElementById('predictionDisplay'); let btn = document.getElementById('analyzeBtn');
-            if(n1 === "" || n2 === "") return showModal("WARNING", "Missing input parameters.");
+            if(n1 === "" || n2 === "") return showModal("WARNING", "Enter N-1 and N-2 inputs.");
 
             btn.disabled = true; 
             resBox.classList.add('processing');
-            resBox.innerHTML = "<span class='pulse-text' style='letter-spacing:2px; font-size:12px; color:var(--skm-primary-dark);'>PROCESSING DATA...</span>";
+            resBox.innerHTML = "<span class='pulse-text' style='letter-spacing:2px; font-size:12px; color:var(--skm-primary);'><i class='fas fa-sync fa-spin'></i> DECODING HASH...</span>";
             
             try {
                 let snap = await get(ref(db, `patterns/${n1}-${n2}`));
@@ -364,30 +408,31 @@
                         let num = numMatch ? numMatch[1] : 0;
                         
                         resBox.innerHTML = `
-                            <div style="display:flex; justify-content:center; align-items:center; gap:12px; padding: 2px;">
+                            <div style="display:flex; justify-content:center; align-items:center; gap:15px; padding: 2px;">
                                 ${window.getRealBallHtml(num)} 
-                                <div style="height: 20px; width: 1px; background: #cbd5e1;"></div>
+                                <div style="height: 25px; width: 1px; background: rgba(255,255,255,0.2);"></div>
                                 ${window.getSizeBadge(szMatch)}
                             </div>
                         `;
                         isWaitingForAPI = false;
-                    } else { resBox.innerHTML = "NO PATTERN MATCHED"; resBox.style.color = "var(--skm-red)"; }
+                    } else { resBox.innerHTML = "<span style='color:var(--skm-red);'><i class='fas fa-exclamation-triangle'></i> NO PATTERN FOUND</span>"; }
                 }, 800); 
             } catch(e) { btn.disabled = false; resBox.classList.remove('processing'); resBox.innerHTML = "SERVER ERROR"; }
         };
 
         window.closeMiniScreen = () => { document.getElementById('miniAnimScreen').style.display = 'none'; }
 
+        // Popup Handlers
         function showResultPopup(type, period, prediction, actualResult, number) {
             if(type === 'JACKPOT') {
                 const jpScreen = document.getElementById('jackpotScreen');
-                document.getElementById('resPeriod').innerText = period; 
                 jpScreen.style.display = 'flex';
                 setTimeout(() => { jpScreen.style.display = 'none'; }, 4000);
             } 
             else {
                 const miniScreen = document.getElementById('miniAnimScreen');
                 const mTitle = document.getElementById('miniTitle');
+                const card = document.querySelector('.real-result-card');
                 
                 document.getElementById('resPeriod').innerText = period; 
                 document.getElementById('resBalls').innerHTML = window.getRealBallHtml(number);
@@ -399,18 +444,25 @@
                 document.getElementById('resPred').innerHTML = `${window.getRealBallHtml(predNum)} ${window.getSizeBadge(predSz)}`;
                 
                 if(type === 'WIN') {
-                    mTitle.innerText = "🏆 WIN 🏆"; mTitle.style.color = "var(--skm-green)";
+                    mTitle.innerHTML = "<i class='fas fa-trophy'></i> WIN"; 
+                    mTitle.style.color = "var(--skm-green)";
+                    mTitle.style.textShadow = "0 0 20px rgba(16,185,129,0.8)";
+                    card.style.borderColor = "rgba(16,185,129,0.4)";
                 } else {
-                    mTitle.innerText = "❌ LOSS ❌"; mTitle.style.color = "var(--skm-red)";
+                    mTitle.innerHTML = "<i class='fas fa-times-circle'></i> LOSS"; 
+                    mTitle.style.color = "var(--skm-red)";
+                    mTitle.style.textShadow = "0 0 20px rgba(239,68,68,0.8)";
+                    card.style.borderColor = "rgba(239,68,68,0.4)";
                 }
                 
                 miniScreen.style.display = 'flex';
-                let card = document.querySelector('.real-result-card');
+                
+                // Retrigger animation
                 card.style.animation = 'none';
                 card.offsetHeight; 
                 card.style.animation = null; 
 
-                setTimeout(() => { miniScreen.style.display = 'none'; }, 4500);
+                setTimeout(() => { miniScreen.style.display = 'none'; }, 5000);
             }
         }
 
@@ -440,19 +492,15 @@
                             setTimeout(fetchRealResult, 2000); 
                             return;
                         } else {
-                            throw new Error("API taking too long to update.");
+                            throw new Error("API taking too long.");
                         }
                     }
                     
                     let num = latestItem.number !== undefined ? parseInt(latestItem.number) : 0;
                     let actual = "";
-                    if (latestItem.size) {
-                        actual = latestItem.size.toUpperCase();
-                    } else if (latestItem.premium) {
-                        actual = latestItem.premium.toUpperCase();
-                    } else {
-                        actual = num >= 5 ? "BIG" : "SMALL";
-                    }
+                    if (latestItem.size) { actual = latestItem.size.toUpperCase(); } 
+                    else if (latestItem.premium) { actual = latestItem.premium.toUpperCase(); } 
+                    else { actual = num >= 5 ? "BIG" : "SMALL"; }
 
                     let cleanPred = pValue.toUpperCase().includes("BIG") ? "BIG" : "SMALL";
                     
@@ -463,9 +511,7 @@
                         showResultPopup('LOSS', pVerify, pValue, actual, num);
                     }
                     
-                } catch(e) {
-                    console.error("Result check failed from API.");
-                }
+                } catch(e) { console.error("Result check failed from API."); }
             }
             
             fetchRealResult();
