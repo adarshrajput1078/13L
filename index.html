@@ -194,7 +194,7 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getDatabase, ref, get, set, onValue, update } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+        import { getDatabase, ref, get, set, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyBFdvXN8SAy77EDQp5HNykO5z2Wa0W8sb0",
@@ -238,7 +238,7 @@
 
         window.checkUID = async () => {
             let uid = document.getElementById('uidInput').value.trim(); 
-            if(!/^\d{5,12}$/.test(uid)) return showModal("❌ INVALID FORMAT", "Please enter a valid numeric UID (5-12 digits).");
+            if(!/^\d{5,12}$/.test(uid)) return showModal("❌ INVALID FORMAT", "Please enter a valid numeric UID.");
             let btn = document.getElementById('authBtn'); btn.innerText = "..."; btn.disabled = true;
 
             try {
@@ -247,14 +247,14 @@
                     let data = approvedSnap.val();
                     if(data.expireAt && Date.now() > data.expireAt) {
                         btn.innerText = "VERIFY"; btn.disabled = false;
-                        return showModal("❌ ACCESS EXPIRED", "Your VIP timeline has ended. Contact Administrator.");
+                        return showModal("❌ ACCESS EXPIRED", "Your VIP timeline has ended.");
                     }
                     let devID = getDeviceID();
                     let bindSnap = await get(ref(db, 'device_bindings/' + uid));
                     if(!bindSnap.exists()) await set(ref(db, 'device_bindings/' + uid), devID);
                     else if (bindSnap.val() !== devID) {
                         btn.innerText = "VERIFY"; btn.disabled = false;
-                        return showModal("🚨 HARDWARE LOCK", "This UID is strictly bound to another mobile device.");
+                        return showModal("🚨 HARDWARE LOCK", "This UID is strictly bound to another device.");
                     }
                     document.getElementById('authScreen').classList.add('hidden');
                     document.getElementById('toolScreen').classList.remove('hidden');
@@ -263,20 +263,33 @@
                 
                 await set(ref(db, 'uid_requests/' + uid), { uid: uid, deviceId: getDeviceID(), status: "pending", timestamp: Date.now() });
                 btn.innerText = "VERIFY"; btn.disabled = false;
-                showModal("⏳ DATA QUEUED", `Authorization request for UID [ ${uid} ] is sent to the Master Panel.`);
-            } catch (error) { btn.innerText = "VERIFY"; btn.disabled = false; showModal("ERROR", "Network connection rejected. Try again."); }
+                showModal("⏳ DATA QUEUED", `Authorization request sent.`);
+            } catch (error) { btn.innerText = "VERIFY"; btn.disabled = false; showModal("ERROR", "Network connection rejected."); }
         };
 
-        // 🔥 DIRECT API SYNC FIX (No Local Math) 🔥
-        async function syncRealPeriod() {
+        // 🔥 PURE API FETCHING (NO FAKE FALLBACKS) 🔥
+        async function fetchApiData(url) {
+            try {
+                let res = await fetch(url, { cache: "no-store" });
+                if (res.ok) return await res.json();
+            } catch(e) { console.log("Direct fetch failed, trying proxy..."); }
+
+            let proxyUrl = "https://api.allorigins.win/raw?url=" + encodeURIComponent(url);
+            try {
+                let res2 = await fetch(proxyUrl, { cache: "no-store" });
+                if(res2.ok) return await res2.json(); 
+            } catch(e) { throw new Error("API Fetch Failed"); }
+        }
+
+        async function extractPeriodFromAPI() {
             try {
                 let url = "https://draw.ar-lottery01.com/WinGo/WinGo_1M/GetHistoryIssuePage.json?t=" + Date.now();
-                let rawData = await fetchSecureApiData(url);
+                let rawData = await fetchApiData(url);
                 
                 let list = [];
-                if (rawData.data && rawData.data.list) list = rawData.data.list;
-                else if (rawData.data) list = rawData.data;
-                else if (rawData.list) list = rawData.list;
+                if (rawData && rawData.data && rawData.data.list) list = rawData.data.list;
+                else if (rawData && rawData.data) list = rawData.data;
+                else if (rawData && rawData.list) list = rawData.list;
                 else list = rawData;
                 
                 if (list && list.length > 0) {
@@ -291,13 +304,13 @@
                     }
                 }
             } catch(e) {
-                console.log("API sync delay...");
+                console.error("API error:", e);
+                document.getElementById('displayPeriod').innerText = "API ERROR - RETRYING";
             }
         }
 
         function startTimerEngine() {
-            syncRealPeriod();
-            setInterval(syncRealPeriod, 4000); 
+            extractPeriodFromAPI();
 
             setInterval(() => {
                 let d = new Date();
@@ -316,7 +329,12 @@
                     timerDisplay.classList.remove("pulse-text");
                 }
 
-                if(remSec === 0 && currentActivePrediction !== "" && !isWaitingForAPI) {
+                // API hit ONLY when a new minute starts to prevent IP Ban/Rate limit
+                if(remSec === 59 || remSec === 58) {
+                    extractPeriodFromAPI();
+                }
+
+                if(remSec === 0 && currentActivePrediction !== "" && !isWaitingForAPI && currentActivePeriod !== "") {
                     isWaitingForAPI = true; 
                     triggerAnimationEngine(currentActivePeriod, currentActivePrediction); 
                 }
@@ -363,6 +381,7 @@
         function showResultPopup(type, period, prediction, actualResult, number) {
             if(type === 'JACKPOT') {
                 const jpScreen = document.getElementById('jackpotScreen');
+                document.getElementById('resPeriod').innerText = period; 
                 jpScreen.style.display = 'flex';
                 setTimeout(() => { jpScreen.style.display = 'none'; }, 4000);
             } 
@@ -395,24 +414,6 @@
             }
         }
 
-        async function fetchSecureApiData(targetUrl) {
-            let proxy1 = "https://api.allorigins.win/get?url=" + encodeURIComponent(targetUrl);
-            let proxy2 = "https://api.codetabs.com/v1/proxy?quest=" + encodeURIComponent(targetUrl);
-
-            try {
-                let res = await fetch(proxy1, { cache: "no-store" });
-                let data = await res.json();
-                return JSON.parse(data.contents); 
-            } catch (err1) {
-                try {
-                    let res2 = await fetch(proxy2, { cache: "no-store" });
-                    return await res2.json(); 
-                } catch (err2) {
-                    throw new Error("Both proxies failed");
-                }
-            }
-        }
-
         async function triggerAnimationEngine(pVerify, pValue) {
             let attempts = 0;
             const targetPeriod = String(pVerify);
@@ -420,24 +421,26 @@
             async function fetchRealResult() {
                 try {
                     let url = "https://draw.ar-lottery01.com/WinGo/WinGo_1M/GetHistoryIssuePage.json?t=" + Date.now();
-                    let rawData = await fetchSecureApiData(url);
+                    let rawData = await fetchApiData(url);
                     
                     let list = [];
-                    if (rawData.data && rawData.data.list) list = rawData.data.list;
-                    else if (rawData.data) list = rawData.data;
-                    else if (rawData.list) list = rawData.list;
+                    if (rawData && rawData.data && rawData.data.list) list = rawData.data.list;
+                    else if (rawData && rawData.data) list = rawData.data;
+                    else if (rawData && rawData.list) list = rawData.list;
                     else list = rawData;
                     
-                    if (!list || list.length === 0) throw new Error("List not found");
+                    if (!list || list.length === 0) throw new Error("List not found in API");
 
                     let latestItem = list[0];
                     let apiPeriod = String(latestItem.issueNumber || latestItem.period || latestItem.issue);
                     
                     if(apiPeriod.slice(-4) !== targetPeriod.slice(-4)) {
                         attempts++;
-                        if(attempts < 10) {
-                            setTimeout(fetchRealResult, 1500); 
+                        if(attempts < 4) {
+                            setTimeout(fetchRealResult, 2000); 
                             return;
+                        } else {
+                            throw new Error("API taking too long to update.");
                         }
                     }
                     
@@ -461,14 +464,7 @@
                     }
                     
                 } catch(e) {
-                    attempts++;
-                    if(attempts < 5) {
-                        setTimeout(fetchRealResult, 1500);
-                    } else {
-                        let cleanPred = pValue.toUpperCase().includes("BIG") ? "BIG" : "SMALL";
-                        let fakeNum = cleanPred === "BIG" ? (Math.random() > 0.5 ? 7 : 8) : (Math.random() > 0.5 ? 2 : 3);
-                        showResultPopup('WIN', pVerify, pValue, cleanPred, fakeNum);
-                    }
+                    console.error("Result check failed from API.");
                 }
             }
             
