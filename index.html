@@ -67,8 +67,8 @@
         .auth-container h3 span { color: var(--skm-primary); text-shadow: 0 0 10px rgba(59,130,246,0.5);}
 
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 99999; display: none; justify-content: center; align-items: center; backdrop-filter: blur(10px);}
-        .modal-box { background: rgba(10, 17, 40, 0.95); border: 1px solid rgba(59, 130, 246, 0.4); padding: 30px 25px; border-radius: 16px; text-align: center; width: 90%; max-width: 340px; box-shadow: 0 20px 50px rgba(0,0,0,0.9), inset 0 0 30px rgba(59, 130, 246, 0.1); animation: modalEnter 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;}
-        @keyframes modalEnter { 0% { transform: scale(0.8) translateY(20px); opacity: 0;} 100% { transform: scale(1) translateY(0); opacity: 1;} }
+        .modal-box { background: rgba(10, 17, 40, 0.95); border: 1px solid rgba(59, 130, 246, 0.4); padding: 30px 25px; border-radius: 16px; text-align: center; width: 90%; max-width: 340px; box-shadow: 0 20px 50px rgba(0,0,0,0.9), inset 0 0 30px rgba(59, 130, 246, 0.1); animation: popIn 0.3s ease forwards;}
+        @keyframes popIn { 0% { transform: scale(0.9); opacity: 0;} 100% { transform: scale(1); opacity: 1;} }
         
         .modal-box h4 { color: var(--text-white); font-size: 22px; font-weight: 900; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px;}
         .modal-box p { font-size: 13px; color: #94a3b8; margin-bottom: 25px; line-height: 1.6;}
@@ -97,19 +97,44 @@
         .size-big { background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(0,0,0,0.8)); color: var(--skm-gold-light); border: 1px solid rgba(245, 158, 11, 0.5); text-shadow: 0 0 8px rgba(245, 158, 11, 0.5);}
         .size-small { background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(0,0,0,0.8)); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.5); text-shadow: 0 0 8px rgba(59, 130, 246, 0.5);}
 
-        /* 📜 CINEMATIC RESULT SLIP */
-        #miniAnimScreen { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(2, 6, 23, 0.96); z-index: 100; display: none; flex-direction: column; justify-content: center; align-items: center; backdrop-filter: blur(12px); animation: fadeIn 0.3s forwards;}
-        .mini-title { font-family: 'Rajdhani', sans-serif; font-size: 32px; font-weight: 900; margin: 0; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 8px; text-shadow: 0 10px 20px rgba(0,0,0,0.8);}
-        .real-result-card { background: rgba(10, 17, 40, 0.9); border-radius: 16px; padding: 15px 20px; width: 92%; max-width: 360px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 15px 35px rgba(0,0,0,0.8), inset 0 0 20px rgba(255,255,255,0.02); position: relative; overflow: hidden; animation: slideUpBounce 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;}
-        @keyframes slideUpBounce { 0% { transform: translateY(40px) scale(0.9); opacity: 0; } 100% { transform: translateY(0) scale(1); opacity: 1; } }
+        /* 📜 CINEMATIC RESULT SLIP WITH WIN/LOSS ANIMATIONS */
+        #miniAnimScreen { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(2, 6, 23, 0.96); z-index: 100; display: none; flex-direction: column; justify-content: center; align-items: center; backdrop-filter: blur(12px);}
+        .mini-title { font-family: 'Rajdhani', sans-serif; font-size: 32px; font-weight: 900; margin: 0; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 8px;}
         
-        .real-result-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, var(--skm-primary), var(--skm-gold), var(--skm-green)); }
+        .real-result-card { background: rgba(10, 17, 40, 0.9); border-radius: 16px; padding: 15px 20px; width: 92%; max-width: 360px; border: 2px solid rgba(255,255,255,0.1); position: relative; overflow: hidden; opacity: 0;}
+        
+        /* 🔥 WIN ANIMATION */
+        .theme-win { 
+            animation: winPop 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; 
+            border-color: var(--skm-green);
+            box-shadow: 0 15px 40px rgba(16, 185, 129, 0.4), inset 0 0 30px rgba(16, 185, 129, 0.15);
+        }
+        @keyframes winPop { 
+            0% { transform: scale(0.5) translateY(50px); opacity: 0; } 
+            70% { transform: scale(1.05) translateY(0); opacity: 1; } 
+            100% { transform: scale(1) translateY(0); opacity: 1; } 
+        }
+
+        /* ❌ LOSS ANIMATION (GLITCH / SHAKE) */
+        .theme-loss { 
+            animation: lossShake 0.5s ease-in-out forwards; 
+            border-color: var(--skm-red);
+            box-shadow: 0 15px 40px rgba(239, 68, 68, 0.4), inset 0 0 30px rgba(239, 68, 68, 0.15);
+        }
+        @keyframes lossShake { 
+            0% { transform: translateX(0) scale(0.9); opacity: 0;} 
+            20% { transform: translateX(-15px) scale(1); opacity: 1;} 
+            40% { transform: translateX(15px); } 
+            60% { transform: translateX(-10px); } 
+            80% { transform: translateX(10px); } 
+            100% { transform: translateX(0) scale(1); opacity: 1;} 
+        }
         
         .res-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px dashed rgba(255,255,255,0.05); }
         .res-row:last-child { border-bottom: none; }
         .res-label { font-size: 11px; color: #94a3b8; font-family: 'Poppins', sans-serif; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;}
         
-        .mini-close { font-size: 10px; color: #94a3b8; margin-top: 15px; cursor: pointer; font-weight: 800; border: 1px solid rgba(255,255,255,0.1); padding: 6px 16px; border-radius: 20px; background: rgba(0,0,0,0.5); text-transform: uppercase; transition: 0.3s;}
+        .mini-close { font-size: 10px; color: #94a3b8; margin-top: 15px; cursor: pointer; font-weight: 800; border: 1px solid rgba(255,255,255,0.1); padding: 6px 16px; border-radius: 20px; background: rgba(0,0,0,0.5); text-transform: uppercase; transition: 0.3s; animation: fadeIn 1s forwards; animation-delay: 0.5s; opacity: 0;}
         .mini-close:hover { background: rgba(255,255,255,0.1); color: #fff; }
 
         /* 🚨 BAN & MAINTENANCE SCREENS */
@@ -127,6 +152,7 @@
 </head>
 <body>
 
+    <!-- 🚫 TARGETED BAN SCREEN -->
     <div id="bannedScreen" class="hard-screen" style="background: radial-gradient(circle at center, #1a0505 0%, #000 100%);">
         <div style="font-size: 65px; margin-bottom: 10px; filter: drop-shadow(0 0 10px red);">🛑</div>
         <h1 style="color:var(--skm-red); font-size:38px; font-family:'Rajdhani'; text-shadow: 0 0 20px rgba(239,68,68,0.5); margin: 0;">ACCESS REVOKED</h1>
@@ -137,12 +163,14 @@
         </div>
     </div>
 
+    <!-- ⚙️ GLOBAL MAINTENANCE SCREEN -->
     <div id="maintenanceScreen" class="hard-screen" style="background: #020617; z-index: 999999; backdrop-filter: blur(10px);">
         <div style="font-size: 60px; margin-bottom: 15px; animation: fireSpin 6s linear infinite; filter: drop-shadow(0 0 15px rgba(252,195,51,0.5));">⚙️</div>
         <h1 style="color:var(--skm-gold); font-size:42px; font-family:'Rajdhani'; margin: 0; text-shadow: 0 0 20px rgba(252,195,51,0.3);">SYSTEM OFFLINE</h1>
         <p style="color:#94a3b8; font-size: 14px; margin-top: 15px; line-height: 1.6;">The prediction engine is undergoing a core upgrade.<br>We will be back online shortly.</p>
     </div>
 
+    <!-- STANDARD ALERT MODAL -->
     <div id="uidModal" class="modal-overlay">
         <div class="modal-box">
             <h4 id="modalTitle">SYSTEM ALERT</h4>
@@ -151,6 +179,7 @@
         </div>
     </div>
 
+    <!-- 👑 VIP DEPOSIT MODAL -->
     <div id="depositModal" class="modal-overlay">
         <div class="modal-box" style="border-color: var(--skm-gold); box-shadow: 0 15px 40px rgba(0,0,0,0.9), inset 0 0 20px rgba(245, 158, 11, 0.1);">
             <h4 style="color: var(--skm-gold); font-size: 22px;">👑 VIP UPGRADE</h4>
@@ -174,20 +203,22 @@
         <h1 class="jackpot-title">JACKPOT WIN<br><span style="font-size:24px; color:#fff; text-shadow: none;">BY ROCKY</span></h1>
     </div>
 
+    <!-- 📱 TOP PANEL -->
     <div id="top-panel">
         
+        <!-- 🔥 ANIMATED RESULT SLIP 🔥 -->
         <div id="miniAnimScreen">
             <h1 id="miniTitle" class="mini-title">🏆 WIN 🏆</h1>
-            <div class="real-result-card">
+            <div id="realCard" class="real-result-card">
                 <div class="res-row">
                     <span class="res-label">PERIOD SEQUENCE</span>
                     <span class="res-val" id="resPeriod" style="color: #94a3b8;">----</span>
                 </div>
-                <div class="res-row" style="background: rgba(59, 130, 246, 0.05); padding: 10px 12px; border-radius: 8px; margin-top: 6px;">
-                    <span class="res-label" style="color:var(--skm-primary);">AI PREDICTION</span>
+                <div class="res-row" style="background: rgba(255, 255, 255, 0.05); padding: 10px 12px; border-radius: 8px; margin-top: 6px;">
+                    <span class="res-label" style="color:var(--text-white);">AI PREDICTION</span>
                     <span class="res-val" id="resPred" style="display:flex; gap:10px; align-items:center;">--</span>
                 </div>
-                <div class="res-row" style="background: rgba(255, 255, 255, 0.03); padding: 10px 12px; border-radius: 8px; margin-top: 6px;">
+                <div class="res-row" style="background: rgba(0, 0, 0, 0.3); padding: 10px 12px; border-radius: 8px; margin-top: 6px; border: 1px solid rgba(255,255,255,0.05);">
                     <span class="res-label">ACTUAL OUTCOME</span>
                     <div style="display:flex; gap:10px; align-items:center;">
                         <span id="resBalls"></span><span id="resSize"></span>
@@ -202,6 +233,7 @@
             <span id="usageTracker" style="font-size: 10px; background: rgba(59,130,246,0.15); padding: 4px 8px; border-radius:6px; color:var(--skm-primary); font-weight:800; border: 1px solid rgba(59,130,246,0.3); display:none; letter-spacing: 0.5px;">PLAYS: 0/5</span>
         </div>
         
+        <!-- LOGIN CARD -->
         <div id="authScreen" class="auth-container">
             <h3>SECURE <span>VERIFICATION</span></h3>
             <div class="input-row" style="margin-top: 10px;">
@@ -210,6 +242,7 @@
             </div>
         </div>
         
+        <!-- WIDGET CARD -->
         <div id="toolScreen" class="tool-container hidden">
             <div class="info-row">
                 <div>LIVE NODE: <span id="displayPeriod">SYNCING...</span></div>
@@ -220,6 +253,7 @@
                 <input type="number" id="num2" placeholder="N-2" min="0" max="9">
                 <button id="analyzeBtn" class="action-btn" onclick="runExploit()">GET RESULT</button>
             </div>
+            <!-- Animated Scanner Box -->
             <div id="predictionDisplay" class="result-box">
                 <div class="scanner-line"></div>
                 <span id="predText" style="letter-spacing:2px; font-size:12px;">AWAITING COMMAND...</span>
@@ -227,10 +261,12 @@
         </div>
     </div>
 
+    <!-- GAME IFRAME -->
     <div id="bottom-panel">
         <iframe id="gameIframe" src="https://sikkim.com"></iframe>
     </div>
 
+    <!-- ⚡ SYSTEM LOGIC ⚡ -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getDatabase, ref, get, set, update, increment, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
@@ -344,13 +380,13 @@
             if(!userData.is_premium && userData.predictions_used >= 5) { document.getElementById('depositModal').style.display = 'flex'; return; }
 
             btn.disabled = true; 
-            resBox.classList.add('analyzing'); // Starts Scanner Animation
+            resBox.classList.add('analyzing'); 
             predText.innerHTML = "INTERCEPTING DATA...";
             
             try {
                 let snap = await get(ref(db, `patterns/${n1}-${n2}`));
                 setTimeout(async () => {
-                    btn.disabled = false; resBox.classList.remove('analyzing'); // Stop Scanner
+                    btn.disabled = false; resBox.classList.remove('analyzing'); 
                     
                     if(snap.exists() && !snap.val().includes("UNSET")) {
                         currentActivePrediction = snap.val(); 
@@ -363,7 +399,7 @@
                         if(!userData.is_premium) await update(ref(db, 'approved_uids/' + currentUid), { predictions_used: increment(1) });
                         isWaitingForAPI = false;
                     } else { predText.innerHTML = "NO PATTERN"; predText.style.color = "var(--skm-red)"; }
-                }, 1200); // 1.2s delay for cool scanning effect
+                }, 1200); 
             } catch(e) { btn.disabled = false; resBox.classList.remove('analyzing'); predText.innerHTML = "SERVER ERROR"; }
         };
 
@@ -398,25 +434,46 @@
             }, 1000);
         }
 
-        window.closeMiniScreen = () => { document.getElementById('miniAnimScreen').style.display = 'none'; }
+        window.closeMiniScreen = () => { 
+            document.getElementById('miniAnimScreen').style.display = 'none'; 
+            document.getElementById('realCard').className = "real-result-card"; // Reset Classes
+        }
 
+        // 🔥 ANIMATED RESULT FUNCTION 🔥
         function showResultPopup(type, period, prediction, actualResult, number) {
             if(type === 'JACKPOT') {
                 const jpScreen = document.getElementById('jackpotScreen'); jpScreen.style.display = 'flex'; setTimeout(() => { jpScreen.style.display = 'none'; }, 3000);
             } else {
-                const miniScreen = document.getElementById('miniAnimScreen'); const mTitle = document.getElementById('miniTitle');
+                const miniScreen = document.getElementById('miniAnimScreen'); 
+                const mTitle = document.getElementById('miniTitle');
+                const card = document.getElementById('realCard');
+                
                 document.getElementById('resPeriod').innerText = period; 
-                document.getElementById('resBalls').innerHTML = window.getRealBallHtml(number); document.getElementById('resSize').innerHTML = window.getSizeBadge(actualResult);
+                document.getElementById('resBalls').innerHTML = window.getRealBallHtml(number); 
+                document.getElementById('resSize').innerHTML = window.getSizeBadge(actualResult);
                 
                 let predSz = prediction.split(' ')[0]; let predNum = (prediction.match(/\[(\d+)\]/) || [])[1] || 0;
                 document.getElementById('resPred').innerHTML = `${window.getRealBallHtml(predNum)} ${window.getSizeBadge(predSz)}`;
                 
-                if(type === 'WIN') { mTitle.innerText = "🏆 WIN 🏆"; mTitle.style.color = "var(--skm-green)"; mTitle.style.textShadow = "0 0 20px rgba(16, 185, 129, 0.6)"; } 
-                else { mTitle.innerText = "❌ LOSS ❌"; mTitle.style.color = "var(--skm-red)"; mTitle.style.textShadow = "0 0 20px rgba(239, 68, 68, 0.6)"; }
+                // RESET PREVIOUS ANIMATION CLASSES
+                card.className = "real-result-card";
                 
-                miniScreen.style.display = 'flex'; setTimeout(() => { miniScreen.style.display = 'none'; }, 4500);
+                // APPLY NEW ANIMATIONS
+                if(type === 'WIN') { 
+                    mTitle.innerText = "🏆 MEGA WIN 🏆"; 
+                    mTitle.style.color = "var(--skm-green)"; 
+                    mTitle.style.textShadow = "0 0 25px rgba(16, 185, 129, 0.8)"; 
+                    card.classList.add('theme-win'); // Win Bounce
+                } 
+                else { 
+                    mTitle.innerText = "❌ PREDICTION FAILED ❌"; 
+                    mTitle.style.color = "var(--skm-red)"; 
+                    mTitle.style.textShadow = "0 0 25px rgba(239, 68, 68, 0.8)"; 
+                    card.classList.add('theme-loss'); // Loss Shake
+                }
+                
+                miniScreen.style.display = 'flex'; 
             }
-            // Reset Box
             document.getElementById('predText').innerHTML = "<span style='letter-spacing:2px; font-size:12px;'>AWAITING COMMAND...</span>";
         }
 
