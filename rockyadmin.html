@@ -3,10 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ROCKY CORE | ADMIN</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Rajdhani:wght@700;900&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
+    <title>ROCKY CORE | ADMIN PANEL</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Rajdhani:wght@600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        :root { --bg-dark: #0f172a; --bg-panel: #1e293b; --bg-sidebar: #0f172a; --primary: #3b82f6; --primary-glow: rgba(59, 130, 246, 0.15); --gold: #eab308; --green: #10b981; --red: #ef4444; --cyan: #06b6d4; --text-main: #f8fafc; --text-muted: #94a3b8; --border: #334155; }
+        /* 🎨 V3.2 BULLETPROOF SAAS THEME */
+        :root { 
+            --bg-dark: #040914; --bg-panel: #0a1128; --bg-sidebar: #050b14;
+            --primary: #2563eb; --primary-hover: #1d4ed8; --primary-glow: rgba(37, 99, 235, 0.15);
+            --gold: #eab308; --green: #10b981; --red: #ef4444; --cyan: #06b6d4;
+            --text-main: #f8fafc; --text-muted: #94a3b8; --border: #1e293b;
+        }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Inter', sans-serif; background: var(--bg-dark); color: var(--text-main); height: 100vh; display: flex; overflow: hidden; }
         
@@ -14,49 +20,53 @@
         .toast { padding: 15px 22px; border-radius: 10px; color: #fff; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 12px; box-shadow: 0 15px 35px rgba(0,0,0,0.6); animation: slideIn 0.4s forwards; backdrop-filter: blur(10px); }
         .toast.success { background: rgba(16, 185, 129, 0.9); border: 1px solid #34d399; }
         .toast.error { background: rgba(239, 68, 68, 0.9); border: 1px solid #f87171; }
+        .toast.warning { background: rgba(234, 179, 8, 0.9); border: 1px solid #fcd34d; color: #000; }
         @keyframes slideIn { from { transform: translateX(120%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
         @keyframes fadeOut { to { opacity: 0; transform: translateY(-15px); } }
 
-        .login-wrapper { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-dark); display: flex; justify-content: center; align-items: center; z-index: 9999; padding: 20px;}
-        .login-card { background: var(--bg-panel); border: 1px solid var(--border); padding: 40px 30px; border-radius: 20px; width: 100%; max-width: 420px; text-align: center; box-shadow: 0 25px 60px rgba(0,0,0,0.9);}
+        .login-wrapper { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, #0a1128 0%, #040914 100%); display: flex; justify-content: center; align-items: center; z-index: 9999; padding: 20px;}
+        .login-card { background: rgba(10, 17, 40, 0.8); border: 1px solid var(--primary-glow); padding: 40px 30px; border-radius: 20px; width: 100%; max-width: 420px; text-align: center; box-shadow: 0 25px 60px rgba(0,0,0,0.9), inset 0 0 30px var(--primary-glow); backdrop-filter: blur(15px);}
         .login-card h2 { color: var(--text-main); font-family: 'Rajdhani', sans-serif; font-size: 36px; letter-spacing: 2px; margin-bottom: 5px;}
-        .login-card p { color: var(--text-muted); font-size: 12px; margin-bottom: 30px; letter-spacing: 2px; text-transform: uppercase;}
-        .login-input { width: 100%; padding: 16px; background: rgba(0,0,0,0.5); border: 1px solid var(--border); color: #fff; border-radius: 10px; outline: none; text-align: center; font-family: 'JetBrains Mono'; font-size: 16px; letter-spacing: 4px; margin-bottom: 20px; transition: 0.3s; }
+        .login-card p { color: var(--cyan); font-family: 'JetBrains Mono'; font-size: 12px; margin-bottom: 30px; letter-spacing: 3px;}
+        .login-input { width: 100%; padding: 16px; background: rgba(0,0,0,0.5); border: 1px solid var(--border); color: #fff; border-radius: 10px; outline: none; text-align: center; font-family: 'JetBrains Mono'; font-size: 16px; letter-spacing: 4px; margin-bottom: 20px;}
         .login-input:focus { border-color: var(--primary); box-shadow: 0 0 15px var(--primary-glow); }
         
-        .sidebar { width: 260px; background: var(--bg-sidebar); border-right: 1px solid var(--border); display: flex; flex-direction: column; padding: 25px 0; transition: 0.3s ease; z-index: 100;}
+        .sidebar { width: 260px; background: var(--bg-sidebar); border-right: 1px solid var(--border); display: flex; flex-direction: column; padding: 25px 0; transition: 0.3s ease; z-index: 100; box-shadow: 5px 0 25px rgba(0,0,0,0.5);}
         .brand { font-family: 'Rajdhani', sans-serif; font-size: 28px; font-weight: 900; color: var(--text-main); letter-spacing: 2px; padding: 0 25px 25px 25px; border-bottom: 1px solid rgba(255,255,255,0.05); margin-bottom: 20px;}
         .brand span { color: var(--primary); }
         .nav-item { padding: 14px 25px; margin: 4px 15px; border-radius: 10px; cursor: pointer; color: var(--text-muted); font-weight: 600; font-size: 13px; transition: 0.2s; display: flex; align-items: center;}
         .nav-item:hover { background: rgba(255,255,255,0.02); color: var(--text-main); }
         .nav-item.active { background: var(--primary-glow); color: var(--primary); border: 1px solid rgba(37, 99, 235, 0.3); }
 
-        .main-content { flex-grow: 1; display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
-        .top-header { display: flex; justify-content: space-between; align-items: center; padding: 15px 30px; background: var(--bg-panel); border-bottom: 1px solid var(--border); }
-        .search-bar { background: rgba(0,0,0,0.3); border: 1px solid var(--border); padding: 12px 20px; border-radius: 10px; color: var(--text-main); width: 100%; max-width: 350px; font-size: 13px; outline: none; font-family: 'JetBrains Mono';}
-        .mobile-menu-btn { display: none; background: transparent; border: 1px solid var(--border); color: #fff; padding: 10px 15px; border-radius: 8px; cursor: pointer;}
+        .main-content { flex-grow: 1; display: flex; flex-direction: column; height: 100vh; overflow: hidden; background: var(--bg-dark); }
+        .top-header { display: flex; justify-content: space-between; align-items: center; padding: 15px 30px; background: rgba(10, 17, 40, 0.8); border-bottom: 1px solid var(--border); backdrop-filter: blur(10px);}
+        .search-bar { background: rgba(0,0,0,0.5); border: 1px solid var(--border); padding: 12px 20px; border-radius: 10px; color: var(--text-main); width: 100%; max-width: 350px; font-size: 13px; outline: none; font-family: 'JetBrains Mono';}
+        .search-bar:focus { border-color: var(--primary); }
+        .mobile-menu-btn { display: none; background: transparent; border: 1px solid var(--border); color: #fff; padding: 10px 15px; border-radius: 8px; cursor: pointer; font-family: 'JetBrains Mono';}
 
         .view-section { padding: 30px; display: none; overflow-y: auto; height: calc(100vh - 75px); }
-        .view-section.active { display: block; animation: fadeIn 0.3s ease forwards; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .view-section.active { display: block; animation: fadeIn 0.4s ease forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
 
         .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-bottom: 30px;}
-        .stat-card { background: var(--bg-panel); border: 1px solid var(--border); padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+        .stat-card { background: linear-gradient(145deg, var(--bg-panel) 0%, rgba(0,0,0,0.5) 100%); border: 1px solid var(--border); padding: 25px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); position: relative; overflow: hidden;}
+        .stat-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--primary); }
         .stat-title { font-size: 12px; color: var(--text-muted); font-weight: 700; text-transform: uppercase; letter-spacing: 1px;}
-        .stat-value { font-size: 32px; font-family: 'JetBrains Mono', monospace; font-weight: 800; margin-top: 10px; color: var(--text-main);}
+        .stat-value { font-size: 38px; font-family: 'JetBrains Mono', monospace; font-weight: 800; margin-top: 10px; color: var(--text-main);}
 
         .tab-container { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 15px;}
         .tab-btn { background: transparent; border: 1px solid var(--border); color: var(--text-muted); padding: 10px 20px; font-size: 13px; font-weight: 600; cursor: pointer; border-radius: 8px; transition: 0.3s; flex-grow: 1; text-align: center;}
-        .tab-btn.active { background: var(--primary-glow); border-color: var(--primary); color: var(--primary); }
+        .tab-btn.active { background: var(--primary-glow); border-color: var(--primary); color: var(--primary); box-shadow: inset 0 0 15px rgba(37, 99, 235, 0.1); }
 
-        .table-card { background: var(--bg-panel); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.2);}
-        .table-wrap { width: 100%; overflow-x: auto; }
+        .table-card { background: var(--bg-panel); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.4);}
+        .table-wrap { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
         table { width: 100%; min-width: 800px; border-collapse: collapse; font-size: 13px; text-align: left;}
-        th { background: rgba(0,0,0,0.2); padding: 16px 20px; color: var(--text-muted); font-weight: 700; text-transform: uppercase; border-bottom: 1px solid var(--border); white-space: nowrap;}
+        th { background: rgba(0,0,0,0.4); padding: 16px 20px; color: var(--text-muted); font-weight: 700; text-transform: uppercase; border-bottom: 1px solid rgba(255,255,255,0.05); white-space: nowrap;}
         td { border-bottom: 1px dashed rgba(255,255,255,0.05); padding: 16px 20px; vertical-align: middle; color: var(--text-main);}
+        tr:hover td { background: rgba(255,255,255,0.02); }
 
-        .uid-col { font-family: 'JetBrains Mono'; font-weight: 800; font-size: 15px; color: var(--primary);}
-        .empty-row td { text-align: center; padding: 40px; color: var(--text-muted); font-style: italic;}
+        .uid-col { font-family: 'JetBrains Mono'; font-weight: 800; font-size: 15px; color: var(--cyan);}
+        .empty-row td { text-align: center; padding: 40px; color: var(--text-muted); font-weight: 500; font-family: 'JetBrains Mono';}
 
         button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; outline: none; transition: 0.2s; }
         button:active { transform: scale(0.95); }
@@ -72,17 +82,28 @@
         .tag-vip { background: rgba(234, 179, 8, 0.15); color: var(--gold); border: 1px solid rgba(234, 179, 8, 0.4);}
         .tag-trial { background: var(--primary-glow); color: var(--primary); border: 1px solid rgba(37, 99, 235, 0.4);}
 
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 99999; display: none; justify-content: center; align-items: center; padding: 15px;}
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 99999; display: none; justify-content: center; align-items: center; backdrop-filter: blur(8px); padding: 15px;}
         .modal-box { background: var(--bg-panel); border: 1px solid var(--border); padding: 30px; border-radius: 16px; width: 100%; max-width: 420px;}
-        .modal-box input { width: 100%; padding: 14px; background: rgba(0,0,0,0.5); border: 1px solid var(--border); color: #fff; border-radius: 8px; margin: 15px 0; outline: none;}
+        .modal-box input, .modal-box select { width: 100%; padding: 14px; background: rgba(0,0,0,0.5); border: 1px solid var(--border); color: #fff; border-radius: 8px; margin: 15px 0; outline: none; font-family: 'Inter';}
         .deposit-img { width: 80px; height: 50px; object-fit: cover; border-radius: 6px; cursor: pointer; border: 1px solid rgba(255,255,255,0.1); transition: 0.3s;}
         
         .hidden { display: none !important; }
+
+        /* MESSAGING BOXES */
+        .msg-grid { display: grid; grid-template-columns: 1fr; gap: 25px; max-width: 600px;}
+        .msg-box { background: rgba(0,0,0,0.3); padding: 25px; border-radius: 16px; border: 1px solid var(--border); box-shadow: inset 0 0 20px rgba(0,0,0,0.5);}
+        .msg-input, .msg-select { width: 100%; padding: 12px; background: var(--bg-dark); border: 1px solid var(--border); color: #fff; border-radius: 6px; margin: 10px 0; outline: none;}
+
         @media screen and (max-width: 768px) { 
-            body { flex-direction: column; } .sidebar { position: fixed; left: -280px; height: 100%; width: 280px; z-index: 1000;}
-            .sidebar.open { left: 0; } .mobile-menu-btn { display: block; } .top-header { flex-direction: row-reverse; gap: 15px;}
+            body { flex-direction: column; }
+            .sidebar { position: fixed; left: -280px; height: 100%; width: 280px; box-shadow: 15px 0 40px rgba(0,0,0,0.9); z-index: 1000;}
+            .sidebar.open { left: 0; }
+            .mobile-menu-btn { display: block; }
+            .top-header { padding: 15px 20px; flex-direction: row-reverse;}
+            .view-section { padding: 15px; height: calc(100vh - 75px); }
+            .stats-grid { grid-template-columns: 1fr; }
         }
-        ::-webkit-scrollbar { width: 8px; height: 8px;} ::-webkit-scrollbar-track { background: rgba(0,0,0,0.3); } ::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px;}
+        ::-webkit-scrollbar { width: 8px; height: 8px;} ::-webkit-scrollbar-track { background: rgba(0,0,0,0.3); } ::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; border: 2px solid var(--bg-dark);}
     </style>
 </head>
 <body>
@@ -90,71 +111,78 @@
     <div id="toast-container"></div>
 
     <div id="rejectModal" class="modal-overlay">
-        <div class="modal-box">
-            <h3 style="color: var(--red); margin-bottom: 5px;">Reject Proof</h3>
-            <input type="text" id="rejectReasonInput" placeholder="Enter rejection reason...">
+        <div class="modal-box" style="border-color: var(--red); box-shadow: 0 20px 50px rgba(239,68,68,0.2);">
+            <h3 style="color: var(--red); margin-bottom: 5px; font-family:'Rajdhani'; font-size: 24px;">REJECT PROOF</h3>
+            <p style="font-size: 13px; color: var(--text-muted);">Specify the exact reason for deposit rejection.</p>
+            <input type="text" id="rejectReasonInput" placeholder="E.g. Fake screenshot, low amount...">
             <div style="display: flex; gap: 12px; margin-top: 10px;">
-                <button class="btn btn-danger" style="flex: 1; padding: 12px;" onclick="confirmReject(this)">CONFIRM</button>
+                <button id="btn-confirm-reject" class="btn btn-danger" style="flex: 1; padding: 12px;" onclick="confirmReject(this)">CONFIRM REJECT</button>
                 <button class="btn" style="flex: 1; border: 1px solid var(--border); color:var(--text-muted); background:transparent; padding: 12px;" onclick="document.getElementById('rejectModal').style.display='none'">CANCEL</button>
             </div>
         </div>
     </div>
 
     <div id="imgModal" class="modal-overlay" style="flex-direction: column;" onclick="this.style.display='none'">
-        <img id="fullImg" src="" style="max-width:90%; max-height:85vh; border-radius:12px;">
+        <img id="fullImg" src="" style="max-width:90%; max-height:85vh; border-radius:12px; box-shadow: 0 20px 60px rgba(0,0,0,0.9); border: 2px solid rgba(255,255,255,0.1);">
+        <p style="color: var(--text-muted); margin-top: 20px; font-size: 13px; font-weight: 600; letter-spacing: 1px;">TAP ANYWHERE TO CLOSE</p>
     </div>
 
     <div class="login-wrapper" id="loginBox">
         <div class="login-card">
             <h2>ROCKY CORE</h2>
-            <p>STAFF ADMINISTRATION</p>
-            <input type="password" id="pass" class="login-input" placeholder="ENTER STAFF PIN">
-            <button class="btn btn-primary" style="width: 100%; padding: 16px;" onclick="login()">LOGIN</button>
+            <p>ADMINISTRATION PANEL</p>
+            <input type="password" id="pass" class="login-input" placeholder="ENTER ADMIN PIN">
+            <button class="btn btn-primary" style="width: 100%; padding: 16px; font-size: 15px; letter-spacing: 2px;" onclick="login()">AUTHORIZE SYSTEM</button>
         </div>
     </div>
 
     <div class="sidebar hidden" id="sidebar">
         <div class="brand">ROCKY <span>CORE</span></div>
-        <div class="nav-item active" onclick="switchView('v-dashboard', this); toggleMobileMenu();">📊 Dashboard</div>
-        <div class="nav-item" onclick="switchView('v-requests', this); toggleMobileMenu();">⚡ Pending Access</div>
-        <div class="nav-item" onclick="switchView('v-deposits', this); toggleMobileMenu();">💰 Deposit Proofs</div>
-        <div class="nav-item" onclick="switchView('v-users', this); toggleMobileMenu();">🛡️ User Database</div>
+        <div class="nav-item active" onclick="switchView('v-dashboard', this); toggleMobileMenu();">📊 Control Center</div>
+        <div class="nav-item" onclick="switchView('v-requests', this); toggleMobileMenu();">⚡ Access Requests</div>
+        <div class="nav-item" onclick="switchView('v-deposits', this); toggleMobileMenu();">💰 Financial Approvals</div>
+        <div class="nav-item" onclick="switchView('v-users', this); toggleMobileMenu();">🛡️ Secure Database</div>
         <div class="nav-item" onclick="switchView('v-matrix', this); toggleMobileMenu();">🔮 Prediction Matrix</div>
+        <div class="nav-item" style="color: var(--green);" onclick="switchView('v-messaging', this); toggleMobileMenu();">📩 Terminal Comm</div>
     </div>
 
     <div class="main-content hidden" id="mainContent">
         <header class="top-header">
             <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰ MENU</button>
-            <input type="text" class="search-bar" id="searchUID" placeholder="🔍 Search Database..." onkeyup="searchGlobal()">
+            <input type="text" class="search-bar" id="searchUID" placeholder="🔍 Global UID Search..." onkeyup="searchGlobal()">
         </header>
 
         <div id="v-dashboard" class="view-section active">
-            <h2 style="margin-bottom: 25px;">Platform Overview</h2>
-            <div class="stats-grid">
-                <div class="stat-card"><div class="stat-title">SIKKIM ACTIVE USERS</div><div class="stat-value" id="s-sikkim" style="color: var(--gold);">0</div></div>
-                <div class="stat-card"><div class="stat-title">13L ACTIVE USERS</div><div class="stat-value" id="s-13l" style="color: var(--cyan);">0</div></div>
-            </div>
+            <h2 style="margin-bottom: 25px; font-family:'Rajdhani'; letter-spacing: 1px;">Platform Intel</h2>
             
-            <div class="table-card" style="padding: 25px; background: rgba(0,0,0,0.2);">
-                <h3 style="margin-bottom: 15px; color: var(--primary);">Manual User Override</h3>
+            <div class="stats-grid">
+                <div class="stat-card" style="border-left-color: var(--gold);"><div class="stat-title" style="color: var(--gold);">SIKKIM ACTIVE USERS</div><div class="stat-value" id="s-sikkim" style="color: var(--gold);">0</div></div>
+                <div class="stat-card" style="border-left-color: var(--cyan);"><div class="stat-title" style="color: var(--cyan);">13L ACTIVE USERS</div><div class="stat-value" id="s-13l" style="color: var(--cyan);">0</div></div>
+            </div>
+
+            <div class="table-card" style="padding: 25px; background: rgba(0,0,0,0.3);">
+                <h3 style="margin-bottom: 15px; color: var(--primary); font-family:'Rajdhani'; font-size:20px;">Manual Node Override</h3>
                 <div style="display: flex; gap: 15px; flex-wrap: wrap;">
-                    <select id="manualDbSelect" class="search-bar" style="width:150px; margin:0;"><option value="sikkim">SIKKIM DB</option><option value="13l">13L DB</option></select>
-                    <input type="text" id="manualUid" placeholder="Target UID" style="padding: 12px 15px; width: 100%; max-width: 200px; background: rgba(0,0,0,0.5); border: 1px solid var(--border); color: #fff; border-radius: 8px; outline:none;">
-                    <button class="btn btn-primary" style="padding: 12px 20px;" onclick="addManualUser(false, this)">ADD TRIAL</button>
-                    <button class="btn btn-warning" style="padding: 12px 20px; color:#000;" onclick="addManualUser(true, this)">ADD VIP</button>
+                    <select id="manualDbSelect" class="search-bar" style="width:150px; margin:0; padding:12px;">
+                        <option value="sikkim">SIKKIM DB</option>
+                        <option value="13l">13L DB</option>
+                    </select>
+                    <input type="text" id="manualUid" placeholder="Target UID" style="padding: 12px 15px; width: 100%; max-width: 200px; background: rgba(0,0,0,0.5); border: 1px solid var(--border); color: #fff; border-radius: 8px; outline:none; font-family:'JetBrains Mono';">
+                    <button class="btn btn-primary" style="padding: 12px 20px;" onclick="addManualUser(false, this)">GRANT TRIAL</button>
+                    <button class="btn btn-warning" style="padding: 12px 20px; color:#000;" onclick="addManualUser(true, this)">GRANT VIP</button>
                 </div>
             </div>
         </div>
 
         <div id="v-requests" class="view-section">
-            <h2 style="margin-bottom: 20px;">Access Gateways</h2>
+            <h2 style="margin-bottom: 20px; font-family:'Rajdhani';">Access Gateways</h2>
             <div class="tab-container">
-                <button class="tab-btn active" onclick="switchInnerTab('req', 'sikkim', this)">SIKKIM REQUESTS</button>
-                <button class="tab-btn" onclick="switchInnerTab('req', '13l', this)">13L REQUESTS</button>
+                <button class="tab-btn active" onclick="switchInnerTab('req', 'sikkim', this)">SIKKIM REQUESTS <span id="c-req-sik"></span></button>
+                <button class="tab-btn" onclick="switchInnerTab('req', '13l', this)">13L REQUESTS <span id="c-req-13l"></span></button>
             </div>
             <div class="table-card"><div class="table-wrap">
                 <table>
-                    <thead><tr><th>UID</th><th>TIMESTAMP</th><th>ACTIONS</th></tr></thead>
+                    <thead><tr><th>UID IDENTIFIER</th><th>DEVICE DATA</th><th>TIMESTAMP</th><th>ACTIONS</th></tr></thead>
                     <tbody id="req-sikkim" class="req-table"></tbody>
                     <tbody id="req-13l" class="req-table hidden"></tbody>
                 </table>
@@ -162,32 +190,50 @@
         </div>
 
         <div id="v-deposits" class="view-section">
-            <h2 style="margin-bottom: 20px;">Deposit Verifications</h2>
+            <h2 style="margin-bottom: 20px; font-family:'Rajdhani';">Financial Approvals</h2>
             <div class="table-card"><div class="table-wrap">
                 <table>
-                    <thead><tr><th>UID</th><th>PROOF</th><th>DATE</th><th>ACTIONS</th></tr></thead>
+                    <thead><tr><th>UID IDENTIFIER</th><th>PAYMENT PROOF</th><th>TIMESTAMP</th><th>ACTIONS</th></tr></thead>
                     <tbody id="dep-list"></tbody>
                 </table>
             </div></div>
         </div>
 
         <div id="v-users" class="view-section">
-            <h2 style="margin-bottom: 20px;">User Database</h2>
+            <h2 style="margin-bottom: 20px; font-family:'Rajdhani';">Secure Database</h2>
             <div class="tab-container">
-                <button class="tab-btn active" onclick="switchInnerTab('usr', 'sikkim', this)">SIKKIM FLEET</button>
-                <button class="tab-btn" onclick="switchInnerTab('usr', '13l', this)">13L FLEET</button>
+                <button class="tab-btn active" onclick="switchInnerTab('usr', 'sikkim', this)">SIKKIM FLEET <span id="c-usr-sik"></span></button>
+                <button class="tab-btn" onclick="switchInnerTab('usr', '13l', this)">13L FLEET <span id="c-usr-13l"></span></button>
             </div>
             <div class="table-card"><div class="table-wrap">
                 <table>
-                    <thead><tr><th>UID</th><th>CLEARANCE</th><th>USAGE</th><th>ACTIONS</th></tr></thead>
+                    <thead><tr><th>UID IDENTIFIER</th><th>CLEARANCE</th><th>DATA USAGE</th><th>LAST PING</th><th>ACTIONS</th></tr></thead>
                     <tbody id="usr-sikkim" class="usr-table"></tbody>
                     <tbody id="usr-13l" class="usr-table hidden"></tbody>
                 </table>
             </div></div>
         </div>
 
+        <div id="v-messaging" class="view-section">
+            <h2 style="margin-bottom: 20px; font-family:'Rajdhani';">Transmission Control</h2>
+            <div class="msg-grid">
+                <div class="msg-box" style="border-top: 4px solid var(--primary);">
+                    <h3 style="color: var(--primary); margin-bottom: 8px; font-family:'Rajdhani'; font-size:22px;">Direct Terminal Message (DTM)</h3>
+                    <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 15px;">Inject a popup message directly onto a target's screen.</p>
+                    <select id="dmDbSelect" class="msg-input msg-select">
+                        <option value="sikkim">SIKKIM NODE</option>
+                        <option value="13l">13L NODE</option>
+                    </select>
+                    <input type="number" id="dmUid" class="msg-input" placeholder="Target UID">
+                    <input type="text" id="dmText" class="msg-input" placeholder="Transmission text...">
+                    <button class="btn btn-primary" style="width: 100%; padding: 14px; margin-top: 10px; font-size:13px;" onclick="sendDirectMessage(this)">EXECUTE TRANSMISSION</button>
+                </div>
+            </div>
+        </div>
+
         <div id="v-matrix" class="view-section">
-            <h2 style="margin-bottom: 20px;">Prediction Matrix</h2>
+            <h2 style="margin-bottom: 20px; font-family:'Rajdhani';">🔮 Core Prediction Matrix</h2>
+            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 15px;">Patterns saved here will instantly broadcast to SIKKIM and 13L Client Applications.</p>
             <div class="table-card"><div class="table-wrap">
                 <table>
                     <thead><tr><th>COMBINATION</th><th>INPUT DATA</th><th>LIVE PREVIEW</th><th>SYNC ACTION</th></tr></thead>
@@ -195,24 +241,30 @@
                 </table>
             </div></div>
         </div>
+
     </div>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getDatabase, ref, set, update, onValue, remove, push } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+        import { getDatabase, ref, set, update, onValue, remove } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
         // FIREBASE DUAL-CORE
         const cfgSik = { apiKey: "AIzaSyBFdvXN8SAy77EDQp5HNykO5z2Wa0W8sb0", authDomain: "bdgrocky.firebaseapp.com", databaseURL: "https://bdgrocky-default-rtdb.asia-southeast1.firebasedatabase.app", projectId: "bdgrocky" };
         const appSik = initializeApp(cfgSik, "SikkimApp"); const dbSik = getDatabase(appSik);
+
         const cfg13L = { apiKey: "AIzaSyAGQ8iW7GaYtDINwkfismc_7uBw2zF7V70", authDomain: "l-rocky.firebaseapp.com", databaseURL: "https://l-rocky-default-rtdb.asia-southeast1.firebasedatabase.app", projectId: "l-rocky" };
         const app13L = initializeApp(cfg13L, "13LApp"); const db13L = getDatabase(app13L);
 
-        let dataSik = { req: {}, usr: {} }; let data13L = { req: {}, usr: {} }; let currentRejectUID = "";
+        let dataSik = { req: {}, usr: {} }; let data13L = { req: {}, usr: {} }; 
+        let currentRejectUID = { uid: "", dbName: "" };
+
+        // SAFELY UPDATE ELEMENTS
+        function safeSetText(id, text) { let el = document.getElementById(id); if(el) el.innerText = text; }
 
         window.showToast = (msg, type = 'success') => {
-            const container = document.getElementById('toast-container'); const toast = document.createElement('div');
-            toast.className = `toast ${type}`; toast.innerHTML = `<span>${msg}</span>`; container.appendChild(toast);
-            setTimeout(() => { toast.style.animation = 'fadeOut 0.4s forwards'; setTimeout(() => toast.remove(), 400); }, 3000);
+            const container = document.getElementById('toast-container'); const t = document.createElement('div');
+            t.className = `toast ${type}`; t.innerHTML = `<span>${msg}</span>`; container.appendChild(t);
+            setTimeout(() => { t.style.animation = 'fadeOut 0.4s forwards'; setTimeout(() => t.remove(), 400); }, 3500);
         };
 
         window.switchView = (id, el) => { document.querySelectorAll('.view-section').forEach(v => v.classList.remove('active')); document.querySelectorAll('.nav-item').forEach(v => v.classList.remove('active')); document.getElementById(id).classList.add('active'); el.classList.add('active'); };
@@ -223,37 +275,47 @@
             if(document.getElementById('pass').value === "13LADMIN") { 
                 document.getElementById('loginBox').style.display = 'none'; 
                 document.getElementById('sidebar').classList.remove('hidden'); document.getElementById('mainContent').classList.remove('hidden');
-                window.showToast("Logged in as Admin."); initSystem(); buildMatrixTable();
+                window.showToast("Admin Authenticated.", "success"); initSystem(); buildMatrixTable();
             } else window.showToast("INVALID PIN", "error");
         };
 
         function getDB(dbName) { return dbName === 'sikkim' ? dbSik : db13L; }
 
         function initSystem() {
-            onValue(ref(dbSik, 'uid_requests'), s => { dataSik.req = {}; if(s.exists()) s.forEach(c => { dataSik.req[c.key] = c.val(); }); renderRequests(); });
-            onValue(ref(dbSik, 'approved_uids'), s => { dataSik.usr = {}; if(s.exists()) s.forEach(c => { dataSik.usr[c.key] = c.val(); }); renderUsers(); });
-            onValue(ref(db13L, 'uid_requests'), s => { data13L.req = {}; if(s.exists()) s.forEach(c => { data13L.req[c.key] = c.val(); }); renderRequests(); });
-            onValue(ref(db13L, 'approved_uids'), s => { data13L.usr = {}; if(s.exists()) s.forEach(c => { data13L.usr[c.key] = c.val(); }); renderUsers(); });
+            // BULLETPROOF FIREBASE LOOP (forEach)
+            onValue(ref(dbSik, 'uid_requests'), s => { dataSik.req = {}; if(s.exists()) { s.forEach(c => { dataSik.req[c.key] = c.val(); }); } renderRequests(); });
+            onValue(ref(dbSik, 'approved_uids'), s => { dataSik.usr = {}; if(s.exists()) { s.forEach(c => { dataSik.usr[c.key] = c.val(); }); } renderUsers(); });
+            
+            onValue(ref(db13L, 'uid_requests'), s => { data13L.req = {}; if(s.exists()) { s.forEach(c => { data13L.req[c.key] = c.val(); }); } renderRequests(); });
+            onValue(ref(db13L, 'approved_uids'), s => { data13L.usr = {}; if(s.exists()) { s.forEach(c => { data13L.usr[c.key] = c.val(); }); } renderUsers(); });
+            
             listenDeposits();
         }
 
         // REQUESTS
         function renderRequests() {
-            let makeRow = (uid, d, dbType) => `<tr><td class="uid-col">${uid}</td><td style="font-size:11px; color:var(--text-muted);">${new Date(d.timestamp).toLocaleString()}</td><td><div class="action-group"><button class="btn btn-success" onclick="approveUid('${uid}', '${dbType}', this)">GRANT</button><button class="btn btn-danger" onclick="rejectUid('${uid}', '${dbType}', this)">REJECT</button></div></td></tr>`;
+            let makeRow = (uid, d, dbType) => {
+                let dt = new Date(d.timestamp).toLocaleString();
+                return `<tr><td class="uid-col">${uid}</td><td style="font-size:11px; color:var(--text-muted);">${d.deviceId || "UNKNOWN"}<br>${d.deviceInfo ? d.deviceInfo.os : ""}</td><td style="font-size:11px; color:var(--text-muted);">${dt}</td><td><div class="action-group"><button class="btn btn-success" onclick="approveUid('${uid}', '${dbType}', this)">GRANT</button><button class="btn btn-danger" onclick="rejectUid('${uid}', '${dbType}', this)">REJECT</button></div></td></tr>`;
+            };
+
             let hS = "", cS = 0; for(let uid in dataSik.req) { hS += makeRow(uid, dataSik.req[uid], 'sikkim'); cS++; }
             let h13 = "", c13 = 0; for(let uid in data13L.req) { h13 += makeRow(uid, data13L.req[uid], '13l'); c13++; }
-            document.getElementById('req-sikkim').innerHTML = cS > 0 ? hS : `<tr class="empty-row"><td colspan="3">No requests.</td></tr>`;
-            document.getElementById('req-13l').innerHTML = c13 > 0 ? h13 : `<tr class="empty-row"><td colspan="3">No requests.</td></tr>`;
+
+            document.getElementById('req-sikkim').innerHTML = cS > 0 ? hS : `<tr class="empty-row"><td colspan="4">No pending requests.</td></tr>`;
+            document.getElementById('req-13l').innerHTML = c13 > 0 ? h13 : `<tr class="empty-row"><td colspan="4">No pending requests.</td></tr>`;
+            
+            safeSetText('c-req-sik', `(${cS})`); safeSetText('c-req-13l', `(${c13})`);
         }
 
-        window.approveUid = async (uid, dbName, btnEl) => { try { btnEl.disabled = true; let db = getDB(dbName); let exp = Date.now() + (30*24*60*60*1000); await set(ref(db, 'approved_uids/' + uid), { active: true, expireAt: exp, predictions_used: 0, is_premium: false }); await remove(ref(db, 'uid_requests/' + uid)); window.showToast(`Node ${uid} Authorized.`, 'success'); push(ref(db, 'admin_logs'), {time: Date.now(), action: "ADMIN GRANTED TRIAL", target: uid});} catch(e) { window.showToast(e.message, 'error'); btnEl.disabled=false;} };
-        window.rejectUid = async (uid, dbName, btnEl) => { try { btnEl.disabled = true; await remove(ref(getDB(dbName), 'uid_requests/' + uid)); window.showToast(`Node ${uid} Rejected.`, 'warning'); } catch(e) { window.showToast(e.message, 'error'); btnEl.disabled=false;} };
+        window.approveUid = async (uid, dbName, btnEl) => { try { btnEl.disabled = true; btnEl.innerText = "Wait..."; let db = getDB(dbName); let exp = Date.now() + (30*24*60*60*1000); await set(ref(db, 'approved_uids/' + uid), { active: true, expireAt: exp, predictions_used: 0, is_premium: false }); await remove(ref(db, 'uid_requests/' + uid)); window.showToast(`Node ${uid} Authorized.`, 'success'); } catch(e) { window.showToast(e.message, 'error'); btnEl.disabled=false; btnEl.innerText="GRANT";} };
+        window.rejectUid = async (uid, dbName, btnEl) => { try { btnEl.disabled = true; btnEl.innerText = "Wait..."; await remove(ref(getDB(dbName), 'uid_requests/' + uid)); window.showToast(`Node ${uid} Rejected.`, 'warning'); } catch(e) { window.showToast(e.message, 'error'); btnEl.disabled=false; btnEl.innerText="REJECT";} };
 
         // DEPOSITS
         function listenDeposits() {
             let renderDeps = (snapS, snap13) => {
                 let html = "", count = 0;
-                let processSnap = (snap, dbType) => { if(snap.exists()) { snap.forEach(child => { count++; let d = child.val(); let date = new Date(d.timestamp).toLocaleString(); html += `<tr><td class="uid-col">${d.uid} <span style="font-size:10px; color:var(--text-muted);">(${dbType.toUpperCase()})</span></td><td><img src="${d.screenshot}" class="deposit-img" onclick="showFullImg('${d.screenshot}')"></td><td style="font-size:11px;">${date}</td><td><div class="action-group"><button class="btn btn-warning" style="color:#000;" onclick="approveDeposit('${d.uid}', '${dbType}', this)">UPGRADE VIP</button><button class="btn btn-danger" onclick="openRejectModal('${d.uid}', '${dbType}')">REJECT</button></div></td></tr>`; }); } };
+                let processSnap = (snap, dbType) => { if(snap.exists()) { snap.forEach(child => { count++; let d = child.val(); let date = new Date(d.timestamp).toLocaleString(); html += `<tr><td class="uid-col" style="color:var(--gold);">${d.uid} <span style="font-size:10px; color:var(--text-muted);">(${dbType.toUpperCase()})</span></td><td><img src="${d.screenshot}" class="deposit-img" onclick="showFullImg('${d.screenshot}')"></td><td style="font-size:11px;">${date}</td><td><div class="action-group"><button class="btn btn-warning" style="color:#000;" onclick="approveDeposit('${d.uid}', '${dbType}', this)">UPGRADE VIP</button><button class="btn btn-danger" onclick="openRejectModal('${d.uid}', '${dbType}')">REJECT</button></div></td></tr>`; }); } };
                 processSnap(snapS, 'sikkim'); processSnap(snap13, '13l');
                 document.getElementById('dep-list').innerHTML = count > 0 ? html : `<tr class="empty-row"><td colspan="4">No pending financial verifications.</td></tr>`;
             };
@@ -263,22 +325,37 @@
         }
 
         window.showFullImg = (src) => { document.getElementById('fullImg').src = src; document.getElementById('imgModal').style.display = 'flex'; }
-        window.approveDeposit = async (uid, dbName, btnEl) => { try { btnEl.disabled = true; let db = getDB(dbName); let exp = Date.now() + (999 * 86400000); await update(ref(db, 'approved_uids/' + uid), { is_premium: true, expireAt: exp }); await remove(ref(db, 'deposit_requests/' + uid)); window.showToast(`UID ${uid} promoted to VIP!`, 'success'); push(ref(db, 'admin_logs'), {time: Date.now(), action: "ADMIN UPGRADED VIP", target: uid});} catch(e) { window.showToast(e.message, 'error'); btnEl.disabled = false;} };
+        window.approveDeposit = async (uid, dbName, btnEl) => { try { btnEl.disabled = true; btnEl.innerText="Wait..."; let db = getDB(dbName); let exp = Date.now() + (999 * 86400000); await update(ref(db, 'approved_uids/' + uid), { is_premium: true, expireAt: exp }); await remove(ref(db, 'deposit_requests/' + uid)); window.showToast(`UID ${uid} promoted to VIP!`, 'success'); } catch(e) { window.showToast(e.message, 'error'); btnEl.disabled = false; btnEl.innerText="UPGRADE VIP";} };
         window.openRejectModal = (uid, dbName) => { currentRejectUID = {uid, dbName}; document.getElementById('rejectModal').style.display = 'flex'; };
-        window.confirmReject = async (btnEl) => { try { btnEl.disabled = true; let db = getDB(currentRejectUID.dbName); await remove(ref(db, 'deposit_requests/' + currentRejectUID.uid)); document.getElementById('rejectModal').style.display = 'none'; window.showToast("Deposit rejected.", "warning"); btnEl.disabled = false; } catch(e) { window.showToast(e.message, 'error'); btnEl.disabled = false; } };
+        window.confirmReject = async (btnEl) => { try { btnEl.disabled = true; btnEl.innerText="Wait..."; let db = getDB(currentRejectUID.dbName); await remove(ref(db, 'deposit_requests/' + currentRejectUID.uid)); document.getElementById('rejectModal').style.display = 'none'; window.showToast("Deposit rejected.", "warning"); btnEl.disabled=false; btnEl.innerText="CONFIRM REJECT"; } catch(e) { window.showToast(e.message, 'error'); btnEl.disabled=false; btnEl.innerText="CONFIRM REJECT";} };
 
         // USERS
         function renderUsers() {
-            let makeRow = (uid, d, dbType) => `<tr><td class="uid-col">${uid}</td><td>${d.is_premium ? '<span class="tag tag-vip">VIP</span>' : '<span class="tag tag-trial">TRIAL</span>'}</td><td style="font-family:'JetBrains Mono'; font-size:12px;">${d.is_premium ? 'UNLIMITED' : (d.predictions_used || 0) + '/5'}</td><td><button class="btn btn-danger" onclick="banUser('${uid}', '${dbType}')">REVOKE</button></td></tr>`;
+            let makeRow = (uid, d, dbType) => {
+                let dL = d.expireAt ? Math.ceil((d.expireAt - Date.now()) / 86400000) : "L/T"; if(dL<0) dL="EXP";
+                let lS = d.last_active ? (Date.now()-d.last_active < 120000 ? `<span style="color:var(--green);">● Online</span>` : (Date.now()-d.last_active > 86400000 ? `<span style="color:var(--red);">Inactive</span>` : new Date(d.last_active).toLocaleString([],{hour:'2-digit',minute:'2-digit'}))) : "Never";
+                return `<tr><td class="uid-col">${uid}</td><td>${d.is_premium ? '<span class="tag tag-vip">VIP</span>' : '<span class="tag tag-trial">TRIAL</span>'}</td><td style="font-family:'JetBrains Mono'; font-size:12px; color:var(--cyan);">${d.is_premium ? 'UNLIMITED' : (d.predictions_used || 0) + '/5'}</td><td style="font-size:11px;">${lS}</td><td><button class="btn btn-danger" onclick="banUser('${uid}', '${dbType}')">REVOKE</button></td></tr>`;
+            };
+
             let hS = "", cS = 0; for(let uid in dataSik.usr) { hS += makeRow(uid, dataSik.usr[uid], 'sikkim'); cS++; }
             let h13 = "", c13 = 0; for(let uid in data13L.usr) { h13 += makeRow(uid, data13L.usr[uid], '13l'); c13++; }
-            document.getElementById('usr-sikkim').innerHTML = cS > 0 ? hS : `<tr class="empty-row"><td colspan="4">No Users.</td></tr>`;
-            document.getElementById('usr-13l').innerHTML = c13 > 0 ? h13 : `<tr class="empty-row"><td colspan="4">No Users.</td></tr>`;
-            document.getElementById('s-sikkim').innerText = cS; document.getElementById('s-13l').innerText = c13;
+
+            document.getElementById('usr-sikkim').innerHTML = cS > 0 ? hS : `<tr class="empty-row"><td colspan="5">No Active Fleet on Sikkim.</td></tr>`;
+            document.getElementById('usr-13l').innerHTML = c13 > 0 ? h13 : `<tr class="empty-row"><td colspan="5">No Active Fleet on 13L.</td></tr>`;
+            
+            safeSetText('c-usr-sik', `(${cS})`); safeSetText('c-usr-13l', `(${c13})`);
+            safeSetText('s-sikkim', cS); safeSetText('s-13l', c13);
         }
 
-        window.banUser = async (uid, dbName) => { if(confirm("Terminate this node?")) { try { await remove(ref(getDB(dbName), 'approved_uids/' + uid)); await remove(ref(getDB(dbName), 'device_bindings/' + uid)); window.showToast(`Node ${uid} terminated.`, 'success'); push(ref(getDB(dbName), 'admin_logs'), {time: Date.now(), action: "ADMIN REVOKED NODE", target: uid});} catch (e) { window.showToast(e.message, 'error'); } } };
-        window.addManualUser = async (isVip, btnEl) => { let dbType = document.getElementById('manualDbSelect').value; let db = getDB(dbType); let uid = document.getElementById('manualUid').value.trim(); if(!uid) return window.showToast("Enter Target UID!", "warning"); try { btnEl.disabled = true; let exp = Date.now() + ((isVip ? 999 : 1) * 86400000); await set(ref(db, 'approved_uids/' + uid), { active: true, expireAt: exp, predictions_used: 0, is_premium: isVip }); document.getElementById('manualUid').value = ""; window.showToast(`Node deployed`, 'success'); btnEl.disabled = false; push(ref(db, 'admin_logs'), {time: Date.now(), action: "ADMIN ADDED MANUAL NODE", target: uid});} catch(e) { window.showToast(e.message, 'error'); btnEl.disabled = false; } };
+        window.banUser = async (uid, dbName) => { if(confirm("Terminate this node?")) { try { await remove(ref(getDB(dbName), 'approved_uids/' + uid)); await remove(ref(getDB(dbName), 'device_bindings/' + uid)); window.showToast(`Node ${uid} terminated.`, 'success'); } catch (e) { window.showToast(e.message, 'error'); } } };
+        window.addManualUser = async (isVip, btnEl) => { let dbType = document.getElementById('manualDbSelect').value; let db = getDB(dbType); let uid = document.getElementById('manualUid').value.trim(); if(!uid) return window.showToast("Enter Target UID!", "warning"); try { let oT = btnEl.innerText; btnEl.disabled = true; btnEl.innerText = "Deploying..."; let exp = Date.now() + ((isVip ? 999 : 1) * 86400000); await set(ref(db, 'approved_uids/' + uid), { active: true, expireAt: exp, predictions_used: 0, is_premium: isVip }); document.getElementById('manualUid').value = ""; window.showToast(`Node deployed to ${dbType.toUpperCase()}`, 'success'); btnEl.disabled = false; btnEl.innerText = oT; } catch(e) { window.showToast(e.message, 'error'); btnEl.disabled = false; } };
+
+        // DIRECT MESSAGING FOR ADMIN
+        window.sendDirectMessage = async (btnEl) => {
+            let dbType = document.getElementById('dmDbSelect').value; let uid = document.getElementById('dmUid').value.trim(); let text = document.getElementById('dmText').value.trim();
+            if(!uid || !text) return window.showToast("Specify UID and Payload!", "warning");
+            try { btnEl.disabled = true; btnEl.innerText = "Wait..."; await set(ref(getDB(dbType), 'user_messages/' + uid), {text: text, time: Date.now(), read: false}); window.showToast(`Transmission delivered to ${uid}`, 'success'); document.getElementById('dmText').value = ""; btnEl.disabled = false; btnEl.innerText = "EXECUTE TRANSMISSION"; } catch(e) { window.showToast(e.message, 'error'); btnEl.disabled = false; btnEl.innerText = "EXECUTE TRANSMISSION";}
+        };
 
         // MATRIX
         function getPreview(numStr) { let n = parseInt(numStr); let sz = n>=5?"BIG":"SMALL"; let bg = n===0?"#ef4444":(n===5?"#10b981":(n%2===0?"#ef4444":"#10b981")); return `<div style="display:flex; align-items:center; gap:5px;"><div style="width:18px;height:18px;border-radius:50%;background:${bg};display:flex;justify-content:center;align-items:center;color:#fff;font-size:10px;font-weight:bold;">${n}</div><span style="font-size:10px; font-weight:bold; color:${sz==='BIG'?'var(--gold)':'var(--primary)'};">${sz}</span></div>`; }
@@ -287,7 +364,7 @@
             let body = document.getElementById('patternTbody'); body.innerHTML = "";
             for(let i=0; i<=9; i++) { for(let j=0; j<=9; j++) {
                 let k = `${i}-${j}`;
-                body.innerHTML += `<tr><td style="font-family:'JetBrains Mono'; font-weight:bold; color:var(--text-muted);">${k}</td><td><input type="number" id="nm-${k}" min="0" max="9" style="width:60px; padding:6px; background:rgba(0,0,0,0.5); border:1px solid var(--border); color:#fff; border-radius:6px; outline:none; text-align:center;"></td><td id="live-${k}">-</td><td><button class="btn btn-primary" style="padding:6px 12px; font-size:11px;" onclick="saveSingle('${k}', this)">SYNC TO BOTH</button></td></tr>`;
+                body.innerHTML += `<tr><td style="font-family:'JetBrains Mono'; font-weight:bold; color:var(--text-muted);">${k}</td><td><input type="number" id="nm-${k}" min="0" max="9" placeholder="#" style="width:60px; padding:6px; background:rgba(0,0,0,0.5); border:1px solid var(--border); color:#fff; border-radius:6px; outline:none; text-align:center;"></td><td id="live-${k}">-</td><td><button class="btn btn-primary" style="padding:6px 12px; font-size:11px;" onclick="saveSingle('${k}', this)">SYNC TO BOTH</button></td></tr>`;
             }}
             onValue(ref(dbSik, 'patterns'), snap => { if(snap.exists()) { snap.forEach(c => { let el = document.getElementById(`live-${c.key}`); if(el) { let match = c.val().match(/\[(\d+)\]/); if(match) el.innerHTML = getPreview(match[1]); } }); } });
         }
@@ -295,7 +372,7 @@
         window.saveSingle = async (k, btnEl) => {
             let nm = document.getElementById(`nm-${k}`).value.trim(); if(nm === "" || nm < 0 || nm > 9) return window.showToast("Enter Number (0-9)!", "warning");
             let val = `${parseInt(nm) >= 5 ? "BIG" : "SMALL"} [${nm}]`;
-            try { btnEl.disabled = true; await Promise.all([ set(ref(dbSik, `patterns/${k}`), val), set(ref(db13L, `patterns/${k}`), val) ]); document.getElementById(`nm-${k}`).value = ""; window.showToast("Matrix Synced!", "success"); btnEl.disabled = false; } catch(e) { window.showToast("Sync Error", "error"); btnEl.disabled = false; }
+            try { btnEl.disabled = true; btnEl.innerText = "..."; await Promise.all([ set(ref(dbSik, `patterns/${k}`), val), set(ref(db13L, `patterns/${k}`), val) ]); document.getElementById(`nm-${k}`).value = ""; window.showToast("Matrix Synced to Both DBs!", "success"); btnEl.disabled = false; btnEl.innerText = "SYNC TO BOTH"; } catch(e) { window.showToast("Sync Error", "error"); btnEl.disabled = false; btnEl.innerText = "SYNC TO BOTH"; }
         };
 
         window.searchGlobal = () => { let input = document.getElementById('searchUID').value.toUpperCase(); let tables = document.querySelectorAll('.table-card tbody tr:not(.empty-row)'); tables.forEach(tr => { let uidTd = tr.querySelector('.uid-col'); if(uidTd) { let txtValue = uidTd.textContent || uidTd.innerText; tr.style.display = txtValue.toUpperCase().indexOf(input) > -1 ? "" : "none"; } }); };
