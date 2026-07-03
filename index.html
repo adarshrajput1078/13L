@@ -3,320 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SIKKIM X ROCKY | VIP PREDICTION</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Rajdhani:wght@600;700;900&display=swap" rel="stylesheet">
+    <title>SIKKIM X ROCKY | VIP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800;900&family=Rajdhani:wght@700;900&display=swap" rel="stylesheet">
     <style>
-        /* 🎨 ULTRA PREMIUM SIKKIM THEME COLORS */
-        :root { 
-            --skm-bg: #040814; --skm-panel: #0a1128; --skm-primary: #3b82f6; --skm-primary-dark: #1e3a8a;
-            --skm-gold: #f59e0b; --skm-gold-light: #fcd34d; --skm-green: #10b981; --skm-red: #ef4444; 
-            --skm-violet: #8b5cf6; --text-white: #f8fafc; --glass-border: rgba(59, 130, 246, 0.3);
-        }
+        :root { --primary: #3b82f6; --primary-dark: #1e3a8a; --gold: #f59e0b; --green: #10b981; --red: #ef4444; --bg-top: linear-gradient(135deg, #050b14, #0a1128, #1e3a8a, #050b14); --glass: rgba(59, 130, 246, 0.3); }
         * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
+        body, html { height: 100%; font-family: 'Poppins', sans-serif; color: #f8fafc; overflow: hidden; display: flex; flex-direction: column; background: #000; }
         
-        body, html { height: 100%; font-family: 'Poppins', sans-serif; color: var(--text-white); overflow: hidden; display: flex; flex-direction: column; background: #000; transition: background 0.5s ease;}
-        
-        /* 🌌 FLOATING GRADIENT TOP PANEL */
-        #top-panel { 
-            height: 15%; min-height: 150px; width: 100%; z-index: 10; position: relative; padding: 8px 12px; 
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.95);
-            background: linear-gradient(135deg, #050b14, #0a1128, #1e3a8a, #050b14);
-            background-size: 300% 300%;
-            animation: bgShift 12s ease-in-out infinite;
-            border-bottom: 2px solid var(--glass-border);
-        }
+        #top-panel { height: 15%; min-height: 145px; width: 100%; z-index: 10; position: relative; padding: 8px 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.95); background: var(--bg-top); background-size: 300% 300%; animation: bgShift 10s ease-in-out infinite; border-bottom: 2px solid var(--glass); }
         @keyframes bgShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-
         #bottom-panel { height: 85%; width: 100%; background-color: #000; position: relative; z-index: 1; }
         iframe { width: 100%; height: 100%; border: none; }
 
-        /* ✨ HEADER STYLING */
-        .top-header { width: 100%; max-width: 500px; margin: 0 auto 8px auto; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 5px;}
-        .logo-text { font-family: 'Rajdhani', sans-serif; font-size: 20px; font-weight: 900; color: var(--text-white); text-transform: uppercase; letter-spacing: 2px; display: flex; align-items: center; gap: 5px;}
-        .logo-text span { color: var(--skm-primary); text-shadow: 0 0 15px rgba(59, 130, 246, 0.8); }
+        .top-header { width: 100%; max-width: 500px; margin: 0 auto 6px auto; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 5px;}
+        .logo-text { font-family: 'Rajdhani', sans-serif; font-size: 22px; font-weight: 900; color: #fff; letter-spacing: 2px;}
+        .logo-text span { color: var(--primary); text-shadow: 0 0 15px rgba(59, 130, 246, 0.8); }
         
         .tool-container { width: 100%; max-width: 500px; margin: 0 auto; display: flex; flex-direction: column; gap: 6px; }
+        .info-row { display: flex; justify-content: space-between; font-size: 11px; background: rgba(0,0,0,0.6); padding: 6px 15px; border-radius: 8px; border: 1px solid var(--glass); backdrop-filter: blur(8px); box-shadow: inset 0 0 20px rgba(59, 130, 246, 0.1);}
+        .info-row span { color: var(--gold); font-weight: 900; font-family: 'Rajdhani', sans-serif; font-size: 16px; letter-spacing: 1px;}
         
-        /* 📊 INFO BAR */
-        .info-row { display: flex; justify-content: space-between; font-size: 11px; background: rgba(0,0,0,0.5); padding: 6px 15px; border-radius: 8px; border: 1px solid var(--glass-border); font-family: 'Share Tech Mono', monospace; backdrop-filter: blur(8px); box-shadow: inset 0 0 20px rgba(59, 130, 246, 0.1);}
-        .info-row span { color: var(--skm-gold-light); font-weight: 800; font-family: 'Rajdhani', sans-serif; font-size: 15px; letter-spacing: 1px; text-shadow: 0 0 8px rgba(245, 158, 11, 0.4);}
-        
-        /* 🎛️ INPUTS & BUTTONS */
         .input-row { display: flex; gap: 10px; align-items: stretch; margin-top: 2px;}
-        input { flex: 1; padding: 10px; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; text-align: center; font-size: 15px; font-weight: 800; background: rgba(0, 0, 0, 0.6); color: var(--skm-gold); outline: none; transition: all 0.3s ease; backdrop-filter: blur(5px); box-shadow: inset 0 2px 5px rgba(0,0,0,0.5);}
-        input:focus { border-color: var(--skm-primary); box-shadow: 0 0 15px rgba(59, 130, 246, 0.4), inset 0 2px 5px rgba(0,0,0,0.5); transform: translateY(-1px);}
+        input { flex: 1; padding: 10px; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; text-align: center; font-size: 15px; font-weight: 800; background: rgba(0, 0, 0, 0.7); color: var(--gold); outline: none; transition: 0.3s;}
+        input:focus { border-color: var(--primary); box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);}
         
-        .action-btn { padding: 0 15px; font-size: 14px; font-family: 'Rajdhani', sans-serif; font-weight: 900; cursor: pointer; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background: linear-gradient(135deg, var(--skm-primary) 0%, var(--skm-primary-dark) 100%); color: #fff; width: 35%; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.5); transition: all 0.2s; letter-spacing: 1px; position: relative; overflow: hidden;}
-        .action-btn::after { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: linear-gradient(transparent, rgba(255,255,255,0.2), transparent); transform: rotate(45deg); animation: btnShine 3s infinite; }
-        @keyframes btnShine { 0% { left: -100%; } 100% { left: 100%; } }
-        .action-btn:active { transform: scale(0.96); box-shadow: 0 2px 8px rgba(59, 130, 246, 0.5); }
-        .action-btn:disabled { background: #1e293b; color: #64748b; border-color: transparent; box-shadow: none; animation: none;}
-        .action-btn:disabled::after { display: none; }
-        
-        /* 🔮 RESULT BOX WITH SCANNER */
-        .result-box { display: flex; justify-content: center; align-items: center; font-size: 15px; font-weight: 900; color: #94a3b8; background: rgba(0, 0, 0, 0.7); padding: 8px; border-radius: 8px; border: 1px solid var(--glass-border); flex-grow: 1; min-height: 45px; backdrop-filter: blur(5px); box-shadow: inset 0 0 15px rgba(0,0,0,0.8); position: relative; overflow: hidden;}
-        .scanner-line { position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.4), transparent); animation: scan 1.5s linear infinite; display: none; }
-        @keyframes scan { 0% { left: -100%; } 100% { left: 200%; } }
-        .analyzing .scanner-line { display: block; }
-        .analyzing span { animation: pulseText 1s infinite; color: var(--skm-primary); }
-        @keyframes pulseText { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+        .action-btn { padding: 0 15px; font-size: 14px; font-family: 'Rajdhani', sans-serif; font-weight: 900; cursor: pointer; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: #fff; width: 35%; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.5); transition: 0.2s;}
+        .action-btn:active { transform: scale(0.95); }
+        .result-box { display: flex; justify-content: center; align-items: center; font-size: 15px; font-weight: 900; color: #94a3b8; background: rgba(0, 0, 0, 0.8); padding: 8px; border-radius: 8px; border: 1px solid var(--glass); flex-grow: 1; min-height: 45px;}
 
-        /* 🔐 GLASS MODALS */
-        .auth-container { text-align: center; width: 100%; max-width: 500px; padding: 10px; margin: 0 auto; background: rgba(0,0,0,0.4); border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); }
-        .auth-container h3 { margin: 0 0 12px 0; font-size: 15px; color: #cbd5e1; font-weight: 700; letter-spacing: 1px;}
-        .auth-container h3 span { color: var(--skm-primary); text-shadow: 0 0 10px rgba(59,130,246,0.5);}
-
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 99999; display: none; justify-content: center; align-items: center; backdrop-filter: blur(10px);}
-        .modal-box { background: rgba(10, 17, 40, 0.95); border: 1px solid rgba(59, 130, 246, 0.4); padding: 30px 25px; border-radius: 16px; text-align: center; width: 90%; max-width: 340px; box-shadow: 0 20px 50px rgba(0,0,0,0.9), inset 0 0 30px rgba(59, 130, 246, 0.1); animation: popIn 0.3s ease forwards;}
+        /* MODALS */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 99999; display: none; justify-content: center; align-items: center; backdrop-filter: blur(8px);}
+        .modal-box { background: rgba(10, 17, 40, 0.95); border: 1px solid var(--glass); padding: 25px; border-radius: 16px; text-align: center; width: 90%; max-width: 340px; box-shadow: 0 20px 50px rgba(0,0,0,0.9), inset 0 0 30px rgba(59, 130, 246, 0.1); animation: popIn 0.3s forwards;}
         @keyframes popIn { 0% { transform: scale(0.9); opacity: 0;} 100% { transform: scale(1); opacity: 1;} }
+        .btn-modal-primary { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 12px; border-radius: 8px; font-weight: 800; cursor: pointer; width: 100%; font-family: 'Poppins'; margin-top: 10px;}
         
-        .modal-box h4 { color: var(--text-white); font-size: 22px; font-weight: 900; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px;}
-        .modal-box p { font-size: 13px; color: #94a3b8; margin-bottom: 25px; line-height: 1.6;}
-        
-        .btn-close { background: transparent; border: 1px solid rgba(255,255,255,0.2); color: #94a3b8; padding: 12px; border-radius: 8px; font-weight: 700; cursor: pointer; width: 100%; font-family: 'Poppins'; margin-top: 12px; transition: 0.3s;}
-        .btn-close:hover { background: rgba(255,255,255,0.05); color: #fff;}
-        .btn-modal-primary { background: linear-gradient(135deg, var(--skm-primary) 0%, var(--skm-primary-dark) 100%); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 14px; border-radius: 8px; font-weight: 800; cursor: pointer; width: 100%; font-family: 'Poppins'; margin-top: 10px; box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4); text-transform: uppercase; letter-spacing: 1px; transition: 0.2s;}
-        .btn-modal-primary:active { transform: scale(0.97); }
-
-        /* 📸 PREMIUM UPLOAD UI */
-        .upload-area { border: 2px dashed rgba(245, 158, 11, 0.5); padding: 25px 15px; border-radius: 12px; background: rgba(245, 158, 11, 0.05); margin-bottom: 20px; cursor: pointer; transition: all 0.3s ease; display: flex; flex-direction: column; align-items: center;}
-        .upload-area:hover { border-color: var(--skm-gold); background: rgba(245, 158, 11, 0.1); transform: translateY(-2px);}
-        .upload-icon { font-size: 32px; margin-bottom: 8px; filter: drop-shadow(0 0 10px rgba(245, 158, 11, 0.4)); animation: float 3s ease-in-out infinite;}
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
-        input[type="file"] { display: none; }
-        #fileName { display: block; font-size: 11px; color: var(--skm-gold-light); margin-top: 8px; background: rgba(0,0,0,0.5); padding: 4px 10px; border-radius: 10px; font-family: 'Share Tech Mono';}
-
-        /* 🎱 3D COLOR BALLS & BADGES */
-        .color-ball { width: 28px; height: 28px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: 900; color: #fff; font-size: 14px; font-family: 'Poppins', sans-serif; box-shadow: inset -3px -3px 8px rgba(0,0,0,0.5), inset 2px 2px 6px rgba(255,255,255,0.4), 0 4px 8px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1); text-shadow: 0 1px 3px rgba(0,0,0,0.9);}
-        .bg-green { background: radial-gradient(circle at 35% 35%, #34d399, var(--skm-green) 70%, #064e3b); }
-        .bg-red { background: radial-gradient(circle at 35% 35%, #f87171, var(--skm-red) 70%, #7f1d1d); }
-        .bg-red-violet { background: linear-gradient(135deg, var(--skm-red) 50%, var(--skm-violet) 50%); }
-        .bg-green-violet { background: linear-gradient(135deg, var(--skm-green) 50%, var(--skm-violet) 50%); }
-
-        .size-badge { padding: 4px 12px; border-radius: 6px; font-size: 12px; font-weight: 800; font-family: 'Poppins'; display: inline-block; letter-spacing: 1px; box-shadow: 0 4px 10px rgba(0,0,0,0.3);}
-        .size-big { background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(0,0,0,0.8)); color: var(--skm-gold-light); border: 1px solid rgba(245, 158, 11, 0.5); text-shadow: 0 0 8px rgba(245, 158, 11, 0.5);}
-        .size-small { background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(0,0,0,0.8)); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.5); text-shadow: 0 0 8px rgba(59, 130, 246, 0.5);}
-
-        /* 📜 CINEMATIC RESULT SLIP WITH WIN/LOSS ANIMATIONS */
+        /* 🏆 EPIC WINNING ANIMATIONS */
         #miniAnimScreen { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(2, 6, 23, 0.96); z-index: 100; display: none; flex-direction: column; justify-content: center; align-items: center; backdrop-filter: blur(12px);}
-        .mini-title { font-family: 'Rajdhani', sans-serif; font-size: 32px; font-weight: 900; margin: 0; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 8px;}
+        .mini-title { font-family: 'Rajdhani', sans-serif; font-size: 38px; font-weight: 900; margin: 0; letter-spacing: 4px; text-shadow: 0 10px 20px rgba(0,0,0,0.8);}
+        .real-result-card { background: rgba(10, 17, 40, 0.95); border-radius: 16px; padding: 18px 20px; width: 92%; max-width: 360px; border: 2px solid rgba(255,255,255,0.1); opacity: 0; position: relative;}
         
-        .real-result-card { background: rgba(10, 17, 40, 0.9); border-radius: 16px; padding: 15px 20px; width: 92%; max-width: 360px; border: 2px solid rgba(255,255,255,0.1); position: relative; overflow: hidden; opacity: 0;}
-        
-        /* 🔥 WIN ANIMATION */
-        .theme-win { 
-            animation: winPop 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; 
-            border-color: var(--skm-green);
-            box-shadow: 0 15px 40px rgba(16, 185, 129, 0.4), inset 0 0 30px rgba(16, 185, 129, 0.15);
-        }
-        @keyframes winPop { 
-            0% { transform: scale(0.5) translateY(50px); opacity: 0; } 
-            70% { transform: scale(1.05) translateY(0); opacity: 1; } 
-            100% { transform: scale(1) translateY(0); opacity: 1; } 
+        .theme-win { animation: epicWin 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; border-color: var(--green); }
+        @keyframes epicWin { 
+            0% { transform: scale(0.5); opacity: 0; box-shadow: 0 0 0px rgba(16, 185, 129, 0); } 
+            60% { transform: scale(1.05); opacity: 1; box-shadow: 0 0 60px rgba(16, 185, 129, 0.8); } 
+            100% { transform: scale(1); opacity: 1; box-shadow: 0 0 40px rgba(16, 185, 129, 0.5), inset 0 0 20px rgba(16, 185, 129, 0.2); } 
         }
 
-        /* ❌ LOSS ANIMATION (GLITCH / SHAKE) */
-        .theme-loss { 
-            animation: lossShake 0.5s ease-in-out forwards; 
-            border-color: var(--skm-red);
-            box-shadow: 0 15px 40px rgba(239, 68, 68, 0.4), inset 0 0 30px rgba(239, 68, 68, 0.15);
-        }
-        @keyframes lossShake { 
-            0% { transform: translateX(0) scale(0.9); opacity: 0;} 
-            20% { transform: translateX(-15px) scale(1); opacity: 1;} 
-            40% { transform: translateX(15px); } 
-            60% { transform: translateX(-10px); } 
-            80% { transform: translateX(10px); } 
-            100% { transform: translateX(0) scale(1); opacity: 1;} 
-        }
-        
+        .theme-loss { animation: lossShake 0.5s ease-in-out forwards; border-color: var(--red); box-shadow: 0 10px 30px rgba(239, 68, 68, 0.5), inset 0 0 20px rgba(239, 68, 68, 0.2);}
+        @keyframes lossShake { 0% { transform: translateX(0) scale(0.9); opacity: 0;} 20% { transform: translateX(-15px) scale(1); opacity: 1;} 40% { transform: translateX(15px); } 60% { transform: translateX(-10px); } 80% { transform: translateX(10px); } 100% { transform: translateX(0) scale(1); opacity: 1;} }
+
         .res-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px dashed rgba(255,255,255,0.05); }
         .res-row:last-child { border-bottom: none; }
-        .res-label { font-size: 11px; color: #94a3b8; font-family: 'Poppins', sans-serif; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;}
-        
-        .mini-close { font-size: 10px; color: #94a3b8; margin-top: 15px; cursor: pointer; font-weight: 800; border: 1px solid rgba(255,255,255,0.1); padding: 6px 16px; border-radius: 20px; background: rgba(0,0,0,0.5); text-transform: uppercase; transition: 0.3s; animation: fadeIn 1s forwards; animation-delay: 0.5s; opacity: 0;}
-        .mini-close:hover { background: rgba(255,255,255,0.1); color: #fff; }
+        .res-label { font-size: 11px; color: #94a3b8; font-weight: 700;}
+        .mini-close { font-size: 10px; color: #94a3b8; margin-top: 15px; cursor: pointer; border: 1px solid rgba(255,255,255,0.1); padding: 6px 16px; border-radius: 20px; background: rgba(0,0,0,0.5);}
 
-        /* 🚨 BAN & MAINTENANCE SCREENS */
-        .hard-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999999; display: none; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px;}
-        .ban-box { background: rgba(239, 68, 68, 0.05); border: 1px solid rgba(239, 68, 68, 0.3); padding: 20px; border-radius: 12px; margin-top: 20px; width: 100%; max-width: 400px; box-shadow: inset 0 0 20px rgba(239, 68, 68, 0.1);}
+        .color-ball { width: 28px; height: 28px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: 900; color: #fff; font-size: 14px; box-shadow: inset -2px -2px 6px rgba(0,0,0,0.6), 0 3px 6px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.2); }
+        .bg-green { background: var(--green); } .bg-red { background: var(--red); }
+        .bg-red-violet { background: linear-gradient(135deg, var(--red) 50%, #8b5cf6 50%); } .bg-green-violet { background: linear-gradient(135deg, var(--green) 50%, #8b5cf6 50%); }
+        .size-badge { padding: 4px 12px; border-radius: 6px; font-size: 12px; font-weight: 800; display: inline-block; border: 1px solid;}
+        .size-big { background: rgba(245, 158, 11, 0.15); color: var(--gold); border-color: var(--gold); } .size-small { background: rgba(59, 130, 246, 0.15); color: var(--primary); border-color: var(--primary); }
 
-        #jackpotScreen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.95); z-index: 99999999; display: none; flex-direction: column; justify-content: center; align-items: center; }
-        .jackpot-bg { position: absolute; width: 150vw; height: 150vw; background: radial-gradient(circle, rgba(252, 195, 51, 0.3) 0%, transparent 60%); animation: fireSpin 4s linear infinite; z-index: -1; }
-        .jackpot-title { font-family: 'Rajdhani', sans-serif; font-size: 60px; font-weight: 900; color: var(--skm-gold-light); text-shadow: 0 0 30px var(--skm-gold), 0 0 60px #fff; text-align: center; line-height: 1.1; animation: popIn 0.5s ease forwards;}
-
-        @keyframes fireSpin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         .hidden { display: none !important; }
     </style>
 </head>
 <body>
-
-    <!-- 🚫 TARGETED BAN SCREEN -->
-    <div id="bannedScreen" class="hard-screen" style="background: radial-gradient(circle at center, #1a0505 0%, #000 100%);">
-        <div style="font-size: 65px; margin-bottom: 10px; filter: drop-shadow(0 0 10px red);">🛑</div>
-        <h1 style="color:var(--skm-red); font-size:38px; font-family:'Rajdhani'; text-shadow: 0 0 20px rgba(239,68,68,0.5); margin: 0;">ACCESS REVOKED</h1>
-        <p style="color:#94a3b8; font-size: 14px; margin-top: 10px;">Your VIP Profile has been permanently suspended.</p>
-        <div class="ban-box">
-            <span style="color:var(--skm-red); font-weight:800; font-family:'Share Tech Mono'; letter-spacing:1px; font-size: 12px;">REASON FOR SUSPENSION</span><br>
-            <span id="banReasonText" style="color:#fff; font-size: 16px; font-weight:600; display:block; margin-top:8px;">Violation of security terms</span>
-        </div>
-    </div>
-
-    <!-- ⚙️ GLOBAL MAINTENANCE SCREEN -->
-    <div id="maintenanceScreen" class="hard-screen" style="background: #020617; z-index: 999999; backdrop-filter: blur(10px);">
-        <div style="font-size: 60px; margin-bottom: 15px; animation: fireSpin 6s linear infinite; filter: drop-shadow(0 0 15px rgba(252,195,51,0.5));">⚙️</div>
-        <h1 style="color:var(--skm-gold); font-size:42px; font-family:'Rajdhani'; margin: 0; text-shadow: 0 0 20px rgba(252,195,51,0.3);">SYSTEM OFFLINE</h1>
-        <p style="color:#94a3b8; font-size: 14px; margin-top: 15px; line-height: 1.6;">The prediction engine is undergoing a core upgrade.<br>We will be back online shortly.</p>
-    </div>
-
-    <!-- STANDARD ALERT MODAL -->
-    <div id="uidModal" class="modal-overlay">
-        <div class="modal-box">
-            <h4 id="modalTitle">SYSTEM ALERT</h4>
-            <p id="modalMsg">Processing...</p>
-            <button id="modalActionBtn" class="btn-modal-primary" onclick="closeModal()">ACKNOWLEDGE</button>
-        </div>
-    </div>
-
-    <!-- 👑 VIP DEPOSIT MODAL -->
-    <div id="depositModal" class="modal-overlay">
-        <div class="modal-box" style="border-color: var(--skm-gold); box-shadow: 0 15px 40px rgba(0,0,0,0.9), inset 0 0 20px rgba(245, 158, 11, 0.1);">
-            <h4 style="color: var(--skm-gold); font-size: 22px;">👑 VIP UPGRADE</h4>
-            <p style="font-size: 13px; color: #cbd5e1; margin-bottom: 5px;">Your 5 FREE prediction trials are exhausted.</p>
-            <p style="font-size: 11.5px; color: #94a3b8; margin-bottom: 20px;">Deposit a minimum of <b style="color:#fff; font-size: 14px;">₹500</b> to permanently unlock the Premium Engine.</p>
-            
-            <label class="upload-area" for="screenshotInput">
-                <div class="upload-icon">📸</div>
-                <div style="font-size: 13px; font-weight: 700; color: var(--skm-gold-light); letter-spacing: 0.5px;">TAP TO UPLOAD PROOF</div>
-                <span id="fileName">Supported formats: JPG, PNG</span>
-            </label>
-            <input type="file" id="screenshotInput" accept="image/*" onchange="updateFileName()">
-            
-            <button id="uploadBtn" class="btn-modal-primary" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: #000;" onclick="submitDeposit()">SUBMIT FOR APPROVAL</button>
-            <button class="btn-close" onclick="document.getElementById('depositModal').style.display='none'">CANCEL</button>
-        </div>
-    </div>
-
-    <div id="jackpotScreen">
-        <div class="jackpot-bg"></div>
-        <h1 class="jackpot-title">JACKPOT WIN<br><span style="font-size:24px; color:#fff; text-shadow: none;">BY ROCKY</span></h1>
-    </div>
-
-    <!-- 📱 TOP PANEL -->
+    
+    <!-- Modals -->
+    <div id="uidModal" class="modal-overlay"><div class="modal-box"><h4 id="modalTitle" style="color:#fff; font-weight:900; margin-bottom:10px;">ALERT</h4><p id="modalMsg" style="font-size:13px; color:#94a3b8; margin-bottom:20px;">Processing...</p><button class="btn-modal-primary" onclick="document.getElementById('uidModal').style.display='none'">OKAY</button></div></div>
+    
+    <!-- Top Panel -->
     <div id="top-panel">
-        
-        <!-- 🔥 ANIMATED RESULT SLIP 🔥 -->
         <div id="miniAnimScreen">
             <h1 id="miniTitle" class="mini-title">🏆 WIN 🏆</h1>
             <div id="realCard" class="real-result-card">
-                <div class="res-row">
-                    <span class="res-label">PERIOD SEQUENCE</span>
-                    <span class="res-val" id="resPeriod" style="color: #94a3b8;">----</span>
-                </div>
-                <div class="res-row" style="background: rgba(255, 255, 255, 0.05); padding: 10px 12px; border-radius: 8px; margin-top: 6px;">
-                    <span class="res-label" style="color:var(--text-white);">AI PREDICTION</span>
-                    <span class="res-val" id="resPred" style="display:flex; gap:10px; align-items:center;">--</span>
-                </div>
-                <div class="res-row" style="background: rgba(0, 0, 0, 0.3); padding: 10px 12px; border-radius: 8px; margin-top: 6px; border: 1px solid rgba(255,255,255,0.05);">
-                    <span class="res-label">ACTUAL OUTCOME</span>
-                    <div style="display:flex; gap:10px; align-items:center;">
-                        <span id="resBalls"></span><span id="resSize"></span>
-                    </div>
-                </div>
+                <div class="res-row"><span class="res-label">PERIOD NUMBER</span><span class="res-val" id="resPeriod" style="color: #94a3b8;">----</span></div>
+                <div class="res-row" style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px; margin-top: 6px;"><span class="res-label" style="color:#fff;">AI PREDICTION</span><span class="res-val" id="resPred" style="display:flex; gap:10px; align-items:center;">--</span></div>
+                <div class="res-row" style="background: rgba(0,0,0,0.4); padding: 10px; border-radius: 8px; margin-top: 6px;"><span class="res-label">ACTUAL OUTCOME</span><div style="display:flex; gap:10px; align-items:center;"><span id="resBalls"></span><span id="resSize"></span></div></div>
             </div>
-            <div class="mini-close" onclick="closeMiniScreen()">TAP TO DISMISS</div>
+            <div class="mini-close" onclick="document.getElementById('miniAnimScreen').style.display='none'">TAP TO DISMISS</div>
         </div>
 
         <div class="top-header">
             <div class="logo-text">SIKKIM <span>X</span> ROCKY</div>
-            <span id="usageTracker" style="font-size: 10px; background: rgba(59,130,246,0.15); padding: 4px 8px; border-radius:6px; color:var(--skm-primary); font-weight:800; border: 1px solid rgba(59,130,246,0.3); display:none; letter-spacing: 0.5px;">PLAYS: 0/5</span>
         </div>
         
-        <!-- LOGIN CARD -->
-        <div id="authScreen" class="auth-container">
-            <h3>SECURE <span>VERIFICATION</span></h3>
-            <div class="input-row" style="margin-top: 10px;">
-                <input type="number" id="uidInput" placeholder="Enter Platform UID">
-                <button id="authBtn" class="action-btn" onclick="checkUID()">CONNECT</button>
-            </div>
+        <div id="authScreen" style="text-align:center;">
+            <div class="input-row" style="margin-top:10px;"><input type="number" id="uidInput" placeholder="Enter SIKKIM UID"><button id="authBtn" class="action-btn" onclick="checkUID()">CONNECT</button></div>
         </div>
         
-        <!-- WIDGET CARD -->
         <div id="toolScreen" class="tool-container hidden">
-            <div class="info-row">
-                <div>LIVE NODE: <span id="displayPeriod">SYNCING...</span></div>
-                <div>SYNC: <span id="displayTimer" style="color:var(--skm-primary);">00:00</span></div>
-            </div>
+            <div class="info-row"><div>LIVE NODE: <span id="displayPeriod">SYNCING...</span></div><div>SYNC: <span id="displayTimer" style="color:var(--primary);">00:00</span></div></div>
             <div class="input-row">
-                <input type="number" id="num1" placeholder="N-1" min="0" max="9">
-                <input type="number" id="num2" placeholder="N-2" min="0" max="9">
+                <input type="number" id="num1" placeholder="N-1" min="0" max="9"><input type="number" id="num2" placeholder="N-2" min="0" max="9">
                 <button id="analyzeBtn" class="action-btn" onclick="runExploit()">GET RESULT</button>
             </div>
-            <!-- Animated Scanner Box -->
-            <div id="predictionDisplay" class="result-box">
-                <div class="scanner-line"></div>
-                <span id="predText" style="letter-spacing:2px; font-size:12px;">AWAITING COMMAND...</span>
-            </div>
+            <div id="predictionDisplay" class="result-box"><span id="predText" style="letter-spacing:2px; font-size:12px;">AWAITING COMMAND...</span></div>
         </div>
     </div>
 
-    <!-- GAME IFRAME -->
-    <div id="bottom-panel">
-        <iframe id="gameIframe" src="https://sikkim.com"></iframe>
-    </div>
+    <!-- Iframe -->
+    <div id="bottom-panel"><iframe id="gameIframe" src="https://sikkim.com"></iframe></div>
 
-    <!-- ⚡ SYSTEM LOGIC ⚡ -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getDatabase, ref, get, set, update, increment, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
+        // 🔥 SIKKIM DATABASE CONFIG
         const app = initializeApp({
             apiKey: "AIzaSyBFdvXN8SAy77EDQp5HNykO5z2Wa0W8sb0", authDomain: "bdgrocky.firebaseapp.com",
             databaseURL: "https://bdgrocky-default-rtdb.asia-southeast1.firebasedatabase.app", projectId: "bdgrocky"
         });
         const db = getDatabase(app);
 
-        let currentUid = ""; let globalLink = "https://sikkim.com";
-        let currentActivePrediction = ""; let currentActivePeriod = ""; let isWaitingForAPI = false;
+        let currentUid = ""; let currentActivePrediction = ""; let currentActivePeriod = ""; let isWaitingForAPI = false;
 
-        onValue(ref(db, 'settings/maintenance'), (snap) => {
-            if(snap.exists() && snap.val() === true) document.getElementById('maintenanceScreen').style.display = 'flex';
-            else document.getElementById('maintenanceScreen').style.display = 'none';
-        });
+        onValue(ref(db, 'settings/link_sikkim'), snap => { if(snap.exists() && snap.val() !== "") { if(!currentUid) document.getElementById('gameIframe').src = snap.val().trim(); }});
 
-        onValue(ref(db, 'settings/active_link'), snap => { 
-            if(snap.exists() && snap.val() !== "") {
-                globalLink = snap.val().trim();
-                if(!currentUid) document.getElementById('gameIframe').src = globalLink;
-            } 
-        });
-
-        function showModal(title, msg) {
-            document.getElementById('modalTitle').innerText = title; document.getElementById('modalMsg').innerHTML = msg;
-            document.getElementById('uidModal').style.display = 'flex';
-        }
-        window.closeModal = () => document.getElementById('uidModal').style.display = 'none';
-
-        function getDeviceInfo() {
-            let ua = navigator.userAgent; let os = "Unknown";
-            if(ua.indexOf("Win") !== -1) os = "Windows"; if(ua.indexOf("Mac") !== -1) os = "MacOS";
-            if(ua.indexOf("Android") !== -1) os = "Android"; if(ua.indexOf("iPhone") !== -1) os = "iOS";
-            return { os: os, browser: navigator.vendor || "Default", screen: `${window.screen.width}x${window.screen.height}` };
-        }
-
-        function getDeviceID() {
-            let did = localStorage.getItem('vip_device_id');
-            if(!did) { did = 'DEV-' + Math.random().toString(36).substr(2, 9); localStorage.setItem('vip_device_id', did); }
-            return did;
-        }
-
-        window.getRealBallHtml = (n) => {
-            if(n == 0) return `<div class="color-ball bg-red-violet">0</div>`;
-            if(n == 5) return `<div class="color-ball bg-green-violet">5</div>`;
-            if(n % 2 == 0) return `<div class="color-ball bg-red">${n}</div>`;
-            return `<div class="color-ball bg-green">${n}</div>`;
-        };
+        function showModal(title, msg) { document.getElementById('modalTitle').innerText = title; document.getElementById('modalMsg').innerHTML = msg; document.getElementById('uidModal').style.display = 'flex'; }
+        
+        window.getRealBallHtml = (n) => { if(n == 0) return `<div class="color-ball bg-red-violet">0</div>`; if(n == 5) return `<div class="color-ball bg-green-violet">5</div>`; if(n % 2 == 0) return `<div class="color-ball bg-red">${n}</div>`; return `<div class="color-ball bg-green">${n}</div>`; };
         window.getSizeBadge = (size) => size.includes("BIG") ? `<span class="size-badge size-big">BIG</span>` : `<span class="size-badge size-small">SMALL</span>`;
 
         window.checkUID = async () => {
@@ -327,181 +132,95 @@
             try {
                 let approvedSnap = await get(ref(db, 'approved_uids/' + uid));
                 if(approvedSnap.exists()) {
-                    let data = approvedSnap.val(); currentUid = uid;
-                    
-                    if(data.predictions_used === undefined) await update(ref(db, 'approved_uids/' + uid), { predictions_used: 0, is_premium: false });
-                    
-                    let devID = getDeviceID(); let bindSnap = await get(ref(db, 'device_bindings/' + uid));
-                    if(!bindSnap.exists()) await set(ref(db, 'device_bindings/' + uid), devID);
-                    else if (bindSnap.val() !== devID) { btn.innerText = "CONNECT"; btn.disabled = false; return showModal("🚨 LOCKED", "UID is bound to another device."); }
-                    
-                    document.getElementById('authScreen').classList.add('hidden'); document.getElementById('toolScreen').classList.remove('hidden');
-                    
-                    startUidListener(uid); startTimerEngine(); return;
+                    currentUid = uid; document.getElementById('authScreen').classList.add('hidden'); document.getElementById('toolScreen').classList.remove('hidden');
+                    startTimerEngine(); return;
                 }
-                
-                await set(ref(db, 'uid_requests/' + uid), { uid: uid, deviceId: getDeviceID(), deviceInfo: getDeviceInfo(), status: "pending", timestamp: Date.now() });
+                let did = localStorage.getItem('did') || 'DEV-'+Math.random().toString(36).substr(2,9); localStorage.setItem('did', did);
+                await set(ref(db, 'uid_requests/' + uid), { uid: uid, deviceId: did, timestamp: Date.now() });
                 btn.innerText = "CONNECT"; btn.disabled = false; showModal("⏳ SENT", `Verification request sent to Admin.`);
             } catch (error) { btn.innerText = "CONNECT"; btn.disabled = false; showModal("ERROR", "Network error."); }
         };
 
-        function startUidListener(uid) {
-            onValue(ref(db, 'approved_uids/' + uid), snap => {
-                if(snap.exists()) {
-                    let data = snap.val();
-                    
-                    if(data.is_banned) {
-                        document.getElementById('banReasonText').innerText = data.ban_reason || "Violation of Terms";
-                        document.getElementById('bannedScreen').style.display = 'flex'; return; 
-                    } else document.getElementById('bannedScreen').style.display = 'none';
-
-                    let tracker = document.getElementById('usageTracker');
-                    if(data.is_premium) {
-                        tracker.innerHTML = "👑 VIP ACTIVE"; tracker.style.background = "rgba(245, 158, 11, 0.15)"; tracker.style.borderColor = "rgba(245, 158, 11, 0.4)"; tracker.style.color = "var(--skm-gold-light)"; tracker.style.display = "block";
-                    } else { tracker.innerHTML = `FREE PLAYS: <span style="color:#fff;">${data.predictions_used || 0}/5</span>`; tracker.style.display = "block"; }
-
-                    let topPanel = document.getElementById('top-panel');
-                    if(data.custom_bg) { document.body.style.background = `url('${data.custom_bg}') no-repeat center center/cover`; topPanel.style.background = "rgba(5, 11, 20, 0.85)"; } 
-                    else { document.body.style.background = "#000"; topPanel.style.background = "linear-gradient(135deg, #050b14, #0a1128, #1e3a8a, #050b14)"; }
-
-                    let iframe = document.getElementById('gameIframe');
-                    if(data.custom_link) { if(iframe.src !== data.custom_link) iframe.src = data.custom_link; } 
-                    else { if(iframe.src !== globalLink) iframe.src = globalLink; }
-                }
-            });
-        }
-
         window.runExploit = async () => {
             let n1 = document.getElementById('num1').value; let n2 = document.getElementById('num2').value;
-            let resBox = document.getElementById('predictionDisplay'); let predText = document.getElementById('predText'); let btn = document.getElementById('analyzeBtn');
+            let predText = document.getElementById('predText'); let btn = document.getElementById('analyzeBtn');
             if(n1 === "" || n2 === "") return showModal("WARNING", "Missing inputs.");
 
-            let userSnap = await get(ref(db, 'approved_uids/' + currentUid)); let userData = userSnap.val();
-            if(!userData.is_premium && userData.predictions_used >= 5) { document.getElementById('depositModal').style.display = 'flex'; return; }
-
-            btn.disabled = true; 
-            resBox.classList.add('analyzing'); 
-            predText.innerHTML = "INTERCEPTING DATA...";
-            
+            btn.disabled = true; predText.innerHTML = "INTERCEPTING DATA...";
             try {
                 let snap = await get(ref(db, `patterns/${n1}-${n2}`));
+                // 🔥 ZERO DELAY UX FOR SCANNER (Reduced to 400ms) 🔥
                 setTimeout(async () => {
-                    btn.disabled = false; resBox.classList.remove('analyzing'); 
-                    
+                    btn.disabled = false; 
                     if(snap.exists() && !snap.val().includes("UNSET")) {
                         currentActivePrediction = snap.val(); 
                         let szMatch = currentActivePrediction.split(' ')[0]; let numMatch = currentActivePrediction.match(/\[(\d+)\]/); let num = numMatch ? numMatch[1] : 0;
-                        
-                        predText.innerHTML = `<div style="display:flex; justify-content:center; align-items:center; gap:12px; padding: 2px;">
-                            ${window.getRealBallHtml(num)} <div style="height: 20px; width: 1px; background: rgba(255,255,255,0.1);"></div> ${window.getSizeBadge(szMatch)}
-                        </div>`;
-                        
-                        if(!userData.is_premium) await update(ref(db, 'approved_uids/' + currentUid), { predictions_used: increment(1) });
+                        predText.innerHTML = `<div style="display:flex; justify-content:center; align-items:center; gap:12px; padding: 2px;">${window.getRealBallHtml(num)} <div style="height: 20px; width: 1px; background: rgba(255,255,255,0.2);"></div> ${window.getSizeBadge(szMatch)}</div>`;
                         isWaitingForAPI = false;
-                    } else { predText.innerHTML = "NO PATTERN"; predText.style.color = "var(--skm-red)"; }
-                }, 1200); 
-            } catch(e) { btn.disabled = false; resBox.classList.remove('analyzing'); predText.innerHTML = "SERVER ERROR"; }
-        };
-
-        window.updateFileName = () => { let file = document.getElementById('screenshotInput').files[0]; document.getElementById('fileName').innerText = file ? file.name : "Supported formats: JPG, PNG"; };
-
-        window.submitDeposit = () => {
-            let file = document.getElementById('screenshotInput').files[0]; let btn = document.getElementById('uploadBtn');
-            if(!file) { alert("Please select a screenshot first!"); return; }
-            btn.innerText = "UPLOADING..."; btn.disabled = true;
-            
-            let reader = new FileReader();
-            reader.onloadend = async function() {
-                try {
-                    await set(ref(db, 'deposit_requests/' + currentUid), { uid: currentUid, screenshot: reader.result, timestamp: Date.now() });
-                    btn.innerText = "SUBMIT FOR APPROVAL"; btn.disabled = false; document.getElementById('depositModal').style.display = 'none';
-                    showModal("✅ SUBMITTED", "Payment proof sent to Admin. Wait for VIP activation.");
-                } catch(e) { btn.innerText = "SUBMIT FOR APPROVAL"; btn.disabled = false; showModal("ERROR", "Upload failed. Image might be too large."); }
-            }
-            reader.readAsDataURL(file);
+                    } else { predText.innerHTML = "NO PATTERN"; predText.style.color = "var(--red)"; }
+                }, 400); 
+            } catch(e) { btn.disabled = false; predText.innerHTML = "SERVER ERROR"; }
         };
 
         function startTimerEngine() {
             setInterval(() => {
-                let now = new Date(); let hrs = now.getUTCHours(); let mins = now.getUTCMinutes(); let secs = now.getUTCSeconds();
-                let totalMins = (hrs * 60) + mins;
+                let now = new Date(); let totalMins = (now.getUTCHours() * 60) + now.getUTCMinutes();
                 let year = now.getUTCFullYear(); let month = String(now.getUTCMonth() + 1).padStart(2, '0'); let day = String(now.getUTCDate()).padStart(2, '0');
                 currentActivePeriod = `${year}${month}${day}1000${10001 + totalMins}`;
-                let remSec = 60 - secs; if(remSec === 60) remSec = 0;
+                let remSec = 60 - now.getUTCSeconds(); if(remSec === 60) remSec = 0;
                 
                 document.getElementById('displayPeriod').innerText = currentActivePeriod; document.getElementById('displayTimer').innerText = `00:${String(remSec).padStart(2,'0')}`;
-                if(remSec === 0 && currentActivePrediction !== "" && !isWaitingForAPI) { isWaitingForAPI = true; triggerAnimationEngine(currentActivePeriod, currentActivePrediction); }
+                
+                // 🔥 ZERO DELAY TRIGGER 🔥
+                if(remSec === 0 && currentActivePrediction !== "" && !isWaitingForAPI) { 
+                    isWaitingForAPI = true; triggerAnimationEngine(currentActivePeriod, currentActivePrediction); 
+                }
             }, 1000);
         }
 
-        window.closeMiniScreen = () => { 
-            document.getElementById('miniAnimScreen').style.display = 'none'; 
-            document.getElementById('realCard').className = "real-result-card"; // Reset Classes
-        }
-
-        // 🔥 ANIMATED RESULT FUNCTION 🔥
         function showResultPopup(type, period, prediction, actualResult, number) {
-            if(type === 'JACKPOT') {
-                const jpScreen = document.getElementById('jackpotScreen'); jpScreen.style.display = 'flex'; setTimeout(() => { jpScreen.style.display = 'none'; }, 3000);
-            } else {
-                const miniScreen = document.getElementById('miniAnimScreen'); 
-                const mTitle = document.getElementById('miniTitle');
-                const card = document.getElementById('realCard');
-                
-                document.getElementById('resPeriod').innerText = period; 
-                document.getElementById('resBalls').innerHTML = window.getRealBallHtml(number); 
-                document.getElementById('resSize').innerHTML = window.getSizeBadge(actualResult);
-                
-                let predSz = prediction.split(' ')[0]; let predNum = (prediction.match(/\[(\d+)\]/) || [])[1] || 0;
-                document.getElementById('resPred').innerHTML = `${window.getRealBallHtml(predNum)} ${window.getSizeBadge(predSz)}`;
-                
-                // RESET PREVIOUS ANIMATION CLASSES
-                card.className = "real-result-card";
-                
-                // APPLY NEW ANIMATIONS
-                if(type === 'WIN') { 
-                    mTitle.innerText = "🏆 MEGA WIN 🏆"; 
-                    mTitle.style.color = "var(--skm-green)"; 
-                    mTitle.style.textShadow = "0 0 25px rgba(16, 185, 129, 0.8)"; 
-                    card.classList.add('theme-win'); // Win Bounce
-                } 
-                else { 
-                    mTitle.innerText = "❌ PREDICTION FAILED ❌"; 
-                    mTitle.style.color = "var(--skm-red)"; 
-                    mTitle.style.textShadow = "0 0 25px rgba(239, 68, 68, 0.8)"; 
-                    card.classList.add('theme-loss'); // Loss Shake
-                }
-                
-                miniScreen.style.display = 'flex'; 
+            const miniScreen = document.getElementById('miniAnimScreen'); const mTitle = document.getElementById('miniTitle'); const card = document.getElementById('realCard');
+            document.getElementById('resPeriod').innerText = period; document.getElementById('resBalls').innerHTML = window.getRealBallHtml(number); document.getElementById('resSize').innerHTML = window.getSizeBadge(actualResult);
+            
+            let predSz = prediction.split(' ')[0]; let predNum = (prediction.match(/\[(\d+)\]/) || [])[1] || 0;
+            document.getElementById('resPred').innerHTML = `${window.getRealBallHtml(predNum)} ${window.getSizeBadge(predSz)}`;
+            
+            card.className = "real-result-card"; // Reset
+            
+            if(type === 'WIN') { 
+                mTitle.innerText = "🏆 MEGA WIN 🏆"; mTitle.style.color = "var(--green)"; mTitle.style.textShadow = "0 0 25px rgba(16, 185, 129, 0.8)"; 
+                card.classList.add('theme-win'); // Epic Green Pop
+            } else { 
+                mTitle.innerText = "❌ PREDICTION FAILED ❌"; mTitle.style.color = "var(--red)"; mTitle.style.textShadow = "0 0 25px rgba(239, 68, 68, 0.8)"; 
+                card.classList.add('theme-loss'); // Red Shake
             }
-            document.getElementById('predText').innerHTML = "<span style='letter-spacing:2px; font-size:12px;'>AWAITING COMMAND...</span>";
-        }
-
-        async function fetchSecureApiData(targetUrl) {
-            try { let res = await fetch("https://api.allorigins.win/get?url=" + encodeURIComponent(targetUrl), { cache: "no-store" }); let data = await res.json(); return JSON.parse(data.contents); } 
-            catch (e) { let res2 = await fetch("https://api.codetabs.com/v1/proxy?quest=" + encodeURIComponent(targetUrl), { cache: "no-store" }); return await res2.json(); }
+            
+            miniScreen.style.display = 'flex'; document.getElementById('predText').innerHTML = "<span style='letter-spacing:2px; font-size:12px; color:#94a3b8;'>AWAITING COMMAND...</span>";
         }
 
         async function triggerAnimationEngine(pVerify, pValue) {
             let attempts = 0; const targetPeriod = String(pVerify);
             async function fetchRealResult() {
                 try {
-                    let rawData = await fetchSecureApiData("https://draw.ar-lottery01.com/WinGo/WinGo_1M/GetHistoryIssuePage.json?t=" + Date.now());
+                    let res = await fetch("https://api.allorigins.win/get?url=" + encodeURIComponent("https://draw.ar-lottery01.com/WinGo/WinGo_1M/GetHistoryIssuePage.json?t=" + Date.now()), { cache: "no-store" });
+                    let data = await res.json(); let rawData = JSON.parse(data.contents);
                     let list = rawData.data?.list || rawData.data || rawData.list || rawData;
-                    if (!list || list.length === 0) throw new Error("List not found");
-
-                    let latestItem = list[0]; let apiPeriod = String(latestItem.issueNumber || latestItem.period || latestItem.issue);
-                    if(apiPeriod.slice(-4) !== targetPeriod.slice(-4)) { attempts++; if(attempts < 10) { setTimeout(fetchRealResult, 1500); return; } }
+                    
+                    let latestItem = list[0]; let apiPeriod = String(latestItem.issueNumber || latestItem.period);
+                    
+                    if(apiPeriod.slice(-4) !== targetPeriod.slice(-4)) { 
+                        attempts++; 
+                        // 🔥 FAST PING (800ms) FOR ZERO DELAY FEEL 🔥
+                        if(attempts < 15) { setTimeout(fetchRealResult, 800); return; } 
+                    }
                     
                     let num = latestItem.number !== undefined ? parseInt(latestItem.number) : 0;
-                    let actual = latestItem.size ? latestItem.size.toUpperCase() : (latestItem.premium ? latestItem.premium.toUpperCase() : (num >= 5 ? "BIG" : "SMALL"));
+                    let actual = latestItem.size ? latestItem.size.toUpperCase() : (num >= 5 ? "BIG" : "SMALL");
                     let cleanPred = pValue.toUpperCase().includes("BIG") ? "BIG" : "SMALL";
                     
-                    if(cleanPred === actual) { if(num === 0 || num === 5) showResultPopup('JACKPOT', pVerify, pValue, actual, num); else showResultPopup('WIN', pVerify, pValue, actual, num); } 
-                    else { showResultPopup('LOSS', pVerify, pValue, actual, num); }
+                    if(cleanPred === actual) { showResultPopup('WIN', pVerify, pValue, actual, num); } else { showResultPopup('LOSS', pVerify, pValue, actual, num); }
                 } catch(e) {
-                    attempts++; if(attempts < 5) { setTimeout(fetchRealResult, 1500); } 
-                    else { let cleanPred = pValue.toUpperCase().includes("BIG") ? "BIG" : "SMALL"; let fakeNum = cleanPred === "BIG" ? (Math.random() > 0.5 ? 7 : 8) : (Math.random() > 0.5 ? 2 : 3); showResultPopup('WIN', pVerify, pValue, cleanPred, fakeNum); }
+                    attempts++; if(attempts < 15) { setTimeout(fetchRealResult, 800); } else { showResultPopup('WIN', pVerify, pValue, pValue.toUpperCase().includes("BIG")?"BIG":"SMALL", 8); }
                 }
             }
             fetchRealResult(); currentActivePrediction = ""; isWaitingForAPI = false;
