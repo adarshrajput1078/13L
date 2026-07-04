@@ -2,133 +2,70 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>13L X ROCKY | DEV CORE</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Rajdhani:wght@700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIKKIM | GOD MODE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Rajdhani:wght@700;900&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
     <style>
-        :root { --plasma: #ff1a1a; --gold: #d9a036; --bg: #050505; --panel-bg: rgba(15, 5, 5, 0.95); --green: #00f060;}
-        body { margin: 0; padding: 15px; font-family: 'Poppins', sans-serif; background: var(--bg); color: #fff; display: flex; flex-direction: column; align-items: center; min-height: 100vh;}
-        * { box-sizing: border-box; }
-
-        .glass-panel { background: var(--panel-bg); border: 2px solid var(--plasma); border-radius: 12px; width: 100%; max-width: 600px; padding: 25px; margin-bottom: 20px;}
-        h1 { text-align: center; font-family: 'Rajdhani', sans-serif; color: var(--plasma); font-size: 26px; letter-spacing: 2px; margin: 0 0 20px 0; border-bottom: 1px dashed #333; padding-bottom: 10px;}
+        :root { --bg-dark: #04040a; --bg-panel: #0a0a14; --primary: #8b5cf6; --red: #ef4444; --text-main: #f8fafc; --text-muted: #94a3b8; --border: #1e1e2d; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-dark); color: var(--text-main); display: flex; justify-content: center; align-items: center; height: 100vh; }
         
-        .dev-section { background: #0a0a0a; border: 1px solid #222; padding: 15px; border-radius: 8px; margin-bottom: 15px; }
-        .dev-section h3 { font-family: 'Rajdhani', sans-serif; color: var(--gold); margin: 0 0 10px 0; font-size: 18px; display: flex; justify-content: space-between; align-items: center;}
+        .card { background: var(--bg-panel); border: 1px solid var(--primary); padding: 40px; border-radius: 16px; width: 100%; max-width: 450px; box-shadow: 0 10px 40px rgba(139, 92, 246, 0.2); }
+        h2 { font-family: 'Rajdhani'; font-size: 32px; text-align: center; margin-bottom: 30px; color: var(--primary);}
         
-        label { font-size: 11px; color: #888; font-weight: 700; display: block; margin-bottom: 5px;}
-        input[type="text"], input[type="password"] { width: 100%; padding: 12px; background: #000; border: 1px solid #333; color: #fff; font-family: 'Share Tech Mono'; font-size: 14px; border-radius: 6px; outline: none; margin-bottom: 10px;}
-        button { width: 100%; padding: 12px; font-family: 'Rajdhani', sans-serif; font-size: 16px; font-weight: 900; background: linear-gradient(90deg, #b30000, #ff1a1a); color: #fff; border: none; border-radius: 6px; cursor: pointer; letter-spacing: 1px;}
+        input { width: 100%; padding: 15px; background: #000; border: 1px solid var(--border); color: #fff; border-radius: 8px; outline: none; margin-bottom: 20px; font-family: 'Inter';}
+        button { width: 100%; padding: 15px; background: var(--primary); color: #fff; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; margin-bottom: 20px; font-family: 'Inter';}
         
-        .switch-container { display: flex; align-items: center; justify-content: space-between; background: #000; padding: 12px; border-radius: 6px; border: 1px dashed #333;}
-        .switch { position: relative; display: inline-block; width: 50px; height: 28px; }
+        .switch-container { display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.5); padding: 15px; border-radius: 8px; border: 1px solid var(--red); }
+        .switch { position: relative; display: inline-block; width: 50px; height: 26px; }
         .switch input { opacity: 0; width: 0; height: 0; }
-        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #333; border-radius: 34px; transition: .4s;}
-        .slider:before { position: absolute; content: ""; height: 20px; width: 20px; left: 4px; bottom: 4px; background-color: white; border-radius: 50%; transition: .4s;}
-        input:checked + .slider { background-color: var(--plasma); }
-        input:checked + .slider:before { transform: translateX(22px); }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: var(--border); border-radius: 34px; transition: .4s;}
+        .slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 4px; bottom: 4px; background-color: white; border-radius: 50%; transition: .4s;}
+        input:checked + .slider { background-color: var(--red); }
+        input:checked + .slider:before { transform: translateX(24px); }
 
-        .status-badge { padding: 4px 8px; border-radius: 4px; font-family: 'Share Tech Mono'; font-size: 11px; font-weight: bold;}
-        .status-online { background: rgba(0, 240, 96, 0.2); color: #00f060; border: 1px solid #00f060;}
-        .status-offline { background: rgba(255, 26, 26, 0.2); color: #ff1a1a; border: 1px solid #ff1a1a;}
-
-        .req-card { background: #111; border: 1px solid #333; padding: 10px; margin-bottom: 8px; border-radius: 6px; display: flex; flex-direction: column; gap: 6px;}
-        .urgent-tag { background: var(--plasma); color: #fff; font-size: 10px; padding: 2px 6px; border-radius: 4px; align-self: flex-start; }
-        .req-actions { display: flex; gap: 8px; margin-top: 5px; }
-        .req-actions button { padding: 8px; font-size: 12px; border-radius: 4px; flex: 1; border: 1px solid;}
-        
-        @media screen and (max-width: 768px) {
-            .glass-panel { padding: 15px; }
-            h1 { font-size: 22px; }
-            .dev-section h3 { font-size: 16px; flex-direction: column; align-items: flex-start; gap: 5px; }
-            .switch-container { flex-direction: column; gap: 10px; align-items: flex-start;}
-        }
         .hidden { display: none !important; }
     </style>
 </head>
 <body>
 
-    <div class="glass-panel" id="loginBox" style="margin-top: 10vh;">
-        <h1>DEVELOPER CORE</h1>
-        <input type="password" id="devPass" placeholder="ENTER MASTER KEY">
-        <button onclick="devLogin()">AUTHENTICATE</button>
+    <div class="card" id="loginBox">
+        <h2>DEVELOPER LOGIN</h2>
+        <input type="password" id="pass" placeholder="ENTER PIN (ROCKYDEV)" style="text-align:center; letter-spacing:3px;">
+        <button onclick="login()">AUTHORIZE</button>
     </div>
 
-    <div class="glass-panel hidden" id="devDash">
-        <h1>SYSTEM ARCHITECTURE</h1>
-
-        <div class="dev-section" style="border-color: var(--plasma);">
-            <h3><span>⚡ LIVE UID REQUESTS</span> <span id="devReqCount" class="status-badge status-offline" style="background:var(--plasma); color:#fff;">0</span></h3>
-            <div id="devRequestsContainer" style="max-height: 250px; overflow-y: auto;"></div>
+    <div class="card hidden" id="devBox">
+        <h2>SYSTEM CORE</h2>
+        
+        <div style="margin-bottom: 30px;">
+            <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 10px;">UPDATE GAME URL</p>
+            <input type="text" id="gameLink" placeholder="https://sikkim.com">
+            <button onclick="saveLink()" style="background: var(--text-main); color: #000;">UPDATE LINK</button>
         </div>
 
-        <div class="dev-section">
-            <h3><span>⚙️ PLATFORM STATUS</span> <span id="statusBadge" class="status-badge status-online">ONLINE</span></h3>
-            <div class="switch-container">
-                <span style="font-weight: 700; color: #fff; font-size: 13px;">MAINTENANCE MODE</span>
-                <label class="switch"><input type="checkbox" id="maintToggle" onchange="updateMaintenance()"><span class="slider"></span></label>
-            </div>
-        </div>
-
-        <div class="dev-section">
-            <h3>🎮 GAME LINK CONFIG</h3>
-            <input type="text" id="gameLinkInput" placeholder="https://...">
-            <button onclick="saveGameLink()" style="background: var(--gold); color: #000;">UPDATE LINK</button>
+        <div class="switch-container">
+            <span style="color: var(--red); font-weight: bold; font-size: 14px;">GLOBAL KILL SWITCH<br><span style="font-size: 10px; color: var(--text-muted); font-weight: normal;">Activates Maintenance Screen</span></span>
+            <label class="switch"><input type="checkbox" id="maintToggle" onchange="toggleMaint()"><span class="slider"></span></label>
         </div>
     </div>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getDatabase, ref, set, onValue, remove } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+        import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
-        const app = initializeApp({
-            apiKey: "AIzaSyBFdvXN8SAy77EDQp5HNykO5z2Wa0W8sb0", authDomain: "bdgrocky.firebaseapp.com",
-            databaseURL: "https://bdgrocky-default-rtdb.asia-southeast1.firebasedatabase.app", projectId: "bdgrocky"
-        });
+        const app = initializeApp({ apiKey: "AIzaSyBFdvXN8SAy77EDQp5HNykO5z2Wa0W8sb0", authDomain: "bdgrocky.firebaseapp.com", databaseURL: "https://bdgrocky-default-rtdb.asia-southeast1.firebasedatabase.app", projectId: "bdgrocky" });
         const db = getDatabase(app);
 
-        window.devLogin = () => {
-            if(document.getElementById('devPass').value === "ROCKYDEV") { 
-                document.getElementById('loginBox').classList.add('hidden'); document.getElementById('devDash').classList.remove('hidden');
-                loadCurrentSettings(); listenDevRequests();
-            } else alert("ACCESS DENIED");
-        };
+        window.login = () => { if(document.getElementById('pass').value === "ROCKYDEV") { document.getElementById('loginBox').classList.add('hidden'); document.getElementById('devBox').classList.remove('hidden'); init(); } else alert("Wrong PIN"); };
 
-        function listenDevRequests() {
-            onValue(ref(db, 'uid_requests'), snap => {
-                let container = document.getElementById('devRequestsContainer'); let countBadge = document.getElementById('devReqCount'); container.innerHTML = "";
-                if(!snap.exists()) { countBadge.innerText = "0"; return; }
-                let count = 0; let reqHtml = "";
-                snap.forEach(child => {
-                    count++; let data = child.val();
-                    let urgentTag = data.urgent ? `<div class="urgent-tag">🔴 URGENT PING</div>` : '';
-                    reqHtml += `<div class="req-card">${urgentTag}
-                        <div style="font-family:'Share Tech Mono'; font-size:14px; color: #fff;">UID: <span style="color:var(--gold); font-weight:bold;">${data.uid}</span></div>
-                        <div class="req-actions">
-                            <button style="background:rgba(0,240,96,0.1); color:var(--green); border-color:var(--green);" onclick="approveUidDev('${data.uid}')">✅ APP</button>
-                            <button style="background:rgba(255,26,26,0.1); color:var(--plasma); border-color:var(--plasma);" onclick="rejectUidDev('${data.uid}')">❌ REJ</button>
-                        </div></div>`;
-                });
-                countBadge.innerText = count; container.innerHTML = reqHtml;
-            });
+        function init() {
+            onValue(ref(db, 'settings/link_sikkim'), s => { if(s.exists()) document.getElementById('gameLink').value = s.val(); });
+            onValue(ref(db, 'settings/maintenance'), s => { document.getElementById('maintToggle').checked = s.exists() ? s.val() : false; });
         }
 
-        window.approveUidDev = async (uid) => { await set(ref(db, 'approved_uids/' + uid), true); await remove(ref(db, 'uid_requests/' + uid)); };
-        window.rejectUidDev = async (uid) => { await remove(ref(db, 'uid_requests/' + uid)); };
-
-        function loadCurrentSettings() {
-            onValue(ref(db, 'settings/active_link'), (snap) => { if(snap.exists()) document.getElementById('gameLinkInput').value = snap.val(); });
-            onValue(ref(db, 'settings/maintenance'), (snap) => {
-                let isMaint = snap.exists() ? snap.val() : false;
-                document.getElementById('maintToggle').checked = isMaint;
-                let badge = document.getElementById('statusBadge');
-                if(isMaint) { badge.innerText = "OFFLINE"; badge.className = "status-badge status-offline"; } 
-                else { badge.innerText = "ONLINE"; badge.className = "status-badge status-online"; }
-            });
-        }
-
-        window.saveGameLink = async () => { await set(ref(db, 'settings/active_link'), document.getElementById('gameLinkInput').value.trim()); alert("LINK UPDATED!"); };
-        window.updateMaintenance = async () => { await set(ref(db, 'settings/maintenance'), document.getElementById('maintToggle').checked); };
+        window.saveLink = async () => { await set(ref(db, 'settings/link_sikkim'), document.getElementById('gameLink').value); alert("Link Updated!"); };
+        window.toggleMaint = async () => { await set(ref(db, 'settings/maintenance'), document.getElementById('maintToggle').checked); };
     </script>
 </body>
 </html>
