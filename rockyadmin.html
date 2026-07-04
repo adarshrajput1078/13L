@@ -3,154 +3,291 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SIKKIM | STAFF ADMIN</title>
+    <title>SIKKIM | SUPER ADMIN</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Rajdhani:wght@700;900&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
     <style>
-        :root { --bg-dark: #020617; --bg-panel: #0f172a; --primary: #3b82f6; --green: #10b981; --red: #ef4444; --text-main: #f8fafc; --text-muted: #94a3b8; --border: #1e293b; }
+        :root { --bg-dark: #020617; --bg-panel: #0f172a; --primary: #3b82f6; --gold: #eab308; --cyan: #06b6d4; --green: #10b981; --red: #ef4444; --text-main: #f8fafc; --text-muted: #94a3b8; --border: #1e293b; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Inter', sans-serif; background: var(--bg-dark); color: var(--text-main); display: flex; height: 100vh; overflow: hidden; }
         
-        .sidebar { width: 250px; background: var(--bg-panel); border-right: 1px solid var(--border); padding: 20px 0; }
-        .brand { font-family: 'Rajdhani'; font-size: 26px; font-weight: 900; color: #fff; text-align: center; margin-bottom: 20px; }
-        .brand span { color: var(--primary); }
-        .nav-item { padding: 12px 20px; margin: 5px 15px; border-radius: 8px; cursor: pointer; font-size: 13px; font-weight: 600; color: var(--text-muted); }
-        .nav-item.active, .nav-item:hover { background: rgba(59,130,246,0.1); color: var(--primary); }
+        .sidebar { width: 260px; background: var(--bg-panel); border-right: 1px solid var(--border); padding: 20px 0; display: flex; flex-direction: column;}
+        .brand { font-family: 'Rajdhani'; font-size: 28px; font-weight: 900; color: #fff; text-align: center; margin-bottom: 25px; letter-spacing: 1px;}
+        .brand span { color: var(--primary); text-shadow: 0 0 10px rgba(59, 130, 246, 0.5);}
+        .nav-item { padding: 14px 20px; margin: 5px 15px; border-radius: 8px; cursor: pointer; font-size: 13px; font-weight: 600; color: var(--text-muted); display: flex; align-items: center; gap: 10px; transition: 0.2s;}
+        .nav-item.active, .nav-item:hover { background: rgba(59,130,246,0.15); color: var(--primary); border: 1px solid rgba(59,130,246,0.3); }
         
         .main-content { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
-        .view-section { padding: 20px; display: none; overflow-y: auto; height: 100%; }
-        .view-section.active { display: block; }
+        .view-section { padding: 30px; display: none; overflow-y: auto; height: 100%; }
+        .view-section.active { display: block; animation: fadeIn 0.3s forwards;}
+        @keyframes fadeIn { from { opacity:0; transform:translateY(10px); } to {opacity:1; transform:translateY(0);} }
+
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 25px;}
+        .stat-card { background: rgba(0,0,0,0.3); border: 1px solid var(--border); padding: 20px; border-radius: 12px; border-left: 4px solid var(--primary);}
         
-        .table-card { background: var(--bg-panel); border: 1px solid var(--border); border-radius: 12px; overflow: auto; }
-        table { width: 100%; border-collapse: collapse; font-size: 13px; text-align: left; }
-        th { background: rgba(0,0,0,0.3); padding: 15px; color: var(--text-muted); border-bottom: 1px solid var(--border); }
-        td { padding: 15px; border-bottom: 1px dashed rgba(255,255,255,0.05); }
+        .table-card { background: var(--bg-panel); border: 1px solid var(--border); border-radius: 12px; overflow: auto; box-shadow: 0 10px 30px rgba(0,0,0,0.5);}
+        table { width: 100%; border-collapse: collapse; font-size: 13px; text-align: left; min-width: 800px;}
+        th { background: rgba(0,0,0,0.5); padding: 16px; color: var(--text-muted); border-bottom: 1px solid var(--border); white-space: nowrap;}
+        td { padding: 16px; border-bottom: 1px dashed rgba(255,255,255,0.05); vertical-align: middle;}
         
-        button { font-family: 'Inter'; cursor: pointer; border: none; padding: 10px 15px; border-radius: 8px; font-weight: 700; color: #fff; font-size: 12px; }
-        .btn-primary { background: var(--primary); } .btn-success { background: var(--green); } .btn-danger { background: var(--red); }
+        button { font-family: 'Inter'; cursor: pointer; border: none; padding: 10px 16px; border-radius: 8px; font-weight: 700; color: #fff; font-size: 12px; transition: 0.2s; white-space: nowrap;}
+        button:active { transform: scale(0.95); }
+        .btn-primary { background: var(--primary); box-shadow: 0 4px 15px rgba(59,130,246,0.3); } 
+        .btn-success { background: var(--green); box-shadow: 0 4px 15px rgba(16,185,129,0.3);} 
+        .btn-danger { background: var(--red); box-shadow: 0 4px 15px rgba(239,68,68,0.3);}
+        .btn-warning { background: var(--gold); color: #000; box-shadow: 0 4px 15px rgba(234,179,8,0.3);}
+        .btn-cyan { background: var(--cyan); color: #000; box-shadow: 0 4px 15px rgba(6,182,212,0.3);}
+        .action-group { display: flex; gap: 8px; flex-wrap: wrap; }
         
-        input { padding: 12px; background: #000; border: 1px solid var(--border); color: #fff; border-radius: 8px; outline: none; width: 100%; margin-bottom: 10px; font-family: 'Inter';}
-        .msg-box { background: rgba(255,255,255,0.02); border: 1px solid var(--border); padding: 20px; border-radius: 12px; margin-bottom: 20px; }
+        input { padding: 14px; background: #000; border: 1px solid var(--border); color: #fff; border-radius: 8px; outline: none; width: 100%; margin-bottom: 10px; font-family: 'Inter'; transition: 0.3s;}
+        input:focus { border-color: var(--primary); box-shadow: 0 0 10px rgba(59,130,246,0.2);}
         
+        .msg-box { background: rgba(0,0,0,0.3); border: 1px solid var(--border); padding: 25px; border-radius: 12px; margin-bottom: 20px; box-shadow: inset 0 0 20px rgba(0,0,0,0.5);}
+        
+        .tag { padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 800; }
+        .tag-vip { background: rgba(234,179,8,0.2); color: var(--gold); border: 1px solid rgba(234,179,8,0.5);}
+        .tag-trial { background: rgba(59,130,246,0.2); color: var(--primary); border: 1px solid rgba(59,130,246,0.5);}
+
         .login-wrapper { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-dark); display: flex; justify-content: center; align-items: center; z-index: 9999;}
-        .login-card { background: var(--bg-panel); border: 1px solid var(--primary); padding: 40px; border-radius: 16px; text-align: center; width: 350px;}
+        .login-card { background: var(--bg-panel); border: 1px solid var(--primary); padding: 40px; border-radius: 16px; text-align: center; width: 350px; box-shadow: 0 20px 50px rgba(0,0,0,0.8), inset 0 0 20px rgba(59,130,246,0.2);}
         .hidden { display: none !important; }
+        
+        /* Custom Toast */
+        #toast { position:fixed; bottom:20px; right:20px; background:var(--green); color:#fff; padding:15px 20px; border-radius:8px; font-weight:bold; font-size:13px; z-index:99999; transform:translateX(200%); transition:0.3s; box-shadow:0 10px 20px rgba(0,0,0,0.5); }
+        #toast.show { transform:translateX(0); }
     </style>
 </head>
 <body>
 
+    <div id="toast">Action Successful!</div>
+
     <div class="login-wrapper" id="loginBox">
         <div class="login-card">
-            <h2 style="font-family:'Rajdhani'; font-size: 30px; margin-bottom: 20px;">SIKKIM <span style="color:var(--primary);">ADMIN</span></h2>
-            <input type="password" id="pass" placeholder="ENTER PIN (SIKKIMADMIN)" style="text-align:center; letter-spacing:2px;">
-            <button class="btn-primary" style="width: 100%; padding: 15px;" onclick="login()">LOGIN</button>
+            <h2 style="font-family:'Rajdhani'; font-size: 32px; margin-bottom: 5px;">SIKKIM <span style="color:var(--primary);">ADMIN</span></h2>
+            <p style="font-size: 11px; color: var(--text-muted); margin-bottom: 25px; letter-spacing: 2px;">SUPER ADMIN ACCESS</p>
+            <input type="password" id="pass" placeholder="ENTER PIN (SIKKIMADMIN)" style="text-align:center; letter-spacing:2px; font-family:'JetBrains Mono'; font-weight:bold;">
+            <button class="btn-primary" style="width: 100%; padding: 15px; font-size: 14px;" onclick="login()">AUTHORIZE</button>
         </div>
     </div>
 
     <div class="sidebar hidden" id="sidebar">
-        <div class="brand">SIKKIM <span>STAFF</span></div>
-        <div class="nav-item active" onclick="switchView('v-req', this)">⚡ Access Requests</div>
-        <div class="nav-item" onclick="switchView('v-usr', this)">🛡️ User Database</div>
-        <div class="nav-item" onclick="switchView('v-mat', this)">🔮 Matrix</div>
-        <div class="nav-item" style="color:var(--green);" onclick="switchView('v-msg', this)">📩 Messaging Center</div>
+        <div class="brand">SIKKIM <span>ADMIN</span></div>
+        <div class="nav-item active" onclick="switchView('v-dashboard', this)">📊 Control Panel</div>
+        <div class="nav-item" onclick="switchView('v-req', this)">⚡ Pending Gateways</div>
+        <div class="nav-item" onclick="switchView('v-usr', this)">🛡️ Manage Users</div>
+        <div class="nav-item" onclick="switchView('v-mat', this)">🔮 Prediction Setup</div>
+        <div class="nav-item" style="color:var(--green);" onclick="switchView('v-msg', this)">📩 Broadcast & DM</div>
     </div>
 
     <div class="main-content hidden" id="mainContent">
-        <div id="v-req" class="view-section active">
-            <h2 style="margin-bottom: 20px; font-family:'Rajdhani';">Pending Verifications</h2>
+        
+        <!-- DASHBOARD (SUPER POWERS HERE) -->
+        <div id="v-dashboard" class="view-section active">
+            <h2 style="margin-bottom: 20px; font-family:'Rajdhani';">Super Admin Control</h2>
+            
+            <div class="stats-grid">
+                <div class="stat-card" style="border-color: var(--primary);">
+                    <div style="font-size:12px; color:var(--text-muted); font-weight:bold;">TOTAL USERS</div>
+                    <div id="statTotal" style="font-size:30px; font-family:'JetBrains Mono'; font-weight:bold; color:#fff;">0</div>
+                </div>
+                <div class="stat-card" style="border-color: var(--gold);">
+                    <div style="font-size:12px; color:var(--text-muted); font-weight:bold;">VIP FLEET</div>
+                    <div id="statVip" style="font-size:30px; font-family:'JetBrains Mono'; font-weight:bold; color:var(--gold);">0</div>
+                </div>
+            </div>
+
+            <!-- THE MANUAL ADD POWER -->
+            <div class="msg-box" style="border-top: 4px solid var(--primary);">
+                <h3 style="color:var(--primary); margin-bottom:8px; font-family:'Rajdhani'; font-size:22px;">⚡ FORCE INJECT USER (MANUAL ADD)</h3>
+                <p style="font-size:12px; color:var(--text-muted); margin-bottom:15px;">Manually grant access to any UID without them sending a request.</p>
+                
+                <div style="display: flex; gap: 15px; flex-wrap: wrap; align-items: center;">
+                    <input type="number" id="manualUid" placeholder="Enter Target UID" style="width: 250px; margin: 0; font-family:'JetBrains Mono'; font-weight:bold;">
+                    <button class="btn-cyan" onclick="addManualUser(false)">GRANT FREE TRIAL (5 PLAYS)</button>
+                    <button class="btn-warning" onclick="addManualUser(true)">GRANT VIP STATUS (UNLIMITED)</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- REQUESTS -->
+        <div id="v-req" class="view-section">
+            <h2 style="margin-bottom: 20px; font-family:'Rajdhani';">Access Verification Queue</h2>
             <div class="table-card">
                 <table>
-                    <thead><tr><th>UID</th><th>DEVICE</th><th>ACTIONS</th></tr></thead>
+                    <thead><tr><th>UID IDENTIFIER</th><th>HARDWARE ID</th><th>ACTIONS</th></tr></thead>
                     <tbody id="req-list"></tbody>
                 </table>
             </div>
         </div>
 
+        <!-- USER DATABASE (WITH FULL ADMIN ACTIONS) -->
         <div id="v-usr" class="view-section">
-            <h2 style="margin-bottom: 20px; font-family:'Rajdhani';">Active Fleet</h2>
+            <h2 style="margin-bottom: 20px; font-family:'Rajdhani';">User Database & Controls</h2>
             <div class="table-card">
                 <table>
-                    <thead><tr><th>UID</th><th>TYPE</th><th>USAGE</th><th>ACTIONS</th></tr></thead>
+                    <thead><tr><th>UID IDENTIFIER</th><th>STATUS</th><th>DATA USAGE</th><th>SUPER ACTIONS</th></tr></thead>
                     <tbody id="usr-list"></tbody>
                 </table>
             </div>
         </div>
 
+        <!-- MATRIX -->
         <div id="v-mat" class="view-section">
-            <h2 style="margin-bottom: 20px; font-family:'Rajdhani';">Prediction Matrix</h2>
+            <h2 style="margin-bottom: 20px; font-family:'Rajdhani';">AI Prediction Override</h2>
             <div class="table-card">
                 <table>
-                    <thead><tr><th>COMB</th><th>INPUT</th><th>ACTION</th></tr></thead>
+                    <thead><tr><th>COMBINATION</th><th>RESULT INPUT</th><th>ACTION</th></tr></thead>
                     <tbody id="mat-list"></tbody>
                 </table>
             </div>
         </div>
 
+        <!-- MESSAGING -->
         <div id="v-msg" class="view-section">
-            <h2 style="margin-bottom: 20px; font-family:'Rajdhani';">Transmission Control</h2>
+            <h2 style="margin-bottom: 20px; font-family:'Rajdhani';">System Transmissions</h2>
             
-            <div class="msg-box" style="border-top: 3px solid var(--green);">
-                <h3 style="color:var(--green); margin-bottom:10px;">🌐 GLOBAL BROADCAST</h3>
-                <p style="font-size:12px; color:var(--text-muted); margin-bottom:10px;">Send a popup message to EVERY active user on the website.</p>
-                <input type="text" id="globalText" placeholder="E.g. System is undergoing maintenance in 5 mins!">
-                <button class="btn-success" style="width:100%;" onclick="sendGlobalMessage()">BROADCAST TO ALL</button>
+            <div class="msg-box" style="border-top: 4px solid var(--green);">
+                <h3 style="color:var(--green); margin-bottom:10px;">🌐 GLOBAL BROADCAST ALERT</h3>
+                <p style="font-size:12px; color:var(--text-muted); margin-bottom:15px;">Fires a popup message to EVERY active user's screen instantly.</p>
+                <input type="text" id="globalText" placeholder="E.g. System upgrade in 5 minutes! Do not place bets.">
+                <button class="btn-success" style="width:100%; padding:14px;" onclick="sendGlobalMessage()">EXECUTE GLOBAL BROADCAST</button>
             </div>
 
-            <div class="msg-box" style="border-top: 3px solid var(--primary);">
-                <h3 style="color:var(--primary); margin-bottom:10px;">🎯 DIRECT USER MESSAGE (DM)</h3>
-                <p style="font-size:12px; color:var(--text-muted); margin-bottom:10px;">Send a popup to a specific UID.</p>
+            <div class="msg-box" style="border-top: 4px solid var(--primary);">
+                <h3 style="color:var(--primary); margin-bottom:10px;">🎯 DIRECT TARGET MESSAGE (DM)</h3>
+                <p style="font-size:12px; color:var(--text-muted); margin-bottom:15px;">Send a discrete popup to a specific UID.</p>
                 <input type="number" id="dmUid" placeholder="Target UID">
-                <input type="text" id="dmText" placeholder="Your message...">
-                <button class="btn-primary" style="width:100%;" onclick="sendDirectMessage()">SEND DM</button>
+                <input type="text" id="dmText" placeholder="Your discrete message...">
+                <button class="btn-primary" style="width:100%; padding:14px;" onclick="sendDirectMessage()">SEND TERMINAL MESSAGE</button>
             </div>
         </div>
     </div>
 
+    <!-- ⚡ CORE LOGIC ⚡ -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getDatabase, ref, set, update, onValue, remove } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
+        // 🔥 SIKKIM DB CONNECTION
         const app = initializeApp({ apiKey: "AIzaSyBFdvXN8SAy77EDQp5HNykO5z2Wa0W8sb0", authDomain: "bdgrocky.firebaseapp.com", databaseURL: "https://bdgrocky-default-rtdb.asia-southeast1.firebasedatabase.app", projectId: "bdgrocky" });
         const db = getDatabase(app);
 
+        // Toast Engine
+        window.showToast = (msg) => { let t = document.getElementById('toast'); t.innerText = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 3000); };
+        
+        // UI Engine
         window.switchView = (id, el) => { document.querySelectorAll('.view-section').forEach(v => v.classList.remove('active')); document.querySelectorAll('.nav-item').forEach(v => v.classList.remove('active')); document.getElementById(id).classList.add('active'); el.classList.add('active'); };
-        window.login = () => { if(document.getElementById('pass').value === "SIKKIMADMIN") { document.getElementById('loginBox').style.display='none'; document.getElementById('sidebar').classList.remove('hidden'); document.getElementById('mainContent').classList.remove('hidden'); init(); } else alert("Wrong PIN"); };
+        
+        // Auth
+        window.login = () => { if(document.getElementById('pass').value === "SIKKIMADMIN") { document.getElementById('loginBox').style.display='none'; document.getElementById('sidebar').classList.remove('hidden'); document.getElementById('mainContent').classList.remove('hidden'); initSystem(); } else alert("Access Denied: Invalid PIN"); };
 
-        function init() {
+        function initSystem() {
+            // 1. Listen Requests
             onValue(ref(db, 'uid_requests'), s => {
-                let html = ""; if(s.exists()) s.forEach(c => { html += `<tr><td style="font-family:'JetBrains Mono'; color:var(--primary); font-weight:bold;">${c.key}</td><td style="font-size:11px; color:var(--text-muted);">${c.val().deviceId}</td><td><button class="btn-success" onclick="appr('${c.key}')">APPROVE</button> <button class="btn-danger" onclick="rej('${c.key}')">REJECT</button></td></tr>`; });
-                document.getElementById('req-list').innerHTML = html || `<tr><td colspan="3" style="text-align:center;">No Requests.</td></tr>`;
+                let html = ""; 
+                if(s.exists()) {
+                    s.forEach(c => { 
+                        html += `<tr><td style="font-family:'JetBrains Mono'; color:var(--primary); font-size:15px; font-weight:bold;">${c.key}</td><td style="font-size:11px; color:var(--text-muted);">${c.val().deviceId || "Unknown"}</td><td><div class="action-group"><button class="btn-success" onclick="apprReq('${c.key}')">APPROVE</button> <button class="btn-danger" onclick="rejReq('${c.key}')">REJECT</button></div></td></tr>`; 
+                    });
+                }
+                document.getElementById('req-list').innerHTML = html || `<tr><td colspan="3" style="text-align:center; padding:30px; color:var(--text-muted);">No Pending Gateways.</td></tr>`;
             });
+
+            // 2. Listen Active Users & Admin Powers
             onValue(ref(db, 'approved_uids'), s => {
-                let html = ""; if(s.exists()) s.forEach(c => { html += `<tr><td style="font-family:'JetBrains Mono'; color:var(--primary); font-weight:bold;">${c.key}</td><td style="font-size:11px;">${c.val().is_premium?'VIP':'TRIAL'}</td><td style="font-size:11px;">${c.val().predictions_used||0}/5</td><td><button class="btn-danger" onclick="ban('${c.key}')">REVOKE</button></td></tr>`; });
-                document.getElementById('usr-list').innerHTML = html || `<tr><td colspan="4" style="text-align:center;">No Users.</td></tr>`;
+                let html = ""; let tot = 0; let vip = 0;
+                if(s.exists()) {
+                    s.forEach(c => { 
+                        tot++; let d = c.val(); let uid = c.key;
+                        if(d.is_premium) vip++;
+                        
+                        let badge = d.is_premium ? `<span class="tag tag-vip">VIP</span>` : `<span class="tag tag-trial">TRIAL</span>`;
+                        let usage = d.is_premium ? `<span style="color:var(--gold);">UNLIMITED</span>` : `<span style="color:var(--cyan);">${d.predictions_used||0} / 5</span>`;
+                        
+                        // 🔥 ADMIN SUPER BUTTONS 🔥
+                        let actions = `<div class="action-group">`;
+                        if(!d.is_premium) actions += `<button class="btn-warning" onclick="makeVip('${uid}')">UPGRADE VIP</button>`;
+                        if(!d.is_premium) actions += `<button class="btn-cyan" onclick="resetPlays('${uid}')">RESET PLAYS (0/5)</button>`;
+                        actions += `<button class="btn-primary" style="background:#475569;" onclick="unlinkDevice('${uid}')">UNLINK DEVICE</button>`;
+                        actions += `<button class="btn-danger" onclick="banUser('${uid}')">BAN / PURGE</button>`;
+                        actions += `</div>`;
+
+                        html += `<tr><td style="font-family:'JetBrains Mono'; font-size:15px; font-weight:bold;">${uid}</td><td>${badge}</td><td style="font-family:'JetBrains Mono'; font-weight:bold;">${usage}</td><td>${actions}</td></tr>`; 
+                    });
+                }
+                document.getElementById('usr-list').innerHTML = html || `<tr><td colspan="4" style="text-align:center; padding:30px; color:var(--text-muted);">Database Empty.</td></tr>`;
+                document.getElementById('statTotal').innerText = tot; document.getElementById('statVip').innerText = vip;
             });
+
             buildMatrix();
         }
 
-        window.appr = async (uid) => { await set(ref(db, 'approved_uids/'+uid), {active:true, predictions_used:0, is_premium:false}); await remove(ref(db, 'uid_requests/'+uid)); };
-        window.rej = async (uid) => { await remove(ref(db, 'uid_requests/'+uid)); };
-        window.ban = async (uid) => { if(confirm("Revoke access?")) { await remove(ref(db, 'approved_uids/'+uid)); await remove(ref(db, 'device_bindings/'+uid)); } };
+        /* =========================================
+           SUPER ADMIN FUNCTIONS
+        ========================================= */
+
+        // ⚡ Force Add User (Manual Inject)
+        window.addManualUser = async (isVip) => {
+            let uid = document.getElementById('manualUid').value.trim();
+            if(!uid) return alert("Enter UID to inject!");
+            await set(ref(db, 'approved_uids/'+uid), { active:true, predictions_used:0, is_premium:isVip, expireAt: Date.now() + (isVip ? 999*86400000 : 30*86400000) });
+            document.getElementById('manualUid').value = "";
+            showToast(`UID ${uid} Injected Successfully!`);
+        };
+
+        // ✅ Request Approve/Reject
+        window.apprReq = async (uid) => { await set(ref(db, 'approved_uids/'+uid), {active:true, predictions_used:0, is_premium:false}); await remove(ref(db, 'uid_requests/'+uid)); showToast("Access Granted"); };
+        window.rejReq = async (uid) => { await remove(ref(db, 'uid_requests/'+uid)); showToast("Request Denied"); };
+
+        // 🔄 Reset Plays (For Free Users)
+        window.resetPlays = async (uid) => {
+            await update(ref(db, 'approved_uids/'+uid), { predictions_used: 0 });
+            showToast(`Plays reset to 0/5 for ${uid}`);
+        };
+
+        // 👑 Instant VIP Upgrade
+        window.makeVip = async (uid) => {
+            await update(ref(db, 'approved_uids/'+uid), { is_premium: true, expireAt: Date.now() + (999*86400000) });
+            showToast(`UID ${uid} promoted to VIP!`);
+        };
+
+        // 📱 Unlink Device (Allow login on new phone)
+        window.unlinkDevice = async (uid) => {
+            await remove(ref(db, 'device_bindings/'+uid));
+            showToast(`Device unlinked. ${uid} can now login from a new device.`);
+        };
+
+        // 🚫 Ban/Revoke
+        window.banUser = async (uid) => { 
+            if(confirm("Are you sure you want to permanently BAN this UID?")) { 
+                await remove(ref(db, 'approved_uids/'+uid)); 
+                await remove(ref(db, 'device_bindings/'+uid)); 
+                showToast(`UID ${uid} purged from system.`);
+            } 
+        };
+
+        /* =========================================
+           MATRIX & MESSAGING
+        ========================================= */
 
         function buildMatrix() {
             let html = "";
             for(let i=0; i<=9; i++) { for(let j=0; j<=9; j++) {
-                let k = `${i}-${j}`; html += `<tr><td style="font-family:'JetBrains Mono'; font-weight:bold;">${k}</td><td><input type="number" id="m-${k}" style="width:70px; margin:0;" min="0" max="9" placeholder="#"></td><td><button class="btn-primary" onclick="saveM('${k}')">SAVE</button></td></tr>`;
+                let k = `${i}-${j}`; html += `<tr><td style="font-family:'JetBrains Mono'; font-weight:bold; color:var(--text-muted);">${k}</td><td><input type="number" id="m-${k}" style="width:100px; margin:0; text-align:center;" min="0" max="9" placeholder="#"></td><td><button class="btn-primary" onclick="saveM('${k}')">SET RESULT</button></td></tr>`;
             }}
             document.getElementById('mat-list').innerHTML = html;
         }
-        window.saveM = async (k) => { let v = document.getElementById(`m-${k}`).value; if(v!=="") await set(ref(db, `patterns/${k}`), `${parseInt(v)>=5?"BIG":"SMALL"} [${v}]`); document.getElementById(`m-${k}`).value=""; alert("Saved!"); };
+        window.saveM = async (k) => { let v = document.getElementById(`m-${k}`).value; if(v!=="") await set(ref(db, `patterns/${k}`), `${parseInt(v)>=5?"BIG":"SMALL"} [${v}]`); document.getElementById(`m-${k}`).value=""; showToast("Matrix Updated!"); };
 
-        // MESSAGING LOGIC
         window.sendGlobalMessage = async () => {
             let txt = document.getElementById('globalText').value.trim(); if(!txt) return alert("Enter Message!");
             await set(ref(db, 'settings/global_broadcast'), { text: txt, time: Date.now() });
-            alert("Broadcast sent to all active users!"); document.getElementById('globalText').value = "";
+            showToast("Global Broadcast Sent!"); document.getElementById('globalText').value = "";
         };
 
         window.sendDirectMessage = async () => {
             let uid = document.getElementById('dmUid').value.trim(); let txt = document.getElementById('dmText').value.trim(); if(!uid || !txt) return alert("Fill UID and Message!");
             await set(ref(db, 'user_messages/' + uid), {text: txt, time: Date.now(), read: false});
-            alert("DM Sent!"); document.getElementById('dmText').value = "";
+            showToast(`DM Sent to ${uid}!`); document.getElementById('dmText').value = "";
         };
     </script>
 </body>
