@@ -4,158 +4,229 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>SIKKIM X ROCKY | VIP</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800;900&family=Rajdhani:wght@700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800;900&family=Rajdhani:wght@700;900&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
     <style>
-        :root { --primary: #3b82f6; --primary-dark: #1e3a8a; --gold: #f59e0b; --green: #10b981; --red: #ef4444; --bg-top: linear-gradient(135deg, #050b14, #0a1128, #1e3a8a, #050b14); --glass: rgba(59, 130, 246, 0.3); }
+        :root { 
+            --primary: #3b82f6; --primary-dark: #1e3a8a; --primary-3d: #172554;
+            --cyan: #06b6d4; --gold: #f59e0b; --green: #10b981; --red: #ef4444; 
+            --bg-top: linear-gradient(135deg, #020617, #0f172a, #020617); 
+        }
         * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
-        body, html { height: 100%; font-family: 'Poppins', sans-serif; color: #f8fafc; overflow: hidden; display: flex; flex-direction: column; background: #000; }
+        body, html { height: 100dvh; width: 100vw; font-family: 'Poppins', sans-serif; color: #f8fafc; overflow: hidden; display: flex; flex-direction: column; background: #000; }
         
-        #top-panel { height: 15%; min-height: 145px; width: 100%; z-index: 10; position: relative; padding: 8px 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.95); background: var(--bg-top); background-size: 300% 300%; animation: bgShift 10s ease-in-out infinite; border-bottom: 2px solid var(--glass); }
-        @keyframes bgShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-        #bottom-panel { height: 85%; width: 100%; background-color: #000; position: relative; z-index: 1; }
-        iframe { width: 100%; height: 100%; border: none; }
+        /* 🔥 FIXED TOP PANEL - WILL NOT BLOCK GAME 🔥 */
+        #top-panel { flex: 0 0 auto; width: 100%; z-index: 10; padding: 12px 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.9), inset 0 -2px 10px rgba(59, 130, 246, 0.2); background: var(--bg-top); border-bottom: 2px solid #1e3a8a; }
+        #bottom-panel { flex: 1 1 auto; width: 100%; background-color: #000; position: relative; z-index: 1; overflow: hidden; }
+        iframe { width: 100%; height: 100%; border: none; display: block; }
 
-        .top-header { width: 100%; max-width: 500px; margin: 0 auto 6px auto; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 5px;}
-        .logo-text { font-family: 'Rajdhani', sans-serif; font-size: 22px; font-weight: 900; color: #fff; letter-spacing: 2px;}
-        .logo-text span { color: var(--primary); text-shadow: 0 0 15px rgba(59, 130, 246, 0.8); }
+        .top-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px dashed rgba(255,255,255,0.05); padding-bottom: 5px; margin-bottom: 8px;}
+        .logo-text { font-family: 'Rajdhani', sans-serif; font-size: 24px; font-weight: 900; color: #fff; letter-spacing: 2px;}
+        .logo-text span { color: var(--cyan); text-shadow: 0 0 15px rgba(6, 182, 212, 0.8); }
         
-        .tool-container { width: 100%; max-width: 500px; margin: 0 auto; display: flex; flex-direction: column; gap: 6px; }
-        .info-row { display: flex; justify-content: space-between; font-size: 11px; background: rgba(0,0,0,0.6); padding: 6px 15px; border-radius: 8px; border: 1px solid var(--glass); backdrop-filter: blur(8px); box-shadow: inset 0 0 20px rgba(59, 130, 246, 0.1);}
-        .info-row span { color: var(--gold); font-weight: 900; font-family: 'Rajdhani', sans-serif; font-size: 16px; letter-spacing: 1px;}
+        .info-row { display: flex; justify-content: space-between; font-size: 11px; background: rgba(0,0,0,0.7); padding: 8px 15px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); margin-bottom: 8px;}
+        .info-row span { color: var(--cyan); font-weight: 900; font-family: 'Rajdhani', sans-serif; font-size: 16px; letter-spacing: 1px;}
         
-        .input-row { display: flex; gap: 10px; align-items: stretch; margin-top: 2px;}
-        input { flex: 1; padding: 10px; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; text-align: center; font-size: 15px; font-weight: 800; background: rgba(0, 0, 0, 0.7); color: var(--gold); outline: none; transition: 0.3s;}
-        input:focus { border-color: var(--primary); box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);}
+        .input-row { display: flex; gap: 10px; align-items: stretch;}
+        input { flex: 1; padding: 10px; border: 1px solid #1e3a8a; border-radius: 12px; text-align: center; font-size: 15px; font-weight: 800; background: #020617; color: var(--cyan); outline: none; transition: 0.3s; min-width: 0;}
+        input:focus { border-color: var(--cyan); box-shadow: inset 0 4px 8px rgba(0,0,0,0.9), 0 0 15px rgba(6, 182, 212, 0.4);}
         
-        .action-btn { padding: 0 15px; font-size: 14px; font-family: 'Rajdhani', sans-serif; font-weight: 900; cursor: pointer; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: #fff; width: 35%; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.5); transition: 0.2s;}
-        .action-btn:active { transform: scale(0.95); }
-        .result-box { display: flex; justify-content: center; align-items: center; font-size: 15px; font-weight: 900; color: #94a3b8; background: rgba(0, 0, 0, 0.8); padding: 8px; border-radius: 8px; border: 1px solid var(--glass); flex-grow: 1; min-height: 45px;}
+        .btn-3d { padding: 0 15px; font-size: 14px; font-family: 'Rajdhani', sans-serif; font-weight: 900; cursor: pointer; border-radius: 12px; border: none; background: linear-gradient(to bottom, #3b82f6, #1d4ed8); color: #fff; width: 40%; box-shadow: 0 6px 0 var(--primary-3d), 0 10px 15px rgba(0,0,0,0.5); transition: 0.1s;}
+        .btn-3d:active { box-shadow: 0 0 0 var(--primary-3d), 0 5px 10px rgba(0,0,0,0.5); transform: translateY(6px); }
+        
+        .result-box { display: flex; justify-content: center; align-items: center; font-size: 14px; font-weight: 900; color: #94a3b8; background: linear-gradient(180deg, #020617 0%, #0a1128 100%); padding: 8px; border-radius: 12px; border: 2px solid #1e3a8a; margin-top: 8px; min-height: 48px;}
 
         /* MODALS */
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 99999; display: none; justify-content: center; align-items: center; backdrop-filter: blur(8px);}
-        .modal-box { background: rgba(10, 17, 40, 0.95); border: 1px solid var(--glass); padding: 25px; border-radius: 16px; text-align: center; width: 90%; max-width: 340px; box-shadow: 0 20px 50px rgba(0,0,0,0.9), inset 0 0 30px rgba(59, 130, 246, 0.1); animation: popIn 0.3s forwards;}
-        @keyframes popIn { 0% { transform: scale(0.9); opacity: 0;} 100% { transform: scale(1); opacity: 1;} }
-        .btn-modal-primary { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 12px; border-radius: 8px; font-weight: 800; cursor: pointer; width: 100%; font-family: 'Poppins'; margin-top: 10px;}
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 99999; display: none; justify-content: center; align-items: center; backdrop-filter: blur(10px); padding: 15px;}
+        .modal-box { background: linear-gradient(145deg, #0f172a, #020617); border: 2px solid #1e3a8a; padding: 25px 20px; border-radius: 20px; text-align: center; width: 100%; max-width: 350px; box-shadow: 0 20px 50px rgba(0,0,0,0.9); animation: floatUp 0.3s forwards;}
+        @keyframes floatUp { 0% { transform: translateY(50px) scale(0.9); opacity: 0;} 100% { transform: translateY(0) scale(1); opacity: 1;} }
         
-        /* 🏆 EPIC WINNING ANIMATIONS */
-        #miniAnimScreen { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(2, 6, 23, 0.96); z-index: 100; display: none; flex-direction: column; justify-content: center; align-items: center; backdrop-filter: blur(12px);}
-        .mini-title { font-family: 'Rajdhani', sans-serif; font-size: 38px; font-weight: 900; margin: 0; letter-spacing: 4px; text-shadow: 0 10px 20px rgba(0,0,0,0.8);}
-        .real-result-card { background: rgba(10, 17, 40, 0.95); border-radius: 16px; padding: 18px 20px; width: 92%; max-width: 360px; border: 2px solid rgba(255,255,255,0.1); opacity: 0; position: relative;}
-        
-        .theme-win { animation: epicWin 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; border-color: var(--green); }
-        @keyframes epicWin { 
-            0% { transform: scale(0.5); opacity: 0; box-shadow: 0 0 0px rgba(16, 185, 129, 0); } 
-            60% { transform: scale(1.05); opacity: 1; box-shadow: 0 0 60px rgba(16, 185, 129, 0.8); } 
-            100% { transform: scale(1); opacity: 1; box-shadow: 0 0 40px rgba(16, 185, 129, 0.5), inset 0 0 20px rgba(16, 185, 129, 0.2); } 
-        }
+        /* 🎱 BALLS & BADGES */
+        .color-ball { width: 30px; height: 30px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: 900; color: #fff; font-size: 14px; box-shadow: inset -4px -4px 8px rgba(0,0,0,0.7), inset 2px 2px 6px rgba(255,255,255,0.6), 0 4px 8px rgba(0,0,0,0.6); border: 1px solid rgba(0,0,0,0.5); }
+        .bg-green { background: radial-gradient(circle at 30% 30%, #34d399, #10b981, #064e3b); }
+        .bg-red { background: radial-gradient(circle at 30% 30%, #f87171, #ef4444, #7f1d1d); }
+        .bg-red-violet { background: linear-gradient(135deg, #ef4444 50%, #8b5cf6 50%); }
+        .bg-green-violet { background: linear-gradient(135deg, #10b981 50%, #8b5cf6 50%); }
+        .size-badge { padding: 4px 14px; border-radius: 6px; font-size: 12px; font-weight: 900; display: inline-block; text-transform: uppercase;}
+        .size-big { background: linear-gradient(180deg, #f59e0b, #b45309); color: #fff; border: 1px solid #78350f;}
+        .size-small { background: linear-gradient(180deg, #06b6d4, #0891b2); color: #fff; border: 1px solid #164e63;}
 
-        .theme-loss { animation: lossShake 0.5s ease-in-out forwards; border-color: var(--red); box-shadow: 0 10px 30px rgba(239, 68, 68, 0.5), inset 0 0 20px rgba(239, 68, 68, 0.2);}
-        @keyframes lossShake { 0% { transform: translateX(0) scale(0.9); opacity: 0;} 20% { transform: translateX(-15px) scale(1); opacity: 1;} 40% { transform: translateX(15px); } 60% { transform: translateX(-10px); } 80% { transform: translateX(10px); } 100% { transform: translateX(0) scale(1); opacity: 1;} }
-
-        .res-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px dashed rgba(255,255,255,0.05); }
+        /* 🏆 3D RESULT CARD */
+        #miniAnimScreen { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(2, 6, 23, 0.95); z-index: 100; display: none; flex-direction: column; justify-content: center; align-items: center; padding: 15px;}
+        .mini-title { font-family: 'Rajdhani', sans-serif; font-size: 40px; font-weight: 900; margin: 0; letter-spacing: 5px; text-transform: uppercase;}
+        .real-result-card { background: linear-gradient(145deg, #0f172a, #020617); border-radius: 20px; padding: 25px; width: 100%; max-width: 350px; border: 3px solid #1e3a8a; opacity: 0; margin-top: 15px;}
+        .theme-win { animation: epic3DWin 0.7s forwards; border-color: #10b981; }
+        @keyframes epic3DWin { 0% { transform: scale(0.5); opacity: 0; } 60% { transform: scale(1.05); opacity: 1; box-shadow: 0 0 60px rgba(16, 185, 129, 0.8); } 100% { transform: scale(1); opacity: 1; box-shadow: 0 20px 50px rgba(16, 185, 129, 0.5), inset 0 0 30px rgba(16, 185, 129, 0.2); } }
+        .theme-loss { animation: lossShake 0.5s forwards; border-color: #ef4444; box-shadow: 0 20px 50px rgba(239, 68, 68, 0.5), inset 0 0 30px rgba(239, 68, 68, 0.2); }
+        @keyframes lossShake { 0% { transform: translateX(0); opacity: 0;} 25% { transform: translateX(-15px); opacity: 1;} 50% { transform: translateX(15px); } 75% { transform: translateX(-10px); } 100% { transform: translateX(0); opacity: 1;} }
+        .res-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 2px dashed rgba(255,255,255,0.05); }
         .res-row:last-child { border-bottom: none; }
-        .res-label { font-size: 11px; color: #94a3b8; font-weight: 700;}
-        .mini-close { font-size: 10px; color: #94a3b8; margin-top: 15px; cursor: pointer; border: 1px solid rgba(255,255,255,0.1); padding: 6px 16px; border-radius: 20px; background: rgba(0,0,0,0.5);}
+        .res-label { font-size: 11px; color: #94a3b8; font-weight: 800; letter-spacing: 0.5px;}
 
-        .color-ball { width: 28px; height: 28px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: 900; color: #fff; font-size: 14px; box-shadow: inset -2px -2px 6px rgba(0,0,0,0.6), 0 3px 6px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.2); }
-        .bg-green { background: var(--green); } .bg-red { background: var(--red); }
-        .bg-red-violet { background: linear-gradient(135deg, var(--red) 50%, #8b5cf6 50%); } .bg-green-violet { background: linear-gradient(135deg, var(--green) 50%, #8b5cf6 50%); }
-        .size-badge { padding: 4px 12px; border-radius: 6px; font-size: 12px; font-weight: 800; display: inline-block; border: 1px solid;}
-        .size-big { background: rgba(245, 158, 11, 0.15); color: var(--gold); border-color: var(--gold); } .size-small { background: rgba(59, 130, 246, 0.15); color: var(--primary); border-color: var(--primary); }
-
+        .hard-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999999; display: none; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; background: #020617;}
         .hidden { display: none !important; }
     </style>
 </head>
 <body>
-    
-    <!-- Modals -->
-    <div id="uidModal" class="modal-overlay"><div class="modal-box"><h4 id="modalTitle" style="color:#fff; font-weight:900; margin-bottom:10px;">ALERT</h4><p id="modalMsg" style="font-size:13px; color:#94a3b8; margin-bottom:20px;">Processing...</p><button class="btn-modal-primary" onclick="document.getElementById('uidModal').style.display='none'">OKAY</button></div></div>
-    
-    <!-- Top Panel -->
+
+    <div id="bannedScreen" class="hard-screen">
+        <div style="font-size: 70px; margin-bottom: 10px;">🛑</div>
+        <h1 style="color:var(--red); font-family:'Rajdhani';">ACCESS REVOKED</h1>
+    </div>
+
+    <div id="maintenanceScreen" class="hard-screen">
+        <div style="font-size: 70px; margin-bottom: 15px;">⚙️</div>
+        <h1 style="color:var(--cyan); font-family:'Rajdhani';">SYSTEM OFFLINE</h1>
+        <p style="color:#94a3b8;">The Sikkim node is undergoing a core upgrade.</p>
+    </div>
+
+    <div id="msgModal" class="modal-overlay">
+        <div class="modal-box" style="border-color: var(--cyan); box-shadow: 0 10px 40px rgba(6, 182, 212, 0.4);">
+            <div style="font-size: 45px; margin-bottom: 10px;">📩</div>
+            <h4 id="msgTitle" style="color: var(--cyan); font-family:'Rajdhani'; font-size: 22px;">ADMIN MESSAGE</h4>
+            <p id="msgBody" style="color: #fff; font-size: 14px; background: rgba(0,0,0,0.5); padding: 15px; border-radius: 12px; margin-bottom: 20px;"></p>
+            <button class="btn-3d" style="width: 100%; padding: 12px;" onclick="document.getElementById('msgModal').style.display='none'">MARK AS READ</button>
+        </div>
+    </div>
+
     <div id="top-panel">
+        
         <div id="miniAnimScreen">
             <h1 id="miniTitle" class="mini-title">🏆 WIN 🏆</h1>
             <div id="realCard" class="real-result-card">
-                <div class="res-row"><span class="res-label">PERIOD NUMBER</span><span class="res-val" id="resPeriod" style="color: #94a3b8;">----</span></div>
-                <div class="res-row" style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px; margin-top: 6px;"><span class="res-label" style="color:#fff;">AI PREDICTION</span><span class="res-val" id="resPred" style="display:flex; gap:10px; align-items:center;">--</span></div>
-                <div class="res-row" style="background: rgba(0,0,0,0.4); padding: 10px; border-radius: 8px; margin-top: 6px;"><span class="res-label">ACTUAL OUTCOME</span><div style="display:flex; gap:10px; align-items:center;"><span id="resBalls"></span><span id="resSize"></span></div></div>
+                <div class="res-row">
+                    <span class="res-label">PERIOD NUMBER</span>
+                    <span id="resPeriod" style="color: #cbd5e1; font-weight: 800; font-family: 'JetBrains Mono'; font-size: 14px;">----</span>
+                </div>
+                <div class="res-row" style="background: rgba(255,255,255,0.03); padding: 12px; border-radius: 12px; margin-top: 8px;">
+                    <span class="res-label" style="color:#fff;">AI PREDICTION</span>
+                    <span id="resPred" style="display:flex; gap:10px; align-items:center;">--</span>
+                </div>
+                <div class="res-row" style="background: rgba(0,0,0,0.6); padding: 12px; border-radius: 12px; margin-top: 8px; border: 1px solid rgba(255,255,255,0.05);">
+                    <span class="res-label" style="color:var(--cyan);">ACTUAL OUTCOME</span>
+                    <div style="display:flex; gap:10px; align-items:center;">
+                        <span id="resBalls"></span><span id="resSize"></span>
+                    </div>
+                </div>
             </div>
-            <div class="mini-close" onclick="document.getElementById('miniAnimScreen').style.display='none'">TAP TO DISMISS</div>
+            <button class="btn-3d" style="margin-top:20px; padding:10px 20px;" onclick="document.getElementById('miniAnimScreen').style.display='none'">CLOSE</button>
         </div>
 
         <div class="top-header">
             <div class="logo-text">SIKKIM <span>X</span> ROCKY</div>
+            <span id="usageTracker" style="font-size: 10px; background: rgba(6, 182, 212, 0.15); padding: 4px 10px; border-radius:8px; color:var(--cyan); font-weight:800; border: 1px solid rgba(6, 182, 212, 0.3); display:none;">PLAYS: 0/5</span>
         </div>
         
-        <div id="authScreen" style="text-align:center;">
-            <div class="input-row" style="margin-top:10px;"><input type="number" id="uidInput" placeholder="Enter SIKKIM UID"><button id="authBtn" class="action-btn" onclick="checkUID()">CONNECT</button></div>
-        </div>
-        
-        <div id="toolScreen" class="tool-container hidden">
-            <div class="info-row"><div>LIVE NODE: <span id="displayPeriod">SYNCING...</span></div><div>SYNC: <span id="displayTimer" style="color:var(--primary);">00:00</span></div></div>
+        <div id="authScreen" style="text-align: center; padding: 10px;">
             <div class="input-row">
-                <input type="number" id="num1" placeholder="N-1" min="0" max="9"><input type="number" id="num2" placeholder="N-2" min="0" max="9">
-                <button id="analyzeBtn" class="action-btn" onclick="runExploit()">GET RESULT</button>
+                <input type="number" id="uidInput" placeholder="Enter SIKKIM UID">
+                <button id="authBtn" class="btn-3d" onclick="checkUID()">CONNECT</button>
             </div>
-            <div id="predictionDisplay" class="result-box"><span id="predText" style="letter-spacing:2px; font-size:12px;">AWAITING COMMAND...</span></div>
+        </div>
+        
+        <div id="toolScreen" class="hidden">
+            <div class="info-row">
+                <div>LIVE: <span id="displayPeriod" style="color:#fff; font-size:13px; margin-left:5px; font-family:'JetBrains Mono';">SYNCING...</span></div>
+                <div>SYNC: <span id="displayTimer" style="color:var(--cyan); font-size:13px; margin-left:5px; font-family:'JetBrains Mono';">00:00</span></div>
+            </div>
+            <div class="input-row">
+                <input type="number" id="num1" placeholder="N-1" min="0" max="9">
+                <input type="number" id="num2" placeholder="N-2" min="0" max="9">
+                <button id="analyzeBtn" class="btn-3d" onclick="runExploit()">EXECUTE</button>
+            </div>
+            <div id="predictionDisplay" class="result-box">
+                <span id="predText" style="letter-spacing:1px; font-size:12px;">AWAITING COMMAND...</span>
+            </div>
         </div>
     </div>
 
-    <!-- Iframe -->
     <div id="bottom-panel"><iframe id="gameIframe" src="https://sikkim.com"></iframe></div>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getDatabase, ref, get, set, update, increment, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
-        // 🔥 SIKKIM DATABASE CONFIG
-        const app = initializeApp({
-            apiKey: "AIzaSyBFdvXN8SAy77EDQp5HNykO5z2Wa0W8sb0", authDomain: "bdgrocky.firebaseapp.com",
-            databaseURL: "https://bdgrocky-default-rtdb.asia-southeast1.firebasedatabase.app", projectId: "bdgrocky"
-        });
-        const db = getDatabase(app);
+        // 🔥 DEDICATED SIKKIM CONFIG
+        const firebaseConfig = { apiKey: "AIzaSyBFdvXN8SAy77EDQp5HNykO5z2Wa0W8sb0", authDomain: "bdgrocky.firebaseapp.com", databaseURL: "https://bdgrocky-default-rtdb.asia-southeast1.firebasedatabase.app", projectId: "bdgrocky" };
+        const app = initializeApp(firebaseConfig); const db = getDatabase(app);
 
-        let currentUid = ""; let currentActivePrediction = ""; let currentActivePeriod = ""; let isWaitingForAPI = false;
+        let currentUid = ""; let globalLink = "https://sikkim.com"; let currentActivePrediction = ""; let currentActivePeriod = ""; let isWaitingForAPI = false; let lastGlobalMsgTime = 0;
 
-        onValue(ref(db, 'settings/link_sikkim'), snap => { if(snap.exists() && snap.val() !== "") { if(!currentUid) document.getElementById('gameIframe').src = snap.val().trim(); }});
+        onValue(ref(db, 'settings/maintenance'), snap => { document.getElementById('maintenanceScreen').style.display = (snap.exists() && snap.val() === true) ? 'flex' : 'none'; });
+        onValue(ref(db, 'settings/link_sikkim'), snap => { if(snap.exists() && snap.val() !== "") { globalLink = snap.val().trim(); if(!currentUid) document.getElementById('gameIframe').src = globalLink; }});
 
-        function showModal(title, msg) { document.getElementById('modalTitle').innerText = title; document.getElementById('modalMsg').innerHTML = msg; document.getElementById('uidModal').style.display = 'flex'; }
-        
+        function getDeviceID() { let did = localStorage.getItem('vip_device_id'); if(!did) { did = 'DEV-'+Math.random().toString(36).substr(2, 9); localStorage.setItem('vip_device_id', did); } return did; }
+
         window.getRealBallHtml = (n) => { if(n == 0) return `<div class="color-ball bg-red-violet">0</div>`; if(n == 5) return `<div class="color-ball bg-green-violet">5</div>`; if(n % 2 == 0) return `<div class="color-ball bg-red">${n}</div>`; return `<div class="color-ball bg-green">${n}</div>`; };
         window.getSizeBadge = (size) => size.includes("BIG") ? `<span class="size-badge size-big">BIG</span>` : `<span class="size-badge size-small">SMALL</span>`;
 
         window.checkUID = async () => {
-            let uid = document.getElementById('uidInput').value.trim(); 
-            if(!/^\d{5,12}$/.test(uid)) return showModal("❌ INVALID", "Enter valid UID.");
-            let btn = document.getElementById('authBtn'); btn.innerText = "..."; btn.disabled = true;
+            let uid = document.getElementById('uidInput').value.trim(); if(!/^\d{5,12}$/.test(uid)) { alert("Enter valid UID"); return; }
+            let btn = document.getElementById('authBtn'); btn.innerText = "WAIT..."; btn.disabled = true;
 
             try {
                 let approvedSnap = await get(ref(db, 'approved_uids/' + uid));
                 if(approvedSnap.exists()) {
-                    currentUid = uid; document.getElementById('authScreen').classList.add('hidden'); document.getElementById('toolScreen').classList.remove('hidden');
-                    startTimerEngine(); return;
+                    let data = approvedSnap.val(); currentUid = uid;
+                    let devID = getDeviceID(); let bindSnap = await get(ref(db, 'device_bindings/' + uid));
+                    if(!bindSnap.exists()) await set(ref(db, 'device_bindings/' + uid), devID); else if (bindSnap.val() !== devID) { alert("UID bound to another device."); btn.innerText="CONNECT"; btn.disabled=false; return; }
+                    
+                    document.getElementById('authScreen').classList.add('hidden'); document.getElementById('toolScreen').classList.remove('hidden');
+                    update(ref(db, 'approved_uids/' + uid), { last_active: Date.now() }); setInterval(() => { update(ref(db, 'approved_uids/' + currentUid), { last_active: Date.now() }); }, 60000);
+                    startUidListener(uid); startTimerEngine(); return;
                 }
-                let did = localStorage.getItem('did') || 'DEV-'+Math.random().toString(36).substr(2,9); localStorage.setItem('did', did);
-                await set(ref(db, 'uid_requests/' + uid), { uid: uid, deviceId: did, timestamp: Date.now() });
-                btn.innerText = "CONNECT"; btn.disabled = false; showModal("⏳ SENT", `Verification request sent to Admin.`);
-            } catch (error) { btn.innerText = "CONNECT"; btn.disabled = false; showModal("ERROR", "Network error."); }
+                await set(ref(db, 'uid_requests/' + uid), { uid: uid, deviceId: getDeviceID(), status: "pending", timestamp: Date.now() });
+                btn.innerText = "CONNECT"; btn.disabled = false; alert("Request sent to Admin.");
+            } catch (error) { btn.innerText = "CONNECT"; btn.disabled = false; alert("Network Error."); }
         };
+
+        function startUidListener(uid) {
+            onValue(ref(db, 'approved_uids/' + uid), snap => {
+                if(snap.exists()) {
+                    let data = snap.val();
+                    if(data.is_banned) { document.getElementById('bannedScreen').style.display = 'flex'; return; }
+                    let tracker = document.getElementById('usageTracker');
+                    tracker.innerHTML = data.is_premium ? "👑 VIP ACTIVE" : `FREE PLAYS: <span style="color:#fff;">${data.predictions_used || 0}/5</span>`; tracker.style.display = "block";
+                    let iframe = document.getElementById('gameIframe'); if(iframe.src !== globalLink) iframe.src = globalLink;
+                }
+            });
+
+            // LISTEN TO SPECIFIC UID MESSAGES
+            onValue(ref(db, 'user_messages/' + uid), snap => {
+                if(snap.exists()) { let msgData = snap.val(); if(msgData.read === false) { document.getElementById('msgTitle').innerText = "📩 ADMIN DIRECTIVE"; document.getElementById('msgBody').innerText = msgData.text; document.getElementById('msgModal').style.display = 'flex'; update(ref(db, 'user_messages/' + uid), {read: true}); } }
+            });
+
+            // LISTEN TO GLOBAL BROADCASTS
+            onValue(ref(db, 'settings/global_broadcast'), snap => {
+                if(snap.exists()) {
+                    let broadcast = snap.val();
+                    if(broadcast.time > lastGlobalMsgTime) {
+                        lastGlobalMsgTime = broadcast.time;
+                        document.getElementById('msgTitle').innerText = "🌐 GLOBAL BROADCAST";
+                        document.getElementById('msgBody').innerText = broadcast.text;
+                        document.getElementById('msgModal').style.display = 'flex';
+                    }
+                }
+            });
+        }
 
         window.runExploit = async () => {
             let n1 = document.getElementById('num1').value; let n2 = document.getElementById('num2').value;
             let predText = document.getElementById('predText'); let btn = document.getElementById('analyzeBtn');
-            if(n1 === "" || n2 === "") return showModal("WARNING", "Missing inputs.");
+            if(n1 === "" || n2 === "") return;
 
-            btn.disabled = true; predText.innerHTML = "INTERCEPTING DATA...";
+            let userSnap = await get(ref(db, 'approved_uids/' + currentUid)); let userData = userSnap.val();
+            if(!userData.is_premium && userData.predictions_used >= 5) { alert("5 Free Trials Over! Contact Admin."); return; }
+
+            btn.disabled = true; predText.innerHTML = "INTERCEPTING...";
             try {
                 let snap = await get(ref(db, `patterns/${n1}-${n2}`));
-                // 🔥 ZERO DELAY UX FOR SCANNER (Reduced to 400ms) 🔥
                 setTimeout(async () => {
                     btn.disabled = false; 
                     if(snap.exists() && !snap.val().includes("UNSET")) {
                         currentActivePrediction = snap.val(); 
                         let szMatch = currentActivePrediction.split(' ')[0]; let numMatch = currentActivePrediction.match(/\[(\d+)\]/); let num = numMatch ? numMatch[1] : 0;
-                        predText.innerHTML = `<div style="display:flex; justify-content:center; align-items:center; gap:12px; padding: 2px;">${window.getRealBallHtml(num)} <div style="height: 20px; width: 1px; background: rgba(255,255,255,0.2);"></div> ${window.getSizeBadge(szMatch)}</div>`;
+                        predText.innerHTML = `<div style="display:flex; justify-content:center; align-items:center; gap:12px; padding: 2px;">${window.getRealBallHtml(num)} <div style="height: 20px; width: 2px; background: rgba(255,255,255,0.2);"></div> ${window.getSizeBadge(szMatch)}</div>`;
+                        if(!userData.is_premium) await update(ref(db, 'approved_uids/' + currentUid), { predictions_used: increment(1) });
                         isWaitingForAPI = false;
                     } else { predText.innerHTML = "NO PATTERN"; predText.style.color = "var(--red)"; }
                 }, 400); 
@@ -171,8 +242,7 @@
                 
                 document.getElementById('displayPeriod').innerText = currentActivePeriod; document.getElementById('displayTimer').innerText = `00:${String(remSec).padStart(2,'0')}`;
                 
-                // 🔥 ZERO DELAY TRIGGER 🔥
-                if(remSec === 0 && currentActivePrediction !== "" && !isWaitingForAPI) { 
+                if((remSec === 0 || remSec === 59) && currentActivePrediction !== "" && !isWaitingForAPI) { 
                     isWaitingForAPI = true; triggerAnimationEngine(currentActivePeriod, currentActivePrediction); 
                 }
             }, 1000);
@@ -185,43 +255,30 @@
             let predSz = prediction.split(' ')[0]; let predNum = (prediction.match(/\[(\d+)\]/) || [])[1] || 0;
             document.getElementById('resPred').innerHTML = `${window.getRealBallHtml(predNum)} ${window.getSizeBadge(predSz)}`;
             
-            card.className = "real-result-card"; // Reset
+            card.className = "real-result-card"; void card.offsetWidth; 
             
-            if(type === 'WIN') { 
-                mTitle.innerText = "🏆 MEGA WIN 🏆"; mTitle.style.color = "var(--green)"; mTitle.style.textShadow = "0 0 25px rgba(16, 185, 129, 0.8)"; 
-                card.classList.add('theme-win'); // Epic Green Pop
-            } else { 
-                mTitle.innerText = "❌ PREDICTION FAILED ❌"; mTitle.style.color = "var(--red)"; mTitle.style.textShadow = "0 0 25px rgba(239, 68, 68, 0.8)"; 
-                card.classList.add('theme-loss'); // Red Shake
-            }
+            if(type === 'WIN') { mTitle.innerText = "🏆 EPIC WIN 🏆"; mTitle.style.color = "var(--green)"; card.classList.add('theme-win'); } 
+            else { mTitle.innerText = "❌ FAILED ❌"; mTitle.style.color = "var(--red)"; card.classList.add('theme-loss'); }
             
-            miniScreen.style.display = 'flex'; document.getElementById('predText').innerHTML = "<span style='letter-spacing:2px; font-size:12px; color:#94a3b8;'>AWAITING COMMAND...</span>";
+            miniScreen.style.display = 'flex'; document.getElementById('predText').innerHTML = "<span style='letter-spacing:1px; font-size:12px; color:#94a3b8;'>AWAITING COMMAND...</span>";
         }
 
         async function triggerAnimationEngine(pVerify, pValue) {
             let attempts = 0; const targetPeriod = String(pVerify);
             async function fetchRealResult() {
                 try {
-                    let res = await fetch("https://api.allorigins.win/get?url=" + encodeURIComponent("https://draw.ar-lottery01.com/WinGo/WinGo_1M/GetHistoryIssuePage.json?t=" + Date.now()), { cache: "no-store" });
-                    let data = await res.json(); let rawData = JSON.parse(data.contents);
-                    let list = rawData.data?.list || rawData.data || rawData.list || rawData;
-                    
+                    let res = await fetch("https://api.allorigins.win/raw?url=" + encodeURIComponent("https://draw.ar-lottery01.com/WinGo/WinGo_1M/GetHistoryIssuePage.json?t=" + Date.now()), { cache: "no-store" });
+                    let data = await res.json(); let list = data.data?.list || data.data || data.list || data;
                     let latestItem = list[0]; let apiPeriod = String(latestItem.issueNumber || latestItem.period);
                     
-                    if(apiPeriod.slice(-4) !== targetPeriod.slice(-4)) { 
-                        attempts++; 
-                        // 🔥 FAST PING (800ms) FOR ZERO DELAY FEEL 🔥
-                        if(attempts < 15) { setTimeout(fetchRealResult, 800); return; } 
-                    }
+                    if(apiPeriod.slice(-4) !== targetPeriod.slice(-4)) { attempts++; if(attempts < 15) { setTimeout(fetchRealResult, 800); return; } }
                     
                     let num = latestItem.number !== undefined ? parseInt(latestItem.number) : 0;
                     let actual = latestItem.size ? latestItem.size.toUpperCase() : (num >= 5 ? "BIG" : "SMALL");
                     let cleanPred = pValue.toUpperCase().includes("BIG") ? "BIG" : "SMALL";
                     
                     if(cleanPred === actual) { showResultPopup('WIN', pVerify, pValue, actual, num); } else { showResultPopup('LOSS', pVerify, pValue, actual, num); }
-                } catch(e) {
-                    attempts++; if(attempts < 15) { setTimeout(fetchRealResult, 800); } else { showResultPopup('WIN', pVerify, pValue, pValue.toUpperCase().includes("BIG")?"BIG":"SMALL", 8); }
-                }
+                } catch(e) { attempts++; if(attempts < 15) { setTimeout(fetchRealResult, 800); } else { showResultPopup('WIN', pVerify, pValue, pValue.toUpperCase().includes("BIG")?"BIG":"SMALL", 8); } }
             }
             fetchRealResult(); currentActivePrediction = ""; isWaitingForAPI = false;
         }
