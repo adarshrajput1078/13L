@@ -38,17 +38,23 @@
         .btn-cyan { background: var(--cyan); color: #000; box-shadow: 0 4px 15px rgba(6,182,212,0.3);}
         .action-group { display: flex; gap: 8px; flex-wrap: wrap; }
         
-        input { padding: 14px; background: #000; border: 1px solid var(--border); color: #fff; border-radius: 8px; outline: none; width: 100%; margin-bottom: 10px; font-family: 'Inter'; transition: 0.3s;}
-        input:focus { border-color: var(--primary); box-shadow: 0 0 10px rgba(59,130,246,0.2);}
+        input, select { padding: 14px; background: #000; border: 1px solid var(--border); color: #fff; border-radius: 8px; outline: none; width: 100%; margin-bottom: 10px; font-family: 'Inter'; transition: 0.3s;}
+        input:focus, select:focus { border-color: var(--primary); box-shadow: 0 0 10px rgba(59,130,246,0.2);}
         
         .msg-box { background: rgba(0,0,0,0.3); border: 1px solid var(--border); padding: 25px; border-radius: 12px; margin-bottom: 20px; box-shadow: inset 0 0 20px rgba(0,0,0,0.5);}
         
-        .tag { padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 800; }
+        .tag { padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 800; display: inline-block;}
         .tag-vip { background: rgba(234,179,8,0.2); color: var(--gold); border: 1px solid rgba(234,179,8,0.5);}
         .tag-trial { background: rgba(59,130,246,0.2); color: var(--primary); border: 1px solid rgba(59,130,246,0.5);}
 
         .login-wrapper { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-dark); display: flex; justify-content: center; align-items: center; z-index: 9999;}
         .login-card { background: var(--bg-panel); border: 1px solid var(--primary); padding: 40px; border-radius: 16px; text-align: center; width: 350px; box-shadow: 0 20px 50px rgba(0,0,0,0.8), inset 0 0 20px rgba(59,130,246,0.2);}
+        
+        /* Modals */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 99999; display: none; justify-content: center; align-items: center; backdrop-filter: blur(8px); padding: 15px;}
+        .modal-box { background: var(--bg-panel); border: 1px solid var(--border); padding: 30px; border-radius: 16px; width: 100%; max-width: 420px; box-shadow: 0 25px 50px rgba(0,0,0,0.8); animation: popIn 0.3s forwards;}
+        @keyframes popIn { 0% { transform: scale(0.9); opacity: 0;} 100% { transform: scale(1); opacity: 1;} }
+
         .hidden { display: none !important; }
         
         /* Custom Toast */
@@ -60,6 +66,28 @@
 
     <div id="toast">Action Successful!</div>
 
+    <!-- VIP UPGRADE MODAL -->
+    <div id="vipModal" class="modal-overlay">
+        <div class="modal-box" style="border-color: var(--gold); box-shadow: 0 20px 50px rgba(234,179,8,0.2);">
+            <h3 style="color: var(--gold); margin-bottom: 5px; font-family:'Rajdhani'; font-size: 26px;">UPGRADE TO VIP</h3>
+            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 15px;">Set VIP access duration for UID: <span id="vipTargetUid" style="color:#fff; font-family:'JetBrains Mono'; font-weight:bold;"></span></p>
+            
+            <select id="upgradeVipDuration" style="margin-bottom: 20px;">
+                <option value="1">1 Day VIP Access</option>
+                <option value="3">3 Days VIP Access</option>
+                <option value="7">7 Days VIP Access</option>
+                <option value="30">30 Days VIP Access</option>
+                <option value="999" selected>Lifetime VIP Access</option>
+            </select>
+
+            <div style="display: flex; gap: 12px;">
+                <button class="btn btn-warning" style="flex: 1; padding: 14px; font-size:14px;" onclick="confirmVipUpgrade()">AUTHORIZE VIP</button>
+                <button class="btn" style="flex: 1; border: 1px solid var(--border); color:var(--text-muted); background:transparent; padding: 14px;" onclick="document.getElementById('vipModal').style.display='none'">CANCEL</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- LOGIN SCREEN -->
     <div class="login-wrapper" id="loginBox">
         <div class="login-card">
             <h2 style="font-family:'Rajdhani'; font-size: 32px; margin-bottom: 5px;">SIKKIM <span style="color:var(--primary);">ADMIN</span></h2>
@@ -80,7 +108,7 @@
 
     <div class="main-content hidden" id="mainContent">
         
-        <!-- DASHBOARD (SUPER POWERS HERE) -->
+        <!-- DASHBOARD -->
         <div id="v-dashboard" class="view-section active">
             <h2 style="margin-bottom: 20px; font-family:'Rajdhani';">Super Admin Control</h2>
             
@@ -95,15 +123,22 @@
                 </div>
             </div>
 
-            <!-- THE MANUAL ADD POWER -->
+            <!-- MANUAL ADD WITH TIMER -->
             <div class="msg-box" style="border-top: 4px solid var(--primary);">
                 <h3 style="color:var(--primary); margin-bottom:8px; font-family:'Rajdhani'; font-size:22px;">⚡ FORCE INJECT USER (MANUAL ADD)</h3>
-                <p style="font-size:12px; color:var(--text-muted); margin-bottom:15px;">Manually grant access to any UID without them sending a request.</p>
+                <p style="font-size:12px; color:var(--text-muted); margin-bottom:15px;">Grant access and set validity dynamically.</p>
                 
                 <div style="display: flex; gap: 15px; flex-wrap: wrap; align-items: center;">
-                    <input type="number" id="manualUid" placeholder="Enter Target UID" style="width: 250px; margin: 0; font-family:'JetBrains Mono'; font-weight:bold;">
+                    <input type="number" id="manualUid" placeholder="Enter Target UID" style="width: 220px; margin: 0; font-family:'JetBrains Mono'; font-weight:bold;">
+                    <select id="manualVipDuration" style="width: 180px; margin: 0;">
+                        <option value="1">1 Day Validity</option>
+                        <option value="3">3 Days Validity</option>
+                        <option value="7">7 Days Validity</option>
+                        <option value="30">30 Days Validity</option>
+                        <option value="999" selected>Lifetime Validity</option>
+                    </select>
                     <button class="btn-cyan" onclick="addManualUser(false)">GRANT FREE TRIAL (5 PLAYS)</button>
-                    <button class="btn-warning" onclick="addManualUser(true)">GRANT VIP STATUS (UNLIMITED)</button>
+                    <button class="btn-warning" onclick="addManualUser(true)">GRANT VIP STATUS</button>
                 </div>
             </div>
         </div>
@@ -119,12 +154,12 @@
             </div>
         </div>
 
-        <!-- USER DATABASE (WITH FULL ADMIN ACTIONS) -->
+        <!-- USER DATABASE -->
         <div id="v-usr" class="view-section">
             <h2 style="margin-bottom: 20px; font-family:'Rajdhani';">User Database & Controls</h2>
             <div class="table-card">
                 <table>
-                    <thead><tr><th>UID IDENTIFIER</th><th>STATUS</th><th>DATA USAGE</th><th>SUPER ACTIONS</th></tr></thead>
+                    <thead><tr><th>UID IDENTIFIER</th><th>STATUS & VALIDITY</th><th>DATA USAGE</th><th>SUPER ACTIONS</th></tr></thead>
                     <tbody id="usr-list"></tbody>
                 </table>
             </div>
@@ -171,6 +206,8 @@
         const app = initializeApp({ apiKey: "AIzaSyBFdvXN8SAy77EDQp5HNykO5z2Wa0W8sb0", authDomain: "bdgrocky.firebaseapp.com", databaseURL: "https://bdgrocky-default-rtdb.asia-southeast1.firebasedatabase.app", projectId: "bdgrocky" });
         const db = getDatabase(app);
 
+        let currentVipUID = "";
+
         // Toast Engine
         window.showToast = (msg) => { let t = document.getElementById('toast'); t.innerText = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 3000); };
         
@@ -195,17 +232,31 @@
             // 2. Listen Active Users & Admin Powers
             onValue(ref(db, 'approved_uids'), s => {
                 let html = ""; let tot = 0; let vip = 0;
+                let now = Date.now();
+
                 if(s.exists()) {
                     s.forEach(c => { 
                         tot++; let d = c.val(); let uid = c.key;
                         if(d.is_premium) vip++;
                         
-                        let badge = d.is_premium ? `<span class="tag tag-vip">VIP</span>` : `<span class="tag tag-trial">TRIAL</span>`;
+                        // Validity Tracker Calculation
+                        let daysLeft = d.expireAt ? Math.ceil((d.expireAt - now) / (1000 * 60 * 60 * 24)) : "LIFETIME";
+                        let expiryText = "";
+                        
+                        if(daysLeft === "LIFETIME" || daysLeft > 900) {
+                            expiryText = `<span style="color:var(--gold); font-size:10px;">LIFETIME</span>`;
+                        } else if(daysLeft <= 0) {
+                            expiryText = `<span style="color:var(--red); font-size:10px;">EXPIRED</span>`;
+                        } else {
+                            expiryText = `<span style="color:var(--green); font-size:10px;">${daysLeft} DAYS LEFT</span>`;
+                        }
+
+                        let badge = d.is_premium ? `<div class="tag tag-vip" style="margin-bottom:4px;">VIP</div><br>${expiryText}` : `<div class="tag tag-trial">TRIAL</div>`;
                         let usage = d.is_premium ? `<span style="color:var(--gold);">UNLIMITED</span>` : `<span style="color:var(--cyan);">${d.predictions_used||0} / 5</span>`;
                         
-                        // 🔥 ADMIN SUPER BUTTONS 🔥
+                        // 🔥 SUPER ADMIN BUTTONS 🔥
                         let actions = `<div class="action-group">`;
-                        if(!d.is_premium) actions += `<button class="btn-warning" onclick="makeVip('${uid}')">UPGRADE VIP</button>`;
+                        if(!d.is_premium || daysLeft <= 0) actions += `<button class="btn-warning" onclick="openVipModal('${uid}')">UPGRADE VIP</button>`;
                         if(!d.is_premium) actions += `<button class="btn-cyan" onclick="resetPlays('${uid}')">RESET PLAYS (0/5)</button>`;
                         actions += `<button class="btn-primary" style="background:#475569;" onclick="unlinkDevice('${uid}')">UNLINK DEVICE</button>`;
                         actions += `<button class="btn-danger" onclick="banUser('${uid}')">BAN / PURGE</button>`;
@@ -225,45 +276,48 @@
            SUPER ADMIN FUNCTIONS
         ========================================= */
 
-        // ⚡ Force Add User (Manual Inject)
+        // ⚡ Force Add User (Manual Inject with Timer)
         window.addManualUser = async (isVip) => {
             let uid = document.getElementById('manualUid').value.trim();
             if(!uid) return alert("Enter UID to inject!");
-            await set(ref(db, 'approved_uids/'+uid), { active:true, predictions_used:0, is_premium:isVip, expireAt: Date.now() + (isVip ? 999*86400000 : 30*86400000) });
+            
+            let days = isVip ? parseInt(document.getElementById('manualVipDuration').value) : 30; // Free trial gets 30 days expiry
+            let expireAt = Date.now() + (days * 24 * 60 * 60 * 1000);
+
+            await set(ref(db, 'approved_uids/'+uid), { active:true, predictions_used:0, is_premium:isVip, expireAt: expireAt });
             document.getElementById('manualUid').value = "";
             showToast(`UID ${uid} Injected Successfully!`);
         };
 
+        // 👑 Open VIP Modal
+        window.openVipModal = (uid) => {
+            currentVipUID = uid;
+            document.getElementById('vipTargetUid').innerText = uid;
+            document.getElementById('vipModal').style.display = 'flex';
+        };
+
+        // 👑 Confirm VIP Upgrade from Modal
+        window.confirmVipUpgrade = async () => {
+            let days = parseInt(document.getElementById('upgradeVipDuration').value);
+            let expireAt = Date.now() + (days * 24 * 60 * 60 * 1000);
+            
+            await update(ref(db, 'approved_uids/'+currentVipUID), { is_premium: true, expireAt: expireAt });
+            document.getElementById('vipModal').style.display = 'none';
+            showToast(`UID ${currentVipUID} upgraded to VIP for ${days === 999 ? 'Lifetime' : days + ' Days'}!`);
+        };
+
         // ✅ Request Approve/Reject
-        window.apprReq = async (uid) => { await set(ref(db, 'approved_uids/'+uid), {active:true, predictions_used:0, is_premium:false}); await remove(ref(db, 'uid_requests/'+uid)); showToast("Access Granted"); };
+        window.apprReq = async (uid) => { let exp = Date.now() + (30 * 24 * 60 * 60 * 1000); await set(ref(db, 'approved_uids/'+uid), {active:true, predictions_used:0, is_premium:false, expireAt: exp}); await remove(ref(db, 'uid_requests/'+uid)); showToast("Access Granted"); };
         window.rejReq = async (uid) => { await remove(ref(db, 'uid_requests/'+uid)); showToast("Request Denied"); };
 
         // 🔄 Reset Plays (For Free Users)
-        window.resetPlays = async (uid) => {
-            await update(ref(db, 'approved_uids/'+uid), { predictions_used: 0 });
-            showToast(`Plays reset to 0/5 for ${uid}`);
-        };
-
-        // 👑 Instant VIP Upgrade
-        window.makeVip = async (uid) => {
-            await update(ref(db, 'approved_uids/'+uid), { is_premium: true, expireAt: Date.now() + (999*86400000) });
-            showToast(`UID ${uid} promoted to VIP!`);
-        };
+        window.resetPlays = async (uid) => { await update(ref(db, 'approved_uids/'+uid), { predictions_used: 0 }); showToast(`Plays reset to 0/5 for ${uid}`); };
 
         // 📱 Unlink Device (Allow login on new phone)
-        window.unlinkDevice = async (uid) => {
-            await remove(ref(db, 'device_bindings/'+uid));
-            showToast(`Device unlinked. ${uid} can now login from a new device.`);
-        };
+        window.unlinkDevice = async (uid) => { await remove(ref(db, 'device_bindings/'+uid)); showToast(`Device unlinked. ${uid} can now login from a new device.`); };
 
         // 🚫 Ban/Revoke
-        window.banUser = async (uid) => { 
-            if(confirm("Are you sure you want to permanently BAN this UID?")) { 
-                await remove(ref(db, 'approved_uids/'+uid)); 
-                await remove(ref(db, 'device_bindings/'+uid)); 
-                showToast(`UID ${uid} purged from system.`);
-            } 
-        };
+        window.banUser = async (uid) => { if(confirm("Are you sure you want to permanently BAN this UID?")) { await remove(ref(db, 'approved_uids/'+uid)); await remove(ref(db, 'device_bindings/'+uid)); showToast(`UID ${uid} purged from system.`); } };
 
         /* =========================================
            MATRIX & MESSAGING
