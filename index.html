@@ -3,112 +3,175 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SIKKIM X ROCKY | 1VIP</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800;900&family=Rajdhani:wght@700;900&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
+    <title>SIKKIM X ROCKY | 3D VIP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800;900&family=Rajdhani:wght@700;900&display=swap" rel="stylesheet">
     <style>
+        /* 🎨 3D CYBER BLUE THEME (SIKKIM) */
         :root { 
             --primary: #3b82f6; --primary-dark: #1e3a8a; --primary-3d: #172554;
             --cyan: #06b6d4; --gold: #f59e0b; --green: #10b981; --red: #ef4444; 
             --bg-top: linear-gradient(135deg, #020617, #0f172a, #020617); 
         }
+        
         * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
-        body, html { height: 100dvh; width: 100vw; font-family: 'Poppins', sans-serif; color: #f8fafc; overflow: hidden; display: flex; flex-direction: column; background: #000; }
         
-        /* 🔥 FIXED TOP PANEL - WILL NOT BLOCK GAME 🔥 */
-        #top-panel { flex: 0 0 auto; width: 100%; z-index: 10; padding: 12px 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.9), inset 0 -2px 10px rgba(59, 130, 246, 0.2); background: var(--bg-top); border-bottom: 2px solid #1e3a8a; }
-        #bottom-panel { flex: 1 1 auto; width: 100%; background-color: #000; position: relative; z-index: 1; overflow: hidden; }
-        iframe { width: 100%; height: 100%; border: none; display: block; }
+        /* 🔥 PERFECT MOBILE FITTING LOGIC 🔥 */
+        body, html { 
+            height: 100vh; height: 100dvh; width: 100vw;
+            font-family: 'Poppins', sans-serif; color: #f8fafc; overflow: hidden; 
+            display: flex; flex-direction: column; background: #000; 
+        }
+        
+        /* 🌌 FLOATING 3D PANEL */
+        #top-panel { 
+            flex: 0 0 auto; width: 100%; z-index: 10; position: relative; padding: 12px 15px; 
+            box-shadow: 0 15px 40px rgba(0,0,0,0.9), inset 0 -2px 10px rgba(59, 130, 246, 0.2); 
+            background: var(--bg-top); border-bottom: 3px solid #1e3a8a; 
+        }
+        
+        /* 🎮 GAME PANEL (FIXED FOR MOBILE SCROLLING) */
+        #bottom-panel { 
+            flex: 1; /* Takes exactly the remaining space */
+            width: 100%; 
+            background-color: #020617; 
+            position: relative; 
+            z-index: 1; 
+            overflow: hidden; 
+            -webkit-overflow-scrolling: touch; /* Smooth scroll on iOS/Android */
+            display: flex; justify-content: center; align-items: center;
+        }
+        
+        .game-loader { 
+            position: absolute; color: var(--cyan); font-family: 'JetBrains Mono', monospace; 
+            font-size: 14px; font-weight: 700; letter-spacing: 2px; z-index: 0; 
+            animation: pulseLoader 1.5s infinite alternate; 
+        }
+        @keyframes pulseLoader { 0% { opacity: 0.3; transform: scale(0.95); } 100% { opacity: 1; transform: scale(1.05); text-shadow: 0 0 15px var(--cyan); } }
+        
+        iframe { 
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0; /* Forces absolute fit */
+            width: 100%; height: 100%; border: none; display: block; z-index: 1; background: transparent;
+        }
 
-        .top-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px dashed rgba(255,255,255,0.05); padding-bottom: 5px; margin-bottom: 8px;}
-        .logo-text { font-family: 'Rajdhani', sans-serif; font-size: 24px; font-weight: 900; color: #fff; letter-spacing: 2px;}
-        .logo-text span { color: var(--cyan); text-shadow: 0 0 15px rgba(6, 182, 212, 0.8); }
+        /* UI ELEMENTS */
+        .top-header { width: 100%; max-width: 500px; margin: 0 auto 8px auto; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px dashed rgba(255,255,255,0.05); padding-bottom: 5px;}
+        .logo-text { font-family: 'Rajdhani', sans-serif; font-size: 26px; font-weight: 900; color: #fff; letter-spacing: 2px; text-shadow: 0 4px 10px rgba(0,0,0,0.8);}
+        .logo-text span { color: var(--cyan); text-shadow: 0 0 15px rgba(6, 182, 212, 0.8), 0 0 30px rgba(6, 182, 212, 0.4); }
         
-        .info-row { display: flex; justify-content: space-between; font-size: 11px; background: rgba(0,0,0,0.7); padding: 8px 15px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); margin-bottom: 8px;}
-        .info-row span { color: var(--cyan); font-weight: 900; font-family: 'Rajdhani', sans-serif; font-size: 16px; letter-spacing: 1px;}
+        .tool-container { width: 100%; max-width: 500px; margin: 0 auto; display: flex; flex-direction: column; gap: 8px; }
+        .info-row { display: flex; justify-content: space-between; font-size: 11px; background: rgba(0,0,0,0.7); padding: 8px 15px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); box-shadow: inset 0 4px 10px rgba(0,0,0,0.8), 0 2px 5px rgba(255,255,255,0.05);}
+        .info-row span { color: var(--cyan); font-weight: 900; font-family: 'Rajdhani', sans-serif; font-size: 16px; letter-spacing: 1px; text-shadow: 0 2px 5px rgba(0,0,0,0.8);}
         
-        .input-row { display: flex; gap: 10px; align-items: stretch;}
-        input { flex: 1; padding: 10px; border: 1px solid #1e3a8a; border-radius: 12px; text-align: center; font-size: 15px; font-weight: 800; background: #020617; color: var(--cyan); outline: none; transition: 0.3s; min-width: 0;}
+        .input-row { display: flex; gap: 12px; align-items: stretch;}
+        input { flex: 1; padding: 10px; border: 1px solid #1e3a8a; border-radius: 12px; text-align: center; font-size: 16px; font-weight: 800; background: #020617; color: var(--cyan); outline: none; box-shadow: inset 0 4px 8px rgba(0,0,0,0.9); transition: 0.3s; min-width: 0;}
         input:focus { border-color: var(--cyan); box-shadow: inset 0 4px 8px rgba(0,0,0,0.9), 0 0 15px rgba(6, 182, 212, 0.4);}
         
-        .btn-3d { padding: 0 15px; font-size: 14px; font-family: 'Rajdhani', sans-serif; font-weight: 900; cursor: pointer; border-radius: 12px; border: none; background: linear-gradient(to bottom, #3b82f6, #1d4ed8); color: #fff; width: 40%; box-shadow: 0 6px 0 var(--primary-3d), 0 10px 15px rgba(0,0,0,0.5); transition: 0.1s;}
+        .btn-3d { padding: 0 15px; font-size: 14px; font-family: 'Rajdhani', sans-serif; font-weight: 900; cursor: pointer; border-radius: 12px; border: none; background: linear-gradient(to bottom, #3b82f6, #1d4ed8); color: #fff; width: 40%; box-shadow: 0 6px 0 var(--primary-3d), 0 15px 20px rgba(0,0,0,0.5); transform: translateY(0); transition: all 0.1s ease-in-out; text-transform: uppercase; letter-spacing: 1px; text-shadow: 0 2px 4px rgba(0,0,0,0.5);}
         .btn-3d:active { box-shadow: 0 0 0 var(--primary-3d), 0 5px 10px rgba(0,0,0,0.5); transform: translateY(6px); }
+        .btn-3d:disabled { background: #1e293b; box-shadow: 0 6px 0 #0f172a; color: #64748b; cursor: not-allowed;}
         
-        .result-box { display: flex; justify-content: center; align-items: center; font-size: 14px; font-weight: 900; color: #94a3b8; background: linear-gradient(180deg, #020617 0%, #0a1128 100%); padding: 8px; border-radius: 12px; border: 2px solid #1e3a8a; margin-top: 8px; min-height: 48px;}
+        .result-box { display: flex; justify-content: center; align-items: center; font-size: 14px; font-weight: 900; color: #94a3b8; background: linear-gradient(180deg, #020617 0%, #0a1128 100%); padding: 8px; border-radius: 12px; border: 2px solid #1e3a8a; flex-grow: 1; min-height: 48px; box-shadow: inset 0 5px 15px rgba(0,0,0,0.9), 0 5px 15px rgba(0,0,0,0.5); position: relative; overflow: hidden;}
+        .scanner-laser { position: absolute; top: 0; left: -100%; width: 150%; height: 100%; background: linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.6), transparent); animation: scan 1s cubic-bezier(0.4, 0, 0.2, 1) infinite; display: none; transform: skewX(-20deg);}
+        @keyframes scan { 0% { left: -150%; } 100% { left: 150%; } }
+        .analyzing .scanner-laser { display: block; }
 
-        /* MODALS */
+        .auth-container { text-align: center; width: 100%; max-width: 500px; padding: 15px; margin: 0 auto; background: rgba(0,0,0,0.5); border-radius: 16px; border: 1px solid rgba(255,255,255,0.05); box-shadow: inset 0 0 20px rgba(0,0,0,0.5);}
+        .auth-container h3 { margin: 0 0 15px 0; font-size: 16px; color: #cbd5e1; font-weight: 700; letter-spacing: 1px;}
+        .auth-container h3 span { color: var(--cyan); text-shadow: 0 0 10px rgba(6, 182, 212, 0.5);}
+        
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 99999; display: none; justify-content: center; align-items: center; backdrop-filter: blur(10px); padding: 15px;}
-        .modal-box { background: linear-gradient(145deg, #0f172a, #020617); border: 2px solid #1e3a8a; padding: 25px 20px; border-radius: 20px; text-align: center; width: 100%; max-width: 350px; box-shadow: 0 20px 50px rgba(0,0,0,0.9); animation: floatUp 0.3s forwards;}
+        .modal-box { background: linear-gradient(145deg, #0f172a, #020617); border: 2px solid #1e3a8a; padding: 30px 20px; border-radius: 20px; text-align: center; width: 100%; max-width: 350px; box-shadow: 0 30px 60px rgba(0,0,0,0.9), inset 0 5px 20px rgba(255,255,255,0.05); animation: floatUp 0.3s forwards;}
         @keyframes floatUp { 0% { transform: translateY(50px) scale(0.9); opacity: 0;} 100% { transform: translateY(0) scale(1); opacity: 1;} }
+        .modal-box h4 { color: #fff; font-size: 22px; font-weight: 900; margin-bottom: 10px; text-transform: uppercase; text-shadow: 0 4px 10px rgba(0,0,0,0.5);}
+        .modal-box p { font-size: 13px; color: #94a3b8; margin-bottom: 25px; line-height: 1.6;}
         
-        /* 🎱 BALLS & BADGES */
-        .color-ball { width: 30px; height: 30px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: 900; color: #fff; font-size: 14px; box-shadow: inset -4px -4px 8px rgba(0,0,0,0.7), inset 2px 2px 6px rgba(255,255,255,0.6), 0 4px 8px rgba(0,0,0,0.6); border: 1px solid rgba(0,0,0,0.5); }
-        .bg-green { background: radial-gradient(circle at 30% 30%, #34d399, #10b981, #064e3b); }
-        .bg-red { background: radial-gradient(circle at 30% 30%, #f87171, #ef4444, #7f1d1d); }
-        .bg-red-violet { background: linear-gradient(135deg, #ef4444 50%, #8b5cf6 50%); }
-        .bg-green-violet { background: linear-gradient(135deg, #10b981 50%, #8b5cf6 50%); }
-        .size-badge { padding: 4px 14px; border-radius: 6px; font-size: 12px; font-weight: 900; display: inline-block; text-transform: uppercase;}
-        .size-big { background: linear-gradient(180deg, #f59e0b, #b45309); color: #fff; border: 1px solid #78350f;}
-        .size-small { background: linear-gradient(180deg, #06b6d4, #0891b2); color: #fff; border: 1px solid #164e63;}
+        .color-ball { width: 32px; height: 32px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: 900; color: #fff; font-size: 15px; box-shadow: inset -5px -5px 10px rgba(0,0,0,0.7), inset 3px 3px 8px rgba(255,255,255,0.6), 0 5px 10px rgba(0,0,0,0.6); border: 1px solid rgba(0,0,0,0.5); text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
+        .bg-green { background: radial-gradient(circle at 30% 30%, #34d399 0%, #10b981 50%, #064e3b 100%); }
+        .bg-red { background: radial-gradient(circle at 30% 30%, #f87171 0%, #ef4444 50%, #7f1d1d 100%); }
+        .bg-red-violet { background: linear-gradient(135deg, #ef4444 50%, #8b5cf6 50%); box-shadow: inset -5px -5px 10px rgba(0,0,0,0.7), inset 3px 3px 8px rgba(255,255,255,0.4), 0 5px 10px rgba(0,0,0,0.6); }
+        .bg-green-violet { background: linear-gradient(135deg, #10b981 50%, #8b5cf6 50%); box-shadow: inset -5px -5px 10px rgba(0,0,0,0.7), inset 3px 3px 8px rgba(255,255,255,0.4), 0 5px 10px rgba(0,0,0,0.6); }
+        
+        .size-badge { padding: 4px 14px; border-radius: 8px; font-size: 13px; font-weight: 900; display: inline-block; box-shadow: 0 4px 10px rgba(0,0,0,0.5); text-transform: uppercase;}
+        .size-big { background: linear-gradient(180deg, #f59e0b, #b45309); color: #fff; border: 1px solid #78350f; text-shadow: 0 2px 4px rgba(0,0,0,0.5);}
+        .size-small { background: linear-gradient(180deg, #06b6d4, #0891b2); color: #fff; border: 1px solid #164e63; text-shadow: 0 2px 4px rgba(0,0,0,0.5);}
 
-        /* 🏆 3D RESULT CARD */
-        #miniAnimScreen { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(2, 6, 23, 0.95); z-index: 100; display: none; flex-direction: column; justify-content: center; align-items: center; padding: 15px;}
-        .mini-title { font-family: 'Rajdhani', sans-serif; font-size: 40px; font-weight: 900; margin: 0; letter-spacing: 5px; text-transform: uppercase;}
-        .real-result-card { background: linear-gradient(145deg, #0f172a, #020617); border-radius: 20px; padding: 25px; width: 100%; max-width: 350px; border: 3px solid #1e3a8a; opacity: 0; margin-top: 15px;}
-        .theme-win { animation: epic3DWin 0.7s forwards; border-color: #10b981; }
-        @keyframes epic3DWin { 0% { transform: scale(0.5); opacity: 0; } 60% { transform: scale(1.05); opacity: 1; box-shadow: 0 0 60px rgba(16, 185, 129, 0.8); } 100% { transform: scale(1); opacity: 1; box-shadow: 0 20px 50px rgba(16, 185, 129, 0.5), inset 0 0 30px rgba(16, 185, 129, 0.2); } }
-        .theme-loss { animation: lossShake 0.5s forwards; border-color: #ef4444; box-shadow: 0 20px 50px rgba(239, 68, 68, 0.5), inset 0 0 30px rgba(239, 68, 68, 0.2); }
-        @keyframes lossShake { 0% { transform: translateX(0); opacity: 0;} 25% { transform: translateX(-15px); opacity: 1;} 50% { transform: translateX(15px); } 75% { transform: translateX(-10px); } 100% { transform: translateX(0); opacity: 1;} }
+        /* 💎 3D JACKPOT ANIMATION (BLUE THEME) */
+        #jackpotScreen { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.95); z-index: 99999999; display: none; flex-direction: column; justify-content: center; align-items: center; overflow: hidden; backdrop-filter: blur(10px);}
+        .jackpot-bg { position: absolute; width: 200vw; height: 200vw; background: conic-gradient(from 0deg, transparent, var(--primary), var(--cyan), transparent 30%); animation: radarSpin 1.5s linear infinite; z-index: -1; }
+        .jackpot-title { font-family: 'Rajdhani', sans-serif; font-size: 55px; font-weight: 900; color: #fff; text-shadow: 0 0 30px var(--cyan), 0 0 60px var(--primary); text-align: center; line-height: 1.1; animation: epic3DWin 0.8s forwards;}
+        @keyframes radarSpin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* 🏆 3D EPIC ANIMATED RESULT SLIP */
+        #miniAnimScreen { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(2, 6, 23, 0.97); z-index: 100; display: none; flex-direction: column; justify-content: center; align-items: center; backdrop-filter: blur(15px); padding: 15px;}
+        .mini-title { font-family: 'Rajdhani', sans-serif; font-size: 45px; font-weight: 900; margin: 0; letter-spacing: 5px; text-transform: uppercase; text-shadow: 0 10px 30px rgba(0,0,0,0.9);}
+        
+        .real-result-card { background: linear-gradient(145deg, #0f172a, #020617); border-radius: 20px; padding: 25px; width: 100%; max-width: 350px; border: 3px solid #1e3a8a; opacity: 0; position: relative;}
+        
+        .theme-win { animation: epic3DWin 0.8s forwards; border-color: #10b981; }
+        @keyframes epic3DWin { 0% { transform: scale(0.2) rotateX(45deg) rotateY(45deg); opacity: 0; filter: brightness(0); box-shadow: 0 0 0 rgba(16, 185, 129, 0); } 50% { transform: scale(1.1) rotateX(-10deg) rotateY(-10deg); opacity: 1; filter: brightness(1.5); box-shadow: 0 0 80px rgba(16, 185, 129, 0.8); } 100% { transform: scale(1) rotateX(0) rotateY(0); opacity: 1; filter: brightness(1); box-shadow: 0 20px 50px rgba(16, 185, 129, 0.5), inset 0 0 30px rgba(16, 185, 129, 0.2); } }
+        .theme-jackpot { animation: epic3DWin 0.8s forwards; border-color: var(--cyan); }
+        .theme-loss { animation: lossShake 0.6s forwards; border-color: #ef4444; box-shadow: 0 20px 50px rgba(239, 68, 68, 0.5), inset 0 0 30px rgba(239, 68, 68, 0.2); }
+        @keyframes lossShake { 0% { transform: translateX(0) scale(0.8); opacity: 0;} 20% { transform: translateX(-20px) scale(1); opacity: 1;} 40% { transform: translateX(20px); } 60% { transform: translateX(-10px); } 80% { transform: translateX(10px); } 100% { transform: translateX(0) scale(1); opacity: 1;} }
+        
         .res-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 2px dashed rgba(255,255,255,0.05); }
         .res-row:last-child { border-bottom: none; }
-        .res-label { font-size: 11px; color: #94a3b8; font-weight: 800; letter-spacing: 0.5px;}
+        .res-label { font-size: 12px; color: #94a3b8; font-weight: 800; letter-spacing: 0.5px;}
+        .mini-close { font-size: 11px; color: #cbd5e1; margin-top: 25px; cursor: pointer; border: 1px solid rgba(255,255,255,0.2); padding: 10px 25px; border-radius: 20px; background: rgba(0,0,0,0.5); font-weight: 800; letter-spacing: 1px; box-shadow: 0 4px 10px rgba(0,0,0,0.5); transition: 0.2s;}
+        .mini-close:active { transform: scale(0.9); }
 
-        .hard-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999999; display: none; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; background: #020617;}
+        .hard-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999999; display: none; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px;}
         .hidden { display: none !important; }
     </style>
 </head>
 <body>
-
-    <div id="bannedScreen" class="hard-screen">
-        <div style="font-size: 70px; margin-bottom: 10px;">🛑</div>
-        <h1 style="color:var(--red); font-family:'Rajdhani';">ACCESS REVOKED</h1>
-    </div>
-
-    <div id="maintenanceScreen" class="hard-screen">
-        <div style="font-size: 70px; margin-bottom: 15px;">⚙️</div>
-        <h1 style="color:var(--cyan); font-family:'Rajdhani';">SYSTEM OFFLINE</h1>
-        <p style="color:#94a3b8;">The Sikkim node is undergoing a core upgrade.</p>
-    </div>
-
-    <div id="msgModal" class="modal-overlay">
-        <div class="modal-box" style="border-color: var(--cyan); box-shadow: 0 10px 40px rgba(6, 182, 212, 0.4);">
-            <div style="font-size: 45px; margin-bottom: 10px;">📩</div>
-            <h4 id="msgTitle" style="color: var(--cyan); font-family:'Rajdhani'; font-size: 22px;">ADMIN MESSAGE</h4>
-            <p id="msgBody" style="color: #fff; font-size: 14px; background: rgba(0,0,0,0.5); padding: 15px; border-radius: 12px; margin-bottom: 20px;"></p>
-            <button class="btn-3d" style="width: 100%; padding: 12px;" onclick="document.getElementById('msgModal').style.display='none'">MARK AS READ</button>
+    
+    <div id="bannedScreen" class="hard-screen" style="background: radial-gradient(circle at center, #1a0505 0%, #000 100%);">
+        <div style="font-size: 70px; margin-bottom: 10px; filter: drop-shadow(0 0 20px red);">🛑</div>
+        <h1 style="color:var(--red); font-size:42px; font-family:'Rajdhani'; text-shadow: 0 5px 15px rgba(239, 68, 68, 0.5);">ACCESS REVOKED</h1>
+        <div style="background: rgba(239, 68, 68, 0.05); border: 1px solid rgba(239, 68, 68, 0.3); padding: 25px; border-radius: 16px; margin-top: 20px; width: 100%; max-width: 400px;">
+            <span style="color:var(--red); font-weight:800; font-size: 13px;">REASON FOR SUSPENSION</span><br>
+            <span id="banReasonText" style="color:#fff; font-size: 16px; font-weight:600; display:block; margin-top:10px;">Violation of security terms</span>
         </div>
     </div>
 
+    <div id="maintenanceScreen" class="hard-screen" style="background: #020617; backdrop-filter: blur(10px);">
+        <div style="font-size: 70px; margin-bottom: 15px; animation: rotateGear 4s linear infinite;">⚙️</div>
+        <h1 style="color:var(--cyan); font-size:45px; font-family:'Rajdhani'; margin: 0; text-shadow: 0 0 20px rgba(6, 182, 212, 0.4);">SYSTEM OFFLINE</h1>
+        <p style="color:#94a3b8; font-size: 15px; margin-top: 15px;">The Sikkim node is undergoing a core upgrade.</p>
+        <style>@keyframes rotateGear { 100% { transform: rotate(360deg); } }</style>
+    </div>
+
+    <div id="uidModal" class="modal-overlay">
+        <div class="modal-box">
+            <h4 id="modalTitle">SYSTEM ALERT</h4>
+            <p id="modalMsg">Processing...</p>
+            <button class="btn-3d" style="width: 100%; padding: 12px; margin-top: 10px;" onclick="document.getElementById('uidModal').style.display='none'">ACKNOWLEDGE</button>
+        </div>
+    </div>
+    
+    <div id="msgModal" class="modal-overlay">
+        <div class="modal-box" style="border-color: var(--cyan); box-shadow: 0 20px 50px rgba(6, 182, 212, 0.3);">
+            <div style="font-size: 50px; margin-bottom: 15px; filter: drop-shadow(0 5px 10px rgba(0,0,0,0.5));">📩</div>
+            <h4 id="msgTitle" style="color: var(--cyan);">MESSAGE</h4>
+            <p id="msgBody" style="color: #fff; font-size: 15px; font-weight: 500; margin-bottom: 20px; background: rgba(0,0,0,0.5); padding: 20px; border-radius: 12px;"></p>
+            <button class="btn-3d" style="width: 100%; padding: 12px; background: linear-gradient(to bottom, #06b6d4, #0891b2); box-shadow: 0 6px 0 #164e63;" onclick="document.getElementById('msgModal').style.display='none'">MARK AS READ</button>
+        </div>
+    </div>
+
+    <div id="jackpotScreen">
+        <div class="jackpot-bg"></div>
+        <h1 class="jackpot-title">💎 MEGA JACKPOT 💎<br><span style="font-size:20px; color:var(--cyan); text-shadow: 0 0 10px var(--cyan); letter-spacing:2px; font-family:'Poppins';">VIOLET SECURED</span></h1>
+    </div>
+
     <div id="top-panel">
-        
         <div id="miniAnimScreen">
             <h1 id="miniTitle" class="mini-title">🏆 WIN 🏆</h1>
             <div id="realCard" class="real-result-card">
-                <div class="res-row">
-                    <span class="res-label">PERIOD NUMBER</span>
-                    <span id="resPeriod" style="color: #cbd5e1; font-weight: 800; font-family: 'JetBrains Mono'; font-size: 14px;">----</span>
-                </div>
-                <div class="res-row" style="background: rgba(255,255,255,0.03); padding: 12px; border-radius: 12px; margin-top: 8px;">
-                    <span class="res-label" style="color:#fff;">AI PREDICTION</span>
-                    <span id="resPred" style="display:flex; gap:10px; align-items:center;">--</span>
-                </div>
-                <div class="res-row" style="background: rgba(0,0,0,0.6); padding: 12px; border-radius: 12px; margin-top: 8px; border: 1px solid rgba(255,255,255,0.05);">
-                    <span class="res-label" style="color:var(--cyan);">ACTUAL OUTCOME</span>
-                    <div style="display:flex; gap:10px; align-items:center;">
-                        <span id="resBalls"></span><span id="resSize"></span>
-                    </div>
-                </div>
+                <div class="res-row"><span class="res-label">PERIOD NUMBER</span><span class="res-val" id="resPeriod" style="color: #cbd5e1; font-weight: 800; font-family: 'JetBrains Mono', monospace; font-size: 14px;">----</span></div>
+                <div class="res-row" style="background: rgba(255,255,255,0.03); padding: 12px 15px; border-radius: 12px; margin-top: 8px;"><span class="res-label" style="color:#fff;">AI PREDICTION</span><span class="res-val" id="resPred" style="display:flex; gap:12px; align-items:center;">--</span></div>
+                <div class="res-row" style="background: rgba(0,0,0,0.6); padding: 12px 15px; border-radius: 12px; margin-top: 8px; border: 1px solid rgba(255,255,255,0.05);"><span class="res-label">ACTUAL OUTCOME</span><div style="display:flex; gap:12px; align-items:center;"><span id="resBalls"></span><span id="resSize"></span></div></div>
             </div>
-            <button class="btn-3d" style="margin-top:20px; padding:10px 20px;" onclick="document.getElementById('miniAnimScreen').style.display='none'">CLOSE</button>
+            <div class="mini-close" onclick="document.getElementById('miniAnimScreen').style.display='none'">TAP TO DISMISS</div>
         </div>
 
         <div class="top-header">
@@ -116,94 +179,88 @@
             <span id="usageTracker" style="font-size: 10px; background: rgba(6, 182, 212, 0.15); padding: 4px 10px; border-radius:8px; color:var(--cyan); font-weight:800; border: 1px solid rgba(6, 182, 212, 0.3); display:none;">PLAYS: 0/5</span>
         </div>
         
-        <div id="authScreen" style="text-align: center; padding: 10px;">
-            <div class="input-row">
-                <input type="number" id="uidInput" placeholder="Enter SIKKIM UID">
-                <button id="authBtn" class="btn-3d" onclick="checkUID()">CONNECT</button>
-            </div>
+        <div id="authScreen" class="auth-container">
+            <h3>SECURE <span>NODE LOGIN</span></h3>
+            <div class="input-row" style="margin-top: 15px;"><input type="number" id="uidInput" placeholder="Enter SIKKIM UID"><button id="authBtn" class="btn-3d" onclick="checkUID()">CONNECT</button></div>
         </div>
         
-        <div id="toolScreen" class="hidden">
-            <div class="info-row">
-                <div>LIVE: <span id="displayPeriod" style="color:#fff; font-size:13px; margin-left:5px; font-family:'JetBrains Mono';">SYNCING...</span></div>
-                <div>SYNC: <span id="displayTimer" style="color:var(--cyan); font-size:13px; margin-left:5px; font-family:'JetBrains Mono';">00:00</span></div>
-            </div>
-            <div class="input-row">
-                <input type="number" id="num1" placeholder="N-1" min="0" max="9">
-                <input type="number" id="num2" placeholder="N-2" min="0" max="9">
-                <button id="analyzeBtn" class="btn-3d" onclick="runExploit()">EXECUTE</button>
-            </div>
-            <div id="predictionDisplay" class="result-box">
-                <span id="predText" style="letter-spacing:1px; font-size:12px;">AWAITING COMMAND...</span>
-            </div>
+        <div id="toolScreen" class="tool-container hidden">
+            <div class="info-row"><div>LIVE NODE: <span id="displayPeriod" style="color:#fff; font-size:14px; margin-left:5px;">SYNCING...</span></div><div>SYNC: <span id="displayTimer" style="color:var(--cyan); font-size:14px; margin-left:5px;">00:00</span></div></div>
+            <div class="input-row"><input type="number" id="num1" placeholder="N-1" min="0" max="9"><input type="number" id="num2" placeholder="N-2" min="0" max="9"><button id="analyzeBtn" class="btn-3d" onclick="runExploit()">EXECUTE</button></div>
+            <div id="predictionDisplay" class="result-box"><div class="scanner-laser"></div><span id="predText" style="letter-spacing:2px; font-size:13px; text-transform: uppercase;">AWAITING COMMAND...</span></div>
         </div>
     </div>
 
-    <div id="bottom-panel"><iframe id="gameIframe" src="https://sikkim.com"></iframe></div>
+    <!-- 🎮 GAME PANEL WITH MOBILE FIT ABSOLUTE IFRAME -->
+    <div id="bottom-panel">
+        <div class="game-loader">NETWORK SLOW.....</div>
+        <iframe id="gameIframe" src="https://www.10sikkim.com/#/register?invitationCode=481415207260"></iframe>
+    </div>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getDatabase, ref, get, set, update, increment, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
-        // 🔥 DEDICATED SIKKIM CONFIG
-        const firebaseConfig = { apiKey: "AIzaSyBFdvXN8SAy77EDQp5HNykO5z2Wa0W8sb0", authDomain: "bdgrocky.firebaseapp.com", databaseURL: "https://bdgrocky-default-rtdb.asia-southeast1.firebasedatabase.app", projectId: "bdgrocky" };
-        const app = initializeApp(firebaseConfig); const db = getDatabase(app);
+        // 🔥 PERFECT CONFIG (ASIA-SOUTHEAST1) 🔥
+        const firebaseConfig = {
+            apiKey: "AIzaSyCRguf69mkxGGceD0wBhOwAtRK8UljJocw",
+            authDomain: "l-new-26288.firebaseapp.com",
+            databaseURL: "https://l-new-26288-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "l-new-26288",
+            storageBucket: "l-new-26288.firebasestorage.app",
+            messagingSenderId: "889152992462",
+            appId: "1:889152992462:web:ce01f5445b4bbdec5e8c9f"
+        };
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
 
-        let currentUid = ""; let globalLink = "https://sikkim.com"; let currentActivePrediction = ""; let currentActivePeriod = ""; let isWaitingForAPI = false; let lastGlobalMsgTime = 0;
+        let currentUid = ""; let globalLink = "https://sikkim.com"; let currentActivePrediction = ""; let currentActivePeriod = ""; let isWaitingForAPI = false;
 
         onValue(ref(db, 'settings/maintenance'), snap => { document.getElementById('maintenanceScreen').style.display = (snap.exists() && snap.val() === true) ? 'flex' : 'none'; });
         onValue(ref(db, 'settings/link_sikkim'), snap => { if(snap.exists() && snap.val() !== "") { globalLink = snap.val().trim(); if(!currentUid) document.getElementById('gameIframe').src = globalLink; }});
 
+        function showModal(title, msg) { document.getElementById('modalTitle').innerText = title; document.getElementById('modalMsg').innerHTML = msg; document.getElementById('uidModal').style.display = 'flex'; }
         function getDeviceID() { let did = localStorage.getItem('vip_device_id'); if(!did) { did = 'DEV-'+Math.random().toString(36).substr(2, 9); localStorage.setItem('vip_device_id', did); } return did; }
 
         window.getRealBallHtml = (n) => { if(n == 0) return `<div class="color-ball bg-red-violet">0</div>`; if(n == 5) return `<div class="color-ball bg-green-violet">5</div>`; if(n % 2 == 0) return `<div class="color-ball bg-red">${n}</div>`; return `<div class="color-ball bg-green">${n}</div>`; };
         window.getSizeBadge = (size) => size.includes("BIG") ? `<span class="size-badge size-big">BIG</span>` : `<span class="size-badge size-small">SMALL</span>`;
 
         window.checkUID = async () => {
-            let uid = document.getElementById('uidInput').value.trim(); if(!/^\d{5,12}$/.test(uid)) { alert("Enter valid UID"); return; }
+            let uid = document.getElementById('uidInput').value.trim(); if(!/^\d{5,12}$/.test(uid)) return showModal("❌ INVALID", "Enter valid UID.");
             let btn = document.getElementById('authBtn'); btn.innerText = "WAIT..."; btn.disabled = true;
-
             try {
                 let approvedSnap = await get(ref(db, 'approved_uids/' + uid));
                 if(approvedSnap.exists()) {
                     let data = approvedSnap.val(); currentUid = uid;
                     let devID = getDeviceID(); let bindSnap = await get(ref(db, 'device_bindings/' + uid));
-                    if(!bindSnap.exists()) await set(ref(db, 'device_bindings/' + uid), devID); else if (bindSnap.val() !== devID) { alert("UID bound to another device."); btn.innerText="CONNECT"; btn.disabled=false; return; }
+                    if(!bindSnap.exists()) await set(ref(db, 'device_bindings/' + uid), devID); else if (bindSnap.val() !== devID) { btn.innerText = "CONNECT"; btn.disabled = false; return showModal("🚨 LOCKED", "UID bound to another device."); }
                     
                     document.getElementById('authScreen').classList.add('hidden'); document.getElementById('toolScreen').classList.remove('hidden');
                     update(ref(db, 'approved_uids/' + uid), { last_active: Date.now() }); setInterval(() => { update(ref(db, 'approved_uids/' + currentUid), { last_active: Date.now() }); }, 60000);
                     startUidListener(uid); startTimerEngine(); return;
                 }
                 await set(ref(db, 'uid_requests/' + uid), { uid: uid, deviceId: getDeviceID(), status: "pending", timestamp: Date.now() });
-                btn.innerText = "CONNECT"; btn.disabled = false; alert("Request sent to Admin.");
-            } catch (error) { btn.innerText = "CONNECT"; btn.disabled = false; alert("Network Error."); }
+                btn.innerText = "CONNECT"; btn.disabled = false; showModal("⏳ REQUEST SENT", `UID sent to Admin for verification.`);
+            } catch (error) { btn.innerText = "CONNECT"; btn.disabled = false; showModal("❌ ERROR", error.message || "Network Connection Failed."); }
         };
 
         function startUidListener(uid) {
             onValue(ref(db, 'approved_uids/' + uid), snap => {
                 if(snap.exists()) {
-                    let data = snap.val();
-                    if(data.is_banned) { document.getElementById('bannedScreen').style.display = 'flex'; return; }
+                    let data = snap.val(); if(data.is_banned || (data.expireAt && data.expireAt < Date.now())) { document.getElementById('bannedScreen').style.display = 'flex'; return; } else document.getElementById('bannedScreen').style.display = 'none';
                     let tracker = document.getElementById('usageTracker');
-                    tracker.innerHTML = data.is_premium ? "👑 VIP ACTIVE" : `FREE PLAYS: <span style="color:#fff;">${data.predictions_used || 0}/5</span>`; tracker.style.display = "block";
-                    let iframe = document.getElementById('gameIframe'); if(iframe.src !== globalLink) iframe.src = globalLink;
-                }
+                    if(data.is_premium) { tracker.innerHTML = "👑 VIP ACTIVE"; tracker.style.background = "rgba(6, 182, 212, 0.15)"; tracker.style.color = "var(--cyan)"; tracker.style.display = "block"; } else { tracker.innerHTML = `FREE PLAYS: <span style="color:#fff;">${data.predictions_used || 0}/5</span>`; tracker.style.display = "block"; }
+                    let iframe = document.getElementById('gameIframe'); if(data.custom_link) { if(iframe.src !== data.custom_link) iframe.src = data.custom_link; } else { if(iframe.src !== globalLink) iframe.src = globalLink; }
+                } else { document.getElementById('bannedScreen').style.display = 'flex'; }
             });
-
-            // LISTEN TO SPECIFIC UID MESSAGES
             onValue(ref(db, 'user_messages/' + uid), snap => {
                 if(snap.exists()) { let msgData = snap.val(); if(msgData.read === false) { document.getElementById('msgTitle').innerText = "📩 ADMIN DIRECTIVE"; document.getElementById('msgBody').innerText = msgData.text; document.getElementById('msgModal').style.display = 'flex'; update(ref(db, 'user_messages/' + uid), {read: true}); } }
             });
-
-            // LISTEN TO GLOBAL BROADCASTS
             onValue(ref(db, 'settings/global_broadcast'), snap => {
                 if(snap.exists()) {
                     let broadcast = snap.val();
-                    if(broadcast.time > lastGlobalMsgTime) {
-                        lastGlobalMsgTime = broadcast.time;
-                        document.getElementById('msgTitle').innerText = "🌐 GLOBAL BROADCAST";
-                        document.getElementById('msgBody').innerText = broadcast.text;
-                        document.getElementById('msgModal').style.display = 'flex';
+                    if(broadcast.time > (window.lastBroadcastTime || Date.now() - 5000)) {
+                        window.lastBroadcastTime = broadcast.time; document.getElementById('msgTitle').innerText = "🌐 GLOBAL ALERT"; document.getElementById('msgBody').innerText = broadcast.text; document.getElementById('msgModal').style.display = 'flex';
                     }
                 }
             });
@@ -211,17 +268,17 @@
 
         window.runExploit = async () => {
             let n1 = document.getElementById('num1').value; let n2 = document.getElementById('num2').value;
-            let predText = document.getElementById('predText'); let btn = document.getElementById('analyzeBtn');
-            if(n1 === "" || n2 === "") return;
+            let resBox = document.getElementById('predictionDisplay'); let predText = document.getElementById('predText'); let btn = document.getElementById('analyzeBtn');
+            if(n1 === "" || n2 === "") return showModal("WARNING", "Missing inputs.");
 
             let userSnap = await get(ref(db, 'approved_uids/' + currentUid)); let userData = userSnap.val();
-            if(!userData.is_premium && userData.predictions_used >= 5) { alert("5 Free Trials Over! Contact Admin."); return; }
+            if(!userData.is_premium && userData.predictions_used >= 5) { showModal("👑 VIP REQUIRED", "Your 5 Free Trials are over."); return; }
 
-            btn.disabled = true; predText.innerHTML = "INTERCEPTING...";
+            btn.disabled = true; resBox.classList.add('analyzing'); predText.innerHTML = "INTERCEPTING...";
             try {
                 let snap = await get(ref(db, `patterns/${n1}-${n2}`));
                 setTimeout(async () => {
-                    btn.disabled = false; 
+                    btn.disabled = false; resBox.classList.remove('analyzing'); 
                     if(snap.exists() && !snap.val().includes("UNSET")) {
                         currentActivePrediction = snap.val(); 
                         let szMatch = currentActivePrediction.split(' ')[0]; let numMatch = currentActivePrediction.match(/\[(\d+)\]/); let num = numMatch ? numMatch[1] : 0;
@@ -230,7 +287,7 @@
                         isWaitingForAPI = false;
                     } else { predText.innerHTML = "NO PATTERN"; predText.style.color = "var(--red)"; }
                 }, 400); 
-            } catch(e) { btn.disabled = false; predText.innerHTML = "SERVER ERROR"; }
+            } catch(e) { btn.disabled = false; resBox.classList.remove('analyzing'); predText.innerHTML = "SERVER ERROR"; }
         };
 
         function startTimerEngine() {
@@ -241,34 +298,37 @@
                 let remSec = 60 - now.getUTCSeconds(); if(remSec === 60) remSec = 0;
                 
                 document.getElementById('displayPeriod').innerText = currentActivePeriod; document.getElementById('displayTimer').innerText = `00:${String(remSec).padStart(2,'0')}`;
-                
-                if((remSec === 0 || remSec === 59) && currentActivePrediction !== "" && !isWaitingForAPI) { 
-                    isWaitingForAPI = true; triggerAnimationEngine(currentActivePeriod, currentActivePrediction); 
-                }
+                if((remSec === 0 || remSec === 59) && currentActivePrediction !== "" && !isWaitingForAPI) { isWaitingForAPI = true; triggerAnimationEngine(currentActivePeriod, currentActivePrediction); }
             }, 1000);
         }
 
         function showResultPopup(type, period, prediction, actualResult, number) {
             const miniScreen = document.getElementById('miniAnimScreen'); const mTitle = document.getElementById('miniTitle'); const card = document.getElementById('realCard');
             document.getElementById('resPeriod').innerText = period; document.getElementById('resBalls').innerHTML = window.getRealBallHtml(number); document.getElementById('resSize').innerHTML = window.getSizeBadge(actualResult);
-            
             let predSz = prediction.split(' ')[0]; let predNum = (prediction.match(/\[(\d+)\]/) || [])[1] || 0;
             document.getElementById('resPred').innerHTML = `${window.getRealBallHtml(predNum)} ${window.getSizeBadge(predSz)}`;
-            
             card.className = "real-result-card"; void card.offsetWidth; 
             
-            if(type === 'WIN') { mTitle.innerText = "🏆 EPIC WIN 🏆"; mTitle.style.color = "var(--green)"; card.classList.add('theme-win'); } 
-            else { mTitle.innerText = "❌ FAILED ❌"; mTitle.style.color = "var(--red)"; card.classList.add('theme-loss'); }
-            
-            miniScreen.style.display = 'flex'; document.getElementById('predText').innerHTML = "<span style='letter-spacing:1px; font-size:12px; color:#94a3b8;'>AWAITING COMMAND...</span>";
+            if(type === 'JACKPOT') {
+                const jpScreen = document.getElementById('jackpotScreen'); jpScreen.style.display = 'flex'; 
+                setTimeout(() => { jpScreen.style.display = 'none'; mTitle.innerText = "💎 MEGA JACKPOT 💎"; mTitle.style.color = "var(--cyan)"; card.classList.add('theme-jackpot'); miniScreen.style.display = 'flex'; }, 3000);
+            } else if(type === 'WIN') { mTitle.innerText = "🏆 EPIC WIN 🏆"; mTitle.style.color = "var(--green)"; card.classList.add('theme-win'); miniScreen.style.display = 'flex'; 
+            } else { mTitle.innerText = "❌ PREDICTION FAILED ❌"; mTitle.style.color = "var(--red)"; card.classList.add('theme-loss'); miniScreen.style.display = 'flex'; }
+            document.getElementById('predText').innerHTML = "<span style='letter-spacing:2px; font-size:12px; color:#94a3b8;'>AWAITING COMMAND...</span>";
+        }
+
+        async function fetchSecureApiData(targetUrl) {
+            try { let res = await fetch("https://api.allorigins.win/raw?url=" + encodeURIComponent(targetUrl), { cache: "no-store" }); return await res.json(); } 
+            catch (e) { let res2 = await fetch("https://api.codetabs.com/v1/proxy?quest=" + encodeURIComponent(targetUrl), { cache: "no-store" }); return await res2.json(); }
         }
 
         async function triggerAnimationEngine(pVerify, pValue) {
             let attempts = 0; const targetPeriod = String(pVerify);
             async function fetchRealResult() {
                 try {
-                    let res = await fetch("https://api.allorigins.win/raw?url=" + encodeURIComponent("https://draw.ar-lottery01.com/WinGo/WinGo_1M/GetHistoryIssuePage.json?t=" + Date.now()), { cache: "no-store" });
-                    let data = await res.json(); let list = data.data?.list || data.data || data.list || data;
+                    let rawData = await fetchSecureApiData("https://draw.ar-lottery01.com/WinGo/WinGo_1M/GetHistoryIssuePage.json?t=" + Date.now());
+                    let list = rawData.data?.list || rawData.data || rawData.list || rawData;
+                    if (!list || list.length === 0) throw new Error("List not found");
                     let latestItem = list[0]; let apiPeriod = String(latestItem.issueNumber || latestItem.period);
                     
                     if(apiPeriod.slice(-4) !== targetPeriod.slice(-4)) { attempts++; if(attempts < 15) { setTimeout(fetchRealResult, 800); return; } }
@@ -277,7 +337,8 @@
                     let actual = latestItem.size ? latestItem.size.toUpperCase() : (num >= 5 ? "BIG" : "SMALL");
                     let cleanPred = pValue.toUpperCase().includes("BIG") ? "BIG" : "SMALL";
                     
-                    if(cleanPred === actual) { showResultPopup('WIN', pVerify, pValue, actual, num); } else { showResultPopup('LOSS', pVerify, pValue, actual, num); }
+                    if(cleanPred === actual) { if(num === 0 || num === 5) showResultPopup('JACKPOT', pVerify, pValue, actual, num); else showResultPopup('WIN', pVerify, pValue, actual, num); } 
+                    else showResultPopup('LOSS', pVerify, pValue, actual, num); 
                 } catch(e) { attempts++; if(attempts < 15) { setTimeout(fetchRealResult, 800); } else { showResultPopup('WIN', pVerify, pValue, pValue.toUpperCase().includes("BIG")?"BIG":"SMALL", 8); } }
             }
             fetchRealResult(); currentActivePrediction = ""; isWaitingForAPI = false;
