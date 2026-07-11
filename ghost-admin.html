@@ -3,69 +3,243 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SIKKIM | GOD MODE</title>
+    <title>GOD MODE | CORE PANEL</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Rajdhani:wght@700;900&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
     <style>
-        :root { --bg-dark: #04040a; --bg-panel: #0a0a14; --primary: #8b5cf6; --red: #ef4444; --text-main: #f8fafc; --text-muted: #94a3b8; --border: #1e1e2d; }
+        /* 🌌 ULTRA-PREMIUM CYBERPUNK THEME */
+        :root { 
+            --bg-base: #02000a; 
+            --bg-card: rgba(10, 10, 20, 0.85); 
+            --primary: #a855f7; 
+            --cyan: #06b6d4; 
+            --red: #ef4444; 
+            --gold: #f59e0b; 
+            --text-main: #f8fafc; 
+            --text-muted: #94a3b8; 
+            --border: rgba(255, 255, 255, 0.1); 
+        }
+        
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Inter', sans-serif; background: var(--bg-dark); color: var(--text-main); display: flex; justify-content: center; align-items: center; height: 100vh; }
         
-        .card { background: var(--bg-panel); border: 1px solid var(--primary); padding: 40px; border-radius: 16px; width: 100%; max-width: 450px; box-shadow: 0 10px 40px rgba(139, 92, 246, 0.2); }
-        h2 { font-family: 'Rajdhani'; font-size: 32px; text-align: center; margin-bottom: 30px; color: var(--primary);}
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: radial-gradient(circle at top center, #1a0b2e 0%, var(--bg-base) 100%); 
+            color: var(--text-main); 
+            display: flex; justify-content: center; align-items: flex-start; 
+            min-height: 100vh; padding: 30px 15px; 
+            overflow-x: hidden;
+        }
         
-        input { width: 100%; padding: 15px; background: #000; border: 1px solid var(--border); color: #fff; border-radius: 8px; outline: none; margin-bottom: 20px; font-family: 'Inter';}
-        button { width: 100%; padding: 15px; background: var(--primary); color: #fff; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; margin-bottom: 20px; font-family: 'Inter';}
-        
-        .switch-container { display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.5); padding: 15px; border-radius: 8px; border: 1px solid var(--red); }
-        .switch { position: relative; display: inline-block; width: 50px; height: 26px; }
-        .switch input { opacity: 0; width: 0; height: 0; }
-        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: var(--border); border-radius: 34px; transition: .4s;}
-        .slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 4px; bottom: 4px; background-color: white; border-radius: 50%; transition: .4s;}
-        input:checked + .slider { background-color: var(--red); }
-        input:checked + .slider:before { transform: translateX(24px); }
+        /* 🎛️ MAIN CARD */
+        .dev-container { 
+            background: var(--bg-card); 
+            border: 1px solid rgba(168, 85, 247, 0.3); 
+            padding: 35px 30px; 
+            border-radius: 20px; 
+            width: 100%; max-width: 550px; 
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), inset 0 0 30px rgba(168, 85, 247, 0.1); 
+            backdrop-filter: blur(15px);
+            animation: slideDown 0.5s ease-out;
+        }
 
-        .hidden { display: none !important; }
+        @keyframes slideDown { 0% { opacity: 0; transform: translateY(-20px); } 100% { opacity: 1; transform: translateY(0); } }
+        
+        .header { text-align: center; margin-bottom: 30px; position: relative;}
+        .header h2 { font-family: 'Rajdhani'; font-size: 38px; color: #fff; letter-spacing: 2px; text-shadow: 0 0 20px var(--primary); margin-bottom: 5px;}
+        .header p { font-size: 12px; color: var(--primary); font-family: 'JetBrains Mono'; letter-spacing: 3px; font-weight: bold;}
+        
+        /* 📦 SECTIONS */
+        .section-box { 
+            background: rgba(0, 0, 0, 0.6); 
+            padding: 25px 20px; 
+            border-radius: 16px; 
+            border: 1px solid var(--border); 
+            margin-bottom: 25px;
+            transition: 0.3s;
+        }
+        .section-box:hover { box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        
+        .box-title { font-family: 'Rajdhani'; font-size: 22px; margin-bottom: 15px; display: flex; align-items: center; gap: 10px;}
+        .title-red { color: var(--red); text-shadow: 0 0 10px rgba(239,68,68,0.5); }
+        .title-gold { color: var(--gold); text-shadow: 0 0 10px rgba(245,158,11,0.5); }
+        .title-cyan { color: var(--cyan); text-shadow: 0 0 10px rgba(6,182,212,0.5); }
+        
+        /* ⌨️ INPUTS */
+        input { 
+            width: 100%; padding: 15px; 
+            background: #05050a; 
+            border: 1px solid rgba(255,255,255,0.1); 
+            color: #fff; 
+            border-radius: 10px; outline: none; margin-bottom: 12px; 
+            font-family: 'JetBrains Mono', monospace; font-size: 13px;
+            transition: 0.3s;
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.5);
+        }
+        input:focus { border-color: var(--primary); box-shadow: inset 0 2px 10px rgba(0,0,0,0.5), 0 0 15px rgba(168,85,247,0.3); }
+        input::placeholder { color: #475569; font-family: 'Inter'; }
+        
+        /* 🖱️ BUTTONS */
+        button { 
+            width: 100%; padding: 16px; 
+            color: #fff; border: none; border-radius: 10px; 
+            font-weight: 800; font-family: 'Inter'; font-size: 14px; letter-spacing: 1px;
+            cursor: pointer; transition: 0.2s; 
+            text-transform: uppercase;
+        }
+        button:active { transform: scale(0.97); }
+        .btn-red { background: linear-gradient(135deg, #ef4444, #991b1b); box-shadow: 0 5px 15px rgba(239,68,68,0.4); }
+        .btn-gold { background: linear-gradient(135deg, #f59e0b, #b45309); color: #000; box-shadow: 0 5px 15px rgba(245,158,11,0.4); }
+        
+        /* 🎚️ TOGGLE SWITCHES */
+        .switch-container { 
+            display: flex; justify-content: space-between; align-items: center; 
+            background: rgba(255,255,255,0.03); 
+            padding: 15px; border-radius: 12px; 
+            border: 1px solid var(--border); margin-bottom: 15px;
+        }
+        .switch-label { font-weight: bold; font-size: 14px; letter-spacing: 0.5px;}
+        .switch-sub { display: block; font-size: 11px; color: var(--text-muted); font-weight: normal; margin-top: 3px;}
+        
+        .switch { position: relative; display: inline-block; width: 54px; height: 28px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #1e293b; border-radius: 34px; transition: .4s; border: 1px solid rgba(255,255,255,0.1);}
+        .slider:before { position: absolute; content: ""; height: 20px; width: 20px; left: 3px; bottom: 3px; background-color: white; border-radius: 50%; transition: .4s; box-shadow: 0 2px 5px rgba(0,0,0,0.5);}
+        
+        input:checked + .slider.bg-red { background-color: var(--red); border-color: var(--red); box-shadow: 0 0 10px rgba(239,68,68,0.5);}
+        input:checked + .slider.bg-primary { background-color: var(--primary); border-color: var(--primary); box-shadow: 0 0 10px rgba(168,85,247,0.5);}
+        input:checked + .slider:before { transform: translateX(26px); }
+
+        /* 🍞 TOAST NOTIFICATION */
+        #toast { position:fixed; top:20px; right:20px; background:var(--primary); color:#fff; padding:15px 25px; border-radius:12px; font-weight:800; font-size:13px; z-index:99999; transform:translateX(150%); transition:0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow:0 10px 30px rgba(0,0,0,0.5); font-family: 'Inter'; letter-spacing: 1px;}
+        #toast.show { transform:translateX(0); }
     </style>
 </head>
 <body>
 
-    <div class="card" id="loginBox">
-        <h2>DEVELOPER LOGIN</h2>
-        <input type="password" id="pass" placeholder="ENTER PIN (ROCKYDEV)" style="text-align:center; letter-spacing:3px;">
-        <button onclick="login()">AUTHORIZE</button>
-    </div>
+    <div id="toast">✅ ACTION SUCCESSFUL</div>
 
-    <div class="card hidden" id="devBox">
-        <h2>SYSTEM CORE</h2>
+    <!-- 🎛️ DEV CORE PANEL -->
+    <div class="dev-container">
         
-        <div style="margin-bottom: 30px;">
-            <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 10px;">UPDATE GAME URL</p>
-            <input type="text" id="gameLink" placeholder="https://sikkim.com">
-            <button onclick="saveLink()" style="background: var(--text-main); color: #000;">UPDATE LINK</button>
+        <div class="header">
+            <h2>GOD MODE</h2>
+            <p>MASTER NODE ROUTER</p>
+        </div>
+        
+        <!-- 🚨 FORCE LINK ROUTER -->
+        <div class="section-box" style="border-color: rgba(239, 68, 68, 0.3); background: rgba(239, 68, 68, 0.05);">
+            <h3 class="box-title title-red">⚔️ FORCE OVERRIDE LINK</h3>
+            
+            <div class="switch-container" style="border-color: rgba(239,68,68,0.2);">
+                <div>
+                    <span class="switch-label" style="color: var(--red);">FORCE MODE</span>
+                    <span class="switch-sub">Bypasses backup pool & runs only this link.</span>
+                </div>
+                <label class="switch"><input type="checkbox" id="forceToggle" onchange="toggleForceMode()"><span class="slider bg-red"></span></label>
+            </div>
+            
+            <input type="text" id="forceLinkInput" placeholder="e.g., https://sikkim.com">
+            <button class="btn-red" onclick="saveForceLink()">INJECT FORCE LINK</button>
         </div>
 
-        <div class="switch-container">
-            <span style="color: var(--red); font-weight: bold; font-size: 14px;">GLOBAL KILL SWITCH<br><span style="font-size: 10px; color: var(--text-muted); font-weight: normal;">Activates Maintenance Screen</span></span>
-            <label class="switch"><input type="checkbox" id="maintToggle" onchange="toggleMaint()"><span class="slider"></span></label>
+        <!-- 🔄 LINK SHIFTING ENGINE -->
+        <div class="section-box" style="border-color: rgba(245, 158, 11, 0.3); background: rgba(245, 158, 11, 0.02);">
+            <h3 class="box-title title-gold">🔄 BACKUP LINK POOL</h3>
+            <p style="font-size:12px; color:var(--text-muted); margin-bottom:15px; line-height: 1.5;">Sequence shifts automatically if a domain is blocked or takes more than 3 seconds to respond.</p>
+            
+            <input type="text" id="backup1" placeholder="[Node 1] Primary Backup">
+            <input type="text" id="backup2" placeholder="[Node 2] Secondary Backup">
+            <input type="text" id="backup3" placeholder="[Node 3] Tertiary Backup">
+            <input type="text" id="backup4" placeholder="[Node 4] Fallback Node">
+            
+            <button class="btn-gold" style="margin-top: 5px;" onclick="saveBackupPool()">COMMIT SHIFTING POOL</button>
         </div>
+
+        <!-- ⚙️ GLOBAL MAINTENANCE -->
+        <div class="section-box" style="border-color: rgba(6, 182, 212, 0.3); background: rgba(6, 182, 212, 0.05); margin-bottom: 0;">
+            <h3 class="box-title title-cyan">🛡️ SECURITY PROTOCOLS</h3>
+            
+            <div class="switch-container" style="margin-bottom: 0; border: none; padding: 0;">
+                <div>
+                    <span class="switch-label" style="color: var(--cyan);">GLOBAL MAINTENANCE</span>
+                    <span class="switch-sub">Suspends all user access temporarily.</span>
+                </div>
+                <label class="switch"><input type="checkbox" id="maintToggle" onchange="toggleMaint()"><span class="slider bg-primary"></span></label>
+            </div>
+        </div>
+
     </div>
 
+    <!-- ⚡ CORE DATABASE LOGIC ⚡ -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+        import { getDatabase, ref, set, update, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
-        const app = initializeApp({ apiKey: "AIzaSyBFdvXN8SAy77EDQp5HNykO5z2Wa0W8sb0", authDomain: "bdgrocky.firebaseapp.com", databaseURL: "https://bdgrocky-default-rtdb.asia-southeast1.firebasedatabase.app", projectId: "bdgrocky" });
+        const firebaseConfig = {
+            apiKey: "AIzaSyCRguf69mkxGGceD0wBhOwAtRK8UljJocw",
+            authDomain: "l-new-26288.firebaseapp.com",
+            databaseURL: "https://l-new-26288-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "l-new-26288"
+        };
+        const app = initializeApp(firebaseConfig); 
         const db = getDatabase(app);
 
-        window.login = () => { if(document.getElementById('pass').value === "ROCKYDEV") { document.getElementById('loginBox').classList.add('hidden'); document.getElementById('devBox').classList.remove('hidden'); init(); } else alert("Wrong PIN"); };
-
-        function init() {
-            onValue(ref(db, 'settings/link_sikkim'), s => { if(s.exists()) document.getElementById('gameLink').value = s.val(); });
-            onValue(ref(db, 'settings/maintenance'), s => { document.getElementById('maintToggle').checked = s.exists() ? s.val() : false; });
+        // Toast Notification System
+        function showToast(msg) { 
+            let t = document.getElementById('toast'); 
+            t.innerText = msg; 
+            t.classList.add('show'); 
+            setTimeout(() => t.classList.remove('show'), 3000); 
         }
 
-        window.saveLink = async () => { await set(ref(db, 'settings/link_sikkim'), document.getElementById('gameLink').value); alert("Link Updated!"); };
-        window.toggleMaint = async () => { await set(ref(db, 'settings/maintenance'), document.getElementById('maintToggle').checked); };
+        // Initialize Panel Directly (No Password)
+        init();
+
+        function init() {
+            onValue(ref(db, 'settings'), s => {
+                if(s.exists()) {
+                    let d = s.val();
+                    document.getElementById('forceToggle').checked = d.force_link_active || false;
+                    document.getElementById('forceLinkInput').value = d.force_link || "";
+                    document.getElementById('backup1').value = d.backup_1 || "";
+                    document.getElementById('backup2').value = d.backup_2 || "";
+                    document.getElementById('backup3').value = d.backup_3 || "";
+                    document.getElementById('backup4').value = d.backup_4 || "";
+                    document.getElementById('maintToggle').checked = d.maintenance || false;
+                }
+            });
+        }
+
+        window.saveForceLink = async () => {
+            let l = document.getElementById('forceLinkInput').value.trim();
+            if(!l) return alert("Link cannot be empty!");
+            await update(ref(db, 'settings'), { force_link: l });
+            showToast("✅ FORCE LINK SAVED!");
+        };
+
+        window.toggleForceMode = async () => {
+            let state = document.getElementById('forceToggle').checked;
+            await update(ref(db, 'settings'), { force_link_active: state });
+            if(state) showToast("🚨 FORCE MODE ACTIVATED!");
+            else showToast("✅ SHIFTING MODE ACTIVATED!");
+        };
+
+        window.saveBackupPool = async () => {
+            let b1 = document.getElementById('backup1').value.trim();
+            let b2 = document.getElementById('backup2').value.trim();
+            let b3 = document.getElementById('backup3').value.trim();
+            let b4 = document.getElementById('backup4').value.trim();
+            
+            await update(ref(db, 'settings'), { backup_1: b1, backup_2: b2, backup_3: b3, backup_4: b4 });
+            showToast("💾 BACKUP POOL COMMITTED!");
+        };
+
+        window.toggleMaint = async () => { 
+            let state = document.getElementById('maintToggle').checked;
+            await update(ref(db, 'settings'), { maintenance: state }); 
+            if(state) showToast("🛡️ MAINTENANCE MODE ON!");
+            else showToast("🌐 MAINTENANCE MODE OFF!");
+        };
     </script>
 </body>
 </html>
